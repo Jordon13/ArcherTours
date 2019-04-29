@@ -702,8 +702,8 @@ if(!function_exists('navBar'))
 					<li class="nav-item">
 						<a class="nav-link" href="'.base_url('/contact').'">Contact</a>
 					</li>
-					<li class="nav-item dropdown active">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Services  <span class="sr-only">(current)</span></a>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Services</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 							<a class="dropdown-item" href="'.base_url('/airport-pricing').'">Airport Transfer</a>
 							<a class="dropdown-item" href="'.base_url('/tours-pricing').'">Tours / Excursions</a>
