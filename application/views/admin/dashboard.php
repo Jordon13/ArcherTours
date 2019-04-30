@@ -18,21 +18,48 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
         
         <style>
-        
+            html,body{
+                height: 100%;
+                width: 100%;
+            }
         </style>
     </head>
 
-    <body class="row m-0 col-md-12 p-0">
+    <body class="container-fluid row col-md-12 p-0">
+         
+            <div class="col-md-2 h-100 position-fixed p-0" style="background-color: rgba(211,233,244,0.3);">
+            <nav class="navbar navbar-dark bg-dark">
+                    <a class="navbar-brand" href="#">
+                    Bootstrap
+                    </a>
+                </nav>
+            </div>
 
-        <div class="col-md-2 m-0 p-0">
-            <nav class="navbar navbar-dark bg-dark p-3">
-            </nav>
-        </div>
-        <div class="col-md-10 m-0 p-0">
-            <nav class="navbar navbar-dark bg-dark p-3">
-            </nav>
-        </div>
-        
+            <div class="col-md-2 h-100 " >
+            
+            </div>
+
+            <div class="col-md-10 w-100 h-100 p-0">
+                <div class="col-md-12 position-fixed p-0" style="background-color: rgba(211,233,244,1);">
+
+                    <nav class="navbar navbar-dark bg-dark">
+                        <a class="navbar-brand" href="#">Bootstrap</a>
+                    </nav>
+
+                </div>
+
+
+                <div class="col-md-12 position-fixed p-0" style="background-color: rgba(211,233,244,1);">
+
+                    <nav class="navbar navbar-dark bg-dark">
+                        <a class="navbar-brand" href="#">Bootstrap</a>
+                    </nav>
+
+                </div>
+
+            </div>
+
+            
 
     </body>
 
