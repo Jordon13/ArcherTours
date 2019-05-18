@@ -1,7 +1,7 @@
 <?php 
 
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+$this->load->helper('script');
 ?>
 
 <!Doctype html>
@@ -11,56 +11,165 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <head>
         <title>Dashboard</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+        <?php adminhead();?>
         
         <style>
-            html,body{
-                height: 100%;
-                width: 100%;
+            .content-area{
+                height: auto!important;
+            }
+            
+            .inner-content{
+                height: auto!important;
             }
         </style>
-    </head>
+    
+</head>
 
-    <body class="container-fluid row col-md-12 p-0">
-         
-            <div class="col-md-2 h-100 position-fixed p-0" style="background-color: rgba(211,233,244,0.3);">
-            <nav class="navbar navbar-dark bg-dark">
-                    <a class="navbar-brand" href="#">
-                    Bootstrap
-                    </a>
-                </nav>
-            </div>
-
-            <div class="col-md-2 h-100 " >
+    <body>
+        <?php navigation();?>
+        <section class="content-area">
             
-            </div>
+            <div class="inner-content">
+                
+                <h5 class="grey-text text-lighten-1">Welcome, Jordaine Gayle</h5>
 
-            <div class="col-md-10 w-100 h-100 p-0">
-                <div class="col-md-12 position-fixed p-0" style="background-color: rgba(211,233,244,1);">
+                <div class="main-details row">
+                    <div class="col s12 m3">
+                        <div class="card-panel z-depth-1 r-card">
+                            
+                            <span class="card-title grey-text text-lighten-1">Total Users</span>
 
-                    <nav class="navbar navbar-dark bg-dark">
-                        <a class="navbar-brand" href="#">Bootstrap</a>
-                    </nav>
+                            <div class="card-content flow-text center-align">
+                                    <h3 class="grey-text text-darken-2">231</h3>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col s12 m3">
+                        <div class="card-panel z-depth-1 r-card">
+                            
+                            <span class="card-title grey-text text-lighten-1">Vistors Today</span>
+
+                            <div class="card-content flow-text center-align">
+                                    <h3 class="grey-text text-darken-2">4,500</h3>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col s12 m3">
+                        <div class="card-panel z-depth-1 r-card">
+                            
+                            <span class="card-title grey-text text-lighten-1">Total Bookings</span>
+
+                            <div class="card-content flow-text center-align">
+                                    <h3 class="grey-text text-darken-2">34</h3>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="col s12 m3">
+                        <div class="card-panel z-depth-1 r-card">
+                            
+                            <span class="card-title grey-text text-lighten-1">Income Year To Date</span>
+
+                            <div class="card-content center-align">
+                                    <h3 class="grey-text text-darken-2">$200k</h3>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+
+                    <div class="col s12 m3">
+                        <div class="card-panel z-depth-1 r-card">
+                            
+                            <span class="card-title grey-text text-lighten-1">Booking Conversion %</span>
+
+                            <div class="card-content flow-text center-align">
+                                    <h3 class="grey-text text-darken-2">98%</h3>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="col s12 m3">
+                        <div class="card-panel z-depth-1 r-card">
+                            
+                            <span class="card-title grey-text text-lighten-1">Total Blog Post</span>
+
+                            <div class="card-content flow-text center-align">
+                                    <h3 class="grey-text text-darken-2">21</h3>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="col s12 m3">
+                        <div class="card-panel z-depth-1 r-card">
+                            
+                            <span class="card-title grey-text text-lighten-1">Active Users</span>
+
+                            <div class="card-content flow-text center-align">
+                                    <h3 class="grey-text text-darken-2">22</h3>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+
+                    <div class="col s12 m3">
+                        <div class="card-panel z-depth-1 r-card">
+                            
+                            <span class="card-title grey-text text-lighten-1">P&L Percentage Section</span>
+
+                            <div class="card-content flow-text center-align">
+                                    <h5 class="grey-text text-darken-2" style="flex-flow: nowrap"><i class="fa fa-caret-up green-text text-accent-4" aria-hidden="true"></i>12.89%</h5> <h5><i class="fa fa-caret-down red-text text-accent-4" aria-hidden="true"></i> 0.7%</h5>
+                            </div>
+                            
+                        </div>
+                    </div>
 
                 </div>
 
+                <h6 class="grey-text text-lighten-1">Recent Activities</h6>
+                <div class="hr"></div>
+                <div class="row">
+                        <table class="highlight centered ts">
+                            <thead>
+                                <tr>
+                                    <th>Activity</th>
+                                    <th>Description</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
 
-                <div class="col-md-12 position-fixed p-0" style="background-color: rgba(211,233,244,1);">
-
-                    <nav class="navbar navbar-dark bg-dark">
-                        <a class="navbar-brand" href="#">Bootstrap</a>
-                    </nav>
-
+                            <tbody>
+                                <tr>
+                                    <td>Alvin</td>
+                                    <td>Eclair</td>
+                                    <td>$0.87</td>
+                                </tr>
+                                <tr>
+                                    <td>Alan</td>
+                                    <td>Jellybean</td>
+                                    <td>$3.76</td>
+                                </tr>
+                                <tr>
+                                    <td>Jonathan</td>
+                                    <td>Lollipop</td>
+                                    <td>$7.00</td>
+                                </tr>
+                            </tbody>
+                    </table>
                 </div>
-
             </div>
 
-            
+        </section>
 
+        
     </body>
+
+    <?php adminjs();?>
 
 </html>

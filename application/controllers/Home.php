@@ -43,10 +43,18 @@ class Home extends CI_Controller {
         $this->load->view('tours');
     }
 
+    /*Blog */
     public function blog()
     {
         $this->load->view('blog/blog');
     }
+
+
+    /** Admin Pages */
+
+
+
+
 }
 
 ?>

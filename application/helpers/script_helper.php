@@ -2,6 +2,359 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+if(!function_exists('navigation')){
+	function navigation(){
+		echo '<section class="navigation">
+		<div class="overlay"></div>
+		<section class="vertical-nav">
+
+			<header class="vertical-header">
+				<p>Tours CMS</p>
+			</header>
+			<p style="color: rgba(158,158,158 ,1); padding: 1em;">Navigation</p>
+			<ul class="ver-link collapsible" data-collapsible="accordion">
+
+				<li>
+					<p  class="collapsible-header waves-effect waves" ><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</p>
+					<ul class="collapsible-body grey lighten-3">
+					</ul>
+				</li>
+
+				<li>
+					<p  class="collapsible-header waves-effect waves active" ><i class="fa fa-plus-square" aria-hidden="true"></i> Create</p>
+					<ul class="collapsible-body grey lighten-3">
+						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>User</li>
+						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Blog</li>
+						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Taxi Price</li>
+						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Airport Price</li>
+						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Tours Price</li>
+					</ul>
+				</li>
+
+				<li>
+					<p  class="collapsible-header waves-effect waves" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> View / Edit</p>
+					<ul class="collapsible-body grey lighten-3">
+						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Users <span class="new badge blue darken-1 z-depth-1">4</span></li>
+						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Blogs <span class="new badge blue darken-1 z-depth-1">2</span></li>
+						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Testimonals <span class="new badge blue darken-1 z-depth-1">1</span></li>
+						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Taxi Prices</li>
+						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Airport Prices</li>
+						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Tours Prices</li>
+					</ul>
+				</li>
+
+				<li>
+					<p  class="collapsible-header waves-effect waves" ><i class="fa fa-cloud-upload" aria-hidden="true"></i> Media Upload</p>
+					<ul class="collapsible-body grey lighten-3">
+						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Photos / Videos</li>
+						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Recent Places</li>
+					</ul>
+				</li>
+
+				<li>
+					<p  class="collapsible-header waves-effect waves" ><i class="fa fa-file-text" aria-hidden="true"></i> Pages</p>
+					<ul class="collapsible-body grey lighten-3">
+						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Home</li>
+						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>About</li>
+						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Contact</li>
+						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Taxi Service</li>
+						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Airport Service</li>
+						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Tours Service</li>
+						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Booking</li>
+						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Blog</li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+		<header class="nav-header">
+			<div class="nav-div">
+				
+				<ul class="nav-icon">
+					<a class="nav-toggle btn-floating btn waves-effect waves-light blue darken-3" onclick="navToggle();"><i class="material-icons">view_headline</i></a>
+				</ul>
+
+				<ul class="profile">
+					<li id="noti"><i class="fa fa-bell " aria-hidden="true" ></i></li>
+					<li id="prof"><i class="fa fa-user-md" aria-hidden="true"></i> John Doe <i class="fa fa-caret-down" aria-hidden="true"></i></li>
+				</ul>
+
+		</div>
+		</header>
+			<ul class="profile-drop grey lighten-5">
+					<li><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Profile</li>
+					<li><i class="fa fa-sign-out" aria-hidden="true"></i> Log out</li>
+				</ul>
+
+				<ul class="notification-drop grey lighten-5" id="">
+					<li class=""><b>Jordaine Gayle Just Updated his Profile</b><br/><em><span style="font-size: 10px; color: rgba(200,200,200,0.9);">Apr 4th 2019 12:10 AM</span></em></li>
+					<li class=""><b>Jordaine Gayle Just Updated his Profile</b><br/><em><span style="font-size: 10px;color: rgba(200,200,200,0.9);">Apr 4th 2019 12:10 AM</span></em></li>
+					<li class=""><b>Jordaine Gayle Just Updated his Profile</b><br/><em><span style="font-size: 10px;color: rgba(200,200,200,0.9);">Apr 4th 2019 12:10 AM</span></em></li>
+					<li class=""><b>Jordaine Gayle Just Updated his Profile</b><br/><em><span style="font-size: 10px;color: rgba(200,200,200,0.9);">Apr 4th 2019 12:10 AM</span></em></li>
+					<li class=""><b>Jordaine Gayle Just Updated his Profile</b><br/><em><span style="font-size: 10px;color: rgba(200,200,200,0.9);">Apr 4th 2019 12:10 AM</span></em></li>
+					<li class=""><b>Jordaine Gayle Just Updated his Profile</b><br/><em><span style="font-size: 10px;color: rgba(200,200,200,0.9);">Apr 4th 2019 12:10 AM</span></em></li>
+					<li class=""><b>Jordaine Gayle Just Updated his Profile</b><br/><em><span style="font-size: 10px;color: rgba(200,200,200,0.9);">Apr 4th 2019 12:10 AM</span></em></li>
+					<li class=""><b>Jordaine Gayle Just Updated his Profile</b><br/><em><span style="font-size: 10px;color: rgba(200,200,200,0.9);">Apr 4th 2019 12:10 AM</span></em></li>
+					<li class=""><b>Jordaine Gayle Just Updated his Profile</b><br/><em><span style="font-size: 10px;color: rgba(200,200,200,0.9);">Apr 4th 2019 12:10 AM</span></em></li>
+					<li class=""><b>Jordaine Gayle Just Updated his Profile</b><br/><em><span style="font-size: 10px;color: rgba(200,200,200,0.9);">Apr 4th 2019 12:10 AM</span></em></li>
+				</ul>
+	</section>';
+	}
+}
+
+if(!function_exists('adminjs')){
+	function adminjs(){
+		echo '
+		<script>
+			var once = 0, qoune = 0, toggle = 1,toggle1 = 1;
+	
+			var windowSize = 0;
+	
+			$("document").ready(()=>{
+				$(".dropdown-trigger").dropdown();
+				$(".collapsible").collapsible({accordion: true});
+				
+				$("#noti").on("click",()=>{
+					backgroundToggle("#212121","white","#noti");
+					if(toggle === 1){
+						toggle=0;
+					}else{
+						toggle = 1;
+					}
+					$(".notification-drop").slideToggle();
+					console.log(toggle);
+				});
+	
+				$("#prof").on("click",()=>{
+					backgroundToggle2("#212121","white","#prof");
+					if(toggle1 === 1){
+						toggle1=0;
+					}else{
+						toggle1 = 1;
+					}
+					$(".profile-drop").slideToggle();
+				});
+	
+				if(getInnerWidth() <= 1000){
+					$(".overlay").fadeOut();
+					
+						$(".vertical-nav").css({
+							"left": "-190px"
+						});
+	
+						$(".nav-header").css({
+							"width": "100%",
+							"left": "0%"
+						});
+	
+						$(".content-area").css({
+							"width": "100%",
+							"left": "0%"
+						});
+	
+						$(".nav-toggle").removeAttr("onclick");
+						$(".nav-toggle").attr("onclick", "navToggleDefault()");
+						
+						windowSize = getInnerWidth();
+						console.log("just loaded");
+						
+					}
+				
+				resizeEvent();
+	
+				$(".overlay").on("click",()=>{
+					
+					$(".overlay").fadeOut();
+					
+					$(".vertical-nav").animate({
+					left: "-190px"
+					},800);
+	
+					$(".nav-header").animate({
+						width: "100%",
+						left: "0px"
+					},500);
+	
+					$(".content-area").animate({
+						width: "100%",
+						left: "0%"
+					},500);
+					
+					$(".nav-toggle").removeAttr("onclick");
+					$(".nav-toggle").attr("onclick", "navToggleDefault()");
+				});
+			});
+	
+			
+	
+			var navToggle = () =>{
+	
+	
+				if(getInnerWidth() <= 1000){
+	
+				}else{
+					$(".overlay").fadeOut();
+					$(".vertical-nav").animate({
+					left: "-190px"
+				},800);
+	
+				$(".nav-header").animate({
+					width: "100%",
+					left: "0px"
+				},500);
+	
+				$(".content-area").animate({
+					width: "100%",
+					left: "0%"
+				},500);
+	
+				$(".nav-toggle").removeAttr("onclick");
+				$(".nav-toggle").attr("onclick", "navToggleDefault()");
+				$(".vertical-nav").css("z-index","0");
+				}
+	
+				
+			}
+	
+			var navToggleDefault = () =>{
+	
+				if(getInnerWidth() <= 1000){
+					$(".vertical-nav").css("z-index","6");
+	
+					$(".vertical-nav").animate({
+						left: "0px",
+						width:"191px"
+					},500);
+	
+					$(".overlay").css("width","0%");
+					$(".overlay").fadeIn();
+					
+					$(".overlay").animate({
+						width: returnCurrentPixels()
+					},200);
+				}else{
+					$(".vertical-nav").css("width","12%");
+					$(".vertical-nav").animate({
+					left: "0px"
+				},500);
+	
+				$(".nav-header").animate({
+					width: "88%",
+					left: "12%"
+				},700);
+	
+				$(".content-area").animate({
+					width: "88%",
+					left: "12%"
+				},700);
+				$(".nav-toggle").removeAttr("onclick");
+				$(".nav-toggle").attr("onclick", "navToggle()");
+				}
+	
+			   
+			} 
+	
+			var addBackground = (color, property) => {
+				//rgba(33,150,243,1);
+				$(property).css("color",color);
+			}
+	
+			var removeBackground = (color, property) => {
+				$(property).css("color",color);
+			}
+	
+			var backgroundToggle = (color1, color2, property) =>{
+				
+				if(toggle === 0){
+					removeBackground(color2, property);
+				}else{
+					addBackground(color1, property);
+				}
+			}
+	
+	
+			var backgroundToggle2 = (color1, color2, property) =>{
+				
+				if(toggle1 === 0){
+					removeBackground(color2, property);
+				}else{
+					addBackground(color1, property);
+				}
+			}
+	
+	
+			var getInnerWidth = () =>{
+				return window.innerWidth;
+			}
+	
+			var returnCurrentPixels = () =>{
+				return (windowSize-191)+"px";
+			}
+	
+			var resizeEvent = () =>{
+				
+				$(window).resize(function () { 
+					windowSize = getInnerWidth();
+					console.log(returnCurrentPixels());
+					if(getInnerWidth() <= 1000){
+						once++;
+						$(".overlay").css("width",returnCurrentPixels());
+						if(once == 1){
+							$(".vertical-nav").animate({
+								left: "-190px"
+							},800);
+	
+							$(".nav-header").animate({
+								width: "100%",
+								left: "0%"
+							},500);
+	
+							$(".content-area").animate({
+								width: "100%",
+								left: "0%"
+							},500);
+	
+							$(".nav-toggle").removeAttr("onclick");
+							$(".nav-toggle").attr("onclick", "navToggleDefault()");
+						}
+						qoune=0;
+						console.log(once);
+						
+					}else{
+	
+						once = 0;
+						qoune++;
+						console.log(once);
+						if(qoune == 1){
+							$(".overlay").fadeOut();
+							$(".vertical-nav").css("z-index","0");
+							$(".vertical-nav").css("width","12%");
+							$(".vertical-nav").animate({
+								left: "0px"
+							},0);
+	
+							$(".nav-header").animate({
+								width: "88%",
+								left: "12%"
+							},0);
+	
+							$(".content-area").animate({
+								width: "88%",
+								left: "12%"
+							},0);
+							$(".nav-toggle").removeAttr("onclick");
+							$(".nav-toggle").attr("onclick", "navToggle()");
+							console.log("qounce: "+qoune);
+						}
+							
+						console.log("qounce: "+qoune);
+					}
+				});
+			}
+						 
+		</script>';
+	}
+}
+
 if ( ! function_exists('footer'))
 {
 	function footer($page = "anon")
@@ -116,6 +469,25 @@ if ( ! function_exists('footer'))
 		}
 	}
 
+}
+
+if(!function_exists('adminhead')){
+	function adminhead(){
+		echo '<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+        <script
+  src="https://code.jquery.com/jquery-3.4.0.js"
+  integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
+  crossorigin="anonymous"></script>
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link rel="stylesheet" href="'.base_url("css/admin.css").'">
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">';
+	}
 }
 
 if(! function_exists('archerHeader'))
@@ -475,6 +847,7 @@ if(! function_exists('archerHeader'))
 	}
 
 }
+
 
 
 if(!function_exists('floatingMessage'))

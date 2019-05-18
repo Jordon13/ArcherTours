@@ -127,4 +127,8 @@ $route['roundtrip'] = "home/tours";
 $route['blogs'] = "home/blog";
 $route['blog'] = "home/blog";
 
+// $route['cuser'] = "home/cuser";
+// $route['blog'] = "home/cblog";
+// $route['prices'] = "home/cprices";
+
 $route['(:any)'] = "home/index";
