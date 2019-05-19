@@ -10,7 +10,7 @@ $this->load->helper('script');
 <html>
 
     <head>
-        <title>CreateUser</title>
+        <title>RecentActivities</title>
         <?php adminhead();?>
     </head>
 

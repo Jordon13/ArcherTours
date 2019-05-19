@@ -10,7 +10,7 @@ $this->load->helper('script');
 <html>
 
     <head>
-        <title>CreateUser</title>
+        <title>CreateBlog</title>
         <?php adminhead();?>
 
         <style>
@@ -150,7 +150,7 @@ $this->load->helper('script');
 
 
                             <div class="file-field input-field col s12">
-                                <div class="btn light-blue darken-1">
+                                <div class="btn blue-grey lighten-2">
                                     <span>Blog Cover Photo</span>
                                     <input type="file" multiple>
                                 </div>

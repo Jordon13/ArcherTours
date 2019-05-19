@@ -10,7 +10,7 @@ $this->load->helper('script');
 <html>
 
     <head>
-        <title>CreateUser</title>
+        <title>CreatePrices</title>
         <?php adminhead();?>
 
         <style>
@@ -72,9 +72,18 @@ $this->load->helper('script');
                 width: 100%;
             }
 
-            @media only screen and (max-width: 540px) {
-                
+            @media only screen and (max-width: 993px) {
+                .content-area {
+                    height: auto!important;
+                    max-height: auto;
+                }
+                .inner-content {
+                    height: auto!important;
+                    max-height: auto;
+                }
             }
+
+
 
 
             @media only screen and (max-width: 300px) {
@@ -106,13 +115,13 @@ $this->load->helper('script');
 
                     <div class="col l6 m10 s12 offset-s0 offset-l3 offset-m1 my-div">
                          
-                        <div id="airport" class="data col s12">
+                        <div id="airport" class="data col s12 z-depth-1 grey lighten-4">
                             <form class="col s12">
 
-                            <div class="col s12">
-                            <h5 class="grey-text lighter-3">Add Package</h5>
-                            <div class="divider"></div>
-                        </div>
+                                <div class="col s12">
+                                    <h5 class="grey-text lighter-3">Add Package</h5>
+                                    <div class="divider"></div>
+                                </div>
 
                                 <div class="row">
 
@@ -172,7 +181,7 @@ $this->load->helper('script');
                                     </div>
                                     
                                     <div class="file-field input-field col l8 s12">
-                                        <div class="btn light-blue darken-1">
+                                        <div class="btn blue-grey lighten-2">
                                             <span>Display Photo</span>
                                             <input type="file" multiple>
                                         </div>

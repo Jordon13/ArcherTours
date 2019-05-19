@@ -25,9 +25,7 @@ if(!function_exists('navigation')){
 					<ul class="collapsible-body grey lighten-3">
 						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>User</li>
 						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Blog</li>
-						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Taxi Price</li>
-						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Airport Price</li>
-						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Tours Price</li>
+						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Prices</li>
 					</ul>
 				</li>
 
@@ -474,7 +472,8 @@ if ( ! function_exists('footer'))
 if(!function_exists('adminhead')){
 	function adminhead(){
 		echo '<meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+		<link rel="shortcut icon" type="image/x-icon" href="'.base_url('assets/cmsicon.png').'">
         <script
   src="https://code.jquery.com/jquery-3.4.0.js"
   integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
@@ -496,6 +495,7 @@ if(! function_exists('archerHeader'))
 	function archerHeader($page = "anon")
 	{
 		echo '<meta charset="utf-8">
+		
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
