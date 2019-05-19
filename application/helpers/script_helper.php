@@ -66,7 +66,7 @@ if(!function_exists('navigation')){
 				</li>
 			</ul>
 		</section>
-		<header class="nav-header">
+		<header class="nav-header light-blue">
 			<div class="nav-div">
 				
 				<ul class="nav-icon">
