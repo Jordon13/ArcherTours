@@ -169,10 +169,6 @@ $this->load->helper('script');
             $('document').ready(function(){
 
                 $('body').css('height',$(window).height()+"px");
-
-                // $('.content-area').animate({
-                //     'height':'100%'
-                // },00);
                 
                 $(window).resize(()=>{
                     $('body').css('height',currentSize()+"px");

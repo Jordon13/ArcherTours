@@ -141,7 +141,7 @@ $this->load->helper('script');
 
                         <div class="row">
                             <div class="input-field col l2 s3 offset-l5 offset-s4">
-                            <button class="btn waves-effect waves-light light-blue darken-1" type="submit" name="action">Submit
+                            <button class="btn waves-effect waves-light  blue accent-4" type="submit" name="action">Submit
                                 <i class="material-icons right">send</i>
                             </button>
                             </div>

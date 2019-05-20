@@ -194,7 +194,7 @@ $this->load->helper('script');
 
                                 <div class="row bcenter">
                                     <div class="input-field col">
-                                    <button class="btn waves-effect waves-light light-blue darken-1" type="submit" name="action">Create Package
+                                    <button class="btn waves-effect waves-light  blue accent-4" type="submit" name="action">Create Package
                                         <i class="material-icons right"></i>
                                     </button>
                                     </div>

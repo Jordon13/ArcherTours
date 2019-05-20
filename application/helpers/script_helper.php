@@ -8,7 +8,7 @@ if(!function_exists('navigation')){
 		<div class="overlay"></div>
 		<section class="vertical-nav">
 
-			<header class="vertical-header">
+			<header class="vertical-header blue accent-3">
 				<p>Tours CMS</p>
 			</header>
 			<p style="color: rgba(158,158,158 ,1); padding: 1em;">Navigation</p>
@@ -64,7 +64,7 @@ if(!function_exists('navigation')){
 				</li>
 			</ul>
 		</section>
-		<header class="nav-header light-blue">
+		<header class="nav-header blue accent-4">
 			<div class="nav-div">
 				
 				<ul class="nav-icon">
