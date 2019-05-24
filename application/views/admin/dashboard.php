@@ -135,8 +135,8 @@ $this->load->helper('script');
                 <h6 class="grey-text text-lighten-1">Recent Activities</h6>
                 <div class="hr"></div>
                 <div class="row">
-                        <table class="highlight centered ts">
-                            <thead>
+                        <table class="highlight centered ts white z-depth-1">
+                            <thead class=" blue accent-4 white-text">
                                 <tr>
                                     <th>Activity</th>
                                     <th>Description</th>

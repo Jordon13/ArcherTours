@@ -19,7 +19,7 @@ $this->load->helper('script');
         <section class="content-area">
             
             <div class="inner-content">
-
+                
             </div>
 
         </section>
