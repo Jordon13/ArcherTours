@@ -42,6 +42,12 @@ class Admin extends CI_Controller {
         $this->load->view('admin/edit/prices');
     }
 
+    public function testimonials()
+    {
+        $this->load->view('admin/edit/test');
+    }
+
+
 // uploads and content creation
     public function media()
     {

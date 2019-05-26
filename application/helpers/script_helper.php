@@ -35,9 +35,7 @@ if(!function_exists('navigation')){
 						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Users <span class="new badge blue darken-1 z-depth-1">4</span></li>
 						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Blogs <span class="new badge blue darken-1 z-depth-1">2</span></li>
 						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Testimonals <span class="new badge blue darken-1 z-depth-1">1</span></li>
-						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Taxi Prices</li>
-						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Airport Prices</li>
-						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Tours Prices</li>
+						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Prices <span class="new badge blue darken-1 z-depth-1">8</span></li>
 					</ul>
 				</li>
 

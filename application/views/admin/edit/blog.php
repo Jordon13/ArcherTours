@@ -12,8 +12,19 @@ $this->load->helper('script');
     <head>
         <title>ViewBlogs</title>
         <?php adminhead();?>
-
+        <script src="https://code.iconify.design/1/1.0.2/iconify.min.js"></script>
         <style>
+
+            .content-area{
+                height: auto!important;
+                min-height: 100%;
+            }
+
+            .inner-content{
+                margin-top: 2em;
+                height: auto!important;
+                min-height: 100%!important;
+            }
             
             .ct{
                 display: flex!important;
@@ -27,19 +38,6 @@ $this->load->helper('script');
                 border-top-left-radius: 30px!important;
             }
 
-            /* .default-input {
-                background-color: none!important;
-                border: none!important;
-                border-bottom: none!important;
-                border-radius: 0;
-                outline: none!important;
-                height: auto!important;
-                width: auto!important;
-                font-size: none!important;
-                margin: none!important;
-                padding: 0;
-                transition: none !important;
-            } */
 
             .searchbox {
                 width: 100%;
@@ -86,18 +84,13 @@ $this->load->helper('script');
             }
 
             .pad{
-                padding: 0.6em!important;
+                padding: 0.2em!important;
                 
             }
 
             .lightText {
                 color: #ccc;
             }
-
-            /* .card-t{
-                color:#2962ff;;
-                font-style: italic;
-            } */
 
             .nopad{
                 padding: 0px!important;
@@ -116,6 +109,11 @@ $this->load->helper('script');
             .blogs{
                 padding:1em!important;
                 
+            }
+
+
+            .iedit{
+                cursor: pointer;
             }
 
         </style>
@@ -164,7 +162,7 @@ $this->load->helper('script');
                         
                   
                         <div class="col s12 nopad">
-                            <span class="card-title ct header"><span class="card-t">A Day Well Spent On The Beach at Westrose</span> <i class="material-icons">mode_edit</i></span>
+                            <span class="card-title ct header"><span class="card-t">A Day Well Spent On The Beach at Westrose</span> <span class="iconify" data-icon="mdi:square-edit-outline" data-inline="false" data-width="30px" data-height="30px"></span></span>
                         </div>      
                        
                         
@@ -207,193 +205,7 @@ $this->load->helper('script');
                     
                     </div> 
 
-                    <div class="col s12 m8 l8 offset-s0 offset-m2 offset-l2 nopad white cont z-depth-1">
-                        
-                  
-                        <div class="col s12 nopad">
-                            <span class="card-title ct header"><span class="card-t">A Day Well Spent On The Beach at Westrose</span> <i class="material-icons">mode_edit</i></span>
-                        </div>      
-                       
-                        
-                        <div class="col">
-                            <div class="card transparent z-depth-0 cc">
-                                <div class="card-content">
-
-                                    
-                                
-
-                                    <div class="row">
-                                        <div class="col">
-                                            <p>I am a very simple card. I am good at containing small bits of information.
-                                            I am convenient because I require little markup to use effectively.</p>
-                                        </div>
-                                        
-                                    </div>
-
-                                    <div class="row">
-
-                                        <div class="col">
-                                            Author: Jordaine Gayle
-                                        </div>
-
-                                        <div class="col">
-                                            Date Posted: 12/08/16
-                                        </div>
-
-                                        <div class="col">
-                                            View: 1299
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    
-                    
-                    </div> 
-
-                    <div class="col s12 m8 l8 offset-s0 offset-m2 offset-l2 nopad white cont z-depth-1">
-                        
-                  
-                        <div class="col s12 nopad">
-                            <span class="card-title ct header"><span class="card-t">A Day Well Spent On The Beach at Westrose</span> <i class="material-icons">mode_edit</i></span>
-                        </div>      
-                       
-                        
-                        <div class="col">
-                            <div class="card transparent z-depth-0 cc">
-                                <div class="card-content">
-
-                                    
-                                
-
-                                    <div class="row">
-                                        <div class="col">
-                                            <p>I am a very simple card. I am good at containing small bits of information.
-                                            I am convenient because I require little markup to use effectively.</p>
-                                        </div>
-                                        
-                                    </div>
-
-                                    <div class="row">
-
-                                        <div class="col">
-                                            Author: Jordaine Gayle
-                                        </div>
-
-                                        <div class="col">
-                                            Date Posted: 12/02/18
-                                        </div>
-
-                                        <div class="col">
-                                            View: 1299
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    
-                    
-                    </div> 
-
-                    <div class="col s12 m8 l8 offset-s0 offset-m2 offset-l2 nopad white cont z-depth-1">
-                        
-                  
-                        <div class="col s12 nopad">
-                            <span class="card-title ct header"><span class="card-t">A Day Well Spent On The Beach at Westrose</span> <i class="material-icons">mode_edit</i></span>
-                        </div>      
-                       
-                        
-                        <div class="col">
-                            <div class="card transparent z-depth-0 cc">
-                                <div class="card-content">
-
-                                    
-                                
-
-                                    <div class="row">
-                                        <div class="col">
-                                            <p>I am a very simple card. I am good at containing small bits of information.
-                                            I am convenient because I require little markup to use effectively.</p>
-                                        </div>
-                                        
-                                    </div>
-
-                                    <div class="row">
-
-                                        <div class="col">
-                                            Author: Jordaine Gayle
-                                        </div>
-
-                                        <div class="col">
-                                            Date Posted: 12/01/11
-                                        </div>
-
-                                        <div class="col">
-                                            View: 1299
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    
-                    
-                    </div> 
-
-                    <div class="col s12 m8 l8 offset-s0 offset-m2 offset-l2 nopad white cont z-depth-1">
-                        
-                  
-                        <div class="col s12 nopad">
-                            <span class="card-title ct header"><span class="card-t">A Day Well Spent On The Beach at Westrose</span> <i class="material-icons">mode_edit</i></span>
-                        </div>      
-                       
-                        
-                        <div class="col">
-                            <div class="card transparent z-depth-0 cc">
-                                <div class="card-content">
-
-                                    
-                                
-
-                                    <div class="row">
-                                        <div class="col">
-                                            <p>I am a very simple card. I am good at containing small bits of information.
-                                            I am convenient because I require little markup to use effectively.</p>
-                                        </div>
-                                        
-                                    </div>
-
-                                    <div class="row">
-
-                                        <div class="col">
-                                            Author: Jordaine Gayle
-                                        </div>
-
-                                        <div class="col">
-                                            Date Posted: 12/10/20
-                                        </div>
-
-                                        <div class="col">
-                                            View: 1299
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    
-                    
-                    </div> 
+ 
 
             </div>
 
