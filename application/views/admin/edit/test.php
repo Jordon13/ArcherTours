@@ -33,6 +33,11 @@ $this->load->helper('script');
         
             .para{}
 
+            .card-image img{
+                height: 300px!important;
+                width: 100%!important;
+            }
+
         </style>
     </head>
 
@@ -79,10 +84,11 @@ $this->load->helper('script');
                             </div>
                         </div>
                     </div>
+
                     <div class="col l4 m6 s12 offset-l0 offset-s0">
                         <div class="card">
                             <div class="card-image">
-                                <img src="http://andamanemeraldholidays.com/image/cache/catalog/aaaaa/holidays/image1/Andaman%20Family%20Tour1-1250x917.jpg">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpuQAqo7AbMcl8u291SJbnINqgLxPTgtYWk0B_eO5WJooo_C-P">
                                 <span class="card-title">Alcia Ricketts</span>
                                 <a class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">edit</i></a>
                             </div>
@@ -114,10 +120,11 @@ $this->load->helper('script');
                             </div>
                         </div>
                     </div>
+
                     <div class="col l4 m6 s12 offset-l0 offset-s0">
                         <div class="card">
                             <div class="card-image">
-                                <img src="http://andamanemeraldholidays.com/image/cache/catalog/aaaaa/holidays/image1/Andaman%20Family%20Tour1-1250x917.jpg">
+                                <img src="https://previews.123rf.com/images/tidty/tidty1803/tidty180300102/98757438-happy-asian-friends-having-a-good-time-together-while-travel-camping-vacation-trip-by-the-lake.jpg">
                                 <span class="card-title">Alcia Ricketts</span>
                                 <a class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">edit</i></a>
                             </div>
