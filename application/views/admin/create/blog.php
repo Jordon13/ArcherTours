@@ -130,7 +130,7 @@ $this->load->helper('script');
 
                             <div class="input-field col l6 s12">
                                 <input id="ct" type="text" class="validate">
-                                <label for="ct">Custom Blog Title (Optional)</label>
+                                <label for="ct">Custom Blog Url (Optional)</label>
                             </div>
 
 

@@ -14,27 +14,110 @@ $this->load->helper('script');
         <?php adminhead();?>
 
         <style>
-        
-            .ds p{
-                display:flex;
-                height:100%;
+            
+            .ct{
+                display: flex!important;
+                justify-content: space-between;
                 align-items: center;
-                justify-content: flex-end;
+                background-color: #2962ff;
+                color: white;
+                font-size: 20px;
+                font-weight: bolder;
+                padding: 0.6em!important;
+                border-top-left-radius: 30px!important;
             }
 
-            .b1{
-                border-left:1px solid #eceff1;
+            /* .default-input {
+                background-color: none!important;
+                border: none!important;
+                border-bottom: none!important;
+                border-radius: 0;
+                outline: none!important;
+                height: auto!important;
+                width: auto!important;
+                font-size: none!important;
+                margin: none!important;
+                padding: 0;
+                transition: none !important;
+            } */
+
+            .searchbox {
+                width: 100%;
+                word-break: break-all; 
+                word-wrap: break-word;
+                font-size: 17px;
+                outline: none;
+                cursor: text;
+                height: 50px;
+                vertical-align: center;
+                border-right: 2px solid #f5f5f5;
+                display: flex;
+                align-items: center;
             }
 
-            .b2{
-                border-right:1px solid #eceff1;
-                display:flex!important;
-                height:100%;
-                align-items: center;
-                justify-content: flex-end;
+            .sa{
+                background-image: linear-gradient(65deg, rgba(41,98,255,1) 81%, rgba(0,145,234,1) 100%);
+                border-radius:10px;
             }
-        
-        
+
+            .filter{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                border: 1px solid #f5f5f5;
+                border-radius: 10px;
+                padding: 1em;
+                height: 100%;
+                cursor: pointer;
+            }
+
+            .filter:hover{
+               color: #2962ff;
+               border: 1px solid #2962ff;
+            }
+
+            .filter-active{
+               color: #2962ff;
+               border: 1px solid #2962ff;
+            }
+
+            .pd{
+                height: 50px;
+            }
+
+            .pad{
+                padding: 0.6em!important;
+                
+            }
+
+            .lightText {
+                color: #ccc;
+            }
+
+            /* .card-t{
+                color:#2962ff;;
+                font-style: italic;
+            } */
+
+            .nopad{
+                padding: 0px!important;
+            }
+
+            .cont{
+                border-top-left-radius: 30px!important;
+                border-bottom-right-radius: 30px!important;
+                margin-top: 1em!important;
+            }
+
+            .cc{
+                padding-top:0.6em!important;
+            }
+
+            .blogs{
+                padding:1em!important;
+                
+            }
+
         </style>
     </head>
 
@@ -44,124 +127,274 @@ $this->load->helper('script');
             
             <div class="inner-content">
 
-                <div class="row white z-depth-1 valign-wrapper" style="padding: 0px!important;">
+                <div class="row  valign-wrapper sa  z-depth-1" style="padding: 0px!important;">
 
 
-                    <div class="col s9">
-
-                        <div class="col">
-                        <input type="text" placeholder="search blogs..."/>
-                        </div>
-
-                        <div class="col b1">
-                        <input type="date"/>
-                        </div>
-
-                        <div class="col">
-                        <input type="date"/>
-                        </div>
-
-
-                        <div class="col b2">
-                        <button class="btn">send request</button>
-                        </div>
-
+                    <div class="col s12">
+                    <!-- contenteditable="true" -->
+                        <div class="col s12 white pad">
                         
+                            <div class="col l7 m5 s4 searchbox" contenteditable="true">  
+                                <em>Search Blog....</em>
+                            </div>
+
+                            <div class="col l5 m7 s8 pd">
+                            
+                                <div class="col s5 offset-s1 filter">
+                                    Author  <i class="material-icons">sort</i>
+                                </div>
+
+                                <div class="col s5  offset-s1 filter">
+                                    Date <i class="material-icons ">sort</i>
+                                </div>
+
+                            </div>
+
+                        </div>
 
                     </div>
-
-                    <div class="col s3 right-align ds">
-                        <p>Sort By Date <i class="material-icons">keyboard_arrow_up</i></p>
-                    </div>
-
-
 
                 </div>
 
                 <div class="divider"></div>
 
-                <div class="row">
-
-                    <div class="col s12 m8 l8 offset-s0 offset-m2 offset-l2">
+                <div class="row blogs">     
+                    
+                    <div class="col s12 m8 l8 offset-s0 offset-m2 offset-l2 nopad white cont z-depth-1">
                         
-                        <div class="card ">
-                            <div class="card-content">
-                            <span class="card-title">Card Title <i class="material-icons">mode_edit</i></span>
-                            <p>I am a very simple card. I am good at containing small bits of information.
-                            I am convenient because I require little markup to use effectively.</p>
-                            <em><span>Date Posted: 33/33/33</span>
-                            <span>By: JGayle</span></em>
-                        </div>
-
-                    </div>
-                    
-                    
-                    </div>
-
-                    <div class="col s12 m8 l8 offset-s0 offset-m2 offset-l2">
+                  
+                        <div class="col s12 nopad">
+                            <span class="card-title ct header"><span class="card-t">A Day Well Spent On The Beach at Westrose</span> <i class="material-icons">mode_edit</i></span>
+                        </div>      
+                       
                         
-                        <div class="card ">
-                            <div class="card-content">
-                            <span class="card-title">Card Title<i class="material-icons">mode_edit</i></span>
-                            <p>I am a very simple card. I am good at containing small bits of information.
-                            I am convenient because I require little markup to use effectively.</p>
-                            <em><span>Date Posted: 33/33/33</span>
-                            <span>By: JGayle</span></em>
+                        <div class="col">
+                            <div class="card transparent z-depth-0 cc">
+                                <div class="card-content">
+
+                                    
+                                
+
+                                    <div class="row">
+                                        <div class="col">
+                                            <p>I am a very simple card. I am good at containing small bits of information.
+                                            I am convenient because I require little markup to use effectively.</p>
+                                        </div>
+                                        
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col">
+                                            Author: Jordaine Gayle
+                                        </div>
+
+                                        <div class="col">
+                                            Date Posted: 12/12/19
+                                        </div>
+
+                                        <div class="col">
+                                            View: 1299
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
                         </div>
-
-                    </div>
                     
                     
-                    </div>
+                    </div> 
 
-
-                    <div class="col s12 m8 l8 offset-s0 offset-m2 offset-l2">
+                    <div class="col s12 m8 l8 offset-s0 offset-m2 offset-l2 nopad white cont z-depth-1">
                         
-                        <div class="card ">
-                            <div class="card-content">
-                            <span class="card-title">Card Title <i class="material-icons">mode_edit</i></span>
-                            <p>I am a very simple card. I am good at containing small bits of information.
-                            I am convenient because I require little markup to use effectively.</p>
-                            <em><span>Date Posted: 33/33/33</span>
-                            <span>By: JGayle</span></em>
-                        </div>
-
-                    </div>
-                    
-                    
-                    </div>
-
-                    <div class="col s12 m8 l8 offset-s0 offset-m2 offset-l2">
+                  
+                        <div class="col s12 nopad">
+                            <span class="card-title ct header"><span class="card-t">A Day Well Spent On The Beach at Westrose</span> <i class="material-icons">mode_edit</i></span>
+                        </div>      
+                       
                         
-                        <div class="card ">
-                            <div class="card-content">
-                            <span class="card-title">Card Title<i class="material-icons">mode_edit</i></span>
-                            <p>I am a very simple card. I am good at containing small bits of information.
-                            I am convenient because I require little markup to use effectively.</p>
-                            <em><span>Date Posted: 33/33/33</span>
-                            <span>By: JGayle</span></em>
+                        <div class="col">
+                            <div class="card transparent z-depth-0 cc">
+                                <div class="card-content">
+
+                                    
+                                
+
+                                    <div class="row">
+                                        <div class="col">
+                                            <p>I am a very simple card. I am good at containing small bits of information.
+                                            I am convenient because I require little markup to use effectively.</p>
+                                        </div>
+                                        
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col">
+                                            Author: Jordaine Gayle
+                                        </div>
+
+                                        <div class="col">
+                                            Date Posted: 12/08/16
+                                        </div>
+
+                                        <div class="col">
+                                            View: 1299
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
                         </div>
-
-                    </div>
                     
                     
-                    </div>
+                    </div> 
 
-                </div>
+                    <div class="col s12 m8 l8 offset-s0 offset-m2 offset-l2 nopad white cont z-depth-1">
+                        
+                  
+                        <div class="col s12 nopad">
+                            <span class="card-title ct header"><span class="card-t">A Day Well Spent On The Beach at Westrose</span> <i class="material-icons">mode_edit</i></span>
+                        </div>      
+                       
+                        
+                        <div class="col">
+                            <div class="card transparent z-depth-0 cc">
+                                <div class="card-content">
 
+                                    
+                                
 
-                <div class="row">
+                                    <div class="row">
+                                        <div class="col">
+                                            <p>I am a very simple card. I am good at containing small bits of information.
+                                            I am convenient because I require little markup to use effectively.</p>
+                                        </div>
+                                        
+                                    </div>
 
-                    <div class="col s12 m8 l8 offset-s0 offset-m2 offset-l2 center-align">
-                        <div class="col"><p class="active">1</p></div>
-                        <div class="col"><p>2</p></div>
-                        <div class="col"><p>3</p></div>
-                        <div class="col"><p>4</p></div>
-                        <div class="col"><p>5</p></div>
+                                    <div class="row">
 
-                    </div>
+                                        <div class="col">
+                                            Author: Jordaine Gayle
+                                        </div>
 
-                </div>
+                                        <div class="col">
+                                            Date Posted: 12/02/18
+                                        </div>
+
+                                        <div class="col">
+                                            View: 1299
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    
+                    
+                    </div> 
+
+                    <div class="col s12 m8 l8 offset-s0 offset-m2 offset-l2 nopad white cont z-depth-1">
+                        
+                  
+                        <div class="col s12 nopad">
+                            <span class="card-title ct header"><span class="card-t">A Day Well Spent On The Beach at Westrose</span> <i class="material-icons">mode_edit</i></span>
+                        </div>      
+                       
+                        
+                        <div class="col">
+                            <div class="card transparent z-depth-0 cc">
+                                <div class="card-content">
+
+                                    
+                                
+
+                                    <div class="row">
+                                        <div class="col">
+                                            <p>I am a very simple card. I am good at containing small bits of information.
+                                            I am convenient because I require little markup to use effectively.</p>
+                                        </div>
+                                        
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col">
+                                            Author: Jordaine Gayle
+                                        </div>
+
+                                        <div class="col">
+                                            Date Posted: 12/01/11
+                                        </div>
+
+                                        <div class="col">
+                                            View: 1299
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    
+                    
+                    </div> 
+
+                    <div class="col s12 m8 l8 offset-s0 offset-m2 offset-l2 nopad white cont z-depth-1">
+                        
+                  
+                        <div class="col s12 nopad">
+                            <span class="card-title ct header"><span class="card-t">A Day Well Spent On The Beach at Westrose</span> <i class="material-icons">mode_edit</i></span>
+                        </div>      
+                       
+                        
+                        <div class="col">
+                            <div class="card transparent z-depth-0 cc">
+                                <div class="card-content">
+
+                                    
+                                
+
+                                    <div class="row">
+                                        <div class="col">
+                                            <p>I am a very simple card. I am good at containing small bits of information.
+                                            I am convenient because I require little markup to use effectively.</p>
+                                        </div>
+                                        
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col">
+                                            Author: Jordaine Gayle
+                                        </div>
+
+                                        <div class="col">
+                                            Date Posted: 12/10/20
+                                        </div>
+
+                                        <div class="col">
+                                            View: 1299
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    
+                    
+                    </div> 
+
             </div>
 
         </section>
@@ -169,5 +402,63 @@ $this->load->helper('script');
         
     </body>
     <?php adminjs();?>
+    <script>
+    
+            $('document').ready(()=>{
 
+                $('.tooltipped').tooltip();
+
+                $('.searchbox').click(() => {
+     
+
+                    $('.searchbox').attr('contenteditable', 'true');
+
+                    $('.searchbox').focus();
+
+                    $('.searchbox').text("");
+
+                    $('.searchbox').addClass('lightText');
+
+                }).mouseleave(() => {
+
+                    if ($('.searchbox').text() == "") {
+                        $('.searchbox').text("Search Blog...");
+                    }
+                    $('.searchbox').removeAttr('contenteditable', 'true');
+                    $('.searchbox').removeClass('lightText');
+                });
+
+
+                var filent = $('.filter').length;
+
+                var preidx = filent;
+
+                var toggle = 0;
+
+                $('.filter').click(function(){
+
+                    console.log(preidx+" - "+$('.filter').index(this));
+                    if(preidx == $('.filter').index(this)){
+
+                        if(toggle == 0){
+                            $(this).removeClass('filter-active');
+                            toggle = 1;
+                        }else{
+                            $(this).addClass('filter-active');
+                            toggle = 0;
+                        }
+                        
+                    }else{
+                        $('.filter').eq(preidx).removeClass('filter-active');
+
+                        $(this).addClass('filter-active');
+                    }
+
+                    preidx = $('.filter').index(this);
+
+                });
+
+            });
+            
+    </script>
 </html>
