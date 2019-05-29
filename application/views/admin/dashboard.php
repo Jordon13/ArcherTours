@@ -14,12 +14,15 @@ $this->load->helper('script');
         <?php adminhead();?>
         
         <style>
+            
             .content-area{
                 height: auto!important;
+                min-height: 100%;
             }
-            
+
             .inner-content{
                 height: auto!important;
+                min-height: 100%!important;
             }
         </style>
     
