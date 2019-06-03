@@ -19,7 +19,7 @@ $this->load->helper('script');
                 color: rgba(224,224,224 ,1);
             }
 
-            .row .input-field input{
+            input{
                 border-bottom: 0.5px solid rgba(224,224,224 ,1) !important;
                 box-shadow: 0 0.5px 0 0 rgba(224,224,224 ,1) !important
             }
@@ -28,7 +28,7 @@ $this->load->helper('script');
                 color: rgba(3,169,244 ,1) !important;
             }
 
-            .row .input-field input:focus {
+            input:focus {
                 border-bottom: 0.5px solid rgba(3,169,244 ,1) !important;
                 box-shadow: 0 0.5px 0 0 rgba(3,169,244 ,1) !important
             }

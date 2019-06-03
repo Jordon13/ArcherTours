@@ -347,7 +347,7 @@ $this->load->helper('script');
                             $('.searchArea').removeClass('pg');
                             $('.searchArea').removeClass('lightText');
 
-                        }
+                    }
                       var text = $('.searchbox').text();
 
                       var ptr = new RegExp(text,'i');

@@ -197,10 +197,6 @@ body {
     padding: 0px;
 }
 
-.link-col {
-    /* background-color:  */
-}
-
 .overlay {
     position: absolute;
     width: calc(100% - 191px);
@@ -329,7 +325,8 @@ body {
     background-color: rgba(224, 224, 224, 1)!important;
     cursor: pointer!important;
     border-left-color: #f50057;
-    transition: background-color 0.4s!important, border-left-color 0.4s;
+    transition: background-color 0.4s, border-left-color 0.4s!important;
+    /* border-left-color 0.4s; */
 }
 
 .main-details {
