@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->helper('script');
@@ -52,7 +52,7 @@ $this->load->helper('script');
                 justify-content: center;
                 width: 100%;
             }
-            
+
             .content-area{
                 height: auto!important;
                 min-height: 100%;
@@ -166,7 +166,7 @@ $this->load->helper('script');
             .tabactive{
                 color: rgba(3,169,244 ,1);
             }
-            
+
             .close:hover{
                 color: rgba(255,0,0 ,0.8);
                 cursor: pointer;
@@ -182,6 +182,7 @@ $this->load->helper('script');
 
             .formatt{
                 padding:1em!important;
+                height:100%;
             }
 
             .im{
@@ -193,11 +194,19 @@ $this->load->helper('script');
                 padding: 1em!important;
             }
 
+            .photos{
+              overflow: scroll!important;
+            }
+
+            .videos{
+              overflow: scroll!important;
+            }
+
 
         </style>
 
         <style>
-        
+
             .menu{
 
                 width: 200px;
@@ -247,11 +256,11 @@ $this->load->helper('script');
                 <li>Change Folder Color</li>
             </ul>
         </div>
-            
+
             <div class="inner-content">
 
                 <div class="row">
-                
+
                     <form class="col l6 offset-l3 m6 offset-m3 s12 offset-s0 z-depth-1 grey lighten-4 my-form">
 
                         <div class="upover" style="display:none;">
@@ -264,9 +273,9 @@ $this->load->helper('script');
                             </div>
 
                         </div>
-                        
+
                         <div class="col s12">
-                        
+
                             <div class="input-field col s12">
                                 <input id="first_name" type="text" class="validate">
                                 <label for="first_name">File Name (Optional)</label>
@@ -281,7 +290,7 @@ $this->load->helper('script');
                                     <input class="file-path validate" type="text" placeholder="Choose A Picture .jpg or jpeg | Video mp4">
                                     <p class="res2"></p>
                                 </div>
-                                
+
                             </div>
 
                             <div class="input-field col s12">
@@ -321,22 +330,22 @@ $this->load->helper('script');
 
                 <div class="divider"></div>
 
-                <div class="row" style="padding: 10px;"> 
+                <div class="row" style="padding: 10px;">
                     <div class="col l6 m8 s12 offset-l3 offset-m2 offset-s0">
                         <input type="search" class="white searchbox" placeholder="Search Albums" style="border-radius: 10px;"/>
-                    </div>    
+                    </div>
                 </div>
 
                 <div class="row ">
 
-                
+
                     <div class="col l2 folder">
                         <img clas="" src="<?php echo base_url('assets/folder.png')?>" width="80px" />
                         <p class="center-align foldername">General</p>
                     </div>
 
                     <div class="col l2 folder">
-                        <img clas="" src="<?php echo base_url('assets/folder.png')?>" width="80px" />   
+                        <img clas="" src="<?php echo base_url('assets/folder.png')?>" width="80px" />
                         <p class="center-align foldername">Upnorth</p>
                     </div>
 
@@ -344,17 +353,17 @@ $this->load->helper('script');
                         <img clas="" src="<?php echo base_url('assets/folder.png')?>" width="80px" />
                         <p class="center-align foldername">VendettaWay</p>
                     </div>
-                   
-                   
-                    
+
+
+
                 </div>
 
-                
+
 
             </div>
 
             <div class="row album scale-transition" style="display:none;">
-                
+
                 <div class="row">
                     <hgroup class="col s12 hgr">
 
@@ -364,9 +373,9 @@ $this->load->helper('script');
 
                         <h4 class="col l1 s1 m1 offset-m2 offset-l7 offset-s0 right-align close"><i class="material-icons">close</i></h4>
 
-                    </hgroup>                                                                   
+                    </hgroup>
                 </div>
-                
+
 
                 <div class="row photos formatt">
 
@@ -388,6 +397,30 @@ $this->load->helper('script');
 
                     <div class="col l3 m4 s12 bx">
                         <img class="materialboxed im z-depth-1" src="https://www.cameraegg.org/wp-content/uploads/2015/06/canon-powershot-g3-x-sample-images-1.jpg" />
+                    </div>
+
+                    <div class="col l3 m4 s12 bx">
+                        <img class="materialboxed im z-depth-1" src="https://www.zen-communications.co.uk/wp-content/uploads/2015/03/sample.jpg" />
+                    </div>
+
+                    <div class="col l3 m4 s12 bx">
+                        <img class="materialboxed im z-depth-1" src="https://materializecss.com/images/sample-1.jpg" />
+                    </div>
+
+                    <div class="col l3 m4 s12 bx">
+                        <img class="materialboxed im z-depth-1" src="https://materializecss.com/images/sample-1.jpg" />
+                    </div>
+
+                    <div class="col l3 m4 s12 bx">
+                        <img class="materialboxed im z-depth-1" src="https://www.zen-communications.co.uk/wp-content/uploads/2015/03/sample.jpg" />
+                    </div>
+
+                    <div class="col l3 m4 s12 bx">
+                        <img class="materialboxed im z-depth-1" src="https://materializecss.com/images/sample-1.jpg" />
+                    </div>
+
+                    <div class="col l3 m4 s12 bx">
+                        <img class="materialboxed im z-depth-1" src="https://materializecss.com/images/sample-1.jpg" />
                     </div>
 
                     <div class="col l3 m4 s12 bx">
@@ -450,12 +483,12 @@ $this->load->helper('script');
 
         </section>
 
-        
+
     </body>
     <?php adminjs();?>
 
     <script>
-    
+
             var nf = 0;
 
         $(document).ready(function(){
@@ -490,7 +523,7 @@ $this->load->helper('script');
 
             $(document).click(()=>{
                 $('.menu').hide();
-                
+
             });
 
         });
@@ -502,8 +535,8 @@ $this->load->helper('script');
         $('.menu').click(function(e){
 
             //$('.folder').
-            
-            
+
+
         });
 
         $('.folder').click(function(e){
@@ -528,10 +561,10 @@ $this->load->helper('script');
                 $('.photos .videos').css("overflow","auto");
         });
 
-        
+
 
         $('.folder').contextmenu((e)=>{
-            
+
             var w = $('.folder').eq(folderIndex).width();
 
             var h = $('.folder').eq(folderIndex).height();
@@ -565,7 +598,7 @@ $this->load->helper('script');
         $(document).ready( ()=>{
            // $('.carousel').carousel();
            $('.materialboxed').materialbox();
-            
+
             var names = $('.foldername');
 
             var nameslen = names.length;
@@ -584,8 +617,8 @@ $this->load->helper('script');
 
                     var t = $(names).eq(x).text();
 
-                    
-                    
+
+
                     var sres = t.search(ptr);
 
                     //console.log(sres);
@@ -595,7 +628,7 @@ $this->load->helper('script');
                         //break;
                     }else{
                         $('.folder').eq(x).css('display','none');
-                    } 
+                    }
 
                 }
 
