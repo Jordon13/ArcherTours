@@ -150,10 +150,13 @@ $this->load->helper('script');
 
               <div class="row posts">
 
+                <div class="row">
+
+
                   <div class="col s12 heading white z-depth-1">
 
                       <div class="col l6 ">
-                        <input type="search" placeholder="Search Recent Post"/>
+                        <input type="search" placeholder="Search Recent Post" class="searchbox"/>
                       </div>
 
                       <div class="col l6 right-align folderOptions">
@@ -162,15 +165,197 @@ $this->load->helper('script');
                       </div>
                   </div>
 
+                </div>
+
 
                   <div class="row contents">
 
                     <div class="row">
-                      <div class="col s12 l4 m3">
+                      <div class="col s12 l4 m3 rpost">
                         <div class="card">
                           <div class="card-image">
                             <img src="https://www.zen-communications.co.uk/wp-content/uploads/2015/03/sample.jpg">
-                            <span class="card-title">Castille Rock</span>
+                            <span class="card-title">Castille Rock3</span>
+                          </div>
+                          <div class="card-content">
+                            <p>THis was a great day ofc</p>
+                          </div>
+                          <div class="card-action">
+
+                            <a><div class="col">
+                              <p>
+                                <i class="material-icons">visibility</i>
+                                127 k
+                              </p>
+                            </div></a>
+
+                            <a><div class="col">
+                              <p>
+                                <i class="material-icons">thumb_up</i>
+                                7 k
+                              </p>
+                            </div></a>
+
+                            <a><div class="col">
+                              <p>
+                                <i class="material-icons">comment</i>
+                                123
+                              </p>
+                            </div></a>
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col s12 l4 m3 rpost">
+                        <div class="card">
+                          <div class="card-image">
+                            <img src="https://www.zen-communications.co.uk/wp-content/uploads/2015/03/sample.jpg">
+                            <span class="card-title">Castille Rock1</span>
+                          </div>
+                          <div class="card-content">
+                            <p>THis was a great day ofc</p>
+                          </div>
+                          <div class="card-action">
+
+                            <a><div class="col">
+                              <p>
+                                <i class="material-icons">visibility</i>
+                                127 k
+                              </p>
+                            </div></a>
+
+                            <a><div class="col">
+                              <p>
+                                <i class="material-icons">thumb_up</i>
+                                7 k
+                              </p>
+                            </div></a>
+
+                            <a><div class="col">
+                              <p>
+                                <i class="material-icons">comment</i>
+                                123
+                              </p>
+                            </div></a>
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col s12 l4 m3 rpost">
+                        <div class="card">
+                          <div class="card-image">
+                            <img src="https://www.zen-communications.co.uk/wp-content/uploads/2015/03/sample.jpg">
+                            <span class="card-title">Castille Rock2</span>
+                          </div>
+                          <div class="card-content">
+                            <p>THis was a great day ofc</p>
+                          </div>
+                          <div class="card-action">
+
+                            <a><div class="col">
+                              <p>
+                                <i class="material-icons">visibility</i>
+                                127 k
+                              </p>
+                            </div></a>
+
+                            <a><div class="col">
+                              <p>
+                                <i class="material-icons">thumb_up</i>
+                                7 k
+                              </p>
+                            </div></a>
+
+                            <a><div class="col">
+                              <p>
+                                <i class="material-icons">comment</i>
+                                123
+                              </p>
+                            </div></a>
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col s12 l4 m3 rpost">
+                        <div class="card">
+                          <div class="card-image">
+                            <img src="https://www.zen-communications.co.uk/wp-content/uploads/2015/03/sample.jpg">
+                            <span class="card-title">Castille Rock4</span>
+                          </div>
+                          <div class="card-content">
+                            <p>THis was a great day ofc</p>
+                          </div>
+                          <div class="card-action">
+
+                            <a><div class="col">
+                              <p>
+                                <i class="material-icons">visibility</i>
+                                127 k
+                              </p>
+                            </div></a>
+
+                            <a><div class="col">
+                              <p>
+                                <i class="material-icons">thumb_up</i>
+                                7 k
+                              </p>
+                            </div></a>
+
+                            <a><div class="col">
+                              <p>
+                                <i class="material-icons">comment</i>
+                                123
+                              </p>
+                            </div></a>
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col s12 l4 m3 rpost">
+                        <div class="card">
+                          <div class="card-image">
+                            <img src="https://www.zen-communications.co.uk/wp-content/uploads/2015/03/sample.jpg">
+                            <span class="card-title">Castille Rock5</span>
+                          </div>
+                          <div class="card-content">
+                            <p>THis was a great day ofc</p>
+                          </div>
+                          <div class="card-action">
+
+                            <a><div class="col">
+                              <p>
+                                <i class="material-icons">visibility</i>
+                                127 k
+                              </p>
+                            </div></a>
+
+                            <a><div class="col">
+                              <p>
+                                <i class="material-icons">thumb_up</i>
+                                7 k
+                              </p>
+                            </div></a>
+
+                            <a><div class="col">
+                              <p>
+                                <i class="material-icons">comment</i>
+                                123
+                              </p>
+                            </div></a>
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col s12 l4 m3 rpost">
+                        <div class="card">
+                          <div class="card-image">
+                            <img src="https://www.zen-communications.co.uk/wp-content/uploads/2015/03/sample.jpg">
+                            <span class="card-title">Castille Rock6</span>
                           </div>
                           <div class="card-content">
                             <p>THis was a great day ofc</p>
@@ -222,7 +407,7 @@ $this->load->helper('script');
         $('.maximize').click(function(){
           $('.my-form').fadeOut('slow');
           $('.rup').animate( {
-            height: '5%'
+            height: '0%'
           },1000);
         });
 
@@ -239,6 +424,38 @@ $this->load->helper('script');
         // });
 
       });
+    </script>
+
+    <script>
+
+      $('document').ready(()=>{
+        var title = $('.card-title');
+
+        var titleLen = title.length;
+
+
+        $('.searchbox').keyup(function(){
+            var text = $(this).val();
+
+            var expr = new RegExp(text,"i");
+
+            for(x = 0; x < titleLen; x++){
+
+              var titleName = $(title).eq(x).text();
+
+              var searchText = titleName.search(expr);
+
+              if(searchText > -1){
+                $('.rpost').eq(x).css('display','');
+              }else{
+                $('.rpost').eq(x).css('display','none');
+              }
+
+            }
+        });
+
+      });
+
     </script>
 
 </html>
