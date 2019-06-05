@@ -91,6 +91,13 @@ public function home()
     $this->load->view('admin/pages/home');
 }
 
+
+//analytics
+
+public function booking_analytics()
+{
+    $this->load->view('admin/analytics/booking_analytics');
+}
 }
 
 ?>
