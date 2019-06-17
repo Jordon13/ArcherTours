@@ -1,367 +1,444 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$this->load->helper('script');
-
 ?>
-
-    <!doctype html>
-
-    <html lang="en">
-
-    <style>
-        .background-area{
-            width: 100%;
-            background-image: url(<?php echo base_url('assets/whitebg.jpg')?>);
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-           /* background-attachment: fixed;*/
-            z-index: 1;
-            
-        }
-    </style>
+<!Doctype html>
+<html lang="en">
 
     <head>
-        <title>ArcherTours</title>
-        <?php archerHeader();?>
+
+      <script src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
+      <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">  
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+      <link href="https://fonts.googleapis.com/css?family=Mali&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Dekko|Gamja+Flower|Itim|Merienda+One|Patrick+Hand+SC|Sriracha&display=swap" rel="stylesheet">
+
+    
+
+      <style>
+
+        html {
+          position:relative;
+          height: 100%!important;
+          
+          font-family: "Nunito";
+        }
+
+        body{
+          position:relative;
+          height: 100%!important;
+
+        }
+
+        nav{
+          background-color: transparent!important;
+        }
+
+        .links li a{
+          font-size: 20px!important;
+          padding-right: 0.5em!important;
+        }
+
+        .fpage{
+
+          background-image: url(<?php echo base_url('assets/17.jpg')?>);
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center;
+          height:100%!important;
+          width:100%!important;
+          
+        }
+
+        .overlay{
+          top:0px;
+          background-color: rgba(0,0,0,0.4);
+          height: 100%;
+          position: absolute;
+          width: 100%;
+          z-index: 2!important;
+        }
+
+        .cont{
+          position: relative;
+          height:100%!important;
+          width:100%!important;
+          z-index: 3!important;
+          margin-bottom: 0px!important; 
+        }
+
+        .nbody{
+          height: 100px;
+          background-color: rgba(255,100,22,0.4);
+        }
+
+        .nitems{
+          display:flex;
+          height: 100%!important;
+        }
+
+        .nitems li{
+          padding: 1em;
+          font-size: 19px;
+          cursor:pointer;
+          
+        }
+
+        .nitems li:hover{
+          border-bottom: 2px solid white;
+        }
+
+        .nitems li a{
+          color: white;
+        }
+
+        .logo{
+          padding:1em!important;
+          height: 100%;
+          background-color: rgba(255,255,255 ,0.8);
+          padding: 1em;
+          font-size: 1.4vw;
+          font-weight: bolder;
+          color:rgba(2,136,209 ,1);
+          font-family: 'Merienda One', cursive;
+          border-bottom-right-radius: 15px;
+          border-bottom-left-radius: 15px;
+        }
+
+        .ncontent{
+          height: auto;
+          
+        }
+
+        .myhead{
+          /* margin-top:1000px!important; */
+          font-family: 'Merienda One', cursive!important;
+          text-shadow: 2px 2px 3px rgba(58,58,58,0.89);
+          font-size: 70px;
+        }
+
+        .ltext{
+          color: white;
+          font-size: 18px;
+          padding:0.5em;
+         
+          /* font-style: italic; */
+        }
+
+        .mbtn{
+          /* padding: 1em; */
+        }
+
+        .booknow{
+          border-radius:30px;
+          /* padding: 1em!important; */
+          vertical-align: center!important;
+          /* height: 50px; */
+          background-color: rgba(2,136,209 ,1);
+          font-family: 'Merienda One', cursive!important;
+          animation: bounce 2s infinite ease-in-out;
+        }
+
+        .mybtn{
+          border-radius:30px;
+          background-color: transparent;
+          border: 1px solid white;
+        }
+
+        .mybtn:hover{
+          background-color: rgba(255,255,255 ,1)!important;
+          color: rgba(2,136,209 ,1);
+        }
+
+        .mybtn:focus{
+          background-color:transparent!important;
+          color: rgba(255,255,255 ,1);
+        }
+
+        .booknow:hover{
+          background-color: rgba(1,87,155 ,1)!important;
+        }
+
+        .booknow:focus{
+          background-color: rgba(2,136,209 ,1);
+        }
+
+
+        /* @-webkit-keyframes bounce {
+            0% { transform: translateY(-5px)  }
+            50% { transform: translateY(4px) }
+            100% { transform: translateY(-5px) }
+        } */
+
+        @keyframes bounce {
+            0% { transform: translateY(-1px)  }
+            50% { transform: translateY(2px) }
+            100% { transform: translateY(-1px) }
+        }
+
+        .indicators{
+          display:flex!important;
+          justify-content: center;
+        }
+
+        .indicator{
+          border-radius: 100%;
+          height: 5px;
+          width: 5px;
+          background-color: transparent;
+          border: 2px solid white;
+          padding: 0.3em;
+          margin:1em;
+          transition: background-color 0.5s;
+        }
+
+        .indicator-active{
+          background-color: rgba(255,255,255,1);
+          border: 2px solid rgba(255,255,255,0.2)!important;
+          transition: background-color 2s;
+        }
+        
+        .nbody:last-child{
+          display: flex!important;
+          align-items:center!important;
+        }
+
+        .ico{
+          font-size: 20px!important;
+        }
+        
+        
+
+      </style>
     </head>
 
     <body>
-        
-    <?php floatingMessage();?>
-        <!-- sction1-->
 
-        <!--Section1 end -->
+      <!-- First Page -->
 
-        <div class="container col-12 m-0 p-0">
+      
+      <div class="navbar-fixed" style="display:none">
+        <nav class="z-depth-0 blue">
+          <div class="nav-warpper">
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger white-text"><i class="material-icons">menu</i></a>
+            <a href="#!" class="hide-on-med-and-down">Home</a>
+            <ul class="right hide-on-med-and-down links">
+              <li><a href="sass.html">Services</a></li>
+              <li><a href="badges.html">Gallery</a></li>
+              <li><a href="badges.html">About</a></li>
+              <li><a href="badges.html">Contact</a></li>
+              <li><a href="badges.html">Blog</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
 
-            <div class="row m-0 p-0 col-md-12 justify-content-center align-items-start" id="bg-image">
-                <div class="overlay"></div>
+      <ul class="sidenav" id="mobile-demo">
+        <li><a href="sass.html">Services</a></li>
+        <li><a href="badges.html">Gallery</a></li>
+        <li><a href="badges.html">About</a></li>
+        <li><a href="badges.html">Contact</a></li>
+        <li><a href="badges.html">Blog</a></li>
+      </ul>
 
-                <?php navBar();?>
+      <div class="fpage">
+        <div class="overlay"></div>
 
-                <div class="container" style="z-index: 3;" data-aos="fade-up">
-                    <div class="row justify-content-center">
-                        <h1 class="h1 text-white text-center text-shadow">Experience Jamaica's paradise through drivers that are reliable, knowledgeable and trustworthy</h1>
-                        <hr class="my-7 col-md-6" style="background-color: rgba(255,255,255, 0.7);" />
-
-                        <blockquote class="blockquote text-center col-md-12 text-white ">
-                            <p class="mb-0 text-center text-shadow">The world is a book, and those who do not travel read only a page.</p>
-                            <footer class="blockquote-footer text-white lead">Saint Augustine <cite title="Source Title ">Binary Quotes</cite></footer>
-                        </blockquote>
-                        <button type="button" class="btn btn-outline-light text-lg p-2 m-4 bounce" style="" data-toggle="modal" data-target="#exampleModalCenter1">Book A Trip</button>
-                    </div>
-
-                </div>
-
+        <div class="row cont">
+          
+          <div class="col l10 offset-l1 white-text nbody hide-on-med-and-down">
+          
+            <div  class="col l2 logo center-align z-depth-1">
+              <!-- <img src="<?php echo base_url('assets/logo1.png');?>" width="100%"/> -->
+              Archer 1062<br/>Tours
             </div>
 
-        </div>
-
-        <!--Book a trip -->
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">Book A trip</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form class="">
-                            <div class="row col-m-12 m-2">
-                                <div class="col">
-                                    <input type="text" class="form-control" placeholder="Fullname">
-                                </div>
-                            </div>
-
-                            <div class="row col-m-12 m-2">
-                                <div class="col">
-                                    <input type="text" class="form-control" placeholder="Pickup">
-                                </div>
-                            </div>
-
-                            <div class="row col-m-12 m-2">
-                                <div class="col">
-                                    <input type="text" class="form-control" placeholder="Destination">
-                                </div>
-                            </div>
-
-                            <div class="row col-m-12 m-2">
-                                <div class="col">
-                                    <input type="text" class="form-control" placeholder="No. Passengers">
-                                </div>
-                            </div>
-
-                            <div class="row col-m-12 m-2">
-                                <div class="col">
-                                    <input type="text" class="form-control" placeholder="Email">
-                                </div>
-                            </div>
-
-                            <div class="row col-m-12 m-2">
-                                <div class="col">
-                                    <textarea class="form-control" placeholder="Message"></textarea>
-                                </div>
-                            </div>
-
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-outline-success">Book Trip</button>
-                    </div>
-                </div>
+            <div class="col l10 bd">
+              <ul class="right nitems">
+                <li><a href="sass.html">Home</a></li>
+                <li><a href="sass.html">Services</a></li>
+                <li><a href="badges.html">Gallery</a></li>
+                <li><a href="badges.html">About</a></li>
+                <li><a href="badges.html">Contact</a></li>
+                <li><a href="badges.html">Blog</a></li>
+              </ul>
             </div>
-        </div>
-        <!-- -->
+            
 
-        <!-- section 2-->
-        <div class="container col-md-12 p-4" data-aos="fade-up">
+          </div>
 
-            <div class="row col-md-12 p-4 m-0" style="background-color: #EEEEEE;">
+          <div class="col l10 offset-l1 white-text nbody">
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger white-text ico"><i class="material-icons">menu</i></a>
+          </div>
 
-                <div class="col-md-6">
-                    <!--<iframe width="100%" height="500px" src="https://www.youtube.com/embed/32ZG9WiR4wg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
-                        <video controls class="player" id="player1" height="100%"
-	                        width="100%" loop muted poster="<?php echo base_url('assets/trips/19.jpeg') ?>"
-	                        preload="auto" src="<?php echo base_url('assets/trips/23.mp4') ?>"
-	                        tabindex="0" title="MediaElement">
-                        </video>
-                </div>
-                <div class=" col-md-6">
+          <div class="col s12 ncontent">
 
-                    <h1 class="h2 text-dark">Welcome to Archer 1062 Tours since 2015 established far far away.</h1>
-                    <p class="text-black-50">
-                        <br/>
-                        <br/>We take pride in providing exceptional services to our clients/guests here in Jamaica.
-                        <br/>
-                        <br/> We provide airport transfer to and from Sangster International Airport. We will take care of you and yours the minute you exit the custom area at the ports whether you travel by air or sea
-                        <br/>
-                        <br/> We will fulfill you needs for taxi services for any Tours/Excursion or if you just want to go on a "JOYRIDE"</p>
-
-                </div>
-
+            <div  data-aos="zoom-in-down" data-aos-delay="400"
+     data-aos-offset="0" class="col l6 m8 s12 offset-l3 offset-m2 offset-s0 center-align">
+              <h1 class="header myhead white-text">Welcome</h1>
             </div>
 
-            <div class="row">
-                <!-- Testimonials -->
-                <div class="container-fluid" data-aos="fade-up">
-                    <h1 class="text-center my-3">Testimonials</h1>
-                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner row w-100 mx-auto">
-                            <div class="carousel-item col-md-4 active">
-                                <div class="card shadow-sm">
-                                    <img src="<?php echo base_url('assets/6.jpg') ?>" class="card-img-top" alt="blank">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Card 1</h4>
-                                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                        <p class="card-text">
-                                            <small class="text-muted">Last updated 3 mins ago</small>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="carousel-item col-md-4">
-                                <div class="card shadow-sm">
-                                    <img src="<?php echo base_url('assets/6.jpg') ?>" class="card-img-top" alt="blank">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Card 2</h4>
-                                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                        <p class="card-text">
-                                            <small class="text-muted">Last updated 3 mins ago</small>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="carousel-item col-md-4">
-                                <div class="card shadow-sm">
-                                    <img src="<?php echo base_url('assets/6.jpg') ?>" class="card-img-top" alt="blank">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Card 3</h4>
-                                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                        <p class="card-text">
-                                            <small class="text-muted">Last updated 3 mins ago</small>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="carousel-item col-md-4">
-                                <div class="card shadow-sm">
-                                    <img src="<?php echo base_url('assets/6.jpg') ?>" class="card-img-top" alt="blank">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Card 4</h4>
-                                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                        <p class="card-text">
-                                            <small class="text-muted">Last updated 3 mins ago</small>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="carousel-item col-md-4">
-                                <div class="card shadow-sm">
-                                    <img src="<?php echo base_url('assets/6.jpg') ?>" class="card-img-top" alt="blank">
-                                    <div class="card-body">
+            <div class="row mbtn" data-aos="zoom-in" data-aos-delay="800"
+     data-aos-offset="0">
+              <div class="col l6 m8 s12 offset-l3 offset-m2 offset-s0  center-align" >
 
-                                        <h4 class="card-title">Card 5</h4>
-                                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                        <p class="card-text">
-                                            <small class="text-muted">Last updated 3 mins ago</small>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="carousel-item col-md-4">
-                                <div class="card shadow-sm">
-                                    <img src="<?php echo base_url('assets/6.jpg') ?>" class="card-img-top" alt="blank">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Card 6</h4>
-                                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                        <p class="card-text">
-                                            <small class="text-muted">Last updated 3 mins ago</small>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="carousel-item col-md-4">
-                                <div class="card shadow-sm">
-                                    <img src="<?php echo base_url('assets/6.jpg') ?>" class="card-img-top" alt="blank">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Card 7</h4>
-                                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                        <p class="card-text">
-                                            <small class="text-muted">Last updated 3 mins ago</small>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12 text-center mt-4">
-                                    <a class="btn btn-outline-secondary mx-1 prev" href="javascript:void(0)" title="Previous">
-                                        <i class="fa fa-lg fa-chevron-left"></i>
-                                    </a>
-                                    <a class="btn btn-outline-secondary mx-1 next" href="javascript:void(0)" title="Next">
-                                        <i class="fa fa-lg fa-chevron-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row justify-content-center">
-                <h1 class="text-center my-3 col-md-12">Recent Places</h1>
-                <div class="container col-md-12">
-                    <div class="row">
-                        <div class="col-md-4" data-aos="zoom-in">
-                            <figure class="figure shadow-sm col-md-12 p-0 m-0 border rounded">
-                                <img src="<?php echo base_url('assets/trips/6.jpeg') ?>" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
-                                <figcaption class="figure-caption">A caption for the above image.</figcaption>
-                            </figure>
-                        </div>
-                        <div class="col-md-4" data-aos="zoom-in">
-                            <figure class="figure shadow-sm col-md-12 p-0 m-0 border rounded">
-                                <img src="<?php echo base_url('assets/trips/1.jpeg') ?>" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
-                                <figcaption class="figure-caption">A caption for the above image.</figcaption>
-                            </figure>
-                        </div>
-                        <div class="col-md-4" data-aos="zoom-in">
-                            <figure class="figure shadow-sm col-md-12 p-0 m-0 border rounded">
-                                <img src="<?php echo base_url('assets/trips/9.jpeg') ?>" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
-                                <figcaption class="figure-caption">A caption for the above image.</figcaption>
-                            </figure>
-                        </div>
-                        <div class="col-md-4" data-aos="zoom-in-up">
-                            <figure class="figure shadow-sm col-md-12 p-0 m-0 border rounded">
-                                <img src="<?php echo base_url('assets/trips/16.jpeg') ?>" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
-                                <figcaption class="figure-caption">A caption for the above image.</figcaption>
-                            </figure>
-                        </div>
-                        <div class="col-md-4" data-aos="zoom-in-up">
-                            <figure class="figure shadow-sm col-md-12 p-0 m-0 border rounded">
-                                <img src="<?php echo base_url('assets/trips/4.jpeg') ?>" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
-                                <figcaption class="figure-caption">A caption for the above image.</figcaption>
-                            </figure>
-                        </div>
-                        <div class="col-md-4" data-aos="zoom-in-up">
-                            <figure class="figure shadow-sm col-md-12 p-0 m-0 border rounded">
-                                <img src="<?php echo base_url('assets/trips/9.jpeg') ?>" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
-                                <figcaption class="figure-caption">A caption for the above image.</figcaption>
-                            </figure>
-                        </div>
-                    </div>
+                <div class="contents" >
+                  <h3 class="white-text center-align">Get Great1 Deals On Dunns River Falls</h3>
+                  <p class="center ltext center-align col s10 offset-s1">Contrary to popular belief, Lorem Ipsum is not simply random text.
+                     It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
+                  <button class="mybtn btn z-depth-0">Read More</button>
                 </div>
 
-            </div>
-        </div>
-        <!-- section 2 end-->
-
-        <!-- Section 3-->
-        <div class="container col-md-12 p-0 m-0">
-            <div class="row col-md-12 p-0 m-0">
-                <div class="" id="bg-image2">
-                    <div class="overlay1"></div>
-                </div>
-            </div>
-
-        </div>
-        <!-- Section 3 End -->
-
-        <!-- Section 4-->
-        <div class="container col-md-12 mb-4">
-            <div class="row col-md-12 justify-content-center">
-                <div class="col-md-12">
-                    <h1 class="h1 text-center">Services</h1></div>
-                <div class="col-md-12">
-                    <div class="card-deck">
-                        <div class="card col-md-4 p-0 shadow-sm" data-aos="flip-right">
-                            <img class="card-img-top" src="<?php echo base_url('assets/trips/3.jpeg') ?>" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Tours</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <a href="#" class="btn btn-success">Read More...</a>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">Price: $12,000 JMD</small>
-                            </div>
-                        </div>
-                        <div class="card col-md-4 p-0 shadow-sm" data-aos="flip-right">
-                            <img class="card-img-top" src="<?php echo base_url('assets/trips/5.jpeg') ?>" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Taxi Service</h5>
-                                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-success">Read More...</a>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">Price: $12,000 JMD</small>
-                            </div>
-                        </div>
-                        <div class="card col-md-4 p-0 shadow-sm" data-aos="flip-right">
-                            <img class="card-img-top" src="<?php echo base_url('assets/trips/13.jpeg') ?>" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Airport Transfer</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                                <a href="#" class="btn btn-success">Read More...</a>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">Price: $12,000 JMD</small>
-                            </div>
-                        </div>
-                    </div>
-
+                <div class="contents" style="display:none">
+                  <h3 class="white-text center-align">Get Great2 Deals On Dunns River Falls</h3>
+                  <p class="center ltext center-align col s10 offset-s1">Contrary to popular belief, Lorem Ipsum is not simply random text.
+                     It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
+                  <button class="mybtn btn z-depth-0">Read More</button>
                 </div>
 
+                <div class="contents" style="display:none">
+                  <h3 class="white-text center-align">Get Great3 Deals On Dunns River Falls</h3>
+                  <p class="center ltext center-align col s10 offset-s1">Contrary to popular belief, Lorem Ipsum is not simply random text.
+                     It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
+                  <button class="mybtn btn z-depth-0">Read More</button>
+                </div>
+
+              </div>
             </div>
-        </div>
+
+
+            <div class="row" data-aos="zoom-in" data-aos-delay="1200">
+            <div class="col l6 m8 s12 offset-l3 offset-m2 offset-s0 center-align indicators">
+              <div class="indicator indicator-active">
+              </div>
+            </div>
+              
+            </div>
+
+            <div class="row mbtn" >
+              <div class="col l6 m8 s12 offset-l3 offset-m2 offset-s0 center-align">
+                <button class="booknow btn btn-large waves-effect waves-light">Book Now</button>
+              </div>
+            </div>
+
+          </div>
+
+
         </div>
         
+      </div>
+      
+
+      <!-- <div class="row cont">
+        <div class="col l6 offset-l3 white-text">
+          dadsd
+        </div>
+      </div> -->
+
     </body>
-    <?php footer("home");?>  
 
-    </html>
+    <script type="text/javascript">
+    
+        $(document).ready(function(){
+          $('.sidenav').sidenav();
+        });
+
+        
+    </script>
+
+<script>
+  AOS.init();
+</script>
+
+
+  <script type="text/javascript">
+      
+      var counter = 0;
+
+      $(document).ready(function(){
+
+        
+
+        for(x = 0; x < $('.contents').length-1; x++){
+          $('.indicators').append('<div class="indicator"></div>');
+        }
+
+        //animateDivs();
+
+        indicatorChange();
+
+      });
+
+
+      var animateDivs = () =>{
+
+          var divs = $('.contents');
+          var indicators = $('.indicator');
+
+          console.log("Indicator Length: "+indicators.length);
+          
+          var divCount = divs.length;
+          var count = 0;
+          var firstrun = true;
+          var divSlide = setInterval(() => {
+
+            
+
+            if(firstrun){
+              count = 1;
+              $(divs).fadeOut(1000);
+              $(divs).eq(count).delay(1000-2).fadeIn(2000);
+              $(indicators).removeClass('indicator-active');
+              $(indicators).eq(count).addClass('indicator-active');
+              firstrun = false;
+            }else{
+
+                $(divs).fadeOut(1000);
+                $(divs).eq(count).delay(1000-2).fadeIn(2000);
+                $(indicators).removeClass('indicator-active');
+                $(indicators).eq(count).addClass('indicator-active');
+            }
+
+            count++
+            if(count == divCount){
+              count = 0;
+            }
+            console.log(count);
+
+          }, 10000);
+
+      }
+
+      var indicatorChange = () =>{
+
+          var divs = $('.contents');
+          var indicators = $('.indicator');
+
+          console.log("Indicator Length: "+indicators.length);
+            
+          var divCount = divs.length;
+        
+          var firstrun = true;
+
+          
+
+          $(indicators).click(function(){
+            
+            var currentIndex = indicators.index(this);
+
+            $(divs).fadeOut(500);
+            $(divs).eq(currentIndex).delay(500-5).fadeIn(1000);
+            $(indicators).removeClass('indicator-active');
+            $(indicators).eq(currentIndex).addClass('indicator-active');
+          });
+
+          
+
+      }
+      
+  </script>
+</html>

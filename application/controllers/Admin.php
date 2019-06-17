@@ -98,6 +98,23 @@ public function booking_analytics()
 {
     $this->load->view('admin/analytics/booking_analytics');
 }
+
+
+public function handlebookings()
+{
+    $this->load->view('admin/analytics/handlebookings');
+}
+
+public function profitloss()
+{
+    $this->load->view('admin/analytics/profitloss');
+}
+
+public function calender()
+{
+    $this->load->view('admin/analytics/bcalender');
+}
+
 }
 
 ?>

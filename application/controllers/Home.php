@@ -49,6 +49,17 @@ class Home extends CI_Controller {
         $this->load->view('blog/blog');
     }
 
+    public function header()
+    {
+        $this->load->view('sections/header');
+    }
+
+    
+    public function footer()
+    {
+        $this->load->view('sections/footer');
+    }
+
 
     /** Admin Pages */
 

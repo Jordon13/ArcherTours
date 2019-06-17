@@ -10,7 +10,7 @@ $this->load->helper('script');
 <html>
 
     <head>
-        <title>Profit & Loss</title>
+        <title>Calender</title>
         <?php adminhead();?>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
         <style>
