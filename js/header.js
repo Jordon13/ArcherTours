@@ -1,6 +1,9 @@
 var winWidth = $(window).width();
 var sval = $(this).scrollTop();
 
+//1261 for the close icon for header and the responsiveness is complete
+// console.log(sval);
+
 $(document).ready(function() {
     $('.sidenav').sidenav();
 
