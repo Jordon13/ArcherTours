@@ -3,7 +3,7 @@
 if(!function_exists('main_head')){
 	function main_head(){
         echo '<script src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
-        
+        <script src="'.base_url('js/jQuery.scrollSpeed.js').'" ></script>
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> 
         
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -14,13 +14,15 @@ if(!function_exists('main_head')){
 
         <link href="https://fonts.googleapis.com/css?family=Hind&display=swap" rel="stylesheet">
 
-        <script src="'.site_url('js/materialize.js').'"></script>
+        <script src="'.base_url('js/materialize.js').'"></script>
         
         <link href="'.base_url('css/header.css').'" rel="stylesheet">
         
         <link href="'.base_url('css/materialize.css').'" rel="stylesheet">
         
-        <script src="'.site_url('js/header.js').'" async></script>
+        <script src="'.base_url('js/header.js').'" async></script>
+
+        
           ';
 	}
 }
@@ -46,7 +48,7 @@ if(!function_exists('main_nav')){
 
     <div class="nav-body">
         <div class="nav-logo">
-            <img src="'.base_url('assets/logo2.png').'"/>
+            <img src="'.base_url('assets/logo.png').'"/>
         </div>
 
         <div class="nav-links noshow">
@@ -65,21 +67,21 @@ if(!function_exists('main_nav')){
         <div class="nav-misc">
             <button class="noshow">Book A Trip</button>
             <i class="material-icons noshow search-trigger">search</i>
-            <i class="material-icons nav-icon sidenav-trigger" data-target="mobile-demo" style="display: none;">menu</i>
+            <i class="material-icons nav-icon sidenav-trigger" data-target="slidenav" style="display: none;">menu</i>
         </div>
         </div>
 
     </div>
 
 
-    <ul class="sidenav" id="mobile-demo">
+    <ul class="sidenav" id="slidenav">
         <li><a href="sass.html">Services</a></li>
         <li><a href="badges.html">Gallery</a></li>
         <li><a href="badges.html">About</a></li>
         <li><a href="badges.html">Contact</a></li>
         <li><a href="badges.html">Blog</a></li>
 
-        <div class="nav-miscs">
+        <div class="nav-misc">
             <button class="">Book A Trip</button>
             <i class="material-icons search-trigger">search</i>
         </div>

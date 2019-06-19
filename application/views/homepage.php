@@ -8,7 +8,6 @@ $this->load->helper('section');
     <head>
 
     <?php main_head(); ?>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" async></script>
     
 
       <style>
@@ -23,7 +22,6 @@ $this->load->helper('section');
         body{
           position:relative;
           height: 100%!important;
-
         }
 
         
@@ -35,124 +33,24 @@ $this->load->helper('section');
           background-position: center;
           height:100%!important;
           width:100%!important;
+          background-attachment: fixed;
           
         }
 
         .overlay{
           top:0px;
-          background-color: rgba(0,0,0,0.4);
+          background-color: rgba(0,0,0,0.3);
           height: 100%;
           position: absolute;
           width: 100%;
           z-index: 2!important;
         }
-/* 
+
         .cont{
-          position: relative;
-          height:100%!important;
-          width:100%!important;
+          /* position: relative; */
+          
           z-index: 3!important;
-          margin-bottom: 0px!important; 
-        }
-
-        .nbody{
-          height: 100px;
-          background-color: rgba(255,100,22,0.4);
-        }
-
-        .nitems{
-          display:flex;
-          height: 100%!important;
-        }
-
-        .nitems li{
-          padding: 1em;
-          font-size: 19px;
-          cursor:pointer;
           
-        }
-
-        .nitems li:hover{
-          border-bottom: 2px solid white;
-        }
-
-        .nitems li a{
-          color: white;
-        }
-
-        .logo{
-          padding:1em!important;
-          height: 100%;
-          background-color: rgba(255,255,255 ,0.8);
-          padding: 1em;
-          font-size: 1.4vw;
-          font-weight: bolder;
-          color:rgba(2,136,209 ,1);
-          font-family: 'Merienda One', cursive;
-          border-bottom-right-radius: 15px;
-          border-bottom-left-radius: 15px;
-        }
-
-        .ncontent{
-          height: auto;
-          margin-top: 150px;
-        }*/
-
-        /*.myhead{
-          
-          font-family: 'Merienda One', cursive!important;
-          text-shadow: 2px 2px 3px rgba(58,58,58,0.89);
-          font-size: 70px;
-        }*/
-
-       /* .ltext{
-          color: white;
-          font-size: 18px;
-          padding:0.5em;
-         
-
-        }
-
-        .booknow{
-          border-radius:30px;
-       
-          vertical-align: center!important;
-         
-          background-color: rgba(2,136,209 ,1);
-          font-family: 'Merienda One', cursive!important;
-          animation: bounce 2s infinite ease-in-out;
-        }
-
-        .mybtn{
-          border-radius:30px;
-          background-color: transparent;
-          border: 1px solid white;
-        }
-
-        .mybtn:hover{
-          background-color: rgba(255,255,255 ,1)!important;
-          color: rgba(2,136,209 ,1);
-        }
-
-        .mybtn:focus{
-          background-color:transparent!important;
-          color: rgba(255,255,255 ,1);
-        }
-
-        .booknow:hover{
-          background-color: rgba(1,87,155 ,1)!important;
-        }
-
-        .booknow:focus{
-          background-color: rgba(2,136,209 ,1);
-        }
-
-
-        
-        @keyframes bounce {
-            0% { transform: translateY(-1px)  }
-            50% { transform: translateY(2px) }
-            100% { transform: translateY(-1px) }
         }
 
         .indicators{
@@ -176,17 +74,127 @@ $this->load->helper('section');
           border: 2px solid rgba(255,255,255,0.2)!important;
           transition: background-color 2s;
         }
-        
-        .nbody:last-child{
-          display: flex!important;
-          align-items:center!important;
+
+        .booknow{
+          border-radius:30px;
+          vertical-align: center!important; 
+          background-color: #fdd800!important;
+          font-family: 'Merienda One', cursive!important;
+          animation: bounce 2s infinite ease-in-out;
         }
 
-        .ico{
-          font-size: 20px!important;
+        .mybtn{
+          border-radius:30px;
+          background-color: transparent;
+          border: 1px solid white;
         }
+
+        .ltext{
+          color: white;
+          font-size: 18px;
+          padding:0.5em;
+        }
+
+        .myhead{
+          
+          font-family: 'Merienda One', cursive!important;
+          text-shadow: 2px 2px 3px rgba(58,58,58,0.89);
+          font-size: 70px;
+        }
+
+        .mybtn:hover{
+          background-color: rgba(255,255,255,1)!important;
+          color:#fdd800!important;
+        }
+
+        .mybtn:focus{
+          background-color:transparent!important;
+          color: rgba(255,255,255 ,1);
+        }
+
+        .booknow:hover{
+          background-color: rgba(255,255,255,1)!important;
+          color:#fdd800!important;
+        }
+
+        .booknow:focus{
+          background-color: rgba(2,136,209 ,1);
+        }
+
+
         
-         */
+        @keyframes bounce {
+            0% { transform: translateY(-1px)  }
+            50% { transform: translateY(2px) }
+            100% { transform: translateY(-1px) }
+        }
+
+        .blackText{
+          color:rgba(35, 32, 32, 1)!important;
+        }
+
+        .custom-divider{
+          background-color: #fdd800!important;
+          padding: 3px!important;
+          width: 80px;
+          margin-bottom: 1.5em!important;
+        }
+
+        .custom-border-area{
+          display:flex!important;
+          justify-content: center!important;  
+        }
+
+        .lead{
+          font-size: 18px;
+          padding:0.5em;
+          margin-bottom: 1em!important;
+        }
+
+        .ltext1{
+          color: white!important;
+          font-size: 30px!important;
+          padding:0.5em!important;
+          font-weight: bolder;
+          text-shadow: 1px 1px 1px rgba(58,58,58,0.89);
+        }
+
+        .custom-overlay-discount{
+          position:absolute;
+          z-index:100;
+          height:100%!important;
+          width: 100%!important;
+          display:flex;
+          align-items: center;
+          justify-content: center;
+          background-color: rgba(253,216,0,0.9);
+          cursor: pointer;
+        }
+
+        .custom-link{
+          padding: 0.7em!important;
+          margin: 1em!important;
+          border-radius: 30px!important;
+          border: 0.5px solid rgba(253,216,0,0.9)!important;
+          outline: none!important;
+          background-color: transparent!important;
+          color: rgba(253,216,0,0.9)!important;
+          font-weight: bolder!important;
+          cursor: pointer!important;
+          font-size:12px!important;
+        }
+
+        .custom-link:hover{
+          /* background-color: rgba(0, 145, 234, 1)!important; */
+          color: white!important;
+          background-color: #fdd800!important;
+          border: 0.5px solid transparent!important;
+          transition: background-color 0.5s!important;
+      }
+
+      .modify-action{
+        padding: 1.5em!important;
+      }
 
       </style>
     </head>
@@ -196,7 +204,7 @@ $this->load->helper('section');
       <!-- First Page -->
 
       <?php main_nav(); ?>
-      <div class="row fpage">
+      <div class="row fpage valign-wrapper">
         <div class="overlay"></div>
 
         <div class="row cont">
@@ -245,7 +253,7 @@ $this->load->helper('section');
               
             </div>
 
-            <div class="row mbtn" >
+            <div class="row mbtn" data-aos="zoom-in" data-aos-delay="1600">
               <div class="col l6 m8 s12 offset-l3 offset-m2 offset-s0 center-align">
                 <button class="booknow btn btn-large waves-effect waves-light">Book Now</button>
               </div>
@@ -258,97 +266,109 @@ $this->load->helper('section');
         
       </div>
       
+      <!-- Second Section -->
+      <div class="row" data-aos="fade-up" data-aos-duration="2000">
+        
+        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
+            <h2 class="header center-align blackText">
+              Specials
+            </h2>
+        </div>
+
+        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 custom-border-area">
+          <div class="divider custom-divider"></div>
+        </div>
+
+        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
+          <p class="center-align blackText lead">30% off all pacages offer ends Decenber 31, 2019</p>
+        </div>
+
+        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
+
+          <div class="row center-align">
+            <div class="col l4 m6 s12">
+              <div class="card">
+                <div class="card-image custom-hover" >
+                  <div class="custom-overlay-discount" style="display:none">
+                    <p class="ltext1">30% off<br/>Book Now</p>
+                  </div>
+                  <img src="<?php echo base_url('assets/18.jpg');?>" >
+                  <span class="card-title">Dunns River Falls</span>
+                </div>
+                <div class="card-content">
+                  <p>I am a very simple card. I am good at containing small bits of information.
+                  I am convenient because I require little markup to use effectively.</p>
+                </div>
+                <div class="card-action modify-action">
+                  <a href="#" class="custom-link">Request Quote</a>
+                </div>
+              </div>
+            </div>
+            <div class="col l4 m6 s12">
+              <div class="card">
+                <div class="card-image custom-hover">
+                <div class="custom-overlay-discount" style="display:none">
+                    <p class="ltext1">30% off<br/>Book Now</p>
+                  </div>
+                  <img src="<?php echo base_url('assets/18.jpg');?>">
+                  <span class="card-title">Green Grotto Cave</span>
+                </div>
+                <div class="card-content">
+                  <p>I am a very simple card. I am good at containing small bits of information.
+                  I am convenient because I require little markup to use effectively.</p>
+                </div>
+                <div class="card-action modify-action">
+                  <a href="#" class="custom-link">Request Quote</a>
+                </div>
+              </div>
+            </div>
+            <div class="col l4 m6 s12">
+              <div class="card">
+                <div class="card-image custom-hover">
+                <div class="custom-overlay-discount" style="display:none">
+                    <p class="ltext1">30% off<br/>Book Now</p>
+                  </div>
+                  <img src="<?php echo base_url('assets/18.jpg');?>">
+                  <span class="card-title">Appleton Estate Tour</span>
+                </div>
+                <div class="card-content">
+                  <p>I am a very simple card. I am good at containing small bits of information.
+                  I am convenient because I require little markup to use effectively.</p>
+                </div>
+                <div class="card-action modify-action">
+                  <a href="#" class="custom-link">Request Quote</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
 
 
-      <?php testData()?>
+      <div class="row">
+
+      </div>
+
+      
+      <?php //testData(); ?>
 
     </body>
 
-
-  <script type="text/javascript">
+    <script>
       
-      var counter = 0;
+      $('document').ready(function(){
 
-      $(document).ready(function(){
-
-        
-
-        for(x = 0; x < $('.contents').length-1; x++){
-          $('.indicators').append('<div class="indicator"></div>');
-        }
-
-        //animateDivs();
-
-        indicatorChange();
+        $('.custom-hover').hover(function(){
+          var index = $('.custom-hover').index(this);
+          $('.custom-overlay-discount').eq(index).fadeIn(500);
+          
+        }).mouseleave(function(){
+          $('.custom-overlay-discount').fadeOut(500);
+        });
 
       });
 
+    </script>
 
-      var animateDivs = () =>{
-
-          var divs = $('.contents');
-          var indicators = $('.indicator');
-
-          console.log("Indicator Length: "+indicators.length);
-          
-          var divCount = divs.length;
-          var count = 0;
-          var firstrun = true;
-          var divSlide = setInterval(() => {
-
-            
-
-            if(firstrun){
-              count = 1;
-              $(divs).fadeOut(1000);
-              $(divs).eq(count).delay(1000-2).fadeIn(2000);
-              $(indicators).removeClass('indicator-active');
-              $(indicators).eq(count).addClass('indicator-active');
-              firstrun = false;
-            }else{
-
-                $(divs).fadeOut(1000);
-                $(divs).eq(count).delay(1000-2).fadeIn(2000);
-                $(indicators).removeClass('indicator-active');
-                $(indicators).eq(count).addClass('indicator-active');
-            }
-
-            count++
-            if(count == divCount){
-              count = 0;
-            }
-            console.log(count);
-
-          }, 10000);
-
-      }
-
-      var indicatorChange = () =>{
-
-          var divs = $('.contents');
-          var indicators = $('.indicator');
-
-          console.log("Indicator Length: "+indicators.length);
-            
-          var divCount = divs.length;
-        
-          var firstrun = true;
-
-          
-
-          $(indicators).click(function(){
-            
-            var currentIndex = indicators.index(this);
-
-            $(divs).fadeOut(500);
-            $(divs).eq(currentIndex).delay(500-5).fadeIn(1000);
-            $(indicators).removeClass('indicator-active');
-            $(indicators).eq(currentIndex).addClass('indicator-active');
-          });
-
-          
-
-      }
-      
-  </script>
 </html>
