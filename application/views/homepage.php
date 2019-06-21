@@ -75,6 +75,28 @@ $this->load->helper('section');
           transition: background-color 2s;
         }
 
+        .inids{
+          display:flex!important;
+          justify-content: center!important;
+        }
+
+        .inid{
+          border-radius: 100%;
+          height: 5px!important;
+          width: 5px!important;
+          background-color: transparent;
+          border: 2px solid #fdd800!important;
+          padding: 0.3em;
+          margin:1em;
+          transition: background-color 0.5s;
+        }
+
+        .inid-active{
+          background-color: #fdd800!important;
+          /* border: 2px solid rgba(255,255,255,0.2)!important; */
+          transition: background-color 2s;
+        }
+
         .booknow{
           border-radius:30px;
           vertical-align: center!important; 
@@ -160,7 +182,7 @@ $this->load->helper('section');
         }
 
         .custom-overlay-discount{
-          padding:0.5em!important;
+          /* padding:0.5em!important; */
           position:absolute;
           z-index:100;
           height:100%!important;
@@ -275,6 +297,41 @@ $this->load->helper('section');
         /* box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.4)!important; */
       }
 
+      .test-area{
+        position: relative!important;
+      }
+
+      .carousel-controls-custom{
+        position:absolute;
+        width:80%;
+        height:80%;
+        left:10%;
+        /* background-color:#fdd800!important; */
+        display: flex;
+        flex-flow: row wrap;
+        justify-content:space-between;
+        align-items: center;
+      }
+
+      .controller{
+        display: flex;
+        align-items: center;
+        justify-content:center;
+        height:50px;
+        width:50px;
+        padding:1em!important;
+        border: 0.5px solid #fdd800!important;
+        color:#fdd800!important;
+        border-radius:100%;
+        font-weight: bolder!important;
+      }
+
+      .controller:hover{
+        background-color:#fdd800!important;
+        color:#fff!important;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
       </style>
     </head>
 
@@ -423,11 +480,13 @@ $this->load->helper('section');
 
         </div>
 
-        <div class="row" data-aos="fade-up" data-aos-duration="2000">
+        
+      </div>
+
+      <div class="row" data-aos="fade-up" data-aos-duration="2000">
           <div class="col l8 m8 s12 offset-l2 offset-m2 offset-s0">
           <div class="divider cdiv grey lighten-3"></div>
           </div>
-        </div>
       </div>
 
       <div class="row" data-aos="fade-up" data-aos-duration="2000">
@@ -526,7 +585,7 @@ $this->load->helper('section');
       </div>
 
 
-      <div class="row grey lighten-5" data-aos="fade-up" data-aos-duration="2000">
+      <div class="row grey lighten-5" data-aos="fade-up" data-aos-duration="2000" style="margin-bottom:0px!important;">
         <div class="row whyus valign-wrapper" >
           <div class="overlay2"></div>
 
@@ -632,12 +691,90 @@ $this->load->helper('section');
         </div>
       </div>
 
-      <div class="row grey lighten-5" data-aos="fade-up" data-aos-duration="2000">
+
+      <!-- data-aos="fade-up" data-aos-duration="2000"  -->
+
+      <div class="row" data-aos="fade-up"  data-aos-duration="2000" style="background-color: rgba(35, 32, 32, 1)!important;">
     
+          <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
+              <h2 class="header center-align white-text">
+                What Our Clients Say
+              </h2>
+          </div>
+
+          <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 custom-border-area">
+            <div class="divider custom-divider"></div>
+          </div>
+
+          <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
+          <p class="center-align white-text lead"><em>~ Serving Our Clients Is Essential ~</em></p>
+          </div>
+
+          <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
+
+            <div class="row  valign-wrapper center-align test-area">
+
+              <div class="col l4 m6 s12 offset-l4 offset-m3 offset-s0">
+                <div class="card-panel z-depth-3">
+                  <div class="col s12">
+                    <img src="https://www.qmul.ac.uk/busman/media/sbm/postgraduate/staff/administrative-staff/profiles/RipaParvin200x200.jpg" alt="no img" width="200px" height="200px" class="circle responsive-img"> <!-- notice the "circle" class -->
+                  </div>
+
+                  <div class="col s12">
+                    <p class="lead">
+                      Shana Brown
+                    </p>
+                  </div>
+
+                  <div class="col s12">
+                    <p class="lead grey-text lighten-3">
+                      <em>"Day At Dunns Rivier Falls"</em>
+                    </p>
+                  </div>
+
+                  <span class="">I am a very simple card. I am good at containing small bits of information.
+                  I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
+                  </span>
+                </div>
+              </div>
+
+            
+              
+              
+
+              <div class="carousel-controls-custom">
+              
+                <div class="controller z-depth-1">
+                  <i class="material-icons">keyboard_arrow_left</i>
+                </div>
+                <div class="controller z-depth-1">
+                  <i class="material-icons">keyboard_arrow_right</i>
+                </div>
+
+              </div>
+              
+
+            </div>
+
+            <div class="row  valign-wrapper center-align">
+
+              <div class="col s12 inids">
+                <div class="inid"></div>
+                <div class="inid inid-active"></div>
+                <div class="inid"></div>
+                <div class="inid"></div>
+              </div>
+
+            </div>
+
+          </div>
         
-      
       </div>
       
+
+      <div class="row" data-aos="fade-up" data-aos-duration="2000">
+        
+      </div>
       <?php //testData(); ?>
 
     </body>
