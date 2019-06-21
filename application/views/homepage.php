@@ -403,23 +403,23 @@ $this->load->helper('section');
       </div>
       
       <!-- Second Section -->
-      <div class="row" data-aos="fade-up" data-aos-duration="2000">
+      <div class="row">
         
-        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
+        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0" data-aos="fade-up" data-aos-duration="2000" >
             <h2 class="header center-align blackText">
               Specials
             </h2>
         </div>
 
-        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 custom-border-area">
+        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 custom-border-area" data-aos="fade-up" data-aos-duration="2000" >
           <div class="divider custom-divider"></div>
         </div>
 
-        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
+        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0" data-aos="fade-up" data-aos-duration="2000" >
           <p class="center-align blackText lead">30% off all pacages offer ends Decenber 31, 2019</p>
         </div>
 
-        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
+        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0" data-aos="fade-up" data-aos-duration="2000" >
 
           <div class="row center-align">
             <div class="col l4 m6 s12">
@@ -483,31 +483,31 @@ $this->load->helper('section');
         
       </div>
 
-      <div class="row" data-aos="fade-up" data-aos-duration="2000">
+      <div class="row">
           <div class="col l8 m8 s12 offset-l2 offset-m2 offset-s0">
           <div class="divider cdiv grey lighten-3"></div>
           </div>
       </div>
 
-      <div class="row" data-aos="fade-up" data-aos-duration="2000">
+      <div class="row">
         
-        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
+        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0" data-aos="fade-up" data-aos-duration="2000" >
             <h2 class="header center-align blackText">
               Services
             </h2>
         </div>
 
-        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 custom-border-area">
+        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 custom-border-area" data-aos="fade-up" data-aos-duration="2000" >
           <div class="divider custom-divider"></div>
         </div>
 
-        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
+        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0" data-aos="fade-up" data-aos-duration="2000" >
           <p class="center-align blackText lead">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, 
             or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing
              hidden in the middle of text.</p>
         </div>
 
-        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
+        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0" data-aos="fade-up" data-aos-duration="2000" >
 
           <div class="row center-align">
             <div class="col l4 m6 s12">
@@ -585,29 +585,29 @@ $this->load->helper('section');
       </div>
 
 
-      <div class="row grey lighten-5" data-aos="fade-up" data-aos-duration="2000" style="margin-bottom:0px!important;">
+      <div class="row grey lighten-5" style="margin-bottom:0px!important;">
         <div class="row whyus valign-wrapper" >
           <div class="overlay2"></div>
 
           <div class="row cont" >
-            <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
+            <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0" data-aos="fade-up" data-aos-duration="2000" >
                   <h2 class="header center-align white-text">
                     Why Choose Us
                   </h2>
               </div>
 
-              <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 custom-border-area">
+              <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 custom-border-area" data-aos="fade-up" data-aos-duration="2000" >
                 <div class="divider custom-divider"></div>
               </div>
 
-              <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
+              <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0" data-aos="fade-up" data-aos-duration="2000" >
                 <p class="center-align lead white-text">It is a long established fact that a reader will be distracted by 
                   the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal 
                   distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. 
                 </p>
               </div>
 
-              <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
+              <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0" data-aos="fade-up" data-aos-duration="2000" >
                 <div class="row custom-row">
                   <div class="col l3 m6 s12 center-align white z-depth-1 uscont">
                     <div class="col s12 center-ilayer ">
@@ -694,23 +694,23 @@ $this->load->helper('section');
 
       <!-- data-aos="fade-up" data-aos-duration="2000"  -->
 
-      <div class="row" data-aos="fade-up"  data-aos-duration="2000" style="background-color: rgba(35, 32, 32, 1)!important;">
+      <div class="row" style="background-color: rgba(35, 32, 32, 1)!important;">
     
-          <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
+          <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0" data-aos="fade-up" data-aos-duration="2000">
               <h2 class="header center-align white-text">
                 What Our Clients Say
               </h2>
           </div>
 
-          <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 custom-border-area">
+          <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 custom-border-area" data-aos="fade-up" data-aos-duration="2000">
             <div class="divider custom-divider"></div>
           </div>
 
-          <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
+          <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0" data-aos="fade-up" data-aos-duration="2000">
           <p class="center-align white-text lead"><em>~ Serving Our Clients Is Essential ~</em></p>
           </div>
 
-          <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
+          <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0" data-aos="fade-up" data-aos-duration="2000">
 
             <div class="row  valign-wrapper center-align test-area">
 
@@ -772,8 +772,8 @@ $this->load->helper('section');
       </div>
       
 
-      <div class="row" data-aos="fade-up" data-aos-duration="2000">
-        
+      <div class="row" >
+
       </div>
       <?php //testData(); ?>
 
