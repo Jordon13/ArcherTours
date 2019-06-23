@@ -24,17 +24,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <body>
 
-        
+
 
     </body>
 
-    <script type="text/javascript">
-    
-        $(document).ready(function(){
-          $('.sidenav').sidenav();
-          AOS.init();
-        });
-
-    </script>
 
 </html>

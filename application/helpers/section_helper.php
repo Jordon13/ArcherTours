@@ -17,6 +17,8 @@ if(!function_exists('main_head')){
         <script src="'.base_url('js/materialize.js').'"></script>
         
         <link href="'.base_url('css/header.css').'" rel="stylesheet">
+
+        <link href="'.base_url('css/footer.css').'" rel="stylesheet">
         
         <link href="'.base_url('css/materialize.css').'" rel="stylesheet">
         
@@ -91,6 +93,176 @@ if(!function_exists('main_nav')){
 
 if(!function_exists('main_footer')){
 	function main_footer(){
+        echo '        <div class="row valign-wrapper custom-foot">
+
+        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
+
+          <div class="row">
+
+            <div class="col l4 m4 s12 sec1">
+
+              <h5 style="padding-bottom:1em!important;">Archer 1062 Tours</h5>
+
+              <p style="padding-bottom:1em!important;"><b>Stay Connected</b></p>
+
+              <div class="row" style="padding-bottom:0px!important;">
+                <div class="col inner-img"><img class="himg" src="'.base_url('assets/icons/facebook.png').'"/></div>
+                <div class="col inner-img"><img  class="himg" src="'.base_url('assets/icons/instagram.png').'"/></div>
+                <div class="col inner-img"><img class="himg" src="'.base_url('assets/icons/whatsapp.png').'"/></div>
+              </div>
+
+              <div class="row">
+              
+                <div class="input-field col s10">
+                <p style="font-size:12px;"><b>Subscibe to our newsletter for update on deals and specials avaliable.</b></p>
+                  <input id="first_name" type="text" placeholder="email" class="validate white">
+                  <!-- <label for="first_name" class="white-text">Name</label> -->
+                  <button class="btn white black-text waves-effect waves-light yellow accent-3">Subscribe</button>
+                </div>
+              </div>
+
+              <!-- <p class="custom-email-link" style="padding-bottom:1em!important;">jordainegayle@gmail.com</p> -->
+
+            </div>
+
+            
+            <div class="col l4 m4 s12 sec1">
+
+              <h5 class="" style="padding-bottom:1em!important;">1062 Explore</h5>
+
+              <div class="row cusexp" style="padding-bottom:1em!important;">
+                <div class="col l4 m8 s12">
+                  <ul>
+                    <li>Home</li>
+                    <li>About</li>
+                    <li>Blogs</li>
+                    <li>Services</li>
+                    <li>Recent Places</li>
+                  </ul>
+                </div>
+                <div class="col l4 m8 s12">
+                <ul>
+                    <li>Gallery</li>
+                    <li>Trip Advisor</li>
+                    <li>Contact Us</li>
+                    <li>Testimonials</li>
+                    <li>Newsletter</li>
+                  </ul>
+                </div>
+              </div>
+            <div class="col s10">
+
+            <blockquote cite="https://www.briantracy.com/blog/personal-success/26-motivational-quotes-for-success/">
+                “The Way Get Started Is To Quit Talking And Begin Doing.” – Walt Disney
+              </blockquote>
+            
+            </div>
+              
+
+            </div>
+            
+            
+            <div class="col l4 m4 s12 sec1">
+            <h5 style="padding-bottom:1em!important;">Our News</h5>
+
+            <div class="card-panel transparent z-depth-0 cus-panel1">
+              <div class="row valign-wrapper">
+                <div class="col s1 custom-date z-depth-1">
+                    Jun 22
+                  </div>
+                  <div class="col s11">
+                    <span class="white-text">
+                      This is a square image. Add the "circle" class to it to make it appear circular.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-panel transparent z-depth-0 cus-panel1">
+              <div class="row valign-wrapper">
+                <div class="col s1 custom-date z-depth-1">
+                    Jun 25
+                  </div>
+                  <div class="col s11">
+                    <span class="white-text">
+                      This is a square image. Add the "circle" class to it to make it appear circular.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="card-panel transparent z-depth-0 cus-panel1">
+              <div class="row valign-wrapper">
+                <div class="col s1 custom-date z-depth-1">
+                    Jun 29
+                  </div>
+                  <div class="col s11">
+                    <span class="white-text">
+                      This is a square image. Add the "circle" class to it to make it appear circular.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-panel transparent z-depth-0 cus-panel1">
+              <div class="row valign-wrapper">
+                <div class="col s1 custom-date z-depth-1">
+                    Jun 29
+                  </div>
+                  <div class="col s11">
+                    <span class="white-text">
+                      This is a square image. Add the "circle" class to it to make it appear circular.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="row valign-wrapper custom-copy-right">
+
+        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
+            <p>Copyrights Act Inc. 2019. Archer 1062 Tours. A Product of Jamaica.</p>
+        </div>
+
+      </div><script type="text/javascript" asnyc>window.$crisp=[];window.CRISP_WEBSITE_ID="b6fc408f-3e79-43e2-b2e6-7478a1d533ba";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+      ';
+
+      echo "
+      <script type='text/javascript'>
+      
+          $(document).ready(function(){
+            $('.sidenav').sidenav();
+            AOS.init();
+          });
+  
+          $('.himg').eq(1).hover(function(){
+            $(this).attr('src','".base_url('assets/icons/instagram1.png')."');
+          }).mouseleave(function(){
+            $(this).attr('src','".base_url('assets/icons/instagram.png')."');
+          });
+  
+          $('.himg').eq(2).hover(function(){
+            $(this).attr('src','".base_url('assets/icons/whatsapp1.png')."');
+          }).mouseleave(function(){
+            $(this).attr('src','".base_url('assets/icons/whatsapp.png')."');
+          });
+  
+          $('.himg').eq(0).hover(function(){
+            $(this).attr('src','".base_url('assets/icons/facebook1.png')."');
+          }).mouseleave(function(){
+            $(this).attr('src','".base_url('assets/icons/facebook.png')."');
+          });
+  
+      </script>
+      ";
 	}
 }
 

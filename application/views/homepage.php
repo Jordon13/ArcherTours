@@ -8,336 +8,69 @@ $this->load->helper('section');
     <head>
 
     <?php main_head(); ?>
+
+    <link href="https://fonts.googleapis.com/css?family=Righteous&display=swap" rel="stylesheet">
+    <link href="<?php echo base_url('css/homepage.css');?>" rel="stylesheet">
+    </head>
     
-
-      <style>
-
-        html {
-          position:relative;
-          height: 100%!important;
-          
-          font-family: "Nunito";
-        }
-
-        body{
-          position:relative;
-          height: 100%!important;
-        }
-
-        
-        .fpage{
-
+    <style>
+      .fpage {
           background-image: url(<?php echo base_url('assets/17.jpg')?>);
           background-size: cover;
           background-repeat: no-repeat;
           background-position: center;
-          height:100%!important;
-          width:100%!important;
-          background-attachment: fixed;
-          
-        }
-
-        .overlay{
-          top:0px;
-          background-color: rgba(0,0,0,0.3);
-          height: 100%;
-          position: absolute;
-          width: 100%;
-          z-index: 2!important;
-        }
-
-        .cont{
-          /* position: relative; */
-          
-          z-index: 3!important;
-          
-        }
-
-        .indicators{
-          display:flex!important;
-          justify-content: center;
-        }
-
-        .indicator{
-          border-radius: 100%;
-          height: 5px;
-          width: 5px;
-          background-color: transparent;
-          border: 2px solid white;
-          padding: 0.3em;
-          margin:1em;
-          transition: background-color 0.5s;
-        }
-
-        .indicator-active{
-          background-color: rgba(255,255,255,1);
-          border: 2px solid rgba(255,255,255,0.2)!important;
-          transition: background-color 2s;
-        }
-
-        .inids{
-          display:flex!important;
-          justify-content: center!important;
-        }
-
-        .inid{
-          border-radius: 100%;
-          height: 5px!important;
-          width: 5px!important;
-          background-color: transparent;
-          border: 2px solid #fdd800!important;
-          padding: 0.3em;
-          margin:1em;
-          transition: background-color 0.5s;
-        }
-
-        .inid-active{
-          background-color: #fdd800!important;
-          /* border: 2px solid rgba(255,255,255,0.2)!important; */
-          transition: background-color 2s;
-        }
-
-        .booknow{
-          border-radius:30px;
-          vertical-align: center!important; 
-          background-color: #fdd800!important;
-          font-family: 'Merienda One', cursive!important;
-          animation: bounce 2s infinite ease-in-out;
-        }
-
-        .mybtn{
-          border-radius:30px;
-          background-color: transparent;
-          border: 1px solid white;
-        }
-
-        .ltext{
-          color: white;
-          font-size: 18px;
-          padding:0.5em;
-        }
-
-        .myhead{
-          
-          font-family: 'Merienda One', cursive!important;
-          text-shadow: 2px 2px 3px rgba(58,58,58,0.89);
-          font-size: 70px;
-        }
-
-        .mybtn:hover{
-          background-color: rgba(255,255,255,1)!important;
-          color:#fdd800!important;
-        }
-
-        .mybtn:focus{
-          background-color:transparent!important;
-          color: rgba(255,255,255 ,1);
-        }
-
-        .booknow:hover{
-          background-color: rgba(255,255,255,1)!important;
-          color:#fdd800!important;
-        }
-
-        .booknow:focus{
-          background-color: rgba(2,136,209 ,1);
-        }
-
-
-        
-        @keyframes bounce {
-            0% { transform: translateY(-1px)  }
-            50% { transform: translateY(2px) }
-            100% { transform: translateY(-1px) }
-        }
-
-        .blackText{
-          color:rgba(35, 32, 32, 1)!important;
-        }
-
-        .custom-divider{
-          background-color: #fdd800!important;
-          padding: 3px!important;
-          width: 80px;
-          margin-bottom: 1.5em!important;
-        }
-
-        .custom-border-area{
-          display:flex!important;
-          justify-content: center!important;  
-        }
-
-        .lead{
-          font-size: 18px;
-          padding:0.5em;
-          margin-bottom: 1em!important;
-        }
-
-        .ltext1{
-          color: white!important;
-          font-size: 30px!important;
-          padding:0.5em!important;
-          font-weight: bolder;
-          text-shadow: 1px 1px 1px rgba(58,58,58,0.89);
-        }
-
-        .custom-overlay-discount{
-          /* padding:0.5em!important; */
-          position:absolute;
-          z-index:100;
-          height:100%!important;
+          height: 100%!important;
           width: 100%!important;
-          display:flex;
-          flex-flow: row wrap;
-          align-items: center;
-          justify-content: center;
-          background-color: rgba(253,216,0,0.9);
-          cursor: pointer;
-        }
-
-        .overlay2{
-          background-color: rgba(0,0,0,0.5);
-          height: 100%;
-          position: absolute;
-          width: 100%;
-          z-index: 1!important;
-        }
-
-        .custom-link{
-          padding: 0.7em!important;
-          margin: 1em!important;
-          border-radius: 30px!important;
-          border: 0.5px solid rgba(253,216,0,0.9)!important;
-          outline: none!important;
-          background-color: transparent!important;
-          color: rgba(253,216,0,0.9)!important;
-          font-weight: bolder!important;
-          cursor: pointer!important;
-          font-size:12px!important;
-        }
-
-        .custom-btn{
-          padding: 1em!important;
-          margin: 1em!important;
-          border-radius: 30px!important;
-          border: 0.5px solid white!important;
-          outline: none!important;
-          background-color: white!important;
-          color: rgba(253,216,0,0.9)!important;
-          font-weight: bolder!important;
-          cursor: pointer!important;
-          font-size:15px!important;
-        }
-
-        .custom-link:hover{
-          /* background-color: rgba(0, 145, 234, 1)!important; */
-          color: white!important;
-          background-color: #fdd800!important;
-          border: 0.5px solid transparent!important;
-          transition: background-color 0.5s!important;
+          background-attachment: fixed;
       }
 
-      .modify-action{
-        padding: 1.5em!important;
+      .contact-section {
+          background-image: url(<?php echo base_url('assets/16.jpg')?>);
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center;
+          width: 100%!important;
+          background-attachment: fixed;
+          position: relative;
+          margin-bottom: 0px!important;
       }
 
-      .whyus{
+    .whyus {
         position: relative!important;
         background-image: url(<?php echo base_url('assets/13.jpg')?>);
-          background-size: cover!important;
-          background-repeat: no-repeat!important;
-          background-position: center!important;
-          /* height:100%!important; */
-          width:100%!important;
-          background-attachment: fixed!important;
-      }
+        background-size: cover!important;
+        background-repeat: no-repeat!important;
+        background-position: center!important;
+        /* height:100%!important; */
+        width: 100%!important;
+        background-attachment: fixed!important;
+    }
 
-      .uscont{
-        border-radius: 10px!important;
-        margin: 2.5em!important;
-        padding-bottom: 1em!important;
-      }
+    .the-img{
+      width:100%;
+    }
+    .the-img img{
+      height:200px!important;
+      width:200px!important;
+    }
 
-      .center-ilayer{
-        position: relative;
-        display:flex!important;
-        justify-content: center;
-        margin-bottom:1.3em!important;
-      }
+ 
+/* 
+    .custom-blogs-active{
+      visibility: visible;
+      opacity: 1;
+      transition: opacity 0.5s;
+    }
 
-      .iconlayer{
-        position: absolute;
-          color: white!important;
-          background-color: #fdd800!important;
-          border-radius: 100px!important;
-          padding:1em;
-          top:-35px;
-          width:70px;
-          height:70px;
-          display:flex;
-          justify-content: center;
-          align-items: center;
-      }
-
-      .custom-row{
-        display:flex!important;
-        justify-content: center!important;
-        flex-flow:row wrap;
-      }
-
-      #rqrate{
-        background-color: white!important;
-        color: #424242!important;
-        padding: 0.2em!important;
-        font-weight: bold;
-        font-family: 'Hind', sans-serif!important;
-        border: none!important;
-        border-radius: 10px!important;
-        text-align: center!important;
-        /* box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.4)!important; */
-      }
-
-      .test-area{
-        position: relative!important;
-      }
-
-      .carousel-controls-custom{
-        position:absolute;
-        width:80%;
-        height:80%;
-        left:10%;
-        /* background-color:#fdd800!important; */
-        display: flex;
-        flex-flow: row wrap;
-        justify-content:space-between;
-        align-items: center;
-      }
-
-      .controller{
-        display: flex;
-        align-items: center;
-        justify-content:center;
-        height:50px;
-        width:50px;
-        padding:1em!important;
-        border: 0.5px solid #fdd800!important;
-        color:#fdd800!important;
-        border-radius:100%;
-        font-weight: bolder!important;
-      }
-
-      .controller:hover{
-        background-color:#fdd800!important;
-        color:#fff!important;
-        cursor: pointer;
-        transition: background-color 0.3s;
-      }
-      </style>
-    </head>
-
+    .custom-blogs{
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s;
+    } */
+    
+    </style>
     <body>
 
-      <!-- First Page -->
 
       <?php main_nav(); ?>
       <div class="row fpage valign-wrapper">
@@ -401,25 +134,24 @@ $this->load->helper('section');
         </div>
         
       </div>
-      
-      <!-- Second Section -->
+
       <div class="row">
         
-        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0" data-aos="fade-up" data-aos-duration="2000" >
+        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
             <h2 class="header center-align blackText">
               Specials
             </h2>
         </div>
 
-        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 custom-border-area" data-aos="fade-up" data-aos-duration="2000" >
+        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 custom-border-area"  >
           <div class="divider custom-divider"></div>
         </div>
 
-        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0" data-aos="fade-up" data-aos-duration="2000" >
+        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
           <p class="center-align blackText lead">30% off all pacages offer ends Decenber 31, 2019</p>
         </div>
 
-        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0" data-aos="fade-up" data-aos-duration="2000" >
+        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
 
           <div class="row center-align">
             <div class="col l4 m6 s12">
@@ -491,23 +223,23 @@ $this->load->helper('section');
 
       <div class="row">
         
-        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0" data-aos="fade-up" data-aos-duration="2000" >
+        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
             <h2 class="header center-align blackText">
               Services
             </h2>
         </div>
 
-        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 custom-border-area" data-aos="fade-up" data-aos-duration="2000" >
+        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 custom-border-area"  >
           <div class="divider custom-divider"></div>
         </div>
 
-        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0" data-aos="fade-up" data-aos-duration="2000" >
+        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
           <p class="center-align blackText lead">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, 
             or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing
              hidden in the middle of text.</p>
         </div>
 
-        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0" data-aos="fade-up" data-aos-duration="2000" >
+        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
 
           <div class="row center-align">
             <div class="col l4 m6 s12">
@@ -590,24 +322,24 @@ $this->load->helper('section');
           <div class="overlay2"></div>
 
           <div class="row cont" >
-            <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0" data-aos="fade-up" data-aos-duration="2000" >
+            <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
                   <h2 class="header center-align white-text">
                     Why Choose Us
                   </h2>
               </div>
 
-              <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 custom-border-area" data-aos="fade-up" data-aos-duration="2000" >
+              <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 custom-border-area"  >
                 <div class="divider custom-divider"></div>
               </div>
 
-              <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0" data-aos="fade-up" data-aos-duration="2000" >
+              <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
                 <p class="center-align lead white-text">It is a long established fact that a reader will be distracted by 
                   the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal 
                   distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. 
                 </p>
               </div>
 
-              <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0" data-aos="fade-up" data-aos-duration="2000" >
+              <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
                 <div class="row custom-row">
                   <div class="col l3 m6 s12 center-align white z-depth-1 uscont">
                     <div class="col s12 center-ilayer ">
@@ -691,56 +423,97 @@ $this->load->helper('section');
         </div>
       </div>
 
-
-      <!-- data-aos="fade-up" data-aos-duration="2000"  -->
-
       <div class="row" style="background-color: rgba(35, 32, 32, 1)!important;">
     
-          <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0" data-aos="fade-up" data-aos-duration="2000">
+          <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0" >
               <h2 class="header center-align white-text">
                 What Our Clients Say
               </h2>
           </div>
 
-          <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 custom-border-area" data-aos="fade-up" data-aos-duration="2000">
+          <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 custom-border-area" >
             <div class="divider custom-divider"></div>
           </div>
 
-          <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0" data-aos="fade-up" data-aos-duration="2000">
-          <p class="center-align white-text lead"><em>~ Serving Our Clients Is Essential ~</em></p>
+          <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0" >
+            <p class="center-align white-text lead"><em>~ Serving Our Clients Is Essential ~</em></p>
           </div>
 
-          <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0" data-aos="fade-up" data-aos-duration="2000">
+          <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0" >
 
             <div class="row  valign-wrapper center-align test-area">
 
-              <div class="col l4 m6 s12 offset-l4 offset-m3 offset-s0">
-                <div class="card-panel z-depth-3">
-                  <div class="col s12">
-                    <img src="https://www.qmul.ac.uk/busman/media/sbm/postgraduate/staff/administrative-staff/profiles/RipaParvin200x200.jpg" alt="no img" width="200px" height="200px" class="circle responsive-img"> <!-- notice the "circle" class -->
-                  </div>
+              <div class="col l4 m6 s12 offset-l4 offset-m3 offset-s0 custom-blogs" >
+                <div class="card-panel z-depth-3 ">
+                      <div class="the-img">
+                        <img src="https://www.qmul.ac.uk/busman/media/sbm/postgraduate/staff/administrative-staff/profiles/RipaParvin200x200.jpg" alt="no img" width="200px" height="200px" class="circle responsive-img"> <!-- notice the "circle" class -->
+                      </div>
 
-                  <div class="col s12">
-                    <p class="lead">
-                      Shana Brown
-                    </p>
-                  </div>
+                      <div class="col s12">
+                        <p class="lead">
+                          Shana Brown
+                        </p>
+                      </div>
 
-                  <div class="col s12">
-                    <p class="lead grey-text lighten-3">
-                      <em>"Day At Dunns Rivier Falls"</em>
-                    </p>
-                  </div>
+                      <div class="col s12">
+                        <p class="lead grey-text lighten-3">
+                          <em>"Day At Dunns Rivier Falls"</em>
+                        </p>
+                      </div>
 
-                  <span class="">I am a very simple card. I am good at containing small bits of information.
-                  I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
-                  </span>
-                </div>
+                      <span class="">I am a very simple card. I am good at containing small bits of information.
+                        I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
+                      </span>
+                    </div>
               </div>
 
-            
-              
-              
+              <div class="col l4 m6 s12 offset-l4 offset-m3 offset-s0 custom-blogs" style="display:none">
+                <div class="card-panel z-depth-3 ">
+                      <div class="the-img">
+                        <img src="https://i.pinimg.com/originals/39/f5/63/39f5630b733d053761eef4e376ce3928.jpg" alt="no img" width="200px" height="200px" class="circle responsive-img"> <!-- notice the "circle" class -->
+                      </div>
+
+                      <div class="col s12">
+                        <p class="lead">
+                          Shana Brown
+                        </p>
+                      </div>
+
+                      <div class="col s12">
+                        <p class="lead grey-text lighten-3">
+                          <em>"Day At Dunns Rivier Falls"</em>
+                        </p>
+                      </div>
+
+                      <span class="">I am a very simple card. I am good at containing small bits of information.
+                        I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
+                      </span>
+                    </div>
+              </div>
+
+              <div class="col l4 m6 s12 offset-l4 offset-m3 offset-s0 custom-blogs" style="display:none">
+                <div class="card-panel z-depth-3 ">
+                      <div class="the-img">
+                        <img src="https://cdnb.artstation.com/p/assets/images/images/001/863/575/large/irakli-nadar-artstation-da.jpg?1453903033" alt="no img" width="200px" height="200px" class="circle responsive-img"> <!-- notice the "circle" class -->
+                      </div>
+
+                      <div class="col s12">
+                        <p class="lead">
+                          Shana Brown
+                        </p>
+                      </div>
+
+                      <div class="col s12">
+                        <p class="lead grey-text lighten-3">
+                          <em>"Day At Dunns Rivier Falls"</em>
+                        </p>
+                      </div>
+
+                      <span class="">I am a very simple card. I am good at containing small bits of information.
+                        I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
+                      </span>
+                    </div>
+              </div>
 
               <div class="carousel-controls-custom">
               
@@ -759,10 +532,7 @@ $this->load->helper('section');
             <div class="row  valign-wrapper center-align">
 
               <div class="col s12 inids">
-                <div class="inid"></div>
-                <div class="inid inid-active"></div>
-                <div class="inid"></div>
-                <div class="inid"></div>
+                
               </div>
 
             </div>
@@ -772,16 +542,218 @@ $this->load->helper('section');
       </div>
       
 
-      <div class="row" >
+      <div class="row">
+        
+        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
+            <h2 class="header center-align blackText">
+              Our Blogs
+            </h2>
+        </div>
+
+        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 custom-border-area"  >
+          <div class="divider custom-divider"></div>
+        </div>
+
+        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
+          <p class="center-align blackText lead">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, </p>
+        </div>
+
+        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
+
+          <div class="row ">
+
+            <div class="col l4 m6 s12">
+              <!-- start coding here -->
+              <div class="card">
+                <div class="card-image custom-hover" >
+                  <div class="overlay"></div>
+                  <div class="date-overlay">Jun 22</div>
+                  <img src="https://2w1rgr1gb8231dbubd4236ag-wpengine.netdna-ssl.com/wp-content/uploads/2018/01/Blogging-2.jpg" >
+                  <span class="card-title" style="z-index:3!important;">Good Day AT The Bay</span>
+                </div>
+                <div class="card-content">
+                <p class="blackText" style="padding-bottom:1em;"><b><em>Jermy Pollack</em></b></p>
+                 
+                  <p class="blackText">It is a long established fact that a reader will 
+                      be distracted by the readable content of a page when looking at its layout.
+                        </p>
+                </div>
+                <div class="card-action modify-action center-align">
+                  <a href="#" class="custom-link">Continue Reading</a>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col l4 m6 s12">
+              <!-- start coding here -->
+              <div class="card">
+                <div class="card-image custom-hover" >
+                  <div class="overlay"></div>
+                  <div class="date-overlay">Jun 23</div>
+                  <img src="https://2w1rgr1gb8231dbubd4236ag-wpengine.netdna-ssl.com/wp-content/uploads/2018/01/Blogging-2.jpg" >
+                  <span class="card-title" style="z-index:3!important;">Good Day AT The Bay</span>
+                </div>
+                <div class="card-content">
+                <p class="blackText" style="padding-bottom:1em;"><b><em>Jermy Pollack</em></b></p>
+                 
+                  <p class="blackText">It is a long established fact that a reader will 
+                      be distracted by the readable content of a page when looking at its layout.
+                        </p>
+                </div>
+                <div class="card-action modify-action center-align">
+                  <a href="#" class="custom-link">Continue Reading</a>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col l4 m6 s12">
+              <!-- start coding here -->
+              <div class="card">
+                <div class="card-image custom-hover" >
+                  <div class="overlay"></div>
+                  <div class="date-overlay">Jun 25</div>
+                  <img src="https://2w1rgr1gb8231dbubd4236ag-wpengine.netdna-ssl.com/wp-content/uploads/2018/01/Blogging-2.jpg" >
+                  <span class="card-title" style="z-index:3!important;">Good Day AT The Bay</span>
+                </div>
+                <div class="card-content">
+                <p class="blackText" style="padding-bottom:1em;"><b><em>Jermy Pollack</em></b></p>
+                 
+                  <p class="blackText">It is a long established fact that a reader will 
+                      be distracted by the readable content of a page when looking at its layout.
+                        </p>
+                </div>
+                <div class="card-action modify-action center-align">
+                  <a href="#" class="custom-link">Continue Reading</a>
+                </div>
+              </div>
+
+            </div>
+            
+          </div>
+
+        </div>
+
+        
+      </div>
+
+      <div class="row valign-wrapper contact-section" >
+        <div class="contact-overlay"></div>
+        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 main-contact-items nomarg">
+          
+          <div class="row nomarg valign-wrapper">
+            <div class="col l6 m8 s12 myendb">
+
+              <div class="row">
+                <h4>Contact Us</h4>
+              </div>
+              
+              <div class="card-panel transparent z-depth-0 cus-panel">
+                <div class="row valign-wrapper">
+                  <div class="col s1 custom-icon z-depth-1">
+                      <i class="material-icons">location_on</i>
+                    </div>
+                    <div class="col s11">
+                      <span class="white-text">
+                        This is a square image. Add the "circle" class to it to make it appear circular.
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card-panel transparent z-depth-0 cus-panel">
+                <div class="row valign-wrapper">
+                  <div class="col s1 custom-icon z-depth-1">
+                      <i class="material-icons">local_phone</i>
+                    </div>
+                    <div class="col s11">
+                      <span class="white-text">
+                        This is a square image. Add the "circle" class to it to make it appear circular.
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card-panel transparent z-depth-0 cus-panel">
+                <div class="row valign-wrapper">
+                    <div class="col s1 custom-icon z-depth-1">
+                      <i class="material-icons">mail</i>
+                    </div>
+                    <div class="col s11">
+                      <span class="white-text">
+                        This is a square image. Add the "circle" class to it to make it appear circular.
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card-panel transparent z-depth-0 cus-panel">
+                <div class="row valign-wrapper">
+                    <div class="col s1 custom-icon z-depth-1">
+                      <i class="material-icons">timer</i>
+                    </div>
+                    <div class="col s11">
+                      <span class="white-text">
+                        This is a square image. Add the "circle" class to it to make it appear circular.
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+            </div>
+
+            <div class="col l6 m8 s12 mycent">
+            
+              <div class="input-field col s6">
+                <input id="first_name" type="text" placeholder="name" class="validate white">
+                <label for="first_name" class="white-text">Name</label>
+              </div>
+              <div class="input-field col s6">
+                <input id="last_name" placeholder="email" type="text" class="validate white">
+                <label for="last_name" class="white-text">Email</label>
+              </div>
+
+              <div class="input-field col s12">
+                <textarea id="textarea2" placeholder="message..." class="materialize-textarea white"></textarea>
+                <label for="textarea2" class="white-text">Textarea</label>
+              </div>
+
+              <div class="col">
+              <button class="btn white black-text waves-effect waves-yellow">Send Message</button>
+              </div>
+            
+          </div>  
+          </div>
+        </div>
+        
 
       </div>
-      <?php //testData(); ?>
+      <?php main_footer(); ?>
+      <style>
+       .crisp-1rjpbb7 {
+      background-color: rgb(253, 216, 0)!important;
+    }
+    </style>
+
 
     </body>
 
     <script>
+
+      var testiCount = $('.custom-blogs').length;
+
+      var testi = $('.custom-blogs');
+
+      var currentIndex = 0;
       
       $('document').ready(function(){
+
+        for(x=0;x < testiCount;x++){
+          $('.inids').append('<div class="inid"></div>');
+        }
+
+        $('.inid').eq(0).addClass('inid-active');
 
         $('.custom-hover').hover(function(){
           var index = $('.custom-hover').index(this);
@@ -791,7 +763,51 @@ $this->load->helper('section');
           $('.custom-overlay-discount').fadeOut(500);
         });
 
+        //console.log(testiCount);
+
+
+
+        $('.controller').eq(0).click(function(){
+          
+          if(currentIndex == 0){
+            currentIndex = testiCount-1;
+            //console.log(currentIndex);
+          }else{
+            currentIndex--;
+            //console.log(currentIndex);
+          }
+          $('.inid').removeClass('inid-active');
+          $('.inid').eq(currentIndex).addClass('inid-active');
+          animateTesti(currentIndex);
+        });
+
+        $('.controller').eq(1).click(function(){
+          if(currentIndex == 0){
+            currentIndex+=1;
+            //console.log(currentIndex);
+          }else if(currentIndex == testiCount-1){
+            currentIndex = 0;
+            //console.log(currentIndex);
+          }else{
+            currentIndex++;
+            //console.log(currentIndex);
+          }
+
+          $('.inid').removeClass('inid-active');
+          $('.inid').eq(currentIndex).addClass('inid-active');
+          animateTesti(currentIndex);
+        });
+
       });
+
+      var animateTesti = (index)=>{
+        // testi.hide();
+        // testi.eq(index).show();
+        testi.fadeOut(500);
+        testi.eq(index).delay(498).fadeIn(0);
+      }
+
+
 
     </script>
 
