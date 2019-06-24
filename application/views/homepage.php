@@ -54,20 +54,6 @@ $this->load->helper('section');
       width:200px!important;
     }
 
- 
-/* 
-    .custom-blogs-active{
-      visibility: visible;
-      opacity: 1;
-      transition: opacity 0.5s;
-    }
-
-    .custom-blogs{
-      visibility: hidden;
-      opacity: 0;
-      transition: opacity 0.3s;
-    } */
-    
     </style>
     <body>
 
@@ -730,13 +716,6 @@ $this->load->helper('section');
 
       </div>
       <?php main_footer(); ?>
-      <style>
-       .crisp-1rjpbb7 {
-      background-color: rgb(253, 216, 0)!important;
-    }
-    </style>
-
-
     </body>
 
     <script>

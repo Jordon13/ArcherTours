@@ -1,81 +1,124 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$this->load->helper('script');
+$this->load->helper('section');
 
 ?>
 <html lang="en">
 <head>
     <title>About</title>
-    <?php archerHeader();?>
-    <style>
-    
-    .background-area{
-        width: 100%;
-        background-image: url(<?php echo base_url('assets/whitebg.jpg')?>);
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-       /* background-attachment: fixed;*/
-        z-index: 1;
-        
-    }
+    <?php main_head();?>
 
-    .overlay {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                z-index: 0;
-                background-color: rgba(10,10,10,0.5);
-                margin: 0px;
-                padding: 0px;
-            }
-
-            .bkg{
-            width: 100%;
-            height: 600px;
-            background-image: url(<?php echo base_url('assets/about/about.jpg')?>);
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-           /* background-attachment: fixed;*/
-            z-index: 1;
-        }
-
-
-
-</style>
 </head>
 <body class="">
+<?php main_nav(); ?>
+<div class="row grey lighten-5" style="margin-bottom:0px!important;">
+        <div class="row whyus valign-wrapper" >
+          <div class="overlay2"></div>
 
-    <?php navBar("about");?>
-    <div class="fluid-container col-md-12 bkg">
-    </div>
-    <div class="container col-xl-12 m-0 p-0">
+          <div class="row cont" >
+            <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
+                  <h2 class="header center-align white-text">
+                    Why Choose Us
+                  </h2>
+              </div>
 
-        <div class="row justify-content-center p-3 m-0" >
+              <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 custom-border-area"  >
+                <div class="divider custom-divider"></div>
+              </div>
 
-            <div class="col-xl-6 p-0 m-0" data-aos="fade-up" >
-                <h1 class="h1 text-center w-100">About Us</h1>
-                <hr class="my col-lg-3" style="background-color: rgba(255,255,255, 0.7);" />
-                <p class=" w-100 text-center lead">
-                    We take pride in providing exceptional services to our clients/guests 
-                    here in Jamaica. We provide airport transfer to and from Sangster International Airport.
-                     We will take care of you and yours the minute you exit the custom area at the ports whether
-                     you travel by air or sea No matter how small or how large the group is whether you are here
-                     on vacation, business, church or school mission our reliable, knowledgeable, courteous and
-                     trustworthy drivers will puntually take care of you and yours from day one to the day you
-                     leave We will fullfill your needs for taxi services for any Tours/Excursion or if you just
-                     want go on a "JOYRIDE"
-                </p>  
+              <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
+                <p class="center-align lead white-text">It is a long established fact that a reader will be distracted by 
+                  the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal 
+                  distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. 
+                </p>
+              </div>
+
+              <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
+                <div class="row custom-row">
+                  <div class="col l3 m6 s12 center-align white z-depth-1 uscont">
+                    <div class="col s12 center-ilayer ">
+                      <div class="iconlayer">
+                        <i class="material-icons search-trigger">terrain</i>
+                      </div>
+                    </div>
+                    <div class="col s12">
+                      <h4>Diverse Destinations</h4>
+                    </div>
+                    <div class="col s12">
+                      <p class="center-align blackText">It is a long established fact that a reader will be distracted by 
+                        the readable content of a page when looking at its layout. 
+                      </p>
+                    </div>
+                  </div>
+                  <div class="col l3 m6 s12 center-align white z-depth-1 uscont">
+                    <div class="col s12 center-ilayer ">
+                      <div class="iconlayer">
+                        <i class="material-icons search-trigger">monetization_on</i>
+                      </div>
+                    </div>
+                    <div class="col s12">
+                      <h4>Value For Money</h4>
+                    </div>
+                    <div class="col s12">
+                      <p class="center-align blackText">It is a long established fact that a reader will be distracted by 
+                        the readable content of a page when looking at its layout. 
+                      </p>
+                    </div>
+                  </div>
+                  <div class="col l3 m6 s12 center-align white z-depth-1 uscont">
+                    <div class="col s12 center-ilayer ">
+                      <div class="iconlayer">
+                        <i class="material-icons search-trigger">wc</i>
+                      </div>
+                    </div>
+                    <div class="col s12">
+                      <h4>Passionate Travel</h4>
+                    </div>
+                    <div class="col s12">
+                      <p class="center-align blackText">It is a long established fact that a reader will be distracted by 
+                        the readable content of a page when looking at its layout. 
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+          </div>
+        </div>
+
+        <div class="row">
+
+          <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
+
+            <div class="row">
+              <div class="col l3 m6 s12 center-align stats">
+                <h5>20,000</h5>
+                <p>Happy Customers</p>
+              </div>
+
+              <div class="col l3 m6 s12 center-align stats">
+                <h5>420K</h5>
+                <p>Trips</p>
+              </div>
+
+              <div class="col l3 m6 s12 center-align stats">
+                <h5>2000</h5>
+                <p>Unique Destinations</p>
+              </div>
+
+              <div class="col l3 m6 s12 center-align stats">
+                <h5>20+</h5>
+                <p>Years Of Experience</p>
+              </div>
             </div>
 
+          </div>
+          
         </div>
-        
-        
-</div>
-    <?php floatingMessage();?>
+      </div>
     
-    <?php footer();?>
+    
+    <?php main_footer(); ?>
 </body>
 </html>

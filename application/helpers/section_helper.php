@@ -55,12 +55,12 @@ if(!function_exists('main_nav')){
 
         <div class="nav-links noshow">
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Gallery</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Blog</a></li>
+                <li><a href="'.site_url('/').'">Home</a></li>
+                <li><a href="'.site_url('/services').'">Services</a></li>
+                <li><a href="'.site_url('/gallery').'">Gallery</a></li>
+                <li><a href="'.site_url('/about').'">About</a></li>
+                <li><a href="'.site_url('/contact').'">Contact</a></li>
+                <li><a href="'.site_url('/blog').'">Blog</a></li>
                 
             </ul>
         </div>

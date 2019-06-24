@@ -6,7 +6,7 @@ $this->load->helper('section');
 ?>
 <html lang="en">
 <head>
-    <title>Booking</title>
+    <title>Services</title>
     <?php main_head();?>
 
 </head>
