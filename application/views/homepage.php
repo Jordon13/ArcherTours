@@ -110,9 +110,20 @@ $this->load->helper('section');
 
             <div class="row mbtn" data-aos="zoom-in" data-aos-delay="1600">
               <div class="col l6 m8 s12 offset-l3 offset-m2 offset-s0 center-align">
-                <button class="booknow btn btn-large waves-effect waves-light">Book Now</button>
+                <button data-target="bookit" class="booknow btn btn-large waves-effect waves-light modal-trigger">Book Now</button>
               </div>
             </div>
+
+          <!-- Modal Structure -->
+          <div id="bookit" class="modal modal-fixed-footer" style="z-index:1020!important;">
+            <div class="modal-content">
+              <h4>Modal Header</h4>
+              <p>A bunch of text</p>
+            </div>
+            <div class="modal-footer">
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+            </div>
+          </div>
 
           </div>
 
@@ -727,7 +738,10 @@ $this->load->helper('section');
       var currentIndex = 0;
       
       $('document').ready(function(){
-
+        $('.modal').modal({
+          preventScrolling: true,
+          opacity: 0.4
+        });
         for(x=0;x < testiCount;x++){
           $('.inids').append('<div class="inid"></div>');
         }
