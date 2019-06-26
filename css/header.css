@@ -119,9 +119,17 @@
     border: 0.5px solid white;
     outline: none;
     background-color: transparent;
-    color: white;
+    color: white!important;
     font-weight: bolder;
     cursor: pointer;
+}
+
+.nav-misc button:focus {
+    background-color: transparent!important;
+}
+
+.nav-misc button a {
+    color: white!important;
 }
 
 .nav-misc i {

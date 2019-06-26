@@ -67,7 +67,7 @@ if(!function_exists('main_nav')){
 
 
         <div class="nav-misc">
-            <button class="noshow">Book A Trip</button>
+            <button class="noshow"><a href="'.site_url('/booking').'">Book A Trip</a></button>
             <i class="material-icons noshow search-trigger">search</i>
             <i class="material-icons nav-icon sidenav-trigger" data-target="slidenav" style="display: none;">menu</i>
         </div>
@@ -84,7 +84,7 @@ if(!function_exists('main_nav')){
         <li><a href="badges.html">Blog</a></li>
 
         <div class="nav-misc">
-            <button class="">Book A Trip</button>
+            <button><a href="'.site_url('/booking').'">Book A Trip</a></button>
             <i class="material-icons search-trigger">search</i>
         </div>
     </ul>';

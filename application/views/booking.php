@@ -22,7 +22,7 @@ $this->load->helper('section');
     }
 
     .fpage {
-        background-image: url(<?php echo base_url('assets/20.jpg')?>);
+        background-image: url(<?php echo base_url('assets/10.jpg')?>);
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
@@ -38,6 +38,20 @@ $this->load->helper('section');
           position: absolute;
           width: 100%;
           z-index: 2!important;
+      }
+
+      .custom-hone-link{
+        color:white!important;
+      }
+
+      .custom-card-header{
+        font-weight: bolder;
+      }
+
+      .lead {
+        font-size: 18px;
+        padding: 0.5em;
+        margin-bottom: 1em!important;
       }
 
 </style>
