@@ -54,6 +54,15 @@ $this->load->helper('section');
         margin-bottom: 1em!important;
       }
 
+      .custom-img{
+        padding:1em!important;
+      }
+      .custom-img img{
+        width:100%;
+        /* height:220px; */
+      }
+
+
 </style>
 
 </head>
@@ -73,6 +82,58 @@ $this->load->helper('section');
       </div>
 
     </div>
+
+    <div class="row">
+      <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 center">
+        <div class="row">
+
+          <div class="col l4 m12 s12 custom-img">
+            <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" src="<?php echo base_url('assets/23.jpg')?>"> 
+          </div>
+          
+          <div class="col l4 m12 s12 custom-img">
+            <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" src="<?php echo base_url('assets/23.jpg')?>">
+          </div>
+          
+          <div class="col l4 m12 s12 custom-img">
+            <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" src="<?php echo base_url('assets/23.jpg')?>">
+          </div>
+
+          <div class="col l4 m12 s12 custom-img">
+            <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" src="<?php echo base_url('assets/23.jpg')?>"> 
+          </div>
+          
+          <div class="col l4 m12 s12 custom-img">
+            <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" src="<?php echo base_url('assets/23.jpg')?>">
+          </div>
+          
+          <div class="col l4 m12 s12 custom-img">
+            <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" src="<?php echo base_url('assets/23.jpg')?>">
+          </div>
+
+          <div class="col l4 m12 s12 custom-img">
+            <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" src="<?php echo base_url('assets/23.jpg')?>"> 
+          </div>
+          
+          <div class="col l4 m12 s12 custom-img">
+            <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" src="<?php echo base_url('assets/23.jpg')?>">
+          </div>
+          
+          <div class="col l4 m12 s12 custom-img">
+            <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" src="<?php echo base_url('assets/23.jpg')?>">
+          </div>
+
+
+        </div>
+      </div>
+    </div>
     <?php main_footer(); ?>
 </body>
+<script>
+
+$('document').ready( ()=>{
+  $('.materialboxed').materialbox();
+});
+
+</script>
 </html>

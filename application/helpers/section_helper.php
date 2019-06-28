@@ -229,7 +229,8 @@ if(!function_exists('main_footer')){
       <div class="row valign-wrapper custom-copy-right">
 
         <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
-            <p>Copyrights Act Inc. 2019. Archer 1062 Tours. A Product of Jamaica.</p>
+        <p class="s12 center-align">Copyright ©2019 All rights reserved
+        <br/><em>Created By: JDevStudios. For more information please contact us @ 1-876-557-8447 or jdevstudios34@gmail.com</em></p>
         </div>
 
       </div>

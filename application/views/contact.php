@@ -54,6 +54,60 @@ $this->load->helper('section');
         padding: 0.5em;
         margin-bottom: 1em!important;
       }
+
+      .modify-img img{
+        width:100%!important;
+      }
+      .custom-input{
+        margin:0px!important;
+        margin-bottom:10px!important;
+        height:auto!important;
+      }
+
+      .custom-input:first-child{
+        margin-top:10px!important;
+      }
+
+      .custom-input input, .custom-input textarea{
+        border: 1px solid #e0e0e0!important;
+        border-radius:10px!important;
+        width:100%!important;
+        outline:none!important;
+        padding:1em!important;
+      }
+
+      .custom-input input:focus, .custom-input textarea:focus{
+        box-shadow: inset 0px 0px 3px rgba(253, 216, 0, 1);
+        border:none!important;
+      }
+
+      .custom-input textarea{
+        min-height:100px!important;
+      }
+
+      .custom-input button{
+        /* padding: 1em; */
+        /* margin: 1em; */
+        border-radius: 30px;
+        border: none!important;
+        color:white;
+        outline: none;
+        background-color:rgba(253, 216, 0, 1);
+        color: white!important;
+        font-weight: bolder;
+        cursor: pointer;
+      }
+
+      .custom-input button:hover{
+        background-color: rgba(253, 216, 0, 0.5)!important;
+      }
+
+      .custom-input button:focus{
+        background-color: rgba(253, 216, 0, 1)!important;
+      }
+
+      
+
       
     
     </style>
@@ -74,6 +128,79 @@ $this->load->helper('section');
         </div>
       </div>
 
+    </div>
+
+    <div class="row">
+      
+      <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
+
+        <div class="row">
+
+          <div class="col s12">
+            <h3>Contact Information</h3>
+          </div>
+
+          <div class="col l3 m12 s12">
+            <p class="lead">Address:  198 West 21th Street, Suite 721 New York NY 10016</p>
+          </div>
+
+          <div class="col l3 m12 s12">
+            <p class="lead">Phone: + 1235 2355 98</p>
+          </div>
+
+          <div class="col l3 m12 s12">
+            <p class="lead">Email: info@yoursite.com</p>
+          </div>
+
+          <div class="col l3 m12 s12">
+            <p class="lead">Website yoursite.com</p>
+          </div>
+
+        </div>
+
+      </div>
+    
+    </div>
+
+    <div class="row">
+      
+      <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
+      
+        <div class="row">
+          
+          <div class="col l6 m12 s12 modify-img" style="position:relative!important; ">
+            <!-- <div class="overlay"></div> -->
+            <img src="<?php echo base_url('assets/map.png');?>" alt="no image">
+          </div>
+          
+          <div class="col l6 m12 s12" >
+
+            <div class="input-field col s12 custom-input">
+              <input placeholder="Name" id="first_name" type="text" class="validate browser-default">
+            </div>
+
+            <div class="input-field col s12 custom-input">
+              <input id="last_name" placeholder="Email" type="email" class="validate browser-default">
+            </div>
+
+            <div class="input-field col s12 custom-input">
+              <input id="last_name" type="text" placeholder="Subject" class="validate browser-default">
+            </div>
+
+            <div class="input-field col s12 custom-input">
+              <textarea rows="6" id="textarea1" placeholder="Message" class=""></textarea>
+            </div>
+
+            <div class="input-field col s12 custom-input">
+              <button class="btn btn-large z-depth-0">Send Message</button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    
     </div>
     
     <?php main_footer(); ?>
