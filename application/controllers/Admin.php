@@ -4,7 +4,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Admin extends CI_Controller {
 
     public function login(){
+
+        $this->load->library('parser');
+
+        // $data = array(
+        //     'names' => array(
+        //         array('first' => 'Jordaine',
+        //         'last' => 'Gayle'),
+        //         array('first' => 'Kylie',
+        //         'last' => 'Jenner'),
+        //     )
+        // );
+        // $this->parser->parse('blog_template', $data);
         $this->load->view('admin/login');
+
+        
+
     }
 
     public function dashboard(){

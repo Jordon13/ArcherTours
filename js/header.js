@@ -1,6 +1,7 @@
 var winWidth = $(window).width();
 var sval = $(this).scrollTop();
 var counter = 0;
+var center = 0;
 
 if (window.addEventListener) {
     window.addEventListener('DOMMouseScroll', wheel, { passive: true });
@@ -66,69 +67,67 @@ var animateDivs = () => {
 
 var indicatorChange = () => {
 
-        var divs = $('.contents');
-        var indicators = $('.indicator');
+    var divs = $('.contents');
+    var indicators = $('.indicator');
 
-        console.log("Indicator Length: " + indicators.length);
+    console.log("Indicator Length: " + indicators.length);
 
-        var divCount = divs.length;
+    var divCount = divs.length;
 
-        var firstrun = true;
-
-
-
-        $(indicators).click(function() {
-
-            var currentIndex = indicators.index(this);
-
-            $(divs).fadeOut(500);
-            $(divs).eq(currentIndex).delay(500 - 5).fadeIn(1000);
-            $(indicators).removeClass('indicator-active');
-            $(indicators).eq(currentIndex).addClass('indicator-active');
-        });
+    var firstrun = true;
 
 
 
+    $(indicators).click(function() {
+
+        var currentIndex = indicators.index(this);
+
+        $(divs).fadeOut(500);
+        $(divs).eq(currentIndex).delay(500 - 5).fadeIn(1000);
+        $(indicators).removeClass('indicator-active');
+        $(indicators).eq(currentIndex).addClass('indicator-active');
+    });
+
+
+
+}
+
+
+
+var scrollProcess = () => {
+
+    if (sval > 114) {
+        $('.nav-header').addClass("nav-header-small"); //nav-links-invert
+        $('.nav-header').addClass("nav-links-invert");
+        $('.nav-misc>i').addClass("invert");
+        $('.nav-misc>button').addClass("invert");
+        $('.nav-header').addClass("nav-header-small"); //nav-body-small
+        $('.nav-body').addClass("nav-body-small");
+    } else {
+        $('.nav-header').removeClass("nav-header-small");
+        $('.nav-header').removeClass("nav-links-invert");
+        $('.nav-misc>i').removeClass("invert");
+        $('.nav-misc>button').removeClass("invert");
+        $('.nav-header').removeClass("nav-header-small");
+        $('.nav-body').removeClass("nav-body-small");
     }
-    //1261 for the close icon for header and the responsiveness is complete
-    // console.log(sval);
+}
 
-$(document).ready(function() {
-    $('.sidenav').sidenav();
+var setDropDown = () => {
+    var offset = $('.trigger-menu').offset();
 
-    AOS.init();
+    var left = offset.left;
 
-    for (x = 0; x < $('.contents').length - 1; x++) {
-        $('.indicators').append('<div class="indicator"></div>');
+    if (winWidth < 1090) {
+        center = (left - ($('.trigger-menu').width()));
+    } else {
+        center = (left - ($('.trigger-menu').width() / 2)) + 12;
     }
 
+    $('.custom-dropdown').css("left", center + "px");
+}
 
-    indicatorChange();
 
-
-    $(".close").click(function() {
-        $(".searcharea").fadeOut(500);
-    });
-
-    $(".search-trigger").click(function() {
-        $(".searcharea").fadeIn(500);
-    });
-
-    executeProcess();
-
-    scrollProcess();
-
-    $(window).resize(function() {
-        winWidth = $(window).width();
-        executeProcess();
-    });
-
-    $(window).scroll(function() {
-        sval = $(this).scrollTop();
-        scrollProcess();
-    });
-
-});
 
 var executeProcess = () => {
     if (winWidth < 1340) {
@@ -155,21 +154,54 @@ var executeProcess = () => {
     scrollProcess();
 }
 
-var scrollProcess = () => {
+$(document).ready(function() {
+    $('.sidenav').sidenav();
 
-    if (sval > 114) {
-        $('.nav-header').addClass("nav-header-small"); //nav-links-invert
-        $('.nav-header').addClass("nav-links-invert");
-        $('.nav-misc>i').addClass("invert");
-        $('.nav-misc>button').addClass("invert");
-        $('.nav-header').addClass("nav-header-small"); //nav-body-small
-        $('.nav-body').addClass("nav-body-small");
-    } else {
-        $('.nav-header').removeClass("nav-header-small");
-        $('.nav-header').removeClass("nav-links-invert");
-        $('.nav-misc>i').removeClass("invert");
-        $('.nav-misc>button').removeClass("invert");
-        $('.nav-header').removeClass("nav-header-small");
-        $('.nav-body').removeClass("nav-body-small");
+    AOS.init();
+
+    for (x = 0; x < $('.contents').length - 1; x++) {
+        $('.indicators').append('<div class="indicator"></div>');
     }
-}
+
+
+    indicatorChange();
+
+
+    $(".close").click(function() {
+        $(".searcharea").fadeOut(500);
+    });
+
+    $(".search-trigger").click(function() {
+        $(".searcharea").fadeIn(500);
+    });
+
+    executeProcess();
+
+    scrollProcess();
+
+    setDropDown();
+
+    $('.trigger-menu').hover(function() {
+        $('.custom-dropdown').fadeIn();
+    });
+
+    $('.custom-dropdown').mouseleave(function() {
+        $(this).fadeOut();
+    });
+
+    $(window).click(function() {
+        $('.custom-dropdown').fadeOut();
+    });
+
+    $(window).resize(function() {
+        winWidth = $(window).width();
+        setDropDown();
+        executeProcess();
+    });
+
+    $(window).scroll(function() {
+        sval = $(this).scrollTop();
+        scrollProcess();
+    });
+
+});

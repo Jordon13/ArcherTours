@@ -8,7 +8,7 @@ class Cms extends CI_Controller {
     }
 
     public function Login(){
-
+        echo "<h1>hello World, Welcome</h1>";
     }
 
     public function CreateUser(){

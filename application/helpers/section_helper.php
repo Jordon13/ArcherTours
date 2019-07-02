@@ -46,6 +46,15 @@ if(!function_exists('main_nav')){
     </div>
 </div>
 
+      <div class="custom-dropdown z-depth-1" style="display:none;">
+        <div class="triangle-up"></div>
+            <ul>
+                <li><a href="'.site_url('/taxi').'">Private Taxi</a></li>
+                <li><a href="'.site_url('/airport').'">Airport Transfer</a></li>
+                <li><a href="'.site_url('/tour').'">Tours & Excursion</a></li>
+            </ul>            
+        </div>
+
 <div class="nav-header">
 
     <div class="nav-body">
@@ -59,7 +68,7 @@ if(!function_exists('main_nav')){
                 <li><a href="'.site_url('/about').'">About</a></li>
                 <li><a href="'.site_url('/contact').'">Contact</a></li>
                 <li><a href="'.site_url('/gallery').'">Gallery</a></li>
-                <li><a href="'.site_url('/services').'">Services</a></li>
+                <li class="trigger-menu"><a href="'.site_url('/services').'">Services</a></li>
                 <li><a href="'.site_url('/blog').'">Blog</a></li>
                 
             </ul>
@@ -72,6 +81,8 @@ if(!function_exists('main_nav')){
             <i class="material-icons nav-icon sidenav-trigger" data-target="slidenav" style="display: none;">menu</i>
         </div>
         </div>
+
+        
 
     </div>
 

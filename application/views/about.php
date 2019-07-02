@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->helper('section');
 
 ?>
+<!-- <!DOCTYPE html> -->
 <html lang="en">
 <head>
     <title>About</title>
@@ -187,7 +188,7 @@ $this->load->helper('section');
 
         <div class="row" style="position:relative!important;">
           
-          <div class="col l6 m12 s12 about-back-img" style="position:relative!important;">
+          <div class="col l6 m12 s12 about-back-img" style="position:relative;">
 
           </div>
 

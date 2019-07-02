@@ -67,7 +67,7 @@ $this->load->helper('script');
 
 
             .content-area{
-                border: 1px solid white;
+                /* border: 1px solid white; */
                 border-radius: 10px;
                 width: 100%;
                 height: 100%;
@@ -113,6 +113,7 @@ $this->load->helper('script');
     </head>
 
     <body>
+
         <section class="content-area">
 
             <div class="row">
@@ -120,7 +121,7 @@ $this->load->helper('script');
                 <div class="col s12 l8 m8 offset-l2 offset-m2 offset-s0 white inner-content z-depth-2">
 
                     <div class="row">
-                        <form class="col s12" action="">
+                        <form class="col s12" action="<?php echo site_url('/cms/Login');?>">
                             
                             <div class="col s12">
                                 <h4 class="col s12 center purple-text accent-4">Login</h4>

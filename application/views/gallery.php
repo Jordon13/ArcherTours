@@ -99,8 +99,10 @@ $this->load->helper('section');
             <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" src="<?php echo base_url('assets/23.jpg')?>">
           </div>
 
-          <div class="col l4 m12 s12 custom-img">
+          <div class="col l4 m12 s12 custom-img center">
             <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" src="<?php echo base_url('assets/23.jpg')?>"> 
+            <!-- <p class="col s12" style="display:flex!important; align-items:center!important; justify-content: space-between!important;"><i class="material-icons">visibility</i> 12</p>
+            <p class="col s12" style="display:flex!important; align-items:center!important; justify-content: space-between!important;"><span>Date Posted:</span> 12-12-19</p> -->
           </div>
           
           <div class="col l4 m12 s12 custom-img">
