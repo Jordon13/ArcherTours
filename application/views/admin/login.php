@@ -121,7 +121,7 @@ $this->load->helper('script');
                 <div class="col s12 l8 m8 offset-l2 offset-m2 offset-s0 white inner-content z-depth-2">
 
                     <div class="row">
-                        <form class="col s12" action="<?php echo site_url('/cms/Login');?>">
+                        <form class="col s12" action="<?php echo site_url('/cms/Login');?>" method="POST" >
                             
                             <div class="col s12">
                                 <h4 class="col s12 center purple-text accent-4">Login</h4>
@@ -131,7 +131,7 @@ $this->load->helper('script');
                             <div class="col s12">
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix">account_box</i>
-                                    <input id="icon_prefix" type="text" class="validate">
+                                    <input id="icon_prefix" type="text" name="email" class="validate">
                                     <label for="icon_prefix">Username or Email</label>
                                 </div>
                             </div>
@@ -139,7 +139,7 @@ $this->load->helper('script');
                             <div class="col s12">
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix">security</i>
-                                    <input id="icon_prefix1" type="password" class="validate">
+                                    <input id="icon_prefix1" type="password" name="password" class="validate">
                                     <label for="icon_prefix1">Password</label>
                                 </div>
                             </div>

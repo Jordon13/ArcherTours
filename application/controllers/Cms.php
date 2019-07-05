@@ -2,16 +2,34 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Cms extends CI_Controller {
+    
+    public $is_hookable = TRUE;
 
     public function index(){
 
     }
 
     public function Login(){
-        echo "<h1>hello World, Welcome</h1>";
+
+        $email = $this->input->post('email',true);
+        $password = $this->input->post('password',true);
+
+
+
+        echo "Your Emails Is: ".$email." Password IS: ".$password;
     }
 
     public function CreateUser(){
+        
+        $this->load->model('General','cms');
+        
+        $result = $this->cms->CreateEmployee("Jordaine","Gayle","jordainegayle34@gmail.com","Love123456789","Manager");
+        
+        if($result){
+            echo 'Created Successfully';
+        }else{
+            echo 'Failed to create user';
+        }
 
     }
 
