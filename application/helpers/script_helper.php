@@ -23,7 +23,7 @@ if(!function_exists('navigation')){
 				<li>
 					<p  class="collapsible-header waves-effect waves active" ><i class="fa fa-plus-square" aria-hidden="true"></i> Create</p>
 					<ul class="collapsible-body grey lighten-3">
-						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>User</li>
+						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>System User</li>
 						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Blog</li>
 						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Prices</li>
 					</ul>
@@ -32,6 +32,7 @@ if(!function_exists('navigation')){
 				<li>
 					<p  class="collapsible-header waves-effect waves" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> View / Edit</p>
 					<ul class="collapsible-body grey lighten-3">
+					<li><i class="fa fa-chevron-right" aria-hidden="true"></i>System Users <span class="new badge blue darken-1 z-depth-1">4</span></li>
 						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Users <span class="new badge blue darken-1 z-depth-1">4</span></li>
 						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Blogs <span class="new badge blue darken-1 z-depth-1">2</span></li>
 						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Testimonals <span class="new badge blue darken-1 z-depth-1">1</span></li>

@@ -2,6 +2,13 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->helper('script');
+
+$error = "";
+if(isset($_GET['error'])){
+	$error = $_GET['error'];
+}else{
+	$error = "";
+}
 ?>
 
 <!Doctype html>
@@ -107,6 +114,14 @@ $this->load->helper('script');
                 border-radius:30px;
                 height: auto;
             }
+
+            .result{
+                text-align: center!important;
+                color: #E65100!important;
+                font-weight: bold;
+                font-size: 12px;
+                font-style: italic;
+            }
             
 
         </style>
@@ -131,7 +146,7 @@ $this->load->helper('script');
                             <div class="col s12">
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix">account_box</i>
-                                    <input id="icon_prefix" type="text" name="email" class="validate">
+                                    <input id="icon_prefix" type="text" name="email" class="validate" required>
                                     <label for="icon_prefix">Username or Email</label>
                                 </div>
                             </div>
@@ -139,7 +154,7 @@ $this->load->helper('script');
                             <div class="col s12">
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix">security</i>
-                                    <input id="icon_prefix1" type="password" name="password" class="validate">
+                                    <input id="icon_prefix1" type="password" name="password" class="validate" required>
                                     <label for="icon_prefix1">Password</label>
                                 </div>
                             </div>
@@ -153,6 +168,8 @@ $this->load->helper('script');
                             </div>
                         
                         </form>
+
+                        <?php $data = $error == "" ? "" : '<p class="result">* '.$error.' *</p>'; echo $data;?>
                     </div>
 
                 </div>

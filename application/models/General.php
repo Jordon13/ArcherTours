@@ -3,21 +3,44 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class General extends CI_Model {
 
-    public function Login($email, $password){
-        
+    public function LoginUser($email, $password){
+
+        $this->load->helper('db');
+
+        if($this->ses->has_userdata("user_ses")){
+            $this->killSession("user_ses");
+        }
+
+        $result= UserExist($email);
+
+        if($result != false)
+        {
+            if(password_verify($password,$result->user_password)){
+
+                $this->ses->set_userdata("user_ses",$result->session_id);
+
+                return true;
+            }
+
+            return false;
+        }
+
+        return false;
     }
 
-    public function CreateEmployee($firstname, $lastname, $email, $password, $role){
-        $seskey =  $this->returnRandomString(30);
-		$hashkey =  $this->returnRandomString(50);
+    public function CreateEmployee($data){
+        
+        $seskey =  $this->returnRandomString(50);
+
+        $password = $this->returnRandomString(10);
 
         $passwordHash = password_hash($password,PASSWORD_DEFAULT);
 
-        $dategenerated = date("d/m/Y");
+        $data+=array('session_id'=>$seskey);
 
-        $insertUser = $this->db->query("Insert into `sys_users` (`session_id`,`first_name`,
-        `last_name`,`user_role`,`email_address`,`user_password`,`date_generated`) 
-        values ('$seskey','$firstname','$lastname','$role','$email','$passwordHash','$dategenerated') ");
+        $data+=array('user_password'=>$passwordHash);
+
+        $insertUser = $this->db->insert('sys_users',$data);
 
 		if($insertUser == true){
 			return true;
@@ -26,6 +49,31 @@ class General extends CI_Model {
 			return false;
 		}
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -43,6 +91,7 @@ class General extends CI_Model {
         } while ($rnd > $range);
         return $min + $rnd;
     }
+
     function returnRandomString($length)
     {
         $token = "";
@@ -56,6 +105,14 @@ class General extends CI_Model {
         }
     
         return $token;
+    }
+
+    function killSession($sessionarray){
+        if($this->ses->has_userdata($sessionarray)){
+            $this->ses->unset_userdata($sessionarray);
+        }else{
+            return false;
+        }
     }
 
 }

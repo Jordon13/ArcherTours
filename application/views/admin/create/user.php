@@ -1,7 +1,11 @@
 <?php 
 
 defined('BASEPATH') OR exit('No direct script access allowed');
-$this->load->helper('script');
+if(!($this->ses->has_userdata("user_ses"))){
+    redirect(site_url("Admin/login")."?error=Unauthorized Access: please login to use services");
+}else{
+    $this->load->helper('script');
+}
 ?>
 
 <!Doctype html>
@@ -12,6 +16,7 @@ $this->load->helper('script');
     <head>
         <title>CreateUser</title>
         <?php adminhead();?>
+        <script src="http://malsup.github.com/jquery.form.js"></script> 
 
         <style>
 
@@ -39,6 +44,51 @@ $this->load->helper('script');
                 border: 0.9px solid rgba(224,224,224 ,1);
             }
 
+            .send{
+                justify-content:center!important;
+                margin-bottom:1em!important;
+            }
+
+            .result{
+                color: #388E3C;
+                display:flex;
+                justify-content:center;
+
+            }
+
+
+            .lds-ripple {
+  display: inline-block;
+  position: relative;
+  width: 30px;
+  height: 30px;
+}
+.lds-ripple div {
+  position: absolute;
+  border: 4px solid rgba(3,169,244 ,1) ;
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+@keyframes lds-ripple {
+  0% {
+    top: 28px;
+    left: 28px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: -1px;
+    left: -1px;
+    width: 58px;
+    height: 58px;
+    opacity: 0;
+  }
+}
 
             
             @media only screen and (max-height: 700px) {
@@ -69,7 +119,7 @@ $this->load->helper('script');
                 <div class="row ">
                     
 
-                    <form class="col m6 s12 offset-m3 offset-s0 my-form z-depth-1 grey lighten-4">
+                    <form class="col m6 s12 offset-m3 offset-s0 my-form z-depth-1 grey lighten-4"  >
                         <div class="row">
 
                             <div class=" col s12">
@@ -86,12 +136,12 @@ $this->load->helper('script');
                         <div class="row">
 
                             <div class="input-field col l6 s12">
-                                <input id="first_name" type="text" class="validate">
+                                <input id="first_name" type="text" name="first_name" class="validate" required>
                                 <label for="first_name">First Name</label>
                             </div>
 
                             <div class="input-field col l6 s12">
-                                <input id="last_name" type="text" class="validate">
+                                <input id="last_name" type="text" name="last_name" class="validate" required>
                                 <label for="last_name">Last Name</label>
                             </div>
 
@@ -99,12 +149,12 @@ $this->load->helper('script');
 
                         <div class="row">
                             <div class="input-field col l6 s12">
-                                <input id="email" type="email" class="validate">
+                                <input id="email" type="email" name="email_address" class="validate" required>
                                 <label for="email">Email</label>
                             </div>
 
                             <div class="input-field col l6 s12">
-                                <input pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="phone" type="text" class="validate" title="Telephone Number: ###-###-####">
+                                <input pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="user_phone" id="phone" type="text" class="validate" title="Telephone Number: ###-###-####" required>
                                 <label for="phone">Telephone#</label>
                             </div>
 
@@ -113,17 +163,17 @@ $this->load->helper('script');
                         <div class="row">
 
                             <div class="input-field col l4 s12">
-                                <input id="city" type="text" class="validate">
+                                <input id="city" type="text" name="user_city" class="validate" required>
                                 <label for="city">City</label>
                             </div>
                             
                             <div class="input-field col l4 s12">
-                                <input id="parish" type="text" class="validate">
+                                <input id="parish" type="text" name="user_state" class="validate" required>
                                 <label for="parish">Parish</label>
                             </div>
 
                             <div class="input-field col l4 s12">
-                                <input id="zip" type="text" class="validate">
+                                <input id="zip" type="text" name="user_zip" class="validate">
                                 <label for="zip">Zip Code</label>
                             </div>
                         </div>
@@ -131,7 +181,7 @@ $this->load->helper('script');
 
                         <div class="row">
                             <div class="input-field col s12">
-                                <select>
+                                <select name="user_role" required>
                                     <option value="Manager">Manager</option>
                                     <option value="Employee">Employee</option>
                                 </select>
@@ -139,12 +189,16 @@ $this->load->helper('script');
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="input-field col l2 s3 offset-l5 offset-s4">
-                            <button class="btn waves-effect waves-light  blue accent-4" type="submit" name="action">Submit
+                        <div class="valign-wrapper send">
+                            <div class="">
+                            <button class="btn waves-effect waves-light  blue accent-4"  id="submit">Submit
                                 <i class="material-icons right">send</i>
                             </button>
                             </div>
+                        </div>
+
+                        <div class="row center-align result">
+                            
                         </div>
 
                     </form>
@@ -162,6 +216,52 @@ $this->load->helper('script');
 
                 $('select').formSelect();
 
+                $('#submit').click(function(e){
+
+                    e.preventDefault();
+                    $(".result").css("color","#388E3C");
+                    $('.result').html("Processing...");
+                    $.post('<?php echo site_url('/cms/CreateUser');?>', $('.my-form').serialize(), function(data){
+                        
+                        console.log(data);
+
+                        var result = $.parseJSON(data);
+
+                        if(result.IsSuccess){
+                            
+                            $(".result").css("color","#388E3C");
+
+                            $(".result").html(result.Message);
+
+                            $(".result").delay(1000).fadeOut(1000);
+                        
+                            setTimeout(function(){
+                                $('.result').html("Add Another Record").fadeIn(0);
+                            },2000);
+                        }else{
+
+                            $(".result").css("color","#d32f2f");
+
+                            $(".result").html(result.Message);
+
+                            $(".result").delay(2000).fadeOut(1000);
+                        
+                            setTimeout(function(){
+                                $('.result').html("Try Again").fadeIn(0);
+                            },3000);
+                        }
+                        
+                        
+                        
+                        console.log(result);
+                        
+                        
+                        
+                    });
+                   
+                });
+
+                
             });
 
     </script>

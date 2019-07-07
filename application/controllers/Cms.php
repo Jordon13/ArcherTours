@@ -11,25 +11,82 @@ class Cms extends CI_Controller {
 
     public function Login(){
 
+        $this->load->model('General','cms');
+
         $email = $this->input->post('email',true);
+
         $password = $this->input->post('password',true);
 
+        $result = $this->cms->LoginUser($email,$password);
 
+        if($result != false){
+            echo "<script>window.location.href = '".site_url('Admin/dashboard')."?sucess=login sucessfully';</script>";
+        }
 
-        echo "Your Emails Is: ".$email." Password IS: ".$password;
+        echo "<script>window.location.href = '".site_url('Admin/login')."?error=failed to login';</script>";
     }
 
     public function CreateUser(){
         
         $this->load->model('General','cms');
-        
-        $result = $this->cms->CreateEmployee("Jordaine","Gayle","jordainegayle34@gmail.com","Love123456789","Manager");
-        
-        if($result){
-            echo 'Created Successfully';
-        }else{
-            echo 'Failed to create user';
+       
+        $this->load->helper('db');
+
+        $email = sanitizeInput($this->input->post('email_address',true));
+
+        $fname = sanitizeInput($this->input->post('first_name',true));
+
+        $lname = sanitizeInput($this->input->post('last_name',true));
+
+        $role = sanitizeInput($this->input->post('user_role',true));
+
+        $city = sanitizeInput($this->input->post('user_city',true));
+
+        $state = sanitizeInput($this->input->post('user_state',true));
+
+        if(empty($email) || empty($lname) || empty($fname) || empty($role) || empty($city) || empty($state)){
+            $data = array(
+                'Message' => 'Please fill out all fields for this transaction.',
+                'IsSuccess' => false
+            );
+
+            echo json_encode($data,JSON_FORCE_OBJECT);
+            return;
         }
+        
+
+        $result= UserExist($email);
+
+        if($result != false){
+            
+            $data = array(
+                'Message' => 'User already exist. Falied to create.',
+                'IsSuccess' => false
+            );
+
+            echo json_encode($data,JSON_FORCE_OBJECT);
+            return;
+
+        }
+
+        $result = $this->cms->CreateEmployee(sanitizeArray($_POST));
+    
+        if($result){
+            $data = array(
+                'Message' => 'Successfully Created!',
+                'IsSuccess' => true
+            );
+
+            echo json_encode($data,JSON_FORCE_OBJECT);
+        }else{
+            $data = array(
+                'Message' => 'An error has occured falied to create user.',
+                'IsSuccess' => false
+            );
+
+            echo json_encode($data,JSON_FORCE_OBJECT);
+        }
+        
 
     }
 
