@@ -6,6 +6,12 @@ if(!($this->ses->has_userdata("user_ses"))){
     redirect(site_url("Admin/login")."?error=Unauthorized Access: please login to use services");
 }else{
     $this->load->helper('script');
+
+    $name = "";
+
+    if($this->ses->has_userdata('first_name') && $this->ses->has_userdata('last_name')){
+        $name = $this->ses->userdata('first_name')." ".$this->ses->userdata('last_name');
+    }
 }
 
 
@@ -79,7 +85,7 @@ if(!($this->ses->has_userdata("user_ses"))){
             
             <div class="inner-content">
                 
-                <h5 class="grey-text text-lighten-1">Welcome, Jordaine Gayle</h5>
+                <h5 class="grey-text text-lighten-1">Welcome, <?php echo $name == "" ? "Guest" : $name;?></h5>
 
                 <div class="main-details row">
                     <div class="col l6 m6 s12 myCharts">

@@ -20,7 +20,12 @@ class Cms extends CI_Controller {
         $result = $this->cms->LoginUser($email,$password);
 
         if($result != false){
-            echo "<script>window.location.href = '".site_url('Admin/dashboard')."?sucess=login sucessfully';</script>";
+
+            if($result->first_time == 0){
+                echo "<script>window.location.href = '".site_url('Admin/dashboard')."?sucess=login sucessfully';</script>";
+            }else{
+                echo "<script>window.location.href = '".site_url('Admin/confirm')."?error=please set a new password or continue and do it on your next login';</script>";
+            }
         }
 
         echo "<script>window.location.href = '".site_url('Admin/login')."?error=failed to login';</script>";
@@ -90,7 +95,71 @@ class Cms extends CI_Controller {
 
     }
 
+    public function UpdateUserData(){
+
+        if(!($this->ses->has_userdata('user_ses'))){
+            echo "<script>window.location.href = '".site_url('Admin/login')."?error=failed to login';</script>";
+            return;
+        }
+
+        if(empty( $this->input->post("user_password",true))){
+            $result = array('Message'=>'Pasword cannot be null or empty.','IsSuccess' => false);
+
+            echo json_encode($result);
+            return;
+        }
+
+        if(strlen($this->input->post("user_password",true)) < 8){
+            $result = array('Message'=>'Password must be 8 or more characters in length.','IsSuccess' => false);
+
+            echo json_encode($result);
+            return;
+        }
+
+        $pa = $this->input->post("user_password",true);
+
+        if(preg_match('/[!@#$%^&*(),.?":{}|<>\'\`\~\=\+\;\/\_\-\¨\]\[]/',$pa,$match) > 0){
+            
+            $result = array('Message'=>'Not a valid password. Only word and letter allowed','IsSuccess' => false);
+
+            echo json_encode($result);
+            return;
+        }
+
+        $this->load->model('General','cms');
+
+        $this->load->helper('db');
+
+        $password = sanitizeInput($this->input->post('user_password',true));
+
+        $data = array(
+            'user_password'=>password_hash($password,PASSWORD_DEFAULT),
+            'first_time'=>0
+        );
+
+        $res = $this->cms->UpdateUser($data);
+
+        if($res){
+            echo "";
+
+            $this->ses->set_userdata("first_time",0);
+
+            $result = array('Message'=>"<script>window.location.href = '".site_url('Admin/dashboard')."?success=password created successfully login success';</script>",'IsSuccess' => true);
+
+            echo json_encode($result);
+            return;
+        }
+
+        $result = array('Message'=>'Failed to update user password','IsSuccess' => false);
+
+        echo json_encode($result);
+    }
+
     /************************************ */
+
+    public function AddBlog(){
+        print_r($_POST);
+    }
 
     public function UploadImages(){
 

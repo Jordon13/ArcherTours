@@ -18,8 +18,14 @@ class General extends CI_Model {
             if(password_verify($password,$result->user_password)){
 
                 $this->ses->set_userdata("user_ses",$result->session_id);
+                
+                $this->ses->set_userdata("first_time",$result->first_time);
 
-                return true;
+                $this->ses->set_userdata("first_name",$result->first_name);
+
+                $this->ses->set_userdata("last_name",$result->last_name);
+
+                return $result;
             }
 
             return false;
@@ -38,11 +44,14 @@ class General extends CI_Model {
 
         $data+=array('session_id'=>$seskey);
 
+        $data+=array('first_time'=>1);
+
         $data+=array('user_password'=>$passwordHash);
 
         $insertUser = $this->db->insert('sys_users',$data);
 
 		if($insertUser == true){
+            $this->emailUserPassword($data['email_address'],$password);
 			return true;
 
 		}else{
@@ -50,6 +59,23 @@ class General extends CI_Model {
 		}
     }
 
+    public function UpdateUser($data){
+        
+        $session_id = $this->ses->userdata('user_ses');
+
+        $this->db->where('session_id', $session_id);
+
+        $success = $this->db->update('sys_users', $data);
+
+        if($success){
+            return true;
+        }
+
+        return false;
+    }
+
+
+    
 
 
 
@@ -76,6 +102,39 @@ class General extends CI_Model {
 
 
 
+    public function emailUserPassword($emailAddress, $password){
+        $this->load->library('email');
+            $config = array(
+            'protocol'  => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_port' => 465,
+            'smtp_user' => 'freshcode9@gmail.com',
+            'smtp_pass' => 'Love123456789',
+            'mailtype'  => 'html',
+            'smtp_keepalive' => 'TRUE',
+            '_smtp_auth'=>'TRUE',
+            '_replyto_flag'=>'TRUE',
+            'charset'   => 'utf-8'
+            );
+        $this->email->initialize($config);
+        $this->email->set_mailtype("html");
+        $this->email->set_newline("\r\n");
+        $link = site_url("admin/login?error=Welcome to Archer 1062 Tours, if this is your first time we suggest you create a new password after logging in with the system provided one");
+        $this->email->from('freshcode9@gmail.com', 'Archer 1062 Tours');
+        $this->email->to($emailAddress);
+        $this->email->subject('Admin System - Login Cendentials For Archer 1062 Tours');
+        $this->email->message('<div style="border-radius:5px;border: 1px solid rgba(100,100,100,0.2);width:250px;background-color:#F5F5F5;">
+        <h3 style="padding:0.5em;background-color: #0D47A1; color:white;margin:0px!important;">Login Credentails</h3>
+        <p style="padding:1em!important;">Email: '.$emailAddress.'</p>
+        <p style="padding:1em!important;">Password: '.$password.'</p>
+        <p style="padding:1em!important;text-align:center;"><a style="border:0.5px solid rgba(100,100,100,0.3); border-radius:5px;padding:0.5em!important;" href="'.$link.'">Confirm & Login</a></p></div>');
+        $c = $this->email->send();
+        if(!$c){
+            return false;
+        }else{
+            return true;
+        }
+    }
 
     function crypto_rand_secure($min, $max)
     {

@@ -53,43 +53,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                 color: #388E3C;
                 display:flex;
                 justify-content:center;
-
             }
-
-
-            .lds-ripple {
-  display: inline-block;
-  position: relative;
-  width: 30px;
-  height: 30px;
-}
-.lds-ripple div {
-  position: absolute;
-  border: 4px solid rgba(3,169,244 ,1) ;
-  opacity: 1;
-  border-radius: 50%;
-  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
-}
-.lds-ripple div:nth-child(2) {
-  animation-delay: -0.5s;
-}
-@keyframes lds-ripple {
-  0% {
-    top: 28px;
-    left: 28px;
-    width: 0;
-    height: 0;
-    opacity: 1;
-  }
-  100% {
-    top: -1px;
-    left: -1px;
-    width: 58px;
-    height: 58px;
-    opacity: 0;
-  }
-}
-
             
             @media only screen and (max-height: 700px) {
                 .content-area {

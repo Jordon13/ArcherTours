@@ -22,6 +22,25 @@ class Admin extends CI_Controller {
 
     }
 
+    public function confirm(){
+
+        $this->load->library('parser');
+
+        // $data = array(
+        //     'names' => array(
+        //         array('first' => 'Jordaine',
+        //         'last' => 'Gayle'),
+        //         array('first' => 'Kylie',
+        //         'last' => 'Jenner'),
+        //     )
+        // );
+        // $this->parser->parse('blog_template', $data);
+        $this->load->view('admin/confirm');
+
+        
+
+    }
+
     public function dashboard(){
         $this->load->view('admin/dashboard');
     }

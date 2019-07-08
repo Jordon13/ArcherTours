@@ -3,7 +3,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 if(!function_exists('navigation')){
-	function navigation(){
+	function navigation($params = "Jane Doe"){
 		echo '<section class="navigation">
 		<div class="overlay"></div>
 		<section class="vertical-nav">
@@ -15,7 +15,7 @@ if(!function_exists('navigation')){
 			<ul class="ver-link collapsible" data-collapsible="accordion">
 
 				<li>
-					<p  class="collapsible-header waves-effect waves" ><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</p>
+					<p  class="collapsible-header waves-effect waves" ><a href="'.base_url('admin/dashboard').'"><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a></p>
 					<ul class="collapsible-body grey lighten-3">
 					</ul>
 				</li>
@@ -23,42 +23,53 @@ if(!function_exists('navigation')){
 				<li>
 					<p  class="collapsible-header waves-effect waves active" ><i class="fa fa-plus-square" aria-hidden="true"></i> Create</p>
 					<ul class="collapsible-body grey lighten-3">
-						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>System User</li>
-						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Blog</li>
-						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Prices</li>
+						<li><a href="'.base_url('admin/cuser').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>System User</a></li>
+						<li><a href="'.base_url('admin/cblog').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Blog</a></li>
+						<li><a href="'.base_url('admin/cprices').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Prices</a></li>
 					</ul>
 				</li>
 
 				<li>
 					<p  class="collapsible-header waves-effect waves" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> View / Edit</p>
 					<ul class="collapsible-body grey lighten-3">
-					<li><i class="fa fa-chevron-right" aria-hidden="true"></i>System Users <span class="new badge blue darken-1 z-depth-1">4</span></li>
-						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Users <span class="new badge blue darken-1 z-depth-1">4</span></li>
-						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Blogs <span class="new badge blue darken-1 z-depth-1">2</span></li>
-						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Testimonals <span class="new badge blue darken-1 z-depth-1">1</span></li>
-						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Prices <span class="new badge blue darken-1 z-depth-1">8</span></li>
+					<li><a href="'.base_url('admin/euser').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>System Users </a><span class="new badge blue darken-1 z-depth-1">4</span></li>
+						<li><a href="'.base_url('admin/genusers').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Users </a><span class="new badge blue darken-1 z-depth-1">4</span></li>
+						<li><a href="'.base_url('admin/eblog').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Blogs </a> <span class="new badge blue darken-1 z-depth-1">2</span></li>
+						<li><a href="'.base_url('admin/testimonials').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Testimonals </a><span class="new badge blue darken-1 z-depth-1">1</span></li>
+						<li><a href="'.base_url('admin/eprices').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Prices </a><span class="new badge blue darken-1 z-depth-1">8</span></li>
 					</ul>
 				</li>
 
 				<li>
 					<p  class="collapsible-header waves-effect waves" ><i class="fa fa-cloud-upload" aria-hidden="true"></i> Media Upload</p>
 					<ul class="collapsible-body grey lighten-3">
-						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Photos / Videos</li>
-						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Recent Places</li>
+						<li><a href="'.base_url('admin/media').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Photos / Videos</a></li>
+						<li><a href="'.base_url('admin/recent').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Recent Places</a></li>
+					</ul>
+				</li>
+
+				<li>
+					<p  class="collapsible-header waves-effect waves" ><i class="fa fa-cloud-upload" aria-hidden="true"></i> Bookings</p>
+					<ul class="collapsible-body grey lighten-3">
+						<li><a href="'.base_url('admin/handlebookings').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Bookings</a></li>
+						<li><a href="'.base_url('admin/booking_analytics').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Booking Analytics</a></li>
+						<li><a href="'.base_url('admin/calender').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Activity Calender</a></li>
+						<li><a href="'.base_url('admin/profitloss').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Income Report</a></li>
 					</ul>
 				</li>
 
 				<li>
 					<p  class="collapsible-header waves-effect waves" ><i class="fa fa-file-text" aria-hidden="true"></i> Pages</p>
 					<ul class="collapsible-body grey lighten-3">
-						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Home</li>
-						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>About</li>
-						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Contact</li>
-						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Taxi Service</li>
-						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Airport Service</li>
-						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Tours Service</li>
-						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Booking</li>
-						<li><i class="fa fa-chevron-right" aria-hidden="true"></i>Blog</li>
+						<li><a href="'.base_url('admin/home').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Home</a></li>
+						<li><a href="'.base_url('admin/about').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>About</a></li>
+						<li><a href="'.base_url('admin/contact').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Contact</a></li>
+						<li><a href="'.base_url('admin/').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Taxi Service</a></li>
+						<li><a href="'.base_url('admin/').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Airport Service</a></li>
+						<li><a href="'.base_url('admin/').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Tours Service</a></li>
+						<li><a href="'.base_url('admin/booking').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Booking</a></li>
+						<li><a href="'.base_url('admin/blog').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Blog</a></li>
+						<li><a href="'.base_url('admin/gallery').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Gallery</a></li>
 					</ul>
 				</li>
 			</ul>
