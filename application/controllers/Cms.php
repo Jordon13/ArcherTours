@@ -158,6 +158,34 @@ class Cms extends CI_Controller {
     /************************************ */
 
     public function AddBlog(){
+
+        if(isset($_FILES['upl'])){
+            echo $_FILES['upl']['name'][0];
+            echo $_FILES['upl']['tmp_name'][0];
+
+
+            $output = 0;
+			$config['upload_path'] = './uploads/blog-images/';
+            $config['allowed_types'] = "jpg|jpeg|png";
+            $config['encrypt_name'] = TRUE;
+			$this->load->library('upload',$config);
+			$this->upload->initialize($config);
+			for($count = 0; $count<count($_FILES['upl']['name']); $count++){
+				$_FILES['file']['name'] = $_FILES['upl']['name'][$count];
+				$_FILES['file']['type'] = $_FILES['upl']['type'][$count];
+				$_FILES['file']['tmp_name'] = $_FILES['upl']['tmp_name'][$count];
+				$_FILES['file']['error'] = $_FILES['upl']['error'][$count];
+				$_FILES['file']['size'] = $_FILES['upl']['size'][$count];
+				if($this->upload->do_upload('file')){
+					$output++;
+				}
+				
+            }
+            
+            echo $output." files updated";
+        }
+        
+        // echo $_POST['data'];
         print_r($_POST);
     }
 

@@ -17,6 +17,7 @@ if(!($this->ses->has_userdata("user_ses"))){
         <title>CreateBlog</title>
         <?php adminhead();?>
 
+
         <style>
 
             .input-field input{
@@ -179,7 +180,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                             <div class="file-field input-field col s12">
                                 <div class="btn blue-grey lighten-2">
                                     <span>Blog Cover Photo</span>
-                                    <input type="file">
+                                    <input type="file" name="finfo" id="myupd">
                                 </div>
                                 <div class="file-path-wrapper">
                                     <input class="file-path validate" type="text" name="blog_image" placeholder="Choose A Picture .jpg or jpeg">
@@ -232,6 +233,9 @@ if(!($this->ses->has_userdata("user_ses"))){
                 });
 
 
+                
+
+
 
                 $('#submit').click(function(e){
 
@@ -239,27 +243,50 @@ if(!($this->ses->has_userdata("user_ses"))){
                     $(".result").css("color","#388E3C");
                     $('.result').html("Processing...");
 
+                    var files = $('#myupd')[0].files;
+
+                    var form_data = new FormData();
+
                     var c = $('.my-form').serializeArray();
 
-                    c.push({
-                        name: "blog_tags",
-                        value:data
-                    });
+                    for(var count = 0; count <files.length; count++){
+                        
+                        form_data.append("upl[]",files[count]);
+                            
+                    }
+
+                    form_data.append('blog_title',c[0].value);
+
+                    form_data.append('blog_catch_phrase',c[1].value);
+
+                    form_data.append('blog_url',c[2].value);
+
+                    form_data.append('blog_user_visible',c[3].value);
+
+                    form_data.append('blog_content',c[4].value);
+
+                    form_data.append('blog_image',c[5].value);
+
+                    form_data.append('blog_tags[]',data);
 
                     
-                    //console.log(c);
 
-                    $.post('<?php echo site_url('/cms/AddBlog');?>',JSON.stringify(c), function(data){
-                        
-                        console.log(data);
+                    console.log(form_data);
 
-                        var result = $.parseJSON(data);
 
-                        console.log(result);
-                        
-                        
-                        
-                    });
+                    $.ajax({
+                        url: "<?php echo site_url('/cms/AddBlog');?>",
+                        method: "POST",
+                        data: form_data,
+                        success: function(e) {
+                            console.log(e);
+                        },
+                        contentType: false,
+                        cache: false,
+                        processData:false,       
+
+				    });
+
 
                 });
 
