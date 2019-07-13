@@ -1,119 +1,141 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$this->load->helper('script');
+$this->load->helper('section');
 
 ?>
 <html lang="en">
 <head>
     <title>Gallery</title>
-    <?php archerHeader();?>
-
+    <?php main_head();?>
     <style>
     
-        .activeLink{
-            color: #03A9F4;
-        }
+    html {
+        position: relative;
+        height: 100%!important;
+        font-family: "Nunito";
+    }
 
-        .pictures{
-            cursor: pointer;
-        }
+    body {
+        position: relative;
+        height: 100%!important;
+    }
 
-        .pictures:hover{
-            color:#0277BD;
-            transition: color 0.4s;
-        }
+    .fpage {
+        background-image: url(<?php echo base_url('assets/23.jpg')?>);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 100%!important;
+        width: 100%!important;
+        background-attachment: fixed;
+        position: relative;
+    }
+    .overlay {
+          top: 0px;
+          background-color: rgba(0, 0, 0, 0.3);
+          height: 100%;
+          position: absolute;
+          width: 100%;
+          z-index: 2!important;
+      }
 
-        .videos:hover{
-            color:#0277BD;
-            transition: color 0.4s;
-        }
+      .custom-hone-link{
+        color:white!important;
+      }
 
-        .videos {
-            cursor: pointer;
-        }
+      .custom-card-header{
+        font-weight: bolder;
+      }
+
+      .lead {
+        font-size: 18px;
+        padding: 0.5em;
+        margin-bottom: 1em!important;
+      }
+
+      .custom-img{
+        padding:1em!important;
+      }
+      .custom-img img{
+        width:100%;
+        /* height:220px; */
+      }
 
 
-        #vids{
-            display:none;
-        }
+</style>
 
-        #pics{
-            display:show;
-        }
-
-        .bkg{
-            width: 100%;
-            height: 600px;
-            background-image: url(<?php echo base_url('assets/gallery/gallery.jpg')?>);
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-           /* background-attachment: fixed;*/
-            z-index: 1;
-        }
-
-    </style>
 </head>
-<body>
-    <?php navBar("gallery");?>
-    <?php floatingMessage();?>
+<body class="">
 
-    <div class="fluid-container col-md-12 bkg">
-    </div>
-
-    <div class="row m-0 p-0 justify-content-center p-3 m-0">
-
-        <div class="col-md-12">
-            <p class="lead" style="font-size: 35px;" ><span class="pictures">Pictures</span> | <span class="videos">Videos</span></p>
+    <?php main_nav(); ?>
+    <div class="row fpage">
+      <div class="overlay"></div>
+      
+      <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 center"  style="height:100%!important; z-index:4!important; position:relative;">
+        <div class="row valign-wrapper" style="height:100%!important;">
+          <div class="col s12" >
+          <h5 class="white-text"><a class="custom-hone-link" href="<?php echo site_url('/')?>">Home</a> | <span style="color:rgba(255,255,255,0.8)!important;">Gallery</span></h5>
+            <h1 class="white-text header">Gallery</h1>
+          </div>
         </div>
-    </div>
-    
-    <div class="fluid-container p-3" id="pics">
-
-        <figure class="figure shadow-sm col-md-3 p-0 m-0 border rounded">
-            <img src="<?php echo base_url('assets/1.jpg')?>" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
-            <figcaption class="figure-caption">A caption for the above image.</figcaption>
-        </figure>
+      </div>
 
     </div>
 
+    <div class="row">
+      <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 center">
+        <div class="row">
 
-    <div class="fluid-container p-3" id="vids" >
+          <div class="col l4 m12 s12 custom-img">
+            <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" src="<?php echo base_url('assets/23.jpg')?>"> 
+          </div>
+          
+          <div class="col l4 m12 s12 custom-img">
+            <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" src="<?php echo base_url('assets/23.jpg')?>">
+          </div>
+          
+          <div class="col l4 m12 s12 custom-img">
+            <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" src="<?php echo base_url('assets/23.jpg')?>">
+          </div>
 
-        <figure class="figure shadow-sm col-md-3 p-0 m-0 border rounded">
-            <video controls class="player" id="player1"
-                width="100%" poster="<?php echo base_url('assets/trips/19.jpeg') ?>"
-                preload="auto" src="<?php echo base_url('assets/trips/23.mp4') ?>"
-                tabindex="0" title="MediaElement">
-            </video>
-            <figcaption class="figure-caption">A caption for the above image.</figcaption>
-        </figure>
+          <div class="col l4 m12 s12 custom-img center">
+            <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" src="<?php echo base_url('assets/23.jpg')?>"> 
+            <!-- <p class="col s12" style="display:flex!important; align-items:center!important; justify-content: space-between!important;"><i class="material-icons">visibility</i> 12</p>
+            <p class="col s12" style="display:flex!important; align-items:center!important; justify-content: space-between!important;"><span>Date Posted:</span> 12-12-19</p> -->
+          </div>
+          
+          <div class="col l4 m12 s12 custom-img">
+            <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" src="<?php echo base_url('assets/23.jpg')?>">
+          </div>
+          
+          <div class="col l4 m12 s12 custom-img">
+            <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" src="<?php echo base_url('assets/23.jpg')?>">
+          </div>
 
+          <div class="col l4 m12 s12 custom-img">
+            <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" src="<?php echo base_url('assets/23.jpg')?>"> 
+          </div>
+          
+          <div class="col l4 m12 s12 custom-img">
+            <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" src="<?php echo base_url('assets/23.jpg')?>">
+          </div>
+          
+          <div class="col l4 m12 s12 custom-img">
+            <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" src="<?php echo base_url('assets/23.jpg')?>">
+          </div>
+
+
+        </div>
+      </div>
     </div>
-
-    <?php footer();?>
+    <?php main_footer(); ?>
 </body>
-
 <script>
 
-        $('document').ready(function(){
-            $(".pictures").addClass('activeLink');
-
-            $(".pictures").on('click', function(){
-                $(".pictures").addClass('activeLink');
-                $(".videos").removeClass('activeLink');
-                $("#pics").delay(1000).fadeIn(1000);
-                $("#vids").fadeOut(1000);
-            });
-
-            $(".videos").on('click', function(){
-                $(".pictures").removeClass('activeLink');
-                $(".videos").addClass('activeLink');
-                $("#pics").fadeOut(1000);
-                $("#vids").delay(1000).fadeIn(1000);
-            });
-        });
+$('document').ready( ()=>{
+  $('.materialboxed').materialbox();
+});
 
 </script>
 </html>

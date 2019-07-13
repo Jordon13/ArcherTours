@@ -1,130 +1,209 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$this->load->helper('script');
+$this->load->helper('section');
 
 ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Contact</title>
-    <?php archerHeader();?>
-
+    <title>Contact Us</title>
+    <?php main_head();?>
     <style>
     
-        .background-area{
-            width: 100%;
-            height: 1000px;
-            background-image: url(<?php echo base_url('assets/whitebg.jpg')?>);
+        html {
+            position: relative;
+            height: 100%!important;
+            font-family: "Nunito";
+        }
+
+        body {
+            position: relative;
+            height: 100%!important;
+        }
+
+        .fpage {
+            background-image: url(<?php echo base_url('assets/21.jpg')?>);
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
-           /* background-attachment: fixed;*/
-            z-index: 1;
-            
+            height: 100%!important;
+            width: 100%!important;
+            background-attachment: fixed;
+            position: relative;
         }
 
         .overlay {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                z-index: 0;
-                background-color: rgba(10,10,10,0.5);
-                margin: 0px;
-                padding: 0px;
-            }
+          top: 0px;
+          background-color: rgba(0, 0, 0, 0.3);
+          height: 100%;
+          position: absolute;
+          width: 100%;
+          z-index: 2!important;
+      }
 
-        
-        .bkg{
-            width: 100%;
-            height: 600px;
-            background-image: url(<?php echo base_url('assets/contact/contact.jpg')?>);
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-           /* background-attachment: fixed;*/
-            z-index: 1;
-        }
+      .custom-hone-link{
+        color:white!important;
+      }
 
+      .custom-card-header{
+        font-weight: bolder;
+      }
+
+      .lead {
+        font-size: 18px;
+        padding: 0.5em;
+        margin-bottom: 1em!important;
+      }
+
+      .modify-img img{
+        width:100%!important;
+      }
+      .custom-input{
+        margin:0px!important;
+        margin-bottom:10px!important;
+        height:auto!important;
+      }
+
+      .custom-input:first-child{
+        margin-top:10px!important;
+      }
+
+      .custom-input input, .custom-input textarea{
+        border: 1px solid #e0e0e0!important;
+        border-radius:10px!important;
+        width:100%!important;
+        outline:none!important;
+        padding:1em!important;
+      }
+
+      .custom-input input:focus, .custom-input textarea:focus{
+        box-shadow: inset 0px 0px 3px rgba(253, 216, 0, 1);
+        border:none!important;
+      }
+
+      .custom-input textarea{
+        min-height:100px!important;
+      }
+
+      .custom-input button{
+        /* padding: 1em; */
+        /* margin: 1em; */
+        border-radius: 30px;
+        border: none!important;
+        color:white;
+        outline: none;
+        background-color:rgba(253, 216, 0, 1);
+        color: white!important;
+        font-weight: bolder;
+        cursor: pointer;
+      }
+
+      .custom-input button:hover{
+        background-color: rgba(253, 216, 0, 0.5)!important;
+      }
+
+      .custom-input button:focus{
+        background-color: rgba(253, 216, 0, 1)!important;
+      }
+
+      
+
+      
+    
     </style>
 </head>
 <body class="">
-    
-    <?php floatingMessage();?>
-    <?php navBar("contact");?>
 
-    <div class="fluid-container col-md-12 bkg">
-    </div>
-    <section class="container col-md-12 m-0 p-0">
-        
+    <?php main_nav(); ?>
 
-        <div class="row  p-4 m-0 h-100">
-        
-            <div class="col p-0 m-0">
-                <div class="container col-lg-4 p-0" style="height: auto;" data-aos="fade-up">
-                    <h3 class="h2 p-2 text-white text-center m-0" style="background-color: #388E3C;">Contact Us <i class="fa fa-mobile" aria-hidden="true"></i></h3>
-                    <form class="col-lg-12 border rounded m-0">
-                        <div class="form-row p-4">
-                            
-                            <div class="input-group mb-3 input-group-lg">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text text-success"><i class="fa fa-user-o fa-2x" aria-hidden="true"></i></span>
-                                </div>
-                                <input type="text" class="form-control" placeholder="Firstname">
-                            </div>
-
-                            <div class="input-group mb-3 input-group-lg">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text text-success"><i class="fa fa-user-o fa-2x" aria-hidden="true"></i></span>
-                                </div>
-                                <input type="text" class="form-control" placeholder="Lastname">
-                            </div>
-
-                            <div class="input-group mb-3 input-group-lg">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text text-success"><i class="fa fa-at fa-2x" aria-hidden="true"></i></span>
-                                </div>
-                                <input type="email" class="form-control" placeholder="Email Address">
-                            </div>
-
-                            <div class="input-group mb-3 input-group-lg">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text text-success"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></span>
-                                </div>
-                                <input type="text" class="form-control" placeholder="Your Address">
-                            </div>
-
-                            <div class="input-group mb-3 input-group-lg">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text text-success"><i class="fa fa-mobile fa-2x" aria-hidden="true"></i></span>
-                                </div>
-                                <input type="number" class="form-control" placeholder="Phone Number">
-                            </div>
-
-                            <div class="input-group mb-3 input-group-lg">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text text-success"><i class="fa fa-comments-o fa-2x" aria-hidden="true"></i></span>
-                                </div>
-                                <textarea class="form-control" id="formGroupExampleInput3" placeholder="Message"></textarea>
-                            </div>
-
-                            <div class="row w-100 justify-content-center">
-                                <div class="">
-                                    <button type="button" class="btn btn-outline-success text-lg p-2" style="" >Send Message</button>
-                                </div>
-                            </div>
-                        
-
-                        </div>
-                        
-                    </form>
-                </div>
-            </div>
-            
+    <div class="row fpage">
+      <div class="overlay"></div>
+      
+      <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 center"  style="height:100%!important; z-index:4!important; position:relative;">
+        <div class="row valign-wrapper" style="height:100%!important;">
+          <div class="col s12" >
+          <h5 class="white-text"><a class="custom-hone-link" href="<?php echo site_url('/')?>">Home</a> | <span style="color:rgba(255,255,255,0.8)!important;">Contact</span></h5>
+            <h1 class="white-text header">Contact Us</h1>
+          </div>
         </div>
-        
+      </div>
 
-    </section>
+    </div>
+
+    <div class="row">
+      
+      <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
+
+        <div class="row">
+
+          <div class="col s12">
+            <h3>Contact Information</h3>
+          </div>
+
+          <div class="col l3 m12 s12">
+            <p class="lead">Address:  198 West 21th Street, Suite 721 New York NY 10016</p>
+          </div>
+
+          <div class="col l3 m12 s12">
+            <p class="lead">Phone: + 1235 2355 98</p>
+          </div>
+
+          <div class="col l3 m12 s12">
+            <p class="lead">Email: info@yoursite.com</p>
+          </div>
+
+          <div class="col l3 m12 s12">
+            <p class="lead">Website yoursite.com</p>
+          </div>
+
+        </div>
+
+      </div>
     
-    <?php footer();?>
+    </div>
+
+    <div class="row">
+      
+      <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
+      
+        <div class="row">
+          
+          <div class="col l6 m12 s12 modify-img" style="position:relative!important; ">
+            <!-- <div class="overlay"></div> -->
+            <img src="<?php echo base_url('assets/map.png');?>" alt="no image">
+          </div>
+          
+          <div class="col l6 m12 s12" >
+
+            <div class="input-field col s12 custom-input">
+              <input placeholder="Name" id="first_name" type="text" class="validate browser-default">
+            </div>
+
+            <div class="input-field col s12 custom-input">
+              <input id="last_name" placeholder="Email" type="email" class="validate browser-default">
+            </div>
+
+            <div class="input-field col s12 custom-input">
+              <input id="last_name" type="text" placeholder="Subject" class="validate browser-default">
+            </div>
+
+            <div class="input-field col s12 custom-input">
+              <textarea rows="6" id="textarea1" placeholder="Message" class=""></textarea>
+            </div>
+
+            <div class="input-field col s12 custom-input">
+              <button class="btn btn-large z-depth-0">Send Message</button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    
+    </div>
+    
+    <?php main_footer(); ?>
 </body>
 </html>

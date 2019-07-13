@@ -1,146 +1,78 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$this->load->helper('script');
+$this->load->helper('section');
 
 ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Booking</title>
-    <?php archerHeader();?>
-
+    <?php main_head();?>
     <style>
-        .required{
-            color: rgba(255,0,0,0.8);
-        }
+    
+    html {
+        position: relative;
+        height: 100%!important;
+        font-family: "Nunito";
+    }
 
-        .bkg{
-            width: 100%;
-            height: 600px;
-            background-image: url(<?php echo base_url('assets/booking/travel.jpg')?>);
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-           /* background-attachment: fixed;*/
-            z-index: 1;
-        }
-    </style>
+    body {
+        position: relative;
+        height: 100%!important;
+    }
+
+    .fpage {
+        background-image: url(<?php echo base_url('assets/10.jpg')?>);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 100%!important;
+        width: 100%!important;
+        background-attachment: fixed;
+        position: relative;
+    }
+    .overlay {
+          top: 0px;
+          background-color: rgba(0, 0, 0, 0.3);
+          height: 100%;
+          position: absolute;
+          width: 100%;
+          z-index: 2!important;
+      }
+
+      .custom-hone-link{
+        color:white!important;
+      }
+
+      .custom-card-header{
+        font-weight: bolder;
+      }
+
+      .lead {
+        font-size: 18px;
+        padding: 0.5em;
+        margin-bottom: 1em!important;
+      }
+
+</style>
 </head>
-<body>
-    <?php navBar("booking");?>
-    <?php floatingMessage();?>
-    
-    <div class="fluid-container col-md-12 bkg">
-    </div>
-    
-    <div class="fluid-container col-md-12 m-0 p-3">
+<body class="">
 
-        <div class="row col-md-12 m-0 p-3 justify-content-center">
-        
-            <div class="col-md-6 border rounded shadow-lg">
-            <div class="h3 col-md-6 p-3 text-success">Request A Quote
-            </div>
-
-            <div class="col-md-12 p-0 m-0">
-            <hr class="my-2 col-md-11" style="background-color: rgba(255,255,255, 0.7);" />
-            </div>
-            
-                <form class="col-md-12 p-3">
-                <div class="form-row">
-                    
-                    <div class="form-group col-md-6">
-                        <label for="firstname"><span class="required">* </span>Firstname</label>
-                        <input type="email" class="form-control" id="firstname" aria-describedby="emailHelp" placeholder="Enter Firstname">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your information</small>
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <label for="lastname"><span class="required">* </span>Lastname</label>
-                        <input type="email" class="form-control" id="lastname" aria-describedby="emailHelp" placeholder="Enter Lastname">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your information</small>
-                    </div>
-
-                    <hr class="my-7 col-md-12" style="background-color: rgba(255,255,255, 0.7);" />
-                    <div class="form-group col-md-6">
-                        <label for=""><span class="required">* </span>Pickup</label>
-                        <input type="email" class="form-control" id="firstname" aria-describedby="emailHelp" placeholder="Enter Firstname">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your information</small>
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <label for=""><span class="required">* </span>Destination</label>
-                        <input type="email" class="form-control" id="firstname" aria-describedby="emailHelp" placeholder="Enter Firstname">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your information</small>
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <label for=""><span class="required">* </span>Number Of People</label>
-                        <input type="email" class="form-control" id="firstname" aria-describedby="emailHelp" placeholder="Enter Firstname">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your information</small>
-                    </div>
-
-                    <div class="form-group col-md-6 row">
-                        <label for="" class="col-md-12"><span class="required">* </span>Date/Time Of Service</label>
-                        <input type="date" class="form-control col-md-6 ml-3" >
-                        <select class="form-control col-md-4  ml-3">
-                            <option>Select Time</option>
-                            <option>12:00 AM</option>
-                            <option>1:00 AM</option>
-                            <option>2:00 AM</option>
-                            <option>3:00 AM</option>
-                            <option>4:00 AM</option>
-                            <option>5:00 AM</option>
-                            <option>6:00 AM</option>
-                            <option>7:00 AM</option>
-                            <option>8:00 AM</option>
-                            <option>9:00 AM</option>
-                            <option>10:00 AM</option>
-                            <option>11:00 AM</option>
-                            <option>12:00 PM</option>
-                            <option>1:00 PM</option>
-                            <option>2:00 PM</option>
-                            <option>3:00 PM</option>
-                            <option>4:00 PM</option>
-                            <option>5:00 PM</option>
-                            <option>6:00 PM</option>
-                            <option>7:00 PM</option>
-                            <option>8:00 PM</option>
-                            <option>9:00 PM</option>
-                            <option>10:00 PM</option>
-                            <option>11:00 PM</option>
-
-                        </select>
-                        <small id="emailHelp" class="form-text text-muted ml-3">We'll never share your information</small>
-                    </div>
-
-                    <hr class="my-7 col-md-12" style="background-color: rgba(255,255,255, 0.7);" />
-                    <div class="form-group col-md-6">
-                        <label for=""><span class="required">* </span>Email Address</label>
-                        <input type="email" class="form-control" id="firstname" aria-describedby="emailHelp" placeholder="Enter Firstname">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your information</small>
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <label for=""><span class="required"></span>Phone Number</label>
-                        <input type="email" class="form-control" id="firstname" aria-describedby="emailHelp" placeholder="Enter Firstname">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your information</small>
-                    </div>
-
-                    <div class="form-group col-md-12">
-                        <label for="">Details</label>
-                        <textarea class="form-control" id="formGroupExampleInput3" placeholder="Give Some Details About Your Travel...."></textarea>
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your information</small>
-                    </div>
-
-                    <div class="form-group col-md-12">
-                        <p class="w-100 text-center"><a href="#" class="btn btn-outline-success text-lg">Get Price</a></p>
-                    </div>
-                </div>
-                </form>
-            </div>
+    <?php main_nav(); ?>
+    <div class="row fpage">
+      <div class="overlay"></div>
+      
+      <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 center"  style="height:100%!important; z-index:4!important; position:relative;">
+        <div class="row valign-wrapper" style="height:100%!important;">
+          <div class="col s12" >
+          <h5 class="white-text"><a class="custom-hone-link" href="<?php echo site_url('/')?>">Home</a> | <span style="color:rgba(255,255,255,0.8)!important;">Booking</span></h5>
+            <h1 class="white-text header">Booking</h1>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <?php footer();?>
+    </div>
+    <?php main_footer(); ?>
 </body>
 </html>

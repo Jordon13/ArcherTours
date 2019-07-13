@@ -1,114 +1,177 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$this->load->helper('script');
+$this->load->helper('section');
 
 ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-
-    <title>Airport Transfer</title>
-    <?php archerHeader();?>
+    <title>Service | Airport</title>
+    <?php main_head();?>
 
     <style>
-        .bg1{
-            width: 100%;
-            background-image: url(<?php echo base_url('assets/whitebg.jpg')?>);
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-           /* background-attachment: fixed;*/
-            z-index: 1;
-            
-        }
+    
+    html {
+        position: relative;
+        height: 100%!important;
+        font-family: "Nunito";
+    }
 
-        .card-back{
-            background-color: #5cb85c;
-            color: white;
-        }
+    body {
+        position: relative;
+        height: 100%!important;
+    }
 
-        .overlay {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                z-index: 0;
-                background-color: rgba(10,10,10,0.5);
-                margin: 0px;
-                padding: 0px;
-            }
-    </style>
+    .fpage {
+        background-image: url(<?php echo base_url('assets/33.jpg')?>);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 100%!important;
+        width: 100%!important;
+        background-attachment: fixed;
+        position: relative;
+    }
+    .overlay {
+          top: 0px;
+          background-color: rgba(0, 0, 0, 0.3);
+          height: 100%;
+          position: absolute;
+          width: 100%;
+          z-index: 2!important;
+      }
+
+      
+      .custom-hone-link{
+        color:white!important;
+      }
+
+      .custom-card-header{
+        font-weight: bolder;
+      }
+
+      .lead {
+        font-size: 18px;
+        padding: 0.5em;
+        margin-bottom: 1em!important;
+      }
+
+</style>
 
 </head>
-<body>
-    <?php navBar("service");?>
-    <?php floatingMessage();?>
-    <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">Airport Taxi Request</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form class="">
-                            <div class="row col-m-12 m-2">
-                                <div class="col">
-                                    <input type="text" class="form-control" placeholder="Fullname">
-                                </div>
-                            </div>
+<body class="">
 
-                            <div class="row col-m-12 m-2">
-                                <div class="col">
-                                    <input type="text" class="form-control" placeholder="No. Passengers">
-                                </div>
-                            </div>
+    <?php main_nav(); ?>
 
-                            <div class="row col-m-12 m-2">
-                                <div class="col">
-                                    <input type="text" class="form-control" placeholder="Email">
-                                </div>
-                            </div>
-
-                            <div class="row col-m-12 m-2">
-                                <div class="col">
-                                    <input type="number" class="form-control" placeholder="Telephone#">
-                                </div>
-                            </div>
-
-                            <div class="row col-m-12 m-2">
-                                <div class="col">
-                                    <textarea class="form-control" placeholder="Message"></textarea>
-                                </div>
-                            </div>
-
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-outline-success">Send Request</button>
-                    </div>
-                </div>
-            </div>
+    <div class="row fpage">
+      <div class="overlay"></div>
+      
+      <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 center"  style="height:100%!important; z-index:4!important; position:relative;">
+        <div class="row valign-wrapper" style="height:100%!important;">
+          <div class="col s12" >
+          <h5 class="white-text"><a class="custom-hone-link" href="<?php echo site_url('/')?>">Home</a> | <span style="color:rgba(255,255,255,0.8)!important;">Airport Transfer</span></h5>
+            <h1 class="white-text header">Airport Transfer</h1>
+          </div>
         </div>
-        <div class="container col-lg-12 p-0 m-0 bg1">
-        <div class="overlay"></div>
-            <div class="row justify-content-center p-3 m-0">
+      </div>
 
-                <div class="card col-lg-3 m-3 p-0">
-                    <h5 class="card-header card-back">Departure From Montego Bay - Jimmy Cliff Boulevard (1-4 passengers)</h5>
-                    <div class="card-body">
-                        <h6 class="card-title">One Way Trip</h6>
-                        <p class="card-text"><strong>Price:</strong> USD $15</p>
-                        <p class="card-text"><strong>Price Per Person:</strong> USD $4 (5 and over)</p>
-                        <p class="card-text"><a href="https://www.decameron.com/images/destinos/jamaica/cornwall-beach/cornwall-beach-006.jpg">View Jimmy Cliff Boulevard</a></p>
-                        <a href="#" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModalCenter1">Request Taxi</a>
+  </div>
+    
+    <div class="row">
+        
+        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
+            <div class="row">
+
+                <div class="col l4 m12 s12">
+                    <div class="card sticky-action">
+                        
+
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <span class="card-title" style="font-size:20px!important;">Jimmy Cliff Boulevard (One Way Trip)</span>
+                            <img class="activator" src="https://materializecss.com/images/office.jpg">
+                        </div>
+
+                        <div class="card-content">
+                            <span class="activator grey-text text-darken-4">Depart From Montego Bay<i class="material-icons right">more_vert</i></span>
+                            <br/>
+                            <p>Price: USD $15 (1 - 4 passengers )</p>
+                        </div>
+
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">Additional Information<i class="material-icons right">close</i></span>
+                            <p>Each additional person  USD $4</p>
+                            <p>Kids Special</p>
+                        </div>
+
+                        
+
+                        <div class="card-action center"><a href="#">Book Now</a></div>
+
                     </div>
                 </div>
 
-            </div>
+                <div class="col l4 m12 s12">
+                    <div class="card sticky-action">
+                        
 
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <span class="card-title" style="font-size:20px!important;">Jimmy Cliff Boulevard (One Way Trip)</span>
+                            <img class="activator" src="https://materializecss.com/images/office.jpg">
+                        </div>
+
+                        <div class="card-content">
+                            <span class="activator grey-text text-darken-4">Depart From Montego Bay<i class="material-icons right">more_vert</i></span>
+                            <br/>
+                            <p>Price: USD $15 (1 - 4 passengers )</p>
+                        </div>
+
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">Additional Information<i class="material-icons right">close</i></span>
+                            <p>Each additional person  USD $4</p>
+                            <p>Kids Special</p>
+                        </div>
+
+                        
+
+                        <div class="card-action center"><a href="#">Book Now</a></div>
+
+                    </div>
+                </div>
+
+                <div class="col l4 m12 s12">
+                    <div class="card sticky-action">
+                        
+
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <span class="card-title" style="font-size:20px!important;">Jimmy Cliff Boulevard (One Way Trip)</span>
+                            <img class="activator" src="https://materializecss.com/images/office.jpg">
+                        </div>
+
+                        <div class="card-content">
+                            <span class="activator grey-text text-darken-4">Depart From Montego Bay<i class="material-icons right">more_vert</i></span>
+                            <br/>
+                            <p>Price: USD $15 (1 - 4 passengers )</p>
+                        </div>
+
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">Additional Information<i class="material-icons right">close</i></span>
+                            <p>Each additional person  USD $4</p>
+                            <p>Kids Special</p>
+                        </div>
+
+                        
+
+                        <div class="card-action center"><a href="#">Book Now</a></div>
+
+                    </div>
+                </div>
+
+            </div>
         </div>
-    <?php footer();?>
+
+    </div>
+
+    <?php main_footer(); ?>
 </body>
 </html>

@@ -58,11 +58,16 @@ $route['translate_uri_dashes'] = FALSE;
 
 //$route['archer-tours/'] = "Home/index/";
 
+$route['blogs1062/(:any)'] = "home/blogs1062";
+
+//dynamic routes
+
 
 $route['about'] = "home/about";
 $route['abt'] = "home/about";
 $route['a'] = "home/about";
 $route['ab'] = "home/about";
+
 
 $route['booking/(:any)'] = "home/booking";
 $route['booking'] = "home/booking";
@@ -126,5 +131,13 @@ $route['roundtrip'] = "home/tours";
 
 $route['blogs'] = "home/blog";
 $route['blog'] = "home/blog";
+
+$route['header'] = "home/header";
+
+$route['footer'] = "home/footer";
+
+// $route['cuser'] = "home/cuser";
+// $route['blog'] = "home/cblog";
+// $route['prices'] = "home/cprices";
 
 $route['(:any)'] = "home/index";

@@ -8,9 +8,17 @@ class Home extends CI_Controller {
 		$this->load->view('homepage');
     }
 
+    public function blogs1062(){
+        $this->load->view('blog/blogs1062');
+    }
+
     public function about()
     {
         $this->load->view('about');
+    }
+
+    public function services(){
+        $this->load->view('services');
     }
 
     public function booking()
@@ -43,10 +51,29 @@ class Home extends CI_Controller {
         $this->load->view('tours');
     }
 
+    /*Blog */
     public function blog()
     {
         $this->load->view('blog/blog');
     }
+
+    public function header()
+    {
+        $this->load->view('sections/header');
+    }
+
+    
+    public function footer()
+    {
+        $this->load->view('sections/footer');
+    }
+
+
+    /** Admin Pages */
+
+
+
+
 }
 
 ?>
