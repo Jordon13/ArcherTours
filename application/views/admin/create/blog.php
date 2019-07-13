@@ -17,7 +17,9 @@ if(!($this->ses->has_userdata("user_ses"))){
         <title>CreateBlog</title>
         <?php adminhead();?>
 
-
+        <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js"></script>
+        <script>tinymce.init({selector:'textarea'});</script>
+        
         <style>
 
             .input-field input{
@@ -82,6 +84,16 @@ if(!($this->ses->has_userdata("user_ses"))){
               height: auto!important;
               min-height: 100%!important;
           }
+
+          .result{
+                color: #388E3C;
+                display:flex;
+                justify-content:center;
+            }
+
+          .required{
+              color:#f44336;
+          }
             
             @media only screen and (max-height: 700px) {
                 .content-area {
@@ -106,11 +118,22 @@ if(!($this->ses->has_userdata("user_ses"))){
                     height: auto;
                 }
             }
+
+            .tox-notifications-container, .tox-statusbar__branding{
+                display: none!important;
+                visibility: hidden!important;
+            }
+
+            .tox-notification .tox-notification--in{
+                display: none!important;
+                visibility: hidden!important;
+            }
         </style>
     </head>
-
+    
     <body>
-        <?php navigation();?>
+
+        <?php navigation($_GET['active']);?>
         <section class="content-area">
             
             <div class="inner-content">
@@ -125,7 +148,7 @@ if(!($this->ses->has_userdata("user_ses"))){
               margin-bottom: auto!important;">
                     
 
-                    <form class="col m6 s12 offset-m3 offset-s0 my-form z-depth-1 grey lighten-4">
+                    <form class="col l8 m10 s12 offset-l2 offset-m1 offset-s0 my-form z-depth-1 grey lighten-4">
 
                         <div class="row">
 
@@ -144,12 +167,12 @@ if(!($this->ses->has_userdata("user_ses"))){
 
                             <div class="input-field col l6 s12">
                                 <input id="first_name" type="text" class="validate" name="blog_title">
-                                <label for="first_name">Blog Title</label>
+                                <label for="first_name">Blog Title <span class="required">*</span></label>
                             </div>
 
                             <div class="input-field col l6 s12">
                                 <input id="last_name" type="text" class="validate" name="blog_catch_phrase">
-                                <label for="last_name">Catch Phrase</label>
+                                <label for="last_name">Catch Phrase <span class="required">*</span></label>
                             </div>
 
                             <div class="input-field col l6 s12">
@@ -164,7 +187,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                                     <option value="1">Default (User Shown)</option>
                                     <option value="2">Anonymous User</option>
                                 </select>
-                                <label>Post Options</label>
+                                <label>Post Options <span class="required">*</span></label>
                             </div>
 
                             <div class="input-field col s12">
@@ -172,14 +195,14 @@ if(!($this->ses->has_userdata("user_ses"))){
                             </div>
 
                             <div class="input-field col s12">
-                                <textarea id="content" class="materialize-textarea" name="blog_content"></textarea>
-                                <label for="content">Content Message</label>
+                                <textarea id="content" name="blog_content" min="250" placeholder="Write content here...250 words minimum"></textarea>
+                                <!-- <label for="content">Content Message <span class="required">*</span></label> -->
                             </div>
 
 
                             <div class="file-field input-field col s12">
                                 <div class="btn blue-grey lighten-2">
-                                    <span>Blog Cover Photo</span>
+                                    <span>Blog Cover Photo <span class="required">*</span></span>
                                     <input type="file" name="finfo" id="myupd">
                                 </div>
                                 <div class="file-path-wrapper">
@@ -190,13 +213,16 @@ if(!($this->ses->has_userdata("user_ses"))){
                         </div>
 
 
-
                         <div class="row bcenter">
                             <div class="input-field col">
                             <button class="btn waves-effect waves-light  blue accent-4" type="submit" name="action" id="submit">Create Blog
                                 <i class="material-icons right"></i>
                             </button>
                             </div>
+                        </div>
+
+                        <div class="row center-align result">
+                            
                         </div>
 
                     </form>
@@ -213,15 +239,20 @@ if(!($this->ses->has_userdata("user_ses"))){
             var data = new Array();
 
             var text = "";
+            $('.mce-content-body').removeAttr("spellcheck");
+
+$('.mce-content-body').attr("spellcheck","true");
     
             $('document').ready(()=>{
+
+               
 
                 $('select').formSelect();
 
                 $('.chips').chips();
 
                 $('.chips-placeholder').chips({
-                    placeholder: 'Enter a tag',
+                    placeholder: 'Enter a tag *',
                     secondaryPlaceholder: '+Tag',
                     onChipAdd: (event, chip) => {
                        var d = event[0].M_Chips.chipsData;
@@ -232,16 +263,27 @@ if(!($this->ses->has_userdata("user_ses"))){
                     }
                 });
 
-
-                
-
-
-
                 $('#submit').click(function(e){
 
                     e.preventDefault();
                     $(".result").css("color","#388E3C");
                     $('.result').html("Processing...");
+
+
+                    if($('#content').val() == '' || $('#content').val().length < 250){
+                        
+                        $(".result").css("color","#d32f2f");
+
+                        $(".result").html("The minimum content length is 250 words");
+
+                        $(".result").delay(2000).fadeOut(1000);
+
+                        setTimeout(function(){
+                            $('.result').html("Try Again").fadeIn(0);
+                        },3000);
+
+                        return;
+                    }
 
                     var files = $('#myupd')[0].files;
 
@@ -254,6 +296,8 @@ if(!($this->ses->has_userdata("user_ses"))){
                         form_data.append("upl[]",files[count]);
                             
                     }
+
+                    
 
                     form_data.append('blog_title',c[0].value);
 
@@ -269,17 +313,54 @@ if(!($this->ses->has_userdata("user_ses"))){
 
                     form_data.append('blog_tags[]',data);
 
-                    
-
-                    console.log(form_data);
-
-
                     $.ajax({
                         url: "<?php echo site_url('/cms/AddBlog');?>",
                         method: "POST",
                         data: form_data,
                         success: function(e) {
-                            console.log(e);
+
+                            var result = $.parseJSON(e);
+
+                                
+                                $(".result").css("color","#388E3C");
+
+                                $(".result").html(result.Message);
+
+                                $(".result").delay(1000).fadeOut(1000);
+
+                                setTimeout(function(){
+                                    $('.result').html("Add Another Record").fadeIn(0);
+                                },2000);
+                        },
+                        statusCode:{
+                            400:function(response){
+
+                                var result = $.parseJSON(response.responseText);
+
+                                $(".result").css("color","#d32f2f");
+
+                                $(".result").html(result.Message);
+
+                                $(".result").delay(2000).fadeOut(1000);
+
+                                setTimeout(function(){
+                                    $('.result').html("Try Again").fadeIn(0);
+                                },3000);
+                            },
+                            417:function(response){
+
+                                var result = $.parseJSON(response.responseText);
+
+                                $(".result").css("color","#d32f2f");
+
+                                $(".result").html(result.Message);
+
+                                $(".result").delay(2000).fadeOut(1000);
+
+                                setTimeout(function(){
+                                    $('.result').html("Try Again").fadeIn(0);
+                                },3000);
+                            }
                         },
                         contentType: false,
                         cache: false,

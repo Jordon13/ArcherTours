@@ -8,6 +8,10 @@ class Home extends CI_Controller {
 		$this->load->view('homepage');
     }
 
+    public function blogs1062(){
+        $this->load->view('blog/blogs1062');
+    }
+
     public function about()
     {
         $this->load->view('about');

@@ -3,7 +3,16 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 if(!function_exists('navigation')){
-	function navigation($params = "Jane Doe"){
+	
+	function navigation($navtype = 0){
+
+		$active0 = $navtype == 0 ? "active" : "";
+		$active1 = $navtype == 1 ? "active" : "";
+		$active2 = $navtype == 2 ? "active" : "";
+		$active3 = $navtype == 3 ? "active" : "";
+		$active4 = $navtype == 4 ? "active" : "";
+		$active5 = $navtype == 5 ? "active" : "";
+		
 		echo '<section class="navigation">
 		<div class="overlay"></div>
 		<section class="vertical-nav">
@@ -14,62 +23,64 @@ if(!function_exists('navigation')){
 			<p style="color: rgba(158,158,158 ,1); padding: 1em;">Navigation</p>
 			<ul class="ver-link collapsible" data-collapsible="accordion">
 
-				<li>
-					<p  class="collapsible-header waves-effect waves" ><a href="'.base_url('admin/dashboard').'"><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a></p>
+				<li class = "'.$active0.'">
+					<p  class="collapsible-header waves-effect waves" '.$active0.'><a href="'.base_url('admin/dashboard?active=0').'"><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a></p>
 					<ul class="collapsible-body grey lighten-3">
 					</ul>
 				</li>
 
-				<li>
-					<p  class="collapsible-header waves-effect waves active" ><i class="fa fa-plus-square" aria-hidden="true"></i> Create</p>
+				<li class = "'.$active1.'">
+					<p  class="collapsible-header '.$active1.' waves-effect waves" ><i class="fa fa-plus-square" aria-hidden="true"></i> Create</p>
 					<ul class="collapsible-body grey lighten-3">
-						<li><a href="'.base_url('admin/cuser').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>System User</a></li>
-						<li><a href="'.base_url('admin/cblog').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Blog</a></li>
-						<li><a href="'.base_url('admin/cprices').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Prices</a></li>
+						<li><a href="'.base_url('admin/cuser?active=1').'">System User</a></li>
+						<li><a href="'.base_url('admin/cblog?active=1').'">Blog</a></li>
+						<li><a href="'.base_url('admin/cprices?active=1').'">Prices</a></li>
+						<li><a href="'.base_url('admin/cdeal?active=1').'">Deals</a></li>
+						<li><a href="'.base_url('admin/cspecial?active=1').'">Specials</a></li>
 					</ul>
 				</li>
 
-				<li>
-					<p  class="collapsible-header waves-effect waves" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> View / Edit</p>
+				<li class = "'.$active2.'">
+					<p  class="collapsible-header '.$active2.' waves-effect waves" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> View / Edit</p>
 					<ul class="collapsible-body grey lighten-3">
-					<li><a href="'.base_url('admin/euser').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>System Users </a><span class="new badge blue darken-1 z-depth-1">4</span></li>
-						<li><a href="'.base_url('admin/genusers').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Users </a><span class="new badge blue darken-1 z-depth-1">4</span></li>
-						<li><a href="'.base_url('admin/eblog').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Blogs </a> <span class="new badge blue darken-1 z-depth-1">2</span></li>
-						<li><a href="'.base_url('admin/testimonials').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Testimonals </a><span class="new badge blue darken-1 z-depth-1">1</span></li>
-						<li><a href="'.base_url('admin/eprices').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Prices </a><span class="new badge blue darken-1 z-depth-1">8</span></li>
+					<li><a href="'.base_url('admin/euser?active=2').'">System Users </a><span class="new badge blue darken-1 z-depth-1">4</span></li>
+						<li><a href="'.base_url('admin/genusers?active=2').'">Users </a><span class="new badge blue darken-1 z-depth-1">4</span></li>
+						<li><a href="'.base_url('admin/eblog?active=2').'">Blogs </a> <span class="new badge blue darken-1 z-depth-1">2</span></li>
+						<li><a href="'.base_url('admin/testimonials?active=2').'">Testimonals </a><span class="new badge blue darken-1 z-depth-1">1</span></li>
+						<li><a href="'.base_url('admin/eprices?active=2').'">Prices </a><span class="new badge blue darken-1 z-depth-1">8</span></li>
 					</ul>
 				</li>
 
-				<li>
-					<p  class="collapsible-header waves-effect waves" ><i class="fa fa-cloud-upload" aria-hidden="true"></i> Media Upload</p>
+				<li class = "'.$active3.'">
+					<p  class="collapsible-header '.$active3.' waves-effect waves" ><i class="fa fa-cloud-upload" aria-hidden="true"></i> Media Upload</p>
 					<ul class="collapsible-body grey lighten-3">
-						<li><a href="'.base_url('admin/media').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Photos / Videos</a></li>
-						<li><a href="'.base_url('admin/recent').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Recent Places</a></li>
+						<li><a href="'.base_url('admin/media?active=3').'">Photos / Videos</a></li>
+						<li><a href="'.base_url('admin/recent?active=3').'">Recent Places</a></li>
 					</ul>
 				</li>
 
-				<li>
-					<p  class="collapsible-header waves-effect waves" ><i class="fa fa-cloud-upload" aria-hidden="true"></i> Bookings</p>
+				<li class = "'.$active4.'">
+					<p  class="collapsible-header '.$active4.' waves-effect waves" ><i class="fa fa-bar-chart" aria-hidden="true"></i> Bookings</p>
 					<ul class="collapsible-body grey lighten-3">
-						<li><a href="'.base_url('admin/handlebookings').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Bookings</a></li>
-						<li><a href="'.base_url('admin/booking_analytics').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Booking Analytics</a></li>
-						<li><a href="'.base_url('admin/calender').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Activity Calender</a></li>
-						<li><a href="'.base_url('admin/profitloss').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Income Report</a></li>
+						<li><a href="'.base_url('admin/handlebookings?active=4').'">Bookings</a></li>
+						<li><a href="'.base_url('admin/booking_analytics?active=4').'">Booking Analytics</a></li>
+						<li><a href="'.base_url('admin/calender?active=4').'">Activity Calender</a></li>
+						<li><a href="'.base_url('admin/profitloss?active=4').'">Income Report</a></li>
 					</ul>
 				</li>
 
-				<li>
-					<p  class="collapsible-header waves-effect waves" ><i class="fa fa-file-text" aria-hidden="true"></i> Pages</p>
+				<li class = "'.$active5.'">
+					<p  class="collapsible-header '.$active5.' waves-effect waves" ><i class="fa fa-file-text" aria-hidden="true"></i> Pages</p>
 					<ul class="collapsible-body grey lighten-3">
-						<li><a href="'.base_url('admin/home').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Home</a></li>
-						<li><a href="'.base_url('admin/about').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>About</a></li>
-						<li><a href="'.base_url('admin/contact').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Contact</a></li>
-						<li><a href="'.base_url('admin/').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Taxi Service</a></li>
-						<li><a href="'.base_url('admin/').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Airport Service</a></li>
-						<li><a href="'.base_url('admin/').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Tours Service</a></li>
-						<li><a href="'.base_url('admin/booking').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Booking</a></li>
-						<li><a href="'.base_url('admin/blog').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Blog</a></li>
-						<li><a href="'.base_url('admin/gallery').'"><i class="fa fa-chevron-right" aria-hidden="true"></i>Gallery</a></li>
+						<li><a href="'.base_url('admin/home?active=5').'">Home</a></li>
+						<li><a href="'.base_url('admin/about?active=5').'">About</a></li>
+						<li><a href="'.base_url('admin/contact?active=5').'">Contact</a></li>
+						<li><a href="'.base_url('admin/').'">Taxi Service</a></li>
+						<li><a href="'.base_url('admin/').'">Airport Service</a></li>
+						<li><a href="'.base_url('admin/').'">Tours Service</a></li>
+						<li><a href="'.base_url('admin/booking?active=5').'">Booking</a></li>
+						<li><a href="'.base_url('admin/blog?active=5').'">Blog</a></li>
+						<li><a href="'.base_url('admin/gallery?active=5').'">Gallery</a></li>
 					</ul>
 				</li>
 			</ul>

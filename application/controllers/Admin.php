@@ -60,6 +60,16 @@ class Admin extends CI_Controller {
         $this->load->view('admin/create/prices');
     }
 
+    public function cdeal()
+    {
+        $this->load->view('admin/create/deal');
+    }
+
+    public function cspecial()
+    {
+        $this->load->view('admin/create/specials');
+    }
+
 // Edit Pages
     public function euser()
     {

@@ -69,7 +69,7 @@ if(!($this->ses->has_userdata("user_ses"))){
     </head>
 
     <body>
-        <?php navigation();?>
+        <?php navigation($_GET['active']);?>
         <section class="content-area">
             
             <div class="inner-content">

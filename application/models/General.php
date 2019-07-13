@@ -74,6 +74,20 @@ class General extends CI_Model {
         return false;
     }
 
+    public function InsertBlog($data){
+
+        $data+=array('blog_post_by'=>$this->ses->userdata("user_ses"));//	blog_unique_id
+
+        $data+=array('blog_unique_id'=> $this->returnRandomString(12));
+
+        $insertblog= $this->db->insert('sys_blogs',$data);
+
+		if($insertblog == true){
+			return true;
+        }
+        return false;
+    }
+
 
     
 
