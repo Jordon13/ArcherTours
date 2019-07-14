@@ -88,6 +88,16 @@ class General extends CI_Model {
         return false;
     }
 
+    public function InsertPrice($data){
+
+        $insertprice = $this->db->insert('sys_prices',$data);
+
+		if($insertprice == true){
+			return true;
+        }
+        return false;
+    }
+
 
     
 

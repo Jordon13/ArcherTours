@@ -231,7 +231,6 @@ class Cms extends CI_Controller {
 
             $blog_tags = base64_encode(json_encode($blog_tags));
 
-            $output = 0;
             $config['upload_path'] = './uploads/blog-images/';
             $config['allowed_types'] = "jpg|jpeg|png";
             $config['encrypt_name'] = TRUE;
@@ -296,24 +295,160 @@ class Cms extends CI_Controller {
         
     }
 
+    public function AddPricePackage(){
+        try{
+
+            $this->load->helper('security');
+
+            $this->load->helper('string');
+
+            $this->load->library('encryption');
+
+            $this->load->model('General','cms');
+
+            $this->load->helper('db');
+
+            $price_image = ''; 
+
+            $price_origin = sanitizeInput($this->input->post('price_origin',true));
+
+            $price_destination = sanitizeInput($this->input->post('price_destination',true));
+
+            $price_place = sanitizeInput($this->input->post('price_place',true));
+
+            $price_discount = sanitizeInput($this->input->post('price_discount',true));
+
+            $display_price = sanitizeInput($this->input->post('display_price',true));
+
+            $price_per_adult = sanitizeInput($this->input->post('price_per_adult',true));
+
+            $price_per_child = sanitizeInput($this->input->post('price_per_child',true));
+
+            $price_description = base64_encode($this->input->post('price_description',true));
+
+            $package_type = sanitizeInput($this->input->post('package_type',true));
+
+            $trip_type = sanitizeInput($this->input->post('trip_type',true));
+
+            $price_addtional_info = base64_encode(json_encode($this->input->post('price_addtional_info',true)));
+
+            $package_unique_id = random_string('alnum', 32);
+
+            if(empty($price_place) || empty( $price_origin) || empty($price_destination) || empty($display_price) || empty($price_description) || empty($package_type) || empty($trip_type) || empty($price_per_adult)){
+                $result = array(
+                    "Message" =>"Please fill out all the feilds necessary for this transaction",
+                    "IsSuccess" => false
+                );
+
+                echo json_encode($result);
+                http_response_code(400);
+                return;
+            }
+
+            if(!(isset($_FILES['upl'])) || ($_FILES['upl']['name'][0] == "")){
+                    
+                $result = array(
+                
+                    "Message" =>"Please upload a image for this request",
+                
+                    "IsSuccess" => false
+                );
+
+                echo json_encode($result);
+                http_response_code(400);
+                return;
+            }
+
+            $config['upload_path'] = './uploads/prices-images/';
+            $config['allowed_types'] = "jpg|jpeg|png";
+            $config['encrypt_name'] = TRUE;
+            $this->load->library('upload',$config);
+            $this->upload->initialize($config);
+            $_FILES['file']['name'] = $_FILES['upl']['name'][0];
+            $_FILES['file']['type'] = $_FILES['upl']['type'][0];
+            $_FILES['file']['tmp_name'] = $_FILES['upl']['tmp_name'][0];
+            $_FILES['file']['error'] = $_FILES['upl']['error'][0];
+            $_FILES['file']['size'] = $_FILES['upl']['size'][0];
+            if($this->upload->do_upload('file')){
+                $price_image = $this->upload->data()['file_name'];
+            }
+
+            $price_origin = xss_clean($price_origin);
+
+            $price_destination = xss_clean($price_destination);
+
+            $price_place = xss_clean($price_place);
+
+            $price_per_adult = xss_clean($price_per_adult);
+
+            $display_price = xss_clean($display_price);
+
+            $trip_type = xss_clean($trip_type);
+
+            $price_discount = xss_clean($price_discount);
+
+            if(!is_null($price_origin)){
+                $price_discount = xss_clean($price_discount);
+            }
+
+            if(!is_null($price_per_child)){
+                $price_per_child = xss_clean($price_per_child);
+            }
+            
+
+            $dataArray = array(
+                'price_origin'=>$price_origin,
+                'price_destination'=>$price_destination,
+                'price_place'=>$price_place,
+                'display_price'=>$display_price,
+                'price_per_adult'=>$price_per_adult,
+                'price_per_child'=>$price_per_child,
+                'price_description'=>$price_description,
+                'package_type'=>$package_type,
+                'trip_type'=>$trip_type,
+                'price_addtional_info'=>$price_addtional_info,
+                'price_image'=>$price_image,
+                'package_unique_id'=>$package_unique_id,
+                'price_discount'=>$price_discount,
+            );
+            
+
+            if($this->cms->InsertPrice($dataArray)){
+                
+                $result = array(
+                
+                    "Message" =>"Package Added Successfully.",
+                
+                    "IsSuccess" => true
+                );
+
+                echo json_encode($result);
+
+                http_response_code(200);
+                
+                return; 
+            }
+
+        }catch(Exception $e){
+            $result = array(
+            
+                "Message" => $e->getMessage(),
+            
+                "IsSuccess" => false
+            );
+    
+            echo json_ensode($result);
+    
+            http_response_code(500);
+        }
+    }
+
     public function UploadImages(){
 
     }
 
     public function UploadVideos(){
 
-    }
-
-    public function AddTaxiPackage(){
-
-    }
-
-    public function AddToursPackage(){
-        
-    }
-
-    public function AddAirportPackage(){
-        
     }
 
     public function AddAboutUs(){
@@ -324,9 +459,7 @@ class Cms extends CI_Controller {
 
     }
 
-    public function AddTransportPackage(){
 
-    }
 
     /************************************ */
 
