@@ -59,7 +59,6 @@ class Cms extends CI_Controller {
             );
 
             echo json_encode($data,JSON_FORCE_OBJECT);
-            http_response_code(400);
             return;
         }
         
@@ -74,7 +73,6 @@ class Cms extends CI_Controller {
             );
 
             echo json_encode($data,JSON_FORCE_OBJECT);
-            http_response_code(400);
             return;
 
         }
@@ -88,7 +86,6 @@ class Cms extends CI_Controller {
             );
 
             echo json_encode($data,JSON_FORCE_OBJECT);
-            http_response_code(200);
         }else{
             $data = array(
                 'Message' => 'An error has occured falied to create user.',
@@ -96,7 +93,6 @@ class Cms extends CI_Controller {
             );
 
             echo json_encode($data,JSON_FORCE_OBJECT);
-            http_response_code(417);
         }
         
 
@@ -441,6 +437,154 @@ class Cms extends CI_Controller {
     
             http_response_code(500);
         }
+    }
+
+    public function AddDeal(){
+
+        try{
+
+            $deal_place = $this->input->post('place',true);
+            $deal_price = sanitizeInput($this->input->post('price',true));
+            $deal_discount = sanitizeInput($this->input->post('dicount',true));
+            $deal_catch = $this->input->post('catch_phrase',true);
+            $deal_start_date = sanitizeInput($this->input->post('sdate',true));
+            $deal_end_date = sanitizeInput($this->input->post('edate',true));
+            $deal_description = $this->input->post('description',true);
+            $deal_back_img = '';
+            $deal_unique_id = random_string('alnum', 32);
+
+
+            if(empty($deal_place) || empty( $deal_price) || empty($deal_start_date) || empty($deal_end_date) || empty($deal_description)){
+                $result = array(
+                    "Message" =>"Please fill out all the feilds necessary for this transaction",
+                    "IsSuccess" => false
+                );
+
+                echo json_encode($result);
+                http_response_code(400);
+                return;
+            }
+
+            
+            if(!(isset($_FILES['upl'])) || ($_FILES['upl']['name'][0] == "")){
+                    
+                $result = array(
+                
+                    "Message" =>"Please upload a image for this request",
+                
+                    "IsSuccess" => false
+                );
+
+                echo json_encode($result);
+                http_response_code(400);
+                return;
+            }
+
+            $config['upload_path'] = './uploads/deal-images/';
+            $config['allowed_types'] = "jpg|jpeg|png";
+            $config['encrypt_name'] = TRUE;
+            $this->load->library('upload',$config);
+            $this->upload->initialize($config);
+            $_FILES['file']['name'] = $_FILES['upl']['name'][0];
+            $_FILES['file']['type'] = $_FILES['upl']['type'][0];
+            $_FILES['file']['tmp_name'] = $_FILES['upl']['tmp_name'][0];
+            $_FILES['file']['error'] = $_FILES['upl']['error'][0];
+            $_FILES['file']['size'] = $_FILES['upl']['size'][0];
+            if($this->upload->do_upload('file')){
+                $deal_back_img  = $this->upload->data()['file_name'];
+            }
+
+            $dataArray = array(
+                'deal_place '=>$deal_place,
+                'deal_price'=>$deal_price,
+                'deal_discount'=>$deal_discount,
+                'deal_catch'=>$deal_catch,
+                'deal_start_date'=>date("Y-m-d" ,strtotime($deal_start_date)),
+                'deal_end_date'=>date("Y-m-d" ,strtotime($deal_end_date)),
+                'deal_description'=>$deal_description,
+                'deal_back_img'=>$deal_back_img,
+                'deal_unique_id'=>$deal_unique_id
+            );
+
+            $dataArray = $this->gen->xss_cleanse($dataArray);
+            
+
+            if($this->gen->InsertDeal($dataArray)){
+                
+                $result = array(
+                
+                    "Message" =>"Package Added Successfully.",
+                
+                    "IsSuccess" => true
+                );
+
+                echo json_encode($result);
+
+                http_response_code(200);
+                
+                return; 
+            }
+            
+
+        }catch(Exception $e){
+            $result = array(
+            
+                "Message" => $e->getMessage(),
+            
+                "IsSuccess" => false
+            );
+    
+            echo json_ensode($result);
+    
+            http_response_code(500);
+        }
+    }
+
+    public function AddSpecial(){
+
+        try{
+
+            if(!(isset($_FILES['upl'])) || ($_FILES['upl']['name'][0] == "")){
+                    
+                $result = array(
+                
+                    "Message" =>"Please upload a image for this request",
+                
+                    "IsSuccess" => false
+                );
+
+                echo json_encode($result);
+                http_response_code(400);
+                return;
+            }
+
+            $config['upload_path'] = './uploads/prices-images/';
+            $config['allowed_types'] = "jpg|jpeg|png";
+            $config['encrypt_name'] = TRUE;
+            $this->load->library('upload',$config);
+            $this->upload->initialize($config);
+            $_FILES['file']['name'] = $_FILES['upl']['name'][0];
+            $_FILES['file']['type'] = $_FILES['upl']['type'][0];
+            $_FILES['file']['tmp_name'] = $_FILES['upl']['tmp_name'][0];
+            $_FILES['file']['error'] = $_FILES['upl']['error'][0];
+            $_FILES['file']['size'] = $_FILES['upl']['size'][0];
+            if($this->upload->do_upload('file')){
+                $price_image = $this->upload->data()['file_name'];
+            }
+
+        }catch(Exception $e){
+            $result = array(
+            
+                "Message" => $e->getMessage(),
+            
+                "IsSuccess" => false
+            );
+    
+            echo json_ensode($result);
+    
+            http_response_code(500);
+        }
+       
     }
 
     public function UploadImages(){

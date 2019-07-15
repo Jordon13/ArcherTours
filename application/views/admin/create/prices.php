@@ -326,26 +326,10 @@ if(!($this->ses->has_userdata("user_ses"))){
                 }
 
                 var form = $('.my-form').serializeArray();
-
-                form_data.append('price_origin',form[0].value);
-
-                form_data.append('price_destination',form[1].value);
-
-                form_data.append('price_place',form[2].value);
-
-                form_data.append('display_price',form[3].value);
-
-                form_data.append('price_per_adult',form[4].value);
-
-                form_data.append('price_per_child',form[5].value);
-
-                form_data.append('price_description',form[6].value);
-
-                form_data.append('package_type',form[7].value);
-
-                form_data.append('trip_type',form[8].value);//price_addtional_info//price_discount
-
-                form_data.append('price_discount',form[9].value);
+                
+                for(x = 0; x < form.length; x++){
+                    form_data.append(form[x].name,form[x].value);
+                }
 
                 form_data.append('price_addtional_info[]',items);
 
@@ -358,18 +342,34 @@ if(!($this->ses->has_userdata("user_ses"))){
                         data: form_data,
                         success: function(e) {
 
-                            var result = $.parseJSON(e);
+                            var result = undefined;
 
-                                
-                                $(".result").css("color","#388E3C");
+                            try{
+                            result  = $.parseJSON(e);
+                            }catch(exception){
+                                console.log("Falied To Parse Json Data, No Json Returned. Please check with the site admin there exist an error in the response.");
 
-                                $(".result").html(result.Message);
+                                $(".result").css("color","#d32f2f");
 
-                                $(".result").delay(1000).fadeOut(1000);
+                                $(".result").html("An Error Has Occured");
+
+                                $(".result").delay(2000).fadeOut(1000);
 
                                 setTimeout(function(){
-                                    $('.result').html("Add Another Record").fadeIn(0);
-                                },2000);
+                                    $('.result').html("Try Again").fadeIn(0);
+                                },3000);
+                                return;
+                            }
+
+                            $(".result").css("color","#388E3C");
+
+                            $(".result").html(result.Message);
+
+                            $(".result").delay(1000).fadeOut(1000);
+
+                            setTimeout(function(){
+                                $('.result').html("Add Another Record").fadeIn(0);
+                            },2000);
                         },
                         statusCode:{
                             400:function(response){

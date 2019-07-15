@@ -166,12 +166,12 @@ if(!($this->ses->has_userdata("user_ses"))){
                         <div class="row">
 
                             <div class="input-field col l6 s12">
-                                <input id="first_name" type="text" class="validate" name="blog_title">
+                                <input id="first_name" type="text" class="validate" name="blog_title" required>
                                 <label for="first_name">Blog Title <span class="required">*</span></label>
                             </div>
 
                             <div class="input-field col l6 s12">
-                                <input id="last_name" type="text" class="validate" name="blog_catch_phrase">
+                                <input id="last_name" type="text" class="validate" name="blog_catch_phrase" required>
                                 <label for="last_name">Catch Phrase <span class="required">*</span></label>
                             </div>
 
@@ -183,7 +183,7 @@ if(!($this->ses->has_userdata("user_ses"))){
 
 
                             <div class="input-field col l6 s12">
-                                <select name="blog_user_visible">
+                                <select name="blog_user_visible" required>
                                     <option value="1">Default (User Shown)</option>
                                     <option value="2">Anonymous User</option>
                                 </select>
@@ -195,7 +195,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                             </div>
 
                             <div class="input-field col s12">
-                                <textarea id="content" name="blog_content" min="250" placeholder="Write content here...250 words minimum"></textarea>
+                                <textarea id="content" name="blog_content" min="250" placeholder="Write content here...250 words minimum" required></textarea>
                                 <!-- <label for="content">Content Message <span class="required">*</span></label> -->
                             </div>
 
@@ -203,7 +203,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                             <div class="file-field input-field col s12">
                                 <div class="btn blue-grey lighten-2">
                                     <span>Blog Cover Photo <span class="required">*</span></span>
-                                    <input type="file" name="finfo" id="myupd">
+                                    <input type="file" name="finfo" id="myupd" required>
                                 </div>
                                 <div class="file-path-wrapper">
                                     <input class="file-path validate" type="text" name="blog_image" placeholder="Choose A Picture .jpg or jpeg">
@@ -241,7 +241,7 @@ if(!($this->ses->has_userdata("user_ses"))){
             var text = "";
             $('.mce-content-body').removeAttr("spellcheck");
 
-$('.mce-content-body').attr("spellcheck","true");
+            $('.mce-content-body').attr("spellcheck","true");
     
             $('document').ready(()=>{
 
@@ -289,27 +289,19 @@ $('.mce-content-body').attr("spellcheck","true");
 
                     var form_data = new FormData();
 
-                    var c = $('.my-form').serializeArray();
-
                     for(var count = 0; count <files.length; count++){
                         
                         form_data.append("upl[]",files[count]);
                             
                     }
 
-                    
+                    var form = $('.my-form').serializeArray();
+                
+                
 
-                    form_data.append('blog_title',c[0].value);
-
-                    form_data.append('blog_catch_phrase',c[1].value);
-
-                    form_data.append('blog_url',c[2].value);
-
-                    form_data.append('blog_user_visible',c[3].value);
-
-                    form_data.append('blog_content',c[4].value);
-
-                    form_data.append('blog_image',c[5].value);
+                    for(x = 0; x < form.length; x++){
+                        form_data.append(form[x].name,form[x].value);
+                    }
 
                     form_data.append('blog_tags[]',data);
 
@@ -319,18 +311,34 @@ $('.mce-content-body').attr("spellcheck","true");
                         data: form_data,
                         success: function(e) {
 
-                            var result = $.parseJSON(e);
+                            var result = undefined;
 
-                                
-                                $(".result").css("color","#388E3C");
+                            try{
+                                result  = $.parseJSON(e);
+                            }catch(exception){
+                                console.log("Falied To Parse Json Data, No Json Returned. Please check with the site admin there exist an error in the response.");
 
-                                $(".result").html(result.Message);
+                                $(".result").css("color","#d32f2f");
 
-                                $(".result").delay(1000).fadeOut(1000);
+                                $(".result").html("An Error Has Occured");
+
+                                $(".result").delay(2000).fadeOut(1000);
 
                                 setTimeout(function(){
-                                    $('.result').html("Add Another Record").fadeIn(0);
-                                },2000);
+                                    $('.result').html("Try Again").fadeIn(0);
+                                },3000);
+                                return;
+                            }
+
+                            $(".result").css("color","#388E3C");
+
+                            $(".result").html(result.Message);
+
+                            $(".result").delay(1000).fadeOut(1000);
+
+                            setTimeout(function(){
+                                $('.result').html("Add Another Record").fadeIn(0);
+                            },2000);
                         },
                         statusCode:{
                             400:function(response){

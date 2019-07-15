@@ -98,6 +98,25 @@ class General extends CI_Model {
         return false;
     }
 
+    public function InsertDeal($data){
+
+        $insertdeals = $this->db->insert('sys_deals',$data);
+
+		if($insertdeals == true){
+			return true;
+        }
+        return false;
+    }
+
+    public function InsertSpecial($data){
+
+        $insertspecials = $this->db->insert('sys_specials',$data);
+
+		if($insertspecials == true){
+			return true;
+        }
+        return false;
+    }
 
     
 
@@ -158,6 +177,17 @@ class General extends CI_Model {
         }else{
             return true;
         }
+    }
+
+
+    public function xss_cleanse($array){
+        foreach($array as $key => $value){
+            if(!empty($value)){
+                $array[$key] = xss_clean($value);
+            }
+        }
+
+        return $array;
     }
 
     function crypto_rand_secure($min, $max)

@@ -32,7 +32,7 @@ function sanitizeInput($input){
     $input = stripslashes($input);
     $input = htmlspecialchars($input);
     $input = $ci->db->escape_str($input);
-    $input = preg_replace('/[^A-Za-z0-9\-\.\@]/', '', $input);
+    $input = preg_replace('/[^A-Za-z0-9\-\.\@\,\s]/', '', $input);
     return $input;
   }
 

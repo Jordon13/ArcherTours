@@ -130,6 +130,13 @@ if(!($this->ses->has_userdata("user_ses"))){
             /* justify-content: center; */
         }
 
+        .result{
+                color: #388E3C;
+                display:flex;
+                justify-content:center;
+            }
+
+
         .required{
               color:#f44336;
           }
@@ -161,28 +168,28 @@ if(!($this->ses->has_userdata("user_ses"))){
 
                             <div class="input-field col l6 m6 s12">
                                 
-                                <input name="" id="deal_place" type="text"  class="validate"/>
+                                <input id="deal_place" type="text" name="place"  class="validate"/>
                                 <label for="deal_place">Place / Hotel <span class="required">*</span></label>
 
                             </div>
 
                             <div class="input-field col l6 m6 s12">
                                 
-                                <input name="" id="price" type="number"  class="validate"/>
+                                <input id="price" type="number" name="price" class="validate"/>
                                 <label for="price">Price <span class="required">*</span></label>
 
                             </div>
 
                             <div class="input-field col l6 m6 s12">
                                 
-                                <input name="" id="discount" type="number"  class="validate"/>
+                                <input id="discount" type="number" name="discount" class="validate"/>
                                 <label for="discount">Discount %</label>
 
                             </div>
 
                             <div class="input-field col l6 m6 s12">
                                 
-                                <input name="" id="cphrase" type="text"  class="validate"/>
+                                <input id="cphrase" type="text" name="catch_phrase" class="validate"/>
                                 <label for="cphrase">Catch Phrase</label>
 
                             </div>
@@ -190,7 +197,7 @@ if(!($this->ses->has_userdata("user_ses"))){
 
                             <div class="input-field col l6 m6 s12">
                                 
-                                <input type="text" class="datepicker" id="sdate">
+                                <input type="text" class="datepicker" name="sdate" id="sdate">
                                 <label for="sdate">Start Date <span class="required">*</span></label>
 
                             </div>
@@ -198,14 +205,14 @@ if(!($this->ses->has_userdata("user_ses"))){
 
                             <div class="input-field col l6 m6 s12">
                                 
-                                <input type="text" class="datepicker" id="edate">
+                                <input type="text" class="datepicker" name="edate" id="edate">
                                 <label for="edate">Expiry Date <span class="required">*</span></label>
 
                             </div>
 
                             <div class="input-field col s12">
                                 
-                                <textarea pattern="^[a-zA-z0-9\s]{1,2}[a-zA-z0-9].*" name="price_description" data-length="120" id="desc" type="text" class="materialize-textarea validate"></textarea>
+                                <textarea name="description" id="desc" type="text" class="materialize-textarea validate"></textarea>
                                 <label for="desc">Description <span class="required">*</span></label>
 
                             </div>
@@ -217,7 +224,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                                     <input type="file" name="finfo" id="myupd">
                                 </div>
                                 <div class="file-path-wrapper">
-                                    <input class="file-path validate" type="text" name="blog_image" placeholder="Choose A Picture .jpg or jpeg">
+                                    <input class="file-path validate" type="text" placeholder="Choose A Picture .jpg or jpeg">
                                 </div>
                             </div>
 
@@ -228,10 +235,14 @@ if(!($this->ses->has_userdata("user_ses"))){
                         <div class="row bcenter">
 
                             <div class="input-field col">
-                            <button class="btn waves-effect waves-light  blue accent-4" type="submit" name="action" id="submit">Create Blog
+                            <button class="btn waves-effect waves-light  blue accent-4" type="submit" id="submit">Create Deal
                                 <i class="material-icons right"></i>
                             </button>
                             </div>
+                        </div>
+
+                        <div class="row center-align result">
+                            
                         </div>
 
                     </form>
@@ -247,6 +258,104 @@ if(!($this->ses->has_userdata("user_ses"))){
     
         $('document').ready(function(){
             $('.datepicker').datepicker();
+        });
+
+        $('#submit').click(function(e){
+                
+            e.preventDefault();
+
+            $(".result").css("color","#388E3C");
+
+            $('.result').html("Processing...");
+
+            var items = new Array();
+                
+            var form_data = new FormData();
+
+            var files = $('#myupd')[0].files;
+
+            var form = $('.my-form').serializeArray();
+
+            for(var count = 0; count <files.length; count++){
+                form_data.append("upl[]",files[count]);
+            }
+
+            console.log(form);
+
+            for(x = 0; x < form.length; x++){
+                form_data.append(form[x].name,form[x].value);
+            }
+
+            $.ajax({
+                url: "<?php echo site_url('/cms/AddDeal');?>",
+                method: "POST",
+                data: form_data,
+                success: function(e) {
+
+                    var result = undefined;
+
+                    try{
+                    result  = $.parseJSON(e);
+                    }catch(exception){
+                        console.log("Falied To Parse Json Data, No Json Returned. Please check with the site admin there exist an error in the response.");
+
+                        $(".result").css("color","#d32f2f");
+
+                        $(".result").html("An Error Has Occured");
+
+                        $(".result").delay(2000).fadeOut(1000);
+
+                        setTimeout(function(){
+                            $('.result').html("Try Again").fadeIn(0);
+                        },3000);
+                        return;
+                    }
+
+                    $(".result").css("color","#388E3C");
+
+                    $(".result").html(result.Message);
+
+                    $(".result").delay(1000).fadeOut(1000);
+
+                    setTimeout(function(){
+                        $('.result').html("Add Another Record").fadeIn(0);
+                    },2000);
+                },
+                statusCode:{
+                    400:function(response){
+
+                        var result = $.parseJSON(response.responseText);
+
+                        $(".result").css("color","#d32f2f");
+
+                        $(".result").html(result.Message);
+
+                        $(".result").delay(2000).fadeOut(1000);
+
+                        setTimeout(function(){
+                            $('.result').html("Try Again").fadeIn(0);
+                        },3000);
+                    },
+                    417:function(response){
+
+                        var result = $.parseJSON(response.responseText);
+
+                        $(".result").css("color","#d32f2f");
+
+                        $(".result").html(result.Message);
+
+                        $(".result").delay(2000).fadeOut(1000);
+
+                        setTimeout(function(){
+                            $('.result').html("Try Again").fadeIn(0);
+                        },3000);
+                    }
+                },
+                contentType: false,
+                cache: false,
+                processData:false,       
+
+            });
         });
         
     </script>
