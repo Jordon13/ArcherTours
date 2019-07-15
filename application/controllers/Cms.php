@@ -443,13 +443,13 @@ class Cms extends CI_Controller {
 
         try{
 
-            $deal_place = $this->input->post('place',true);
+            $deal_place = sanitizeInput($this->input->post('place',true));
             $deal_price = sanitizeInput($this->input->post('price',true));
             $deal_discount = sanitizeInput($this->input->post('dicount',true));
-            $deal_catch = $this->input->post('catch_phrase',true);
+            $deal_catch = sanitizeInput($this->input->post('catch_phrase',true));
             $deal_start_date = sanitizeInput($this->input->post('sdate',true));
             $deal_end_date = sanitizeInput($this->input->post('edate',true));
-            $deal_description = $this->input->post('description',true);
+            $deal_description = sanitizeInput($this->input->post('description',true));
             $deal_back_img = '';
             $deal_unique_id = random_string('alnum', 32);
 
@@ -542,8 +542,34 @@ class Cms extends CI_Controller {
 
     public function AddSpecial(){
 
+
         try{
 
+            $special_place = sanitizeInput($this->input->post('place',true));
+            $special_price = sanitizeInput($this->input->post('price',true));
+            $special_discount = sanitizeInput($this->input->post('dicount',true));
+            $special_catch = sanitizeInput($this->input->post('catch_phrase',true));
+            $special_start_date = sanitizeInput($this->input->post('sdate',true));
+            $special_end_date = sanitizeInput($this->input->post('edate',true));
+            $special_desc = sanitizeInput($this->input->post('description',true));
+            $special_category = sanitizeInput($this->input->post('package_type',true));
+            $special_category_desc = sanitizeInput($this->input->post('packdesc',true));
+            $special_image = '';
+            $special_unique_id = random_string('alnum', 28);
+
+
+            if(empty($special_place) || empty( $special_price) || empty($special_start_date) || empty($special_end_date) || empty($special_desc)){
+                $result = array(
+                    "Message" =>"Please fill out all the feilds necessary for this transaction",
+                    "IsSuccess" => false
+                );
+
+                echo json_encode($result);
+                http_response_code(400);
+                return;
+            }
+
+            
             if(!(isset($_FILES['upl'])) || ($_FILES['upl']['name'][0] == "")){
                     
                 $result = array(
@@ -558,7 +584,7 @@ class Cms extends CI_Controller {
                 return;
             }
 
-            $config['upload_path'] = './uploads/prices-images/';
+            $config['upload_path'] = './uploads/special-images/';
             $config['allowed_types'] = "jpg|jpeg|png";
             $config['encrypt_name'] = TRUE;
             $this->load->library('upload',$config);
@@ -569,8 +595,43 @@ class Cms extends CI_Controller {
             $_FILES['file']['error'] = $_FILES['upl']['error'][0];
             $_FILES['file']['size'] = $_FILES['upl']['size'][0];
             if($this->upload->do_upload('file')){
-                $price_image = $this->upload->data()['file_name'];
+                $deal_back_img  = $this->upload->data()['file_name'];
             }
+
+            $dataArray = array(
+                'special_place'=>$special_place,
+                'special_price'=>$special_price,
+                'special_discount'=>$special_discount,
+                'special_catch'=>$special_catch,
+                'special_start_date'=>date("Y-m-d" ,strtotime($special_start_date)),
+                'special_end_date'=>date("Y-m-d" ,strtotime($special_end_date)),
+                'special_desc'=>$special_desc,
+                'special_image'=>$special_image,
+                'special_unique_id'=>$special_unique_id,
+                'special_desc'=>$special_desc,
+                'special_category_desc'=>$special_category_desc,
+                'special_category'=>$special_category
+            );
+
+            $dataArray = $this->gen->xss_cleanse($dataArray);
+            
+
+            if($this->gen->InsertSpecial($dataArray)){
+                
+                $result = array(
+                
+                    "Message" =>"Package Added Successfully.",
+                
+                    "IsSuccess" => true
+                );
+
+                echo json_encode($result);
+
+                http_response_code(200);
+                
+                return; 
+            }
+            
 
         }catch(Exception $e){
             $result = array(

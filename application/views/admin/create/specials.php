@@ -312,7 +312,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                 form_data.append("upl[]",files[count]);
             }
 
-            // console.log(form);
+            console.log(form);
 
             for(x = 0; x < form.length; x++){
                 form_data.append(form[x].name,form[x].value);
