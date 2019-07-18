@@ -406,6 +406,7 @@ if(!($this->ses->has_userdata("user_ses"))){
 
     <script>
       $('document').ready(function(){
+
         $('select').formSelect();
         var originalHeight = $('.rup').height();
         $('.maximize').click(function(){
@@ -421,11 +422,6 @@ if(!($this->ses->has_userdata("user_ses"))){
             height: originalHeight+"px"
           },1000);
         });
-        // $('.heading').hover(function(){
-        //   $(this).addClass('z-depth-1');
-        // }).mouseleave(function(){
-        //   $(this).removeClass('z-depth-1');
-        // });
 
       });
     </script>

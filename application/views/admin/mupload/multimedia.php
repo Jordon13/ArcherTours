@@ -243,6 +243,18 @@ if(!($this->ses->has_userdata("user_ses"))){
 
             }
 
+            
+        .result{
+                color: #388E3C;
+                display:flex;
+                justify-content:center;
+            }
+
+
+        .required{
+              color:#f44336;
+          }
+
         </style>
     </head>
 
@@ -280,15 +292,10 @@ if(!($this->ses->has_userdata("user_ses"))){
 
                         <div class="col s12">
 
-                            <div class="input-field col s12">
-                                <input id="first_name" type="text" class="validate">
-                                <label for="first_name">File Name (Optional)</label>
-                            </div>
-
                             <div class="file-field input-field col s12">
                                 <div class="btn blue-grey lighten-2">
-                                    <span>File</span>
-                                    <input type="file" id="file" class="fl" multiple>
+                                    <span>Contents <span class="required">*</span></span>
+                                    <input type="file" id="myupd" class="fl" multiple>
                                 </div>
                                 <div class="file-path-wrapper">
                                     <input class="file-path validate" type="text" placeholder="Choose A Picture .jpg or jpeg | Video mp4">
@@ -298,34 +305,39 @@ if(!($this->ses->has_userdata("user_ses"))){
                             </div>
 
                             <div class="input-field col s12">
-                                <textarea id="description" class="materialize-textarea"></textarea>
-                                <label for="description">Description</label>
+                                <textarea id="description" name="desc" class="materialize-textarea"></textarea>
+                                <label for="description">Description <span class="required">*</span></label>
                             </div>
 
                             <div class="input-field col s12">
                                 <select class="sel">
                                 <option class="" value="" disabled selected></option>
-                                    <option class="" value="0">Create New Folder</option>
+                                    <option class="" value="0">New Folder (Enter Name)</option>
                                     <option value="1">Option 1</option>
                                     <option value="2">Option 2</option>
                                     <option value="3">Option 3</option>
                                 </select>
-                                <label>Choose Folder</label>
+                                <label>Choose Album / Create Album <span class="required">*</span></label>
                             </div>
-
-                            <div class="input-field col s12 noshw" style="display:none;">
-                                <input id="foname" type="text" class="validate">
-                                <label for="foname">New Folder Name</label>
+<div class="noshw"></div>
+                            <div class="input-field col s12 " >
+                                <input id="foname" type="text" value="General" class="validate" name="folder" placeholder="Old / New Album Name">
+                                <!-- <label for="foname">Old / New Album Name</label> -->
                             </div>
 
                         </div>
 
                         <div class="row bcenter">
                             <div class="input-field col">
-                            <button class="btn waves-effect waves-light  blue accent-4" type="submit" name="action">Upload
+                            <button class="btn waves-effect waves-light  blue accent-4" type="submit" id="submit" name="action">Upload
                                 <i class="material-icons right"></i>
                             </button>
                             </div>
+                        </div>
+
+
+                        <div class="row center-align result">
+                            
                         </div>
 
                     </form>
@@ -672,6 +684,130 @@ if(!($this->ses->has_userdata("user_ses"))){
                 $('body').css("overflow","hidden");
                 $('.photos .videos').css("overflow","auto");
             });
+
+
+            $(".sel").change(function(e){
+                var item = $(".sel :selected").text();
+                $('#foname').html(item);
+                $('#foname').attr('value',item);
+            });
+
+            $('#foname').keyup(function(){
+                $('#foname').attr('value',$(this).val());
+            });
+
+            $('#foname').click(function(){
+                console.log($('#foname').val());
+            });
+            
+
+        });
+
+    </script>
+
+
+    <script>
+    
+        $('document').ready(function(){
+
+            $('#submit').click(function(e){
+
+                e.preventDefault();
+
+                $(".result").css("color","#388E3C");
+
+                $('.result').html("Processing...");
+
+                var form_data = new FormData();
+
+                var files = $('#myupd')[0].files;
+
+                var form = $('.my-form').serializeArray();
+
+                for(var count = 0; count <files.length; count++){
+                    form_data.append("upl[]",files[count]);
+                }
+
+                console.log(form);
+
+                for(x = 0; x < form.length; x++){
+                    form_data.append(form[x].name,form[x].value);
+                }
+
+
+                $.ajax({
+                    url: "<?php echo site_url('/cms/UploadItems');?>",
+                    method: "POST",
+                    data: form_data,
+                    success: function(e) {
+
+                        var result = undefined;
+
+                        try{
+                        result  = $.parseJSON(e);
+                        }catch(exception){
+                            console.log("Falied To Parse Json Data, No Json Returned. Please check with the site admin there exist an error in the response.");
+
+                            $(".result").css("color","#d32f2f");
+
+                            $(".result").html("An Error Has Occured");
+
+                            $(".result").delay(2000).fadeOut(1000);
+
+                            setTimeout(function(){
+                                $('.result').html("Try Again").fadeIn(0);
+                            },3000);
+                            return;
+                        }
+
+                        $(".result").css("color","#388E3C");
+
+                        $(".result").html(result.Message);
+
+                        $(".result").delay(1000).fadeOut(1000);
+
+                        setTimeout(function(){
+                            $('.result').html("Add Another Record").fadeIn(0);
+                        },2000);
+                    },
+                    statusCode:{
+                        400:function(response){
+
+                            var result = $.parseJSON(response.responseText);
+
+                            $(".result").css("color","#d32f2f");
+
+                            $(".result").html(result.Message);
+
+                            $(".result").delay(2000).fadeOut(1000);
+
+                            setTimeout(function(){
+                                $('.result').html("Try Again").fadeIn(0);
+                            },3000);
+                        },
+                        417:function(response){
+
+                            var result = $.parseJSON(response.responseText);
+
+                            $(".result").css("color","#d32f2f");
+
+                            $(".result").html(result.Message);
+
+                            $(".result").delay(2000).fadeOut(1000);
+
+                            setTimeout(function(){
+                                $('.result').html("Try Again").fadeIn(0);
+                            },3000);
+                        }
+                    },
+                    contentType: false,
+                    cache: false,
+                    processData:false,       
+
+                });
+            });
+
+            
 
         });
 

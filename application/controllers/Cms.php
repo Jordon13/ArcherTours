@@ -545,6 +545,8 @@ class Cms extends CI_Controller {
 
         try{
 
+            
+
             $special_place = sanitizeInput($this->input->post('place',true));
             $special_price = sanitizeInput($this->input->post('price',true));
             $special_discount = sanitizeInput($this->input->post('dicount',true));
@@ -648,8 +650,8 @@ class Cms extends CI_Controller {
        
     }
 
-    public function UploadImages(){
-
+    public function UploadItems(){
+        echo "success";
     }
 
     public function UploadVideos(){
