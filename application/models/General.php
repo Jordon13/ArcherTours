@@ -118,6 +118,24 @@ class General extends CI_Model {
         return false;
     }
 
+    public function InsertMedia($data){
+        $insertmedia = $this->db->insert('sys_media_upload',$data);
+
+		if($insertmedia == true){
+			return true;
+        }
+        return false;
+    }
+
+    public function InsertFolder($data){
+        $insertfile = $this->db->insert('sys_files',$data);
+
+		if($insertfile == true){
+			return true;
+        }
+        return false;
+    }
+
     
 
     

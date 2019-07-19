@@ -1,10 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+
 class Cms extends CI_Controller {
 
-    
-    
     public $is_hookable = TRUE;
 
     public function index(){
@@ -651,7 +650,141 @@ class Cms extends CI_Controller {
     }
 
     public function UploadItems(){
-        echo "success";
+        try{
+
+            $media_file_name = "";
+            $media_file_desc = sanitizeInput($this->input->post('desc',true));
+            $sys_user = $this->ses->userdata('user_ses');
+            $sys_folder_name = sanitizeInput($this->input->post('folder',true));
+            $sys_folder_id ='';
+            $counter = 0;
+
+
+            if(empty($media_file_desc) || empty($sys_folder_name)){
+                $result = array(
+                    "Message" =>"Please fill out all the feilds necessary for this transaction",
+                    "IsSuccess" => false
+                );
+
+                echo json_encode($result);
+                http_response_code(400);
+                return;
+            }
+
+            
+            if(!(isset($_FILES['upl'])) || ($_FILES['upl']['name'][0] == "")){
+                    
+                $result = array(
+                
+                    "Message" =>"Please upload a image for this request",
+                
+                    "IsSuccess" => false
+                );
+
+                echo json_encode($result);
+                http_response_code(400);
+                return;
+            }
+
+            $sys_folder_id = $this->fp->CreateFolder($sys_folder_name);
+
+
+            if($sys_folder_id == false){
+                $result = array(
+                    "Message" =>"Failed to create folder",
+                    "IsSuccess" => false
+                );
+
+                echo json_encode($result);
+                http_response_code(400);
+                return;
+            }
+
+            for($count = 0; $count<count($_FILES['upl']['name']); $count++){
+
+                $info = pathinfo($_FILES['upl']['name'][$count], PATHINFO_EXTENSION);
+
+                if($info == "mp4"){
+                    $config['upload_path'] = './uploads/media/'.$sys_folder_name.'/videos/';
+                }else{
+                    $config['upload_path'] = './uploads/media/'.$sys_folder_name.'/photos/';
+                }
+
+                $config['allowed_types'] = "jpg|jpeg|png|mp4";
+                $config['encrypt_name'] = TRUE;
+                $this->load->library('upload',$config);
+                $this->upload->initialize($config);
+
+				$_FILES['file']['name'] = $_FILES['upl']['name'][$count];
+				$_FILES['file']['type'] = $_FILES['upl']['type'][$count];
+				$_FILES['file']['tmp_name'] = $_FILES['upl']['tmp_name'][$count];
+				$_FILES['file']['error'] = $_FILES['upl']['error'][$count];
+				$_FILES['file']['size'] = $_FILES['upl']['size'][$count];
+				if($this->upload->do_upload('file')){
+					
+                    $media_file_name  = $this->upload->data()['file_name'];
+                
+                    $dataArray = array(
+                        'media_file_desc'=>$media_file_desc,
+                        'media_file_name'=>$media_file_name,
+                        'sys_folder_id'=>$sys_folder_id,
+                        'sys_user'=>$sys_user
+                    );
+
+                    $dataArray = $this->gen->xss_cleanse($dataArray);
+
+                    if($this->gen->InsertMedia($dataArray)){
+                        
+        
+                       //http_response_code(200);
+                        $counter++;
+                    }
+                
+                }
+            }
+				
+            if($counter > 0){
+                
+                $result = array(
+                
+                    "Message" =>"Album published successfully.",
+                
+                    "IsSuccess" => true
+                );
+
+                echo json_encode($result);
+
+                http_response_code(200);
+                
+                return; 
+            }else{
+                $result = array(
+                
+                    "Message" =>"Falied to upload album.",
+                
+                    "IsSuccess" => false
+                );
+
+                echo json_encode($result);
+
+                http_response_code(400);
+                
+                return; 
+            }
+            
+
+        }catch(Exception $e){
+            $result = array(
+            
+                "Message" => $e->getMessage(),
+            
+                "IsSuccess" => false
+            );
+    
+            echo json_ensode($result);
+    
+            http_response_code(500);
+        }
     }
 
     public function UploadVideos(){

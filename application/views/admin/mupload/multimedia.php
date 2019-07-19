@@ -255,6 +255,44 @@ if(!($this->ses->has_userdata("user_ses"))){
               color:#f44336;
           }
 
+          .progress{
+              margin-bottom: 0px!important;
+              padding-top: 0.3em!important;
+              padding-bottom: 0.3em!important;
+          }
+
+
+
+          #progressWrap{
+	background-color: inherit!important;
+	box-shadow: inset 0px 0px 10px rgba(10,10,10,0.5);
+	width: 400px!important;
+	height: 40px!important;
+	padding: 0px!important;
+	display: flex;
+	align-items: center;
+	padding: 0.2em!important;
+	margin: 0px!important;
+	margin-top: 2%!important;
+}
+#progressBar{
+	position: absolute;
+	background-color: #E65100;
+	width: 0px;
+	height: 40px;
+	margin: 0px!important;
+}
+
+#progress{
+	padding: 0px!important;
+	background-color: transparent!important;
+	color: white;
+	z-index: 1000;
+	margin-left: 45%!important;
+	margin-top: 6%!important;
+	text-shadow: 0px 0px 10px rgba(10,10,10,0.5);
+}
+
         </style>
     </head>
 
@@ -295,7 +333,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                             <div class="file-field input-field col s12">
                                 <div class="btn blue-grey lighten-2">
                                     <span>Contents <span class="required">*</span></span>
-                                    <input type="file" id="myupd" class="fl" multiple>
+                                    <input type="file" id="file" class="fl" multiple>
                                 </div>
                                 <div class="file-path-wrapper">
                                     <input class="file-path validate" type="text" placeholder="Choose A Picture .jpg or jpeg | Video mp4">
@@ -310,7 +348,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                             </div>
 
                             <div class="input-field col s12">
-                                <select class="sel">
+                                <select class="sel" name="fopt">
                                 <option class="" value="" disabled selected></option>
                                     <option class="" value="0">New Folder (Enter Name)</option>
                                     <option value="1">Option 1</option>
@@ -335,13 +373,15 @@ if(!($this->ses->has_userdata("user_ses"))){
                             </div>
                         </div>
 
-
                         <div class="row center-align result">
                             
                         </div>
 
+                        <div class="progress">
+      <div class="determinate" style=""></div>
+  </div>
                     </form>
-
+                
                 </div>
 
                 <div class="divider"></div>
@@ -720,7 +760,7 @@ if(!($this->ses->has_userdata("user_ses"))){
 
                 var form_data = new FormData();
 
-                var files = $('#myupd')[0].files;
+                var files = $('#file')[0].files;
 
                 var form = $('.my-form').serializeArray();
 
@@ -739,12 +779,22 @@ if(!($this->ses->has_userdata("user_ses"))){
                     url: "<?php echo site_url('/cms/UploadItems');?>",
                     method: "POST",
                     data: form_data,
-                    success: function(e) {
+                    xhr: function() {
+                        var myXhr = $.ajaxSettings.xhr();
+                        if(myXhr.upload){
+                            myXhr.upload.addEventListener('progress',progress, false);
+                        }
+                        return myXhr;
+                    },
+                    beforeSend:function(){
+					$(".result").html("File upload in progress please wait...");
+                    },
+                    complete: function(xhr) {
 
                         var result = undefined;
 
                         try{
-                        result  = $.parseJSON(e);
+                        result  = $.parseJSON(xhr.responseText);
                         }catch(exception){
                             console.log("Falied To Parse Json Data, No Json Returned. Please check with the site admin there exist an error in the response.");
 
@@ -768,6 +818,7 @@ if(!($this->ses->has_userdata("user_ses"))){
 
                         setTimeout(function(){
                             $('.result').html("Add Another Record").fadeIn(0);
+                            $(".determinate").css("width","0%");
                         },2000);
                     },
                     statusCode:{
@@ -810,6 +861,28 @@ if(!($this->ses->has_userdata("user_ses"))){
             
 
         });
+
+
+        function progress(e){
+
+            if(e.lengthComputable){
+                var max = e.total;
+                var current = e.loaded;
+                var percent = (event.loaded / event.total) * 100;
+                var Percentage = (Math.round(percent) / 100) * $(".progress").width();
+
+                //console.log(percent);
+
+                $(".determinate").css("width",Percentage+"px");
+
+
+                if(percent>= 100)
+                {
+                    //console.log(e.response);
+                console.log("file uploaded Successfully!"); 
+                }
+            }
+        }  
 
     </script>
 
