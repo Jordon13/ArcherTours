@@ -72,7 +72,7 @@ body {
     vertical-align: center!important;
     background-color: #fdd800!important;
     font-family: 'Merienda One', cursive!important;
-    animation: bounce 2s infinite ease-in-out;
+    margin:0.5em!important;
 }
 
 .mybtn {

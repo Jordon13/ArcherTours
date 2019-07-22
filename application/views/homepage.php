@@ -59,76 +59,37 @@ $this->load->helper('section');
 
 
       <?php main_nav(); ?>
-      <div class="row fpage valign-wrapper">
+      <div class="fpage valign-wrapper" style="position:relative;">
         <div class="overlay"></div>
-
-        <div class="row cont">
-          
-         
-
-          <div class="col s12 ncontent">
-
-            <div  data-aos="zoom-in-down" data-aos-delay="400" data-aos-offset="0" class="col l6 m8 s12 offset-l3 offset-m2 offset-s0 center-align">
-              <h1 class="header myhead white-text">Welcome</h1>
-            </div>
-
-            <div class="row mbtn" data-aos="zoom-in" data-aos-delay="800" data-aos-offset="0">
-              <div class="col l6 m8 s12 offset-l3 offset-m2 offset-s0  center-align" >
-
-                <div class="contents" >
-                  <h3 class="white-text center-align">Get Great1 Deals On Dunns River Falls</h3>
-                  <p class="center ltext center-align col s10 offset-s1">Contrary to popular belief, Lorem Ipsum is not simply random text.
-                     It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
-                  <button class="mybtn btn z-depth-0">Read More</button>
-                </div>
-
-                <div class="contents" style="display:none">
-                  <h3 class="white-text center-align">Get Great2 Deals On Dunns River Falls</h3>
-                  <p class="center ltext center-align col s10 offset-s1">Contrary to popular belief, Lorem Ipsum is not simply random text.
-                     It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
-                  <button class="mybtn btn z-depth-0">Read More</button>
-                </div>
-
-                <div class="contents" style="display:none">
-                  <h3 class="white-text center-align">Get Great3 Deals On Dunns River Falls</h3>
-                  <p class="center ltext center-align col s10 offset-s1">Contrary to popular belief, Lorem Ipsum is not simply random text.
-                     It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
-                  <button class="mybtn btn z-depth-0">Read More</button>
-                </div>
-
-              </div>
-            </div>
+        
+        <div class="row"  style="position:relative; z-index:4;">
 
 
-            <div class="row" data-aos="zoom-in" data-aos-delay="1200">
-            <div class="col l6 m8 s12 offset-l3 offset-m2 offset-s0 center-align indicators">
-              <div class="indicator indicator-active">
-              </div>
-            </div>
-              
-            </div>
+          <div>
+              <h2  class="animated bounceIn header myhead white-text center">Welcome<br/>Archer 1062 Tours</h2>
+          </div>
 
-            <div class="row mbtn" data-aos="zoom-in" data-aos-delay="1600">
+          <blockquote id="typehead" class="animated flipInX white-text lead"><em> “Travel makes one modest. You see what a tiny place you occupy in the world.” -Gustav Flaubert</em></blockquote>
+
+          <!-- <script>
+          var typed = new Typed('#typehead', {
+            strings: [
+            "<em> “Travel makes one modest. You see what a tiny place you occupy in the world.” -Gustav Flaubert</em>"
+          ],
+          typeSpeed:10,
+          showCursor: false
+          });
+        </script> -->
+
+          <div class="row mbtn">
               <div class="col l6 m8 s12 offset-l3 offset-m2 offset-s0 center-align">
-                <button data-target="bookit" class="booknow btn btn-large waves-effect waves-light modal-trigger">Book Now</button>
+                <button class="animated pulse booknow btn btn-large waves-effect waves-light"><a style="color:black;" href="<?php echo site_url('/deal');?>">View Deals</a></button>
+
+                <!-- <button class="animated booknow btn btn-medium waves-effect waves-light">View Deals</button> -->
               </div>
             </div>
 
-          <!-- Modal Structure -->
-          <div id="bookit" class="modal modal-fixed-footer" style="z-index:1020!important;">
-            <div class="modal-content">
-              <h4>Modal Header</h4>
-              <p>A bunch of text</p>
-            </div>
-            <div class="modal-footer">
-              <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-            </div>
-          </div>
-
-          </div>
-
-
-        </div>
+      </div>
         
       </div>
 
@@ -258,7 +219,7 @@ $this->load->helper('section');
                   I am convenient because I require little markup to use effectively.</p>
                 </div>
                 <div class="card-action modify-action">
-                  <a href="#" class="custom-link">View Packages</a>
+                  <a href="<?php echo site_url('/airport');?>" class="custom-link">View Packages</a>
                 </div>
               </div>
             </div>
@@ -281,7 +242,7 @@ $this->load->helper('section');
                   I am convenient because I require little markup to use effectively.</p>
                 </div>
                 <div class="card-action modify-action">
-                  <a href="#" class="custom-link">View Packages</a>
+                  <a href="<?php echo site_url('/taxi');?>" class="custom-link">View Packages</a>
                 </div>
               </div>
             </div>
@@ -304,7 +265,7 @@ $this->load->helper('section');
                   I am convenient because I require little markup to use effectively.</p>
                 </div>
                 <div class="card-action modify-action">
-                  <a href="#" class="custom-link">View Packages</a>
+                  <a href="<?php echo site_url('/tour');?>" class="custom-link">View Packages</a>
                 </div>
               </div>
             </div>

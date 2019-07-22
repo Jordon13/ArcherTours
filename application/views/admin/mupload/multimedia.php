@@ -87,6 +87,7 @@ if(!($this->ses->has_userdata("user_ses"))){
 
             .my-form{
                 padding: 0px!important;
+                position: relative;
             }
 
             .upover{
@@ -96,6 +97,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                height: 100%!important;
             }
 
             .pr{
@@ -107,7 +109,7 @@ if(!($this->ses->has_userdata("user_ses"))){
             }
 
             .bar{
-                width: 100px;
+                width: 0px;
                 height:100%;
                 background-color:white;
                 border-radius: 5px;
@@ -323,7 +325,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                                 <div class="pr">
                                     <div class="bar"></div>
                                 </div>
-                                <p class="white-text align-center">Uploading...30%</p>
+                                <p class="white-text align-center percent"></p>
                             </div>
 
                         </div>
@@ -357,7 +359,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                                 </select>
                                 <label>Choose Album / Create Album <span class="required">*</span></label>
                             </div>
-<div class="noshw"></div>
+                            <div class="noshw"></div>
                             <div class="input-field col s12 " >
                                 <input id="foname" type="text" value="General" class="validate" name="folder" placeholder="Old / New Album Name">
                                 <!-- <label for="foname">Old / New Album Name</label> -->
@@ -377,9 +379,6 @@ if(!($this->ses->has_userdata("user_ses"))){
                             
                         </div>
 
-                        <div class="progress">
-      <div class="determinate" style=""></div>
-  </div>
                     </form>
                 
                 </div>
@@ -758,6 +757,8 @@ if(!($this->ses->has_userdata("user_ses"))){
 
                 $('.result').html("Processing...");
 
+                
+
                 var form_data = new FormData();
 
                 var files = $('#file')[0].files;
@@ -787,7 +788,8 @@ if(!($this->ses->has_userdata("user_ses"))){
                         return myXhr;
                     },
                     beforeSend:function(){
-					$(".result").html("File upload in progress please wait...");
+					    $(".result").html("File upload in progress please wait...");
+                        $('.upover').fadeIn(600);
                     },
                     complete: function(xhr) {
 
@@ -815,6 +817,8 @@ if(!($this->ses->has_userdata("user_ses"))){
                         $(".result").html(result.Message);
 
                         $(".result").delay(1000).fadeOut(1000);
+
+                        $('.upover').fadeOut(600);
 
                         setTimeout(function(){
                             $('.result').html("Add Another Record").fadeIn(0);
@@ -869,12 +873,13 @@ if(!($this->ses->has_userdata("user_ses"))){
                 var max = e.total;
                 var current = e.loaded;
                 var percent = (event.loaded / event.total) * 100;
-                var Percentage = (Math.round(percent) / 100) * $(".progress").width();
+                var Percentage = (Math.round(percent) / 100) * $(".pr").width();
 
                 //console.log(percent);
 
-                $(".determinate").css("width",Percentage+"px");
+                $(".bar").css("width",Percentage+"px");
 
+                $(".percent").html("Uploading...."+percent+"%");
 
                 if(percent>= 100)
                 {

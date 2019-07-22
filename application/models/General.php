@@ -127,6 +127,15 @@ class General extends CI_Model {
         return false;
     }
 
+    public function InsertRecentEvent($data){
+        $insertrecent = $this->db->insert('sys_recent',$data);
+
+		if($insertrecent == true){
+			return true;
+        }
+        return false;
+    }
+
     public function InsertFolder($data){
         $insertfile = $this->db->insert('sys_files',$data);
 
@@ -136,6 +145,17 @@ class General extends CI_Model {
         return false;
     }
 
+
+
+
+
+
+
+
+
+
+
+
     
 
     
@@ -155,6 +175,16 @@ class General extends CI_Model {
 
 
 
+    public function Validatelogin(){
+        if(!($this->ses->has_userdata("user_ses"))){
+            $result = array(
+                "Message" => "<script>window.location.href = '".site_url('Admin/login')."?error=Unauthorized Access: login token expired, re-login to continue.';</script>",
+                "IsSuccess" => true
+            );
+
+            echo json_encode($result);
+          } 
+    }
 
 
 

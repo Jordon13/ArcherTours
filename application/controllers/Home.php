@@ -21,6 +21,10 @@ class Home extends CI_Controller {
         $this->load->view('services');
     }
 
+    public function deals(){
+        $this->load->view('deals');
+    }
+
     public function booking()
     {
         $this->load->view('booking');
@@ -45,6 +49,11 @@ class Home extends CI_Controller {
     {
         $this->load->view('taxiservice');
     }
+
+    // public function price()
+    // {
+    //     $this->load->view('templates/price.html');
+    // }
 
     public function tours()
     {

@@ -159,14 +159,50 @@ if(!($this->ses->has_userdata("user_ses"))){
                                 <div class="row">
 
                                     <div class="input-field col l6 s12">
-                                        <input pattern="^[a-zA-z0-9\s]{1,2}[a-zA-z0-9].*" name="price_origin" id="org" type="text" class="validate" title="Enter A Valid Address">
-                                        <label for="org">Origin <span class="required">*</span></label>
+                                        <select name="price_origin">
+                                            <option value="Lucea, Hanover">Lucea, Hanover</option>
+                                            <option value="Black River, St. Elizabeth">Black River, Saint Elizabeth</option>
+                                            <option value="Montego Bay, St. James">Montego Bay, Saint James</option>
+                                            <option value="Falmouth, Trelawny">Falmouth, Trelawny</option>
+                                            <option value="Savanna-la-Mar, Westmoreland">Savanna-la-Mar, Westmoreland</option>
+                                            <div class="divider"></div>
+                                            <option value="May Pen, Clarendon">May Pen, Clarendon</option>
+                                            <option value="Mandeville, Manchester">Mandeville, Manchester</option>
+                                            <option value="St. Ann's Bay, St. Ann">St. Ann's Bay, Saint Ann</option>
+                                            <option value="Spanish Town, St. Catherine">Spanish Town, Saint Catherine</option>
+                                            <option value="Port Maria, St. Mary">Port Maria, Saint Mary</option>
+                                            <div class="divider"></div>
+                                            <option value="Kingston, Kingston">Kingston, Kingston</option>
+                                            <option value="Port Antonio, Portland">Port Antonio, Portland</option>
+                                            <option value="Half Way Tree, St. Andrew">Half Way Tree, Saint Andrew</option>
+                                            <option value="Morant Bay, St. Thomas">Morant Bay, Saint Thomas</option>
+                                        </select>
+                                        <label>Origin <span class="required">*</span></label>
                                     </div>
 
                                     <div class="input-field col l6 s12">
-                                        <input pattern="^[a-zA-z0-9\s]{1,2}[a-zA-z0-9].*" name="price_destination" id="dest" type="text" class="validate" title="Enter A Valid Address">
-                                        <label for="dest">Destination <span class="required">*</span></label>
+                                        <select name="price_destination">
+                                            <option value="Lucea, Hanover">Lucea, Hanover</option>
+                                            <option value="Black River, St. Elizabeth">Black River, Saint Elizabeth</option>
+                                            <option value="Montego Bay, St. James">Montego Bay, Saint James</option>
+                                            <option value="Falmouth, Trelawny">Falmouth, Trelawny</option>
+                                            <option value="Savanna-la-Mar, Westmoreland">Savanna-la-Mar, Westmoreland</option>
+                                            <div class="divider"></div>
+                                            <option value="May Pen, Clarendon">May Pen, Clarendon</option>
+                                            <option value="Mandeville, Manchester">Mandeville, Manchester</option>
+                                            <option value="St. Ann's Bay, St. Ann">St. Ann's Bay, Saint Ann</option>
+                                            <option value="Spanish Town, St. Catherine">Spanish Town, Saint Catherine</option>
+                                            <option value="Port Maria, St. Mary">Port Maria, Saint Mary</option>
+                                            <div class="divider"></div>
+                                            <option value="Kingston, Kingston">Kingston, Kingston</option>
+                                            <option value="Port Antonio, Portland">Port Antonio, Portland</option>
+                                            <option value="Half Way Tree, St. Andrew">Half Way Tree, Saint Andrew</option>
+                                            <option value="Morant Bay, St. Thomas">Morant Bay, Saint Thomas</option>
+                                        </select>
+                                        <label>Destination <span class="required">*</span></label>
                                     </div>
+
+                                
 
                                     <div class="input-field col s12">
                                         <input name="price_place" id="place" type="text" class="validate" title="Enter A Valid Address">

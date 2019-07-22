@@ -22,6 +22,44 @@ $this->load->helper('section');
         height: 100%!important;
     }
 
+
+    .input-field input{
+        border: none!important;
+        color: white!important
+    }
+
+    .row .input-field input:+label{
+        color: white!important;
+    }
+
+    .row .input-field input{
+        border-bottom: 0.5px solid rgba(224,224,224 ,0.02) !important;
+        box-shadow: 0 0.5px 0 0 rgba(224,224,224 ,1) !important
+    }
+
+    .input-field input:focus + label {
+        color: #fdd800!important;
+    }
+
+    .row .input-field textarea{
+        border-bottom: 0.5px solid rgba(224,224,224 ,0.02) !important;
+        box-shadow: 0 0.5px 0 0 rgba(224,224,224 ,1) !important
+    }
+
+    .input-field textarea:focus + label {
+        color: #fdd800!important;
+    }
+
+    .row .input-field textarea:focus {
+        border-bottom: 0.5px solid #fdd800!important;
+        box-shadow: 0 0.5px 0 0 #fdd800!important;
+    }
+
+    .row .input-field input:focus {
+        border-bottom: 0.5px solid #fdd800!important;
+        box-shadow: 0 0.5px 0 0 #fdd800!important;
+    }
+
     .fpage {
         background-image: url(<?php echo base_url('assets/10.jpg')?>);
         background-size: cover;
@@ -55,6 +93,55 @@ $this->load->helper('section');
         margin-bottom: 1em!important;
       }
 
+      .my-form{
+        border: 0.9px solid rgba(224,224,224 ,1);
+        background-color: rgba(35, 32, 32, 1)!important;
+        padding: 0px!important;
+      }
+
+      .datepicker-table td.is-selected{
+          background-color: #fdd800!important;
+      }
+
+      .datepicker-date-display{
+          background-color: #fdd800!important;
+      }
+
+      .datepicker-table td.is-today{
+          color: #e53935!important;
+      }
+
+
+      .datepicker-cancel, .datepicker-clear, .datepicker-today, .datepicker-done{
+          color: #fdd800!important;
+      }
+
+      .dropdown-content li>a, .dropdown-content li>span {
+          color: #fdd800!important;
+      }
+
+    .required{
+        color:#f44336;
+    }
+
+    .bcenter{
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .overlay-post{
+      width:100%;
+      height:100%;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 4;
+      background-color: rgba(255,255,255,0.8);
+    }
+
+
 </style>
 </head>
 <body class="">
@@ -73,6 +160,362 @@ $this->load->helper('section');
       </div>
 
     </div>
+
+    <div class="row">
+
+      <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
+  
+        <form action="" class="col l8 s12 offset-l2 offset-s0 my-form z-depth-1" style="position:relative;">
+
+          <div class="overlay-post" style="display:none;">
+
+            <div class="preloader-wrapper big active">
+              <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+
+              <div class="spinner-layer spinner-red">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+
+              <div class="spinner-layer spinner-yellow">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+
+              <div class="spinner-layer spinner-green">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row" style="padding:0.5em!important">
+
+            <div class="col s12">
+
+                <h5 class="white-text lighter-3 center">Request Booking</h5>
+
+                <!-- <div class="divider"></div> -->
+
+            </div>
+
+            </div>
+
+            <div class="row" style="padding:0.5em!important">
+
+              <div class="col s12">
+
+                  <h6 class="white-text lighter-3">General Information</h6>
+
+                  <!-- <div class="divider"></div> -->
+
+              </div>
+
+              <div class="input-field col l6 s12">
+                  
+                  <input id="fname" type="text" name="fname"  class="validate"/>
+                  <label for="fname">First Name <span class="required">*</span></label>
+
+              </div>
+
+              <div class="input-field col l6 s12">
+                  
+                  <input id="lname" type="text" name="lname"  class="validate"/>
+                  <label for="lname">Last Name <span class="required">*</span></label>
+
+              </div>
+
+              <div class="input-field col l6 s12">
+                  
+                  <input id="email" type="text" name="email"  class="validate"/>
+                  <label for="email">Email Address <span class="required">*</span></label>
+
+              </div>
+
+              <div class="input-field col l6 s12">
+                  
+                  <input id="phone" type="text" name="phone"  class="validate"/>
+                  <label for="phone">Phone Number</label>
+
+              </div>
+
+
+              <div class="input-field col l6 s12">
+                  
+                  <input id="adult" type="text" name="adult"  class="validate"/>
+                  <label for="adult">Adults <span class="required">*</span></label>
+
+              </div>
+
+              <div class="input-field col l6 s12">
+                  
+                  <input id="kid" type="text" name="kid"  class="validate"/>
+                  <label for="kid">Kids</label>
+
+              </div>
+
+              <div class="input-field col l6 s12">
+                  <select name="origin">
+                      <option value="Lucea, Hanover">Lucea, Hanover</option>
+                      <option value="Black River, St. Elizabeth">Black River, Saint Elizabeth</option>
+                      <option value="Montego Bay, St. James">Montego Bay, Saint James</option>
+                      <option value="Falmouth, Trelawny">Falmouth, Trelawny</option>
+                      <option value="Savanna-la-Mar, Westmoreland">Savanna-la-Mar, Westmoreland</option>
+                      <div class="divider"></div>
+                      <option value="May Pen, Clarendon">May Pen, Clarendon</option>
+                      <option value="Mandeville, Manchester">Mandeville, Manchester</option>
+                      <option value="St. Ann's Bay, St. Ann">St. Ann's Bay, Saint Ann</option>
+                      <option value="Spanish Town, St. Catherine">Spanish Town, Saint Catherine</option>
+                      <option value="Port Maria, St. Mary">Port Maria, Saint Mary</option>
+                      <div class="divider"></div>
+                      <option value="Kingston, Kingston">Kingston, Kingston</option>
+                      <option value="Port Antonio, Portland">Port Antonio, Portland</option>
+                      <option value="Half Way Tree, St. Andrew">Half Way Tree, Saint Andrew</option>
+                      <option value="Morant Bay, St. Thomas">Morant Bay, Saint Thomas</option>
+                  </select>
+                  <label>Pickup <span class="required">*</span></label>
+              </div>
+
+              <div class="input-field col l6 s12">
+                  <select name="dest">
+                      <option value="Lucea, Hanover">Lucea, Hanover</option>
+                      <option value="Black River, St. Elizabeth">Black River, Saint Elizabeth</option>
+                      <option value="Montego Bay, St. James">Montego Bay, Saint James</option>
+                      <option value="Falmouth, Trelawny">Falmouth, Trelawny</option>
+                      <option value="Savanna-la-Mar, Westmoreland">Savanna-la-Mar, Westmoreland</option>
+                      <div class="divider"></div>
+                      <option value="May Pen, Clarendon">May Pen, Clarendon</option>
+                      <option value="Mandeville, Manchester">Mandeville, Manchester</option>
+                      <option value="St. Ann's Bay, St. Ann">St. Ann's Bay, Saint Ann</option>
+                      <option value="Spanish Town, St. Catherine">Spanish Town, Saint Catherine</option>
+                      <option value="Port Maria, St. Mary">Port Maria, Saint Mary</option>
+                      <div class="divider"></div>
+                      <option value="Kingston, Kingston">Kingston, Kingston</option>
+                      <option value="Port Antonio, Portland">Port Antonio, Portland</option>
+                      <option value="Half Way Tree, St. Andrew">Half Way Tree, Saint Andrew</option>
+                      <option value="Morant Bay, St. Thomas">Morant Bay, Saint Thomas</option>
+                  </select>
+                  <label>Destination <span class="required">*</span></label>
+              </div>
+
+              <div class="input-field col s12">
+                  
+                  <input id="dealspec" type="text" name="dealspec"  class="validate"/>
+                  <label for="dealspec">Deal / Special Ref#</label>
+
+              </div>
+
+              <div class="input-field col s12">
+                                
+                  <input type="text" class="datepicker" name="tripdate" id="tripdate">
+                  <label for="tripdate">Date Of Trip <span class="required">*</span></label>
+
+              </div>
+
+              <div class="input-field col s12">
+                  <select name="package_type">
+                      <option value="1">Airport Transfer</option>
+                      <option value="2">Tours & Excursion</option>
+                      <option value="3">Taxi Service</option>
+                  </select>
+                  <label>Service Type <span class="required">*</span></label>
+              </div>
+
+              <div class="col s12">
+
+                <h6 class="white-text lighter-3">Addtional Information</h6>
+
+                <!-- <div class="divider"></div> -->
+
+            </div>
+
+              <div class="input-field col s12">
+                  
+                  <textarea name="desc" id="desc" type="text" class="white-text materialize-textarea validate"></textarea>
+                  <label for="desc">Special Instructions</label>
+
+              </div>
+
+
+              <div class="file-field input-field col s12">
+                  <div class="btn yellow black-text waves-effect waves-light">
+                      <span>Who are you?</span>
+                      <input type="file" name="finfo" id="myupd">
+                  </div>
+                  <div class="file-path-wrapper">
+                      <input class="file-path validate" type="text" placeholder="Upload a photo (optional)">
+                  </div>
+              </div>
+            </div>
+
+            <div class="row bcenter">
+
+                <div class="input-field col">
+                <button class="btn  btn-large yellow black-text waves-effect waves-light" type="submit" id="submit" style="border-radius:100px!important;">Request A Quote
+                    <i class="material-icons right"></i>
+                </button>
+                </div>
+            </div>
+
+            <div class="row center-align result">
+                
+            </div>
+        </form>
+
+      </div>
+
+    </div>
     <?php main_footer(); ?>
+
+    <script>
+    
+      $('document').ready(function(){
+
+        $('select').formSelect();
+
+        $('.datepicker').eq(0).datepicker({
+            showDaysInNextAndPreviousMonths: false,
+            minDate: new Date()
+        });
+
+
+        $('#submit').click(function(e){
+                
+            e.preventDefault();
+
+            var items = new Array();
+                
+            var form_data = new FormData();
+
+            var files = $('#myupd')[0].files;
+
+            var form = $('.my-form').serializeArray();
+
+            for(var count = 0; count <files.length; count++){
+                form_data.append("upl[]",files[count]);
+            }
+
+            console.log(form);
+
+            for(x = 0; x < form.length; x++){
+                form_data.append(form[x].name,form[x].value);
+            }
+
+
+            $.ajax({
+                url: "<?php echo site_url('/client/AddBooking');?>",
+                method: "POST",
+                data: form_data,
+                beforeSend: function(){
+                  $(".result").css("color","#fdd800");
+
+                  $('.result').html("Processing...");
+
+                  $('.overlay-post').fadeIn(600);
+                },
+                success: function(e) {
+
+                    var result = undefined;
+
+                    try{
+                    result  = $.parseJSON(e);
+                    }catch(exception){
+                        console.log("Falied To Parse Json Data, No Json Returned. Please check with the site admin there exist an error in the response.");
+
+                        $(".result").css("color","#d32f2f");
+
+                        $(".result").html("An Error Has Occured");
+
+                        $(".result").delay(2000).fadeOut(1000);
+
+                        $('.overlay-post').fadeOut(600);
+
+                        setTimeout(function(){
+                            $('.result').html("Try Again").fadeIn(0);
+                        },3000);
+                        return;
+                    }
+
+                    $(".result").css("color","#388E3C");
+
+                    $(".result").html(result.Message);
+
+                    $(".result").delay(6000).fadeOut(1000);
+
+                    $('.overlay-post').fadeOut(600);
+
+                    setTimeout(function(){
+                        $('.result').html("Add Another Record").fadeIn(0);
+                    },2000);
+                },
+                statusCode:{
+                    400:function(response){
+
+                        var result = $.parseJSON(response.responseText);
+
+                        $(".result").css("color","#d32f2f");
+
+                        $(".result").html(result.Message);
+
+                        $(".result").delay(2000).fadeOut(1000);
+
+                        $('.overlay-post').fadeOut(600);
+
+                        setTimeout(function(){
+                            $('.result').html("Try Again").fadeIn(0);
+                        },3000);
+                    },
+                    417:function(response){
+
+                        var result = $.parseJSON(response.responseText);
+
+                        $(".result").css("color","#d32f2f");
+
+                        $(".result").html(result.Message);
+
+                        $(".result").delay(2000).fadeOut(1000);
+
+                        $('.overlay-post').fadeOut(600);
+
+                        setTimeout(function(){
+                            $('.result').html("Try Again").fadeIn(0);
+                        },3000);
+                    }
+                },
+                contentType: false,
+                cache: false,
+                processData:false,       
+
+            });
+        });
+
+
+      });
+    
+    </script>
 </body>
 </html>

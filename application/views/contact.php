@@ -108,6 +108,16 @@ $this->load->helper('section');
       }
 
       
+    .overlay-post{
+      width:100%;
+      height:100%;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 4;
+      background-color: rgba(255,255,255,0.8);
+    }
 
       
     
@@ -174,29 +184,79 @@ $this->load->helper('section');
             <img src="<?php echo base_url('assets/map.png');?>" alt="no image">
           </div>
           
-          <div class="col l6 m12 s12" >
+          <form class="col l6 m12 s12 my-form"
+          style="position:relative;" >
+          <div class="overlay-post" style="display:none;">
 
-            <div class="input-field col s12 custom-input">
-              <input placeholder="Name" id="first_name" type="text" class="validate browser-default">
+            <div class="preloader-wrapper big active">
+              <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+
+              <div class="spinner-layer spinner-red">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+
+              <div class="spinner-layer spinner-yellow">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+
+              <div class="spinner-layer spinner-green">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+            </div>
+
             </div>
 
             <div class="input-field col s12 custom-input">
-              <input id="last_name" placeholder="Email" type="email" class="validate browser-default">
+              <input placeholder="Name" name="name" type="text" class="validate browser-default">
             </div>
 
             <div class="input-field col s12 custom-input">
-              <input id="last_name" type="text" placeholder="Subject" class="validate browser-default">
+              <input name="email_address" placeholder="Email" type="email" class="validate browser-default">
             </div>
 
             <div class="input-field col s12 custom-input">
-              <textarea rows="6" id="textarea1" placeholder="Message" class=""></textarea>
+              <input name="subject" type="text" placeholder="Subject" class="validate browser-default">
             </div>
 
             <div class="input-field col s12 custom-input">
-              <button class="btn btn-large z-depth-0">Send Message</button>
+              <textarea rows="6" id="textarea1" placeholder="Message" class="" name="message"></textarea>
             </div>
 
-          </div>
+            <div class="input-field col s12 custom-input">
+              <button class="btn btn-large z-depth-0" id="submit">Send Message</button>
+            </div>
+
+            <div class="row center-align result">
+                
+            </div>
+
+    </form>
 
         </div>
 
@@ -205,5 +265,50 @@ $this->load->helper('section');
     </div>
     
     <?php main_footer(); ?>
+
+    <script>
+    
+      $("#submit").click(function(e){
+        e.preventDefault();
+
+        var items = new Array();
+                
+            var form_data = new FormData();
+
+            var form = $('.my-form').serializeArray();
+
+            console.log(form);
+
+            for(x = 0; x < form.length; x++){
+                form_data.append(form[x].name,form[x].value);
+            }
+
+            $.ajax({
+              url: "<?php echo site_url('/client/ContactUs')?>",
+                method: "POST",
+                data: form_data,
+                beforeSend: function(){
+                  $(".result").css("color","#fdd800");
+
+                  $('.result').html("Processing...");
+                  $('.overlay-post').fadeIn(600);
+                },
+                success: function(result) {
+                  $(".result").css("color","#388E3C");
+
+                    $(".result").html(result);
+
+                    $(".result").delay(2000).fadeOut(1000);
+
+                    $('.overlay-post').fadeOut(600);
+                },
+                contentType: false,
+                cache: false,
+                processData:false, 
+            });
+
+      });
+
+    </script>
 </body>
 </html>

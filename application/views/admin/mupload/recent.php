@@ -107,6 +107,17 @@ if(!($this->ses->has_userdata("user_ses"))){
             color: rgba(120,120,120,0.4);
           }
 
+          .result{
+                color: #388E3C;
+                display:flex;
+                justify-content:center;
+            }
+
+
+        .required{
+              color:#f44336;
+          }
+
         </style>
     </head>
 
@@ -119,19 +130,19 @@ if(!($this->ses->has_userdata("user_ses"))){
               <div class="row rup">
                 <form class="col l4 m6 s12 offset-l4 offset-m3 offset-s0 z-depth-1 grey lighten-4 my-form">
                     <div class="input-field">
-                      <input type="text" id="title"/>
-                      <label for="title">Title</label>
+                      <input type="text" id="title" name="title"/>
+                      <label for="title">Title <span class="required">*</span></label>
                     </div>
 
                     <div class="input-field">
-                      <input type="text" id="description"/>
-                      <label for="description">Description</label>
+                      <input type="text" id="description" name="desc"/>
+                      <label for="description">Description <span class="required">*</span></label>
                     </div>
 
                     <div class="file-field input-field">
                         <div class="btn blue-grey lighten-2">
-                            <span>File</span>
-                            <input type="file" id="file" class="fl" multiple>
+                            <span>File <span class="required">*</span></span>
+                            <input type="file" id="file" class="fl">
                         </div>
                         <div class="file-path-wrapper">
                             <input class="file-path validate" type="text" placeholder="Choose A Picture .jpg or jpeg | Video mp4">
@@ -142,10 +153,14 @@ if(!($this->ses->has_userdata("user_ses"))){
 
                     <div class="row bcenter">
                         <div class="input-field col">
-                        <button class="btn waves-effect waves-light  blue accent-4" type="submit" name="action">Add Recent
+                        <button class="btn waves-effect waves-light  blue accent-4" type="submit" id="submit">Add Recent
                             <i class="material-icons right"></i>
                         </button>
                         </div>
+                    </div>
+
+                    <div class="row center-align result">
+                            
                     </div>
                 </form>
               </div>
@@ -453,6 +468,104 @@ if(!($this->ses->has_userdata("user_ses"))){
 
             }
         });
+
+        $('#submit').click(function(e){
+                
+                e.preventDefault();
+    
+                $(".result").css("color","#388E3C");
+    
+                $('.result').html("Processing...");
+    
+               // var items = new Array();
+                    
+                var form_data = new FormData();
+    
+                var files = $('#file')[0].files;
+    
+                var form = $('.my-form').serializeArray();
+    
+                for(var count = 0; count <files.length; count++){
+                    form_data.append("upl[]",files[count]);
+                }
+    
+                console.log(form);
+    
+                for(x = 0; x < form.length; x++){
+                    form_data.append(form[x].name,form[x].value);
+                }
+    
+                $.ajax({
+                    url: "<?php echo site_url('/cms/AddRecentEvent');?>",
+                    method: "POST",
+                    data: form_data,
+                    success: function(e) {
+    
+                        var result = undefined;
+    
+                        try{
+                        result  = $.parseJSON(e);
+                        }catch(exception){
+                            console.log("Falied To Parse Json Data, No Json Returned. Please check with the site admin there exist an error in the response.");
+    
+                            $(".result").css("color","#d32f2f");
+    
+                            $(".result").html("An Error Has Occured");
+    
+                            $(".result").delay(2000).fadeOut(1000);
+    
+                            setTimeout(function(){
+                                $('.result').html("Try Again").fadeIn(0);
+                            },3000);
+                            return;
+                        }
+    
+                        $(".result").css("color","#388E3C");
+    
+                        $(".result").html(result.Message);
+    
+                        $(".result").delay(1000).fadeOut(1000);
+    
+                        setTimeout(function(){
+                            $('.result').html("Add Another Record").fadeIn(0);
+                        },2000);
+                    },
+                    statusCode:{
+                        400:function(response){
+    
+                            var result = $.parseJSON(response.responseText);
+    
+                            $(".result").css("color","#d32f2f");
+    
+                            $(".result").html(result.Message);
+    
+                            $(".result").delay(2000).fadeOut(1000);
+    
+                            setTimeout(function(){
+                                $('.result').html("Try Again").fadeIn(0);
+                            },3000);
+                        },
+                        417:function(response){
+    
+                            var result = $.parseJSON(response.responseText);
+    
+                            $(".result").css("color","#d32f2f");
+    
+                            $(".result").html(result.Message);
+    
+                            $(".result").delay(2000).fadeOut(1000);
+    
+                            setTimeout(function(){
+                                $('.result').html("Try Again").fadeIn(0);
+                            },3000);
+                        }
+                    },
+                    contentType: false,
+                    cache: false,
+                    processData:false,       
+    
+                });
+            });
 
       });
 

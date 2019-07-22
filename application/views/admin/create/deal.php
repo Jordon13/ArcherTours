@@ -257,7 +257,22 @@ if(!($this->ses->has_userdata("user_ses"))){
     <script>
     
         $('document').ready(function(){
-            $('.datepicker').datepicker();
+            $('.datepicker').eq(0).datepicker({
+                showDaysInNextAndPreviousMonths: false,
+                minDate: new Date()
+            });
+
+            $('.datepicker').eq(0).on('change',function(){
+
+                // console.log($(this).val());
+                $('.datepicker').eq(1).datepicker({
+                    showDaysInNextAndPreviousMonths: false,
+                    minDate: new Date($(this).val())
+                });
+            });
+
+            
+            
         });
 
         $('#submit').click(function(e){

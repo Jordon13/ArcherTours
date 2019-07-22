@@ -60,6 +60,8 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['blogs1062/(:any)'] = "home/blogs1062";
 
+// $route['templ/(:any)'] = "home/price";
+
 //dynamic routes
 
 
@@ -67,6 +69,8 @@ $route['about'] = "home/about";
 $route['abt'] = "home/about";
 $route['a'] = "home/about";
 $route['ab'] = "home/about";
+
+$route['deal'] = "home/deals";
 
 
 $route['booking/(:any)'] = "home/booking";

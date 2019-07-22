@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('session' => 'ses', 'database', 'encryption' => 'enc');
+$autoload['libraries'] = array('session' => 'ses', 'database', 'encryption' => 'enc', 'parser' => 'ps');
 
 /*
 | -------------------------------------------------------------------
@@ -132,4 +132,4 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array("General" => "gen", "FolderOptions"=>"fp");
+$autoload['model'] = array("General" => "gen", "FolderOptions"=>"fp", "Manipulation"=>"mn", "Clientside"=>"cs");

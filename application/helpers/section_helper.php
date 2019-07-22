@@ -3,7 +3,11 @@
 if(!function_exists('main_head')){
 	function main_head(){
         echo '<script src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
+
         <script src="'.base_url('js/jQuery.scrollSpeed.js').'" ></script>
+
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> 
         
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -13,6 +17,9 @@ if(!function_exists('main_head')){
         <link href="https://fonts.googleapis.com/css?family=Dekko|Gamja+Flower|Itim|Merienda+One|Patrick+Hand+SC|Sriracha&display=swap" rel="stylesheet">
 
         <link href="https://fonts.googleapis.com/css?family=Hind&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
 
         <script src="'.base_url('js/materialize.js').'"></script>
         
@@ -147,6 +154,7 @@ if(!function_exists('main_footer')){
                     <li>Home</li>
                     <li>About</li>
                     <li>Blogs</li>
+                    <li>Deals</li>
                     <li>Services</li>
                     <li>Recent Places</li>
                   </ul>

@@ -8,6 +8,31 @@ class Cms extends CI_Controller {
 
     public function index(){
 
+        // $arry = array(
+        //     'origin' => 'MontegoBay',
+        //     'destination'=>'Kingston'
+        // );
+
+        // $json = json_encode($arry);
+
+        // $decode = json_decode($json);
+
+        // $result = $this->mn->PackageList($decode);
+
+        // if($result != false){
+
+        //     $arry = array(
+        //         'origin'=> $result[0]->price_origin,
+        //         'destination'=>$result[0]->price_destination,
+        //         'packages'=>json_decode(json_encode($result))
+        //     );
+
+        //     $this->ps->parse('templates/price',$arry);
+        //     return;
+        // }
+
+        // echo "No data returned";
+
     }
 
     public function Login(){
@@ -34,6 +59,8 @@ class Cms extends CI_Controller {
     }
 
     public function CreateUser(){
+
+        $this->gen->Validatelogin();
         
         $this->load->model('General','cms');
        
@@ -98,6 +125,8 @@ class Cms extends CI_Controller {
     }
 
     public function UpdateUserData(){
+
+        $this->gen->Validatelogin();
 
         if(!($this->ses->has_userdata('user_ses'))){
             echo "<script>window.location.href = '".site_url('Admin/login')."?error=failed to login';</script>";
@@ -164,6 +193,8 @@ class Cms extends CI_Controller {
     /************************************ */
 
     public function AddBlog(){
+
+        $this->gen->Validatelogin();
 
         try{
 
@@ -292,6 +323,7 @@ class Cms extends CI_Controller {
 
     public function AddPricePackage(){
         try{
+            $this->gen->Validatelogin();
 
             $this->load->helper('security');
 
@@ -440,6 +472,8 @@ class Cms extends CI_Controller {
 
     public function AddDeal(){
 
+        $this->gen->Validatelogin();
+
         try{
 
             $deal_place = sanitizeInput($this->input->post('place',true));
@@ -541,6 +575,7 @@ class Cms extends CI_Controller {
 
     public function AddSpecial(){
 
+        $this->gen->Validatelogin();
 
         try{
 
@@ -651,6 +686,8 @@ class Cms extends CI_Controller {
 
     public function UploadItems(){
         try{
+
+            $this->gen->Validatelogin();
 
             $media_file_name = "";
             $media_file_desc = sanitizeInput($this->input->post('desc',true));
@@ -787,9 +824,128 @@ class Cms extends CI_Controller {
         }
     }
 
-    public function UploadVideos(){
+    public function AddRecentEvent(){
+
+        $this->gen->Validatelogin();
+
+        try{
+            if(!($this->ses->has_userdata("user_ses"))){
+                redirect(site_url("Admin/login")."?error=Unauthorized Access: please login to use services");
+              }
+
+            $recent_title = sanitizeInput($this->input->post('title',true));
+            $recent_desc = sanitizeInput($this->input->post('desc',true));
+            $recent_img = "";
+            $recent_unique_id = random_string('alnum', 10);
+
+
+            if(empty($recent_desc) || empty($recent_title)){
+                $result = array(
+                    "Message" =>"All feilds are necessary for this transaction",
+                    "IsSuccess" => false
+                );
+
+                echo json_encode($result);
+                http_response_code(400);
+                return;
+            }
+
+            if(!(isset($_FILES['upl'])) || ($_FILES['upl']['name'][0] == "")){
+                    
+                $result = array(
+                
+                    "Message" =>"Please upload a image for this request",
+                
+                    "IsSuccess" => false
+                );
+
+                echo json_encode($result);
+                http_response_code(400);
+                return;
+            }
+
+            $config['upload_path'] = './uploads/recent/';
+            $config['allowed_types'] = "jpg|jpeg|png";
+            $config['encrypt_name'] = TRUE;
+            $this->load->library('upload',$config);
+            $this->upload->initialize($config);
+            $_FILES['file']['name'] = $_FILES['upl']['name'][0];
+            $_FILES['file']['type'] = $_FILES['upl']['type'][0];
+            $_FILES['file']['tmp_name'] = $_FILES['upl']['tmp_name'][0];
+            $_FILES['file']['error'] = $_FILES['upl']['error'][0];
+            $_FILES['file']['size'] = $_FILES['upl']['size'][0];
+            if($this->upload->do_upload('file')){
+                $recent_img  = $this->upload->data()['file_name'];
+            }
+
+            $dataArray = array(
+                'recent_title'=>$recent_title,
+                'recent_desc'=>$recent_desc,
+                'recent_file_name'=>$recent_img,
+                'recent_unique_id'=>$recent_unique_id,
+                'sys_user'=>$this->ses->userdata("user_ses")
+            );
+
+            $dataArray = $this->gen->xss_cleanse($dataArray);
+            
+
+            if($this->gen->InsertRecentEvent($dataArray)){
+                
+                $result = array(
+                
+                    "Message" =>"Recent Event Added Successfully.",
+                
+                    "IsSuccess" => true
+                );
+
+                echo json_encode($result);
+
+                http_response_code(200);
+                
+                return; 
+            }
+
+        }catch(Exception $e){
+            $result = array(
+            
+                "Message" => $e->getMessage(),
+            
+                "IsSuccess" => false
+            );
+    
+            echo json_ensode($result);
+    
+            http_response_code(500);
+        }
+    }
+
+
+    public function DeleteFolderData(){
+
+        $foldername = sanitizeInput($this->input->post("folder",true));
+
+        if($this->fp->DeleteFolder($foldername)){
+
+            $data = array(
+                'Message' => 'Successfully Deleted!',
+                'IsSuccess' => true
+            );
+
+            echo json_encode($data,JSON_FORCE_OBJECT);
+
+        }
+
+
+        $data = array(
+            'Message' => 'An Error Has Occured.',
+            'IsSuccess' => false
+        );
+
+        echo json_encode($data,JSON_FORCE_OBJECT);
+
 
     }
+
 
     public function AddAboutUs(){
 

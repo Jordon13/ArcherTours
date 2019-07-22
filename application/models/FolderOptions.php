@@ -73,9 +73,35 @@ public function RenameFolders($data){
 
 
 
-public function DeleteFolders($data){
+public function DeleteFolder($foldername){
+
+    $result = $this->fp->FolderExist($foldername);
+
+    if($result == false){
+        return false;
+    }
+
+
+
+    $mainDelete = $this->db->delete('sys_files', array('auto_generated_id' => $result));
+
+    if($mainDelete){
+
+        $foriegnKeyDelete = $this->db->delete('sys_files', array('sys_folder_id' => $result));
+
+        if($foriegnKeyDelete){
+
+            if(rmdir("uploads/media/{$foldername}")){
+                return  true;
+            }
+        }
+
+    }
+
+    return false;
 
     
+
 }
 
 
