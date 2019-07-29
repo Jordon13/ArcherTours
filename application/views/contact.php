@@ -119,6 +119,33 @@ $this->load->helper('section');
       background-color: rgba(255,255,255,0.8);
     }
 
+    .overlay-post-success{
+      padding: 0px!important;
+      margin:0px!important;
+      width:100%;
+      height:100%;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 4;
+      background-color: rgba(255,255,255,0.8);
+    }
+
+    .inner-sent-circle{
+      font-size: 20px;
+      height: 100px;
+      width: 100px;
+      font-weight: bolder;
+      border:2px solid #388E3C;
+      color: #388E3C;
+      padding: 1em;
+      border-radius: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
       
     
     </style>
@@ -232,6 +259,14 @@ $this->load->helper('section');
 
             </div>
 
+            <div class="overlay-post-success" style="display:none;">
+              
+              <div class="inner-sent-circle">
+                Success
+              </div>
+            
+            </div>
+
             <div class="input-field col s12 custom-input">
               <input placeholder="Name" name="name" type="text" class="validate browser-default">
             </div>
@@ -288,19 +323,39 @@ $this->load->helper('section');
                 method: "POST",
                 data: form_data,
                 beforeSend: function(){
+                  $(".result").show();
                   $(".result").css("color","#fdd800");
 
                   $('.result').html("Processing...");
                   $('.overlay-post').fadeIn(600);
                 },
                 success: function(result) {
-                  $(".result").css("color","#388E3C");
 
-                    $(".result").html(result);
+                  result  = $.parseJSON(result);
 
-                    $(".result").delay(2000).fadeOut(1000);
+                  if(result.IsSuccess){
+                    $(".result").css("color","#388E3C");
 
-                    $('.overlay-post').fadeOut(600);
+                    $(".result").html(result.Message);
+
+                    $(".result");
+
+                    $('.overlay-post').hide();
+
+                    $('.overlay-post-success').show().delay(600).fadeOut(600);
+                  }else{
+                    $(".result").css("color","#d32f2f");
+
+                    $(".result").html(result.Message);
+
+                    $(".result");
+
+                    $('.overlay-post').hide();
+
+                    //$('.overlay-post-success').show().delay(600).fadeOut(600);
+                  }
+
+                  
                 },
                 contentType: false,
                 cache: false,

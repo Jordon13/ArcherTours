@@ -112,14 +112,64 @@ class Client extends CI_Controller {
     }
 
     public function ContactUs(){
-        $sent = $this->cs->SendMessage(json_decode(json_encode($_POST)));
 
-        if($sent){
-            echo "Sent Successfully!";
+        $_name = sanitizeInput($this->input->post('name',true));
+
+        $_subject = sanitizeInput($this->input->post('subject',true));
+
+        $_message = sanitizeInput($this->input->post('message',true));
+
+        $_email = sanitizeInput($this->input->post('email_address',true));
+
+        if(empty($_name) || empty($_email) || empty($_message) || empty($_subject)){
+            $result = array(
+                "Message" =>"* All feilds are mandatory for this request. *",
+                "IsSuccess" => false
+            );
+
+            echo json_encode($result);
             return;
         }
 
-        echo "Failed to send";
+        $dataArray = array(
+            '_name' => $_name,
+            '_subject' => $_subject,
+            '_message' => $_message,
+            '_email' => $_email
+        );
+
+        $dataArray = sanitizeArray($dataArray);
+
+        $sent = $this->cs->SendMessage($dataArray);
+
+        if($sent){
+            $result = array(
+                "Message" =>"Sent Successfully!",
+                "IsSuccess" => true
+            );
+
+            echo json_encode($result);
+            return;
+        }
+
+        $result = array(
+            "Message" =>"Failed To Send",
+            "IsSuccess" => false
+        );
+
+        echo json_encode($result);
+    }
+
+    public function RequestBlogs(){
+
+        $blogs = $this->cs->GetBlogs();
+
+        if(count($blogs) <= 0){
+            echo "No blog content sorry";
+            return;
+        }
+        
+        
     }
 
 }

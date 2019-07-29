@@ -63,7 +63,18 @@ class Home extends CI_Controller {
     /*Blog */
     public function blog()
     {
-        $this->load->view('blog/blog');
+        $blogs = $this->cs->GetBlogs();
+
+        if(count($blogs) <= 0){
+            echo "No blog content sorry";
+            return;
+        }
+
+        $data = array(
+            'data'=>$blogs
+        );
+        
+        $this->ps->parse('blog/blog', $data);
     }
 
     public function header()

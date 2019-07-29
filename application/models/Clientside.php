@@ -28,7 +28,49 @@ class Clientside extends CI_Model {
         return false;
     }
 
+    public function GetBlogs(){
+        $this->db->select('*');
+        $this->db->from('sys_blogs');
+        $this->db->join('sys_users', 'sys_users.session_id = sys_blogs.blog_post_by');
+        $query = $this->db->get();
+
+        $results = $query->result_array();
+
+        $data = array();
+
+        foreach($results as $res){
+            $result = json_decode(json_encode($res));
+
+            $content =$this->enc->decrypt($result->blog_content);
+
+            $ne = array(
+                'title'=>$result->blog_title,
+                'id'=>$result->blog_unique_id,
+                'url'=>site_url("blogs1062/$result->blog_url"),
+                'tags'=>sanitizeInput(base64_decode($result->blog_tags)),
+                'catch'=>$result->blog_catch_phrase,
+                'content'=>sanitizeInput(substr($content, 0, 150)).'...',
+                'image'=>base_url("uploads/blog-images/$result->blog_image"),
+                'created'=>$result->blog_date_generated,
+                'fullname'=>$result->blog_user_visible=="1" ? $result->first_name.' '.$result->last_name:"anonymous"
+                
+            );
+
+            array_push($data, $ne);
+        }
+
+        return $data;
+    }
+
     public function SendMessage($data){
+
+        $insertContact = $this->db->insert('sys_contact_us',$data);
+
+        if($insertContact == false){
+            
+            return $insertContact;
+        }
+
         $this->load->library('email');
             $config = array(
             'protocol'  => 'smtp',
@@ -48,11 +90,11 @@ class Clientside extends CI_Model {
         $link = site_url("admin/");
         $this->email->from('freshcode9@gmail.com', 'Archer 1062 Tours');
         $this->email->to('freshcode9@gmail.com');
-        $this->email->subject($data->subject);
+        $this->email->subject($data['_subject']);
         $this->email->message('
-            <p><b>Name:</b> '.$data->name.'</p>
-            <p><b>Email Address:</b> '.$data->email_address.'</p>
-            <p><b>Message:</b> '.$data->message.'</p>
+            <p><b>Name:</b> '.$data['_name'].'</p>
+            <p><b>Email Address:</b> '.$data['_email'].'</p>
+            <p><b>Message:</b> '.$data['_message'].'</p>
         ');
         $sent = $this->email->send();
         if(!$sent){

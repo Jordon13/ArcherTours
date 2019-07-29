@@ -52,10 +52,43 @@ $this->load->helper('section');
 
       .lead {
         font-size: 18px;
-        padding: 0.5em;
+        padding: 0.2em;
         margin-bottom: 1em!important;
       }
 
+      .yel-tex{
+        color:#fdd800!important;
+      }
+
+    .blog{
+      border: 0.9px solid rgba(224,224,224 ,1);
+      background-color: rgba(35, 32, 32, 1)!important;
+    }
+
+    .social-stats{
+      color:#bdbdbd;
+      display: flex;
+      justify-content:flex-start;
+      flex-flow: row wrap;
+      margin-top:10px;
+      align-items: center;
+    }
+
+    .social-stats p{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-right:15px;
+    }
+
+    .social-stats p i{
+      margin-right: 10px;
+    }
+
+    .h1text a{
+      color:white;
+      text-decoration: underline;
+    }
 
 
 </style>
@@ -74,7 +107,38 @@ $this->load->helper('section');
         </div>
       </div>
 
+      
+
     </div>
+
+
+    <div class="row blogs">
+    {data}
+      <div class="col s12 m8 offset-m2 l8 offset-l2">
+        <div class="card-panel blog">
+          <div class="row valign-wrapper">
+            <div class="col s3">
+            <img src="{image}" alt="no image" class="responsive-img"/>
+            </div>
+            <div class="col s10">
+              <h4 class="header white-text h1text"><a href="{url}">{title}</a></h4>
+              <p class="white-text lead"><em>{content}</em></p>
+              <p class="yel-tex">TAGS: <em>{tags}</em></p>
+              <div class="social-stats">
+                <p><i class="material-icons">access_time</i> {created}</p>
+                <p><i class="material-icons">person</i>  {fullname}</p>
+                <p><i class="material-icons">location_on</i>  Montego Bay. JM</p>
+                <p><i class="material-icons">mode_comment</i> 39</p>
+              </div>
+
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    {/data}
+
+      </div>
     <?php main_footer(); ?>
 </body>
 </html>

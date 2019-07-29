@@ -1,6 +1,3 @@
-    
-
-
 <div style="padding: 0.5em!important; width:auto!important; font-family: Verdana; color:rgba(35, 32, 32, 1)!important;">
 
 <h4 style="padding-bottom:1em!important;">List Of Packages For Route Requested</h4>
