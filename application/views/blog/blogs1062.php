@@ -3,6 +3,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $this->load->helper('section');
 
+$fb = new \Facebook\Facebook([
+  'app_id' => "664328337419492",
+  'app_secret' => "7141e0003b340bc3aa7fd8ede2797de1",
+  'default_graph_version' => 'v2.10',
+  //'default_access_token' => '{access-token}', // optional
+]);
+# fb-login-callback.php
+$jsHelper = $fb->getJavaScriptHelper();
+// @TODO This is going away soon
+$facebookClient = $fb->getClient();
+
+print_r($jsHelper);
+
+try {
+    $accessToken = $jsHelper->getAccessToken($facebookClient);
+} catch(Facebook\Exceptions\FacebookResponseException $e) {
+    // When Graph returns an error
+    echo 'Graph returned an error: ' . $e->getMessage();
+    return;
+} catch(Facebook\Exceptions\FacebookSDKException $e) {
+    // When validation fails or other local issues
+    echo 'Facebook SDK returned an error: ' . $e->getMessage();
+    return;
+}
+
+if (isset($accessToken)) {
+    echo (string) $accessToken;
+    return;
+} else {
+  echo "loginfailed";
+  return;
+    // Unable to read JavaScript SDK cookie
+}
 ?>
 <html lang="en">
 <head>

@@ -162,15 +162,14 @@ class Client extends CI_Controller {
 
     public function RequestBlogs(){
 
-        $blogs = $this->cs->GetBlogs();
+        //$this->fb->login();
 
-        if(count($blogs) <= 0){
-            echo "No blog content sorry";
-            return;
-        }
-        
-        
+        $this->face->login();
+
     }
+
+
+
 
 }
         

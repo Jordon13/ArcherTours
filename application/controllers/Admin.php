@@ -70,6 +70,11 @@ class Admin extends CI_Controller {
         $this->load->view('admin/create/specials');
     }
 
+    public function callback()
+    {
+        $this->load->view('admin/fb-callback');
+    }
+
 // Edit Pages
     public function euser()
     {
