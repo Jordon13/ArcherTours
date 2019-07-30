@@ -1,9 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  
-// Autoload the required files
 require_once( 'C:\xampp\htdocs\archertours\vendor\facebook\graph-sdk\src\Facebook\autoload.php' );
- 
-// Make sure to load the Facebook SDK for PHP via composer or manually
  
 class Facebook {
   public $ci;
@@ -24,33 +21,86 @@ class Facebook {
 
   public function login(){
     $helper = $this->fb->getRedirectLoginHelper();
-    $permissions = ['email','publish_to_groups','publish_pages']; // Optional permissions
-    $loginUrl = $helper->getLoginUrl(base_url('/admin/callback'), $permissions);
-    return $loginUrl;
+    $permissions = ['email','publish_to_groups','publish_pages'];
+    $loginUrl = $helper->getLoginUrl(base_url('/client/FaceBookHandler'), $permissions);
+    echo '<script>window.open("'.$loginUrl.'", "Facebook Popup", "height=500,width=400,resizable=no");</script>';
   }
 
   public function getAccessToken(){
 
-  }
-
-  public function setAccessToken(){
-
-  }
-
-  public function getName(){
+    $helper = $this->fb->getRedirectLoginHelper();
+    
+    $accessToken = '';
+    
     try {
-        // Returns a `Facebook\FacebookResponse` object
-        $response = $this->fb->get('/me?fields=id,name', $_SESSION['fb_access_token']);
-      } catch(Facebook\Exceptions\FacebookResponseException $e) {
-        echo 'Graph returned an error: ' . $e->getMessage();
-        exit;
-      } catch(Facebook\Exceptions\FacebookSDKException $e) {
-        echo 'Facebook SDK returned an error: ' . $e->getMessage();
-        exit;
+    
+      $accessToken = $helper->getAccessToken();
+    
+    } catch(Facebook\Exceptions\FacebookResponseException $e) {
+    
+      return false;
+    
+    } catch(Facebook\Exceptions\FacebookSDKException $e) {
+    
+      return false;
+    
+    }
+
+    $oAuth2Client = $this->fb->getOAuth2Client();
+
+    $tokenMetadata = $oAuth2Client->debugToken($accessToken);
+
+    $tokenMetadata->validateAppId("664328337419492");
+
+    $tokenMetadata->validateExpiration();
+
+    if (! $accessToken->isLongLived()) {
+      
+      try {
+      
+        $accessToken = $oAuth2Client->getLongLivedAccessToken($accessToken);
+      
+      } catch (Facebook\Exceptions\FacebookSDKException $e) {
+      
+        return false;
+      
       }
-      
-      $user = $response->getGraphUser();
-      
-      echo 'Name: ' . $user['name'];
+    }
+
+    if(isset($accessToken) && !empty($accessToken)){
+      return $accessToken;
+    }
+    return false;
+  }
+
+  public function setAccessToken($token){
+    //$_SESSION['fb_access_token'] = (string) $accessToken;
+
+    $_SESSION['fb_access_token'] = (string) $token->getValue();
+    $_SESSION['fb_expires_at'] = strtotime($token->getExpiresAt()->format('Y-m-d H:i:s'));
+  
+    try {
+    
+      $response = $this->fb->get('/me?fields=id,name', (string) $token->getValue());
+    
+    } catch(Facebook\Exceptions\FacebookResponseException $e) {
+    
+      return false;
+    
+    } catch(Facebook\Exceptions\FacebookSDKException $e) {
+    
+      return false;
+    
+    }
+    
+    $user = $response->getGraphUser();
+
+    $_SESSION['fb_user_id'] = $user->getId();
+
+
+    return array(
+      'fb_access_token'=>(string) $token->getValue(),
+      'fb_expires_at'=>strtotime($token->getExpiresAt()->format('Y-m-d H:i:s')),
+      'fb_user_id',$user->getId());
   }
 }

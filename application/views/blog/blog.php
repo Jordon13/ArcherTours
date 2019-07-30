@@ -8,11 +8,6 @@ $this->load->helper('section');
 <head>
     <title>Blogs</title>
     <?php main_head();?>
-    <meta property="og:url"           content="https://www.your-domain.com/your-page.html" />
-  <meta property="og:type"          content="website" />
-  <meta property="og:title"         content="Your Website Title" />
-  <meta property="og:description"   content="Your description" />
-  <meta property="og:image"         content="https://www.your-domain.com/path/image.jpg" />
 </head>
 
 <style>       
@@ -114,10 +109,6 @@ $this->load->helper('section');
       
 
     </div>
-
-    <div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3&appId=664328337419492&autoLogAppEvents=1"></script>
-<div class="fb-like" data-href="https://www.archer1062tours.com" data-width="" data-layout="standard" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>   
 
 <div class="row blogs">
     {data}

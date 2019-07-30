@@ -1,5 +1,5 @@
 <?php
-
+//use Facebook\Authentication\AccessToken;
 $fb = new \Facebook\Facebook([
     'app_id' => "664328337419492",
     'app_secret' => "7141e0003b340bc3aa7fd8ede2797de1",
@@ -38,14 +38,14 @@ $fb = new \Facebook\Facebook([
   // Logged in
   echo '<h3>Access Token</h3>';
   var_dump($accessToken->getValue());
-  
+  echo strtotime($accessToken->getExpiresAt()->format('Y-m-d H:i:s'));
   // The OAuth 2.0 client handler helps us manage access tokens
   $oAuth2Client = $fb->getOAuth2Client();
   
   // Get the access token metadata from /debug_token
   $tokenMetadata = $oAuth2Client->debugToken($accessToken);
   echo '<h3>Metadata</h3>';
-  var_dump($tokenMetadata);
+  //print_r($tokenMetadata);
   
   // Validation (these will throw FacebookSDKException's when they fail)
   $tokenMetadata->validateAppId("664328337419492");
@@ -63,10 +63,28 @@ $fb = new \Facebook\Facebook([
     }
   
     echo '<h3>Long-lived</h3>';
-    var_dump($accessToken->getValue());
+    //print_r($accessToken->getValue());
   }
 
-  var_dump($helper);
   
+  try {
+    // Returns a `Facebook\FacebookResponse` object
+    $response = $fb->get('/me?fields=id,name', (string) $accessToken);
+  } catch(Facebook\Exceptions\FacebookResponseException $e) {
+    echo 'Graph returned an error: ' . $e->getMessage();
+    exit;
+  } catch(Facebook\Exceptions\FacebookSDKException $e) {
+    echo 'Facebook SDK returned an error: ' . $e->getMessage();
+    exit;
+  }
+  
+  $user = $response->getGraphUser();
+
+  // print_r()
+
+  print_r($user);
+  
+
+
   $_SESSION['fb_access_token'] = (string) $accessToken;
 ?>

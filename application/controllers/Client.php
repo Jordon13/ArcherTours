@@ -161,11 +161,28 @@ class Client extends CI_Controller {
     }
 
     public function RequestBlogs(){
+        echo "my user id = ".$_SESSION['fb_user_id'];
+        echo $this->face->login();
+    }
 
-        //$this->fb->login();
+    public function FaceBookHandler(){
+        $token = $this->face->getAccessToken();
 
-        $this->face->login();
+        if($token != false){
 
+            $result = $this->face->setAccessToken($token);
+
+            if($result != false){
+                print_r($result);
+            }else{
+                echo "Failed to set access token";
+            }
+
+            
+
+        }else{
+            echo "Login Failed";
+        }
     }
 
 
