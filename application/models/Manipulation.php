@@ -23,11 +23,7 @@ class Manipulation extends CI_Model {
 
         return false;
     }
-
-
-    
-
-                                          
+                                  
     public function EmailPackageList($data){
         $this->load->library('email');
             $config = array(
@@ -74,7 +70,33 @@ class Manipulation extends CI_Model {
         }else{
             return true;
         }
-    }              
+    }
+    
+    public function IsFacebookExist(){
+        $result = $this->db->get('sys_fb_credentials');
+        $firstRow = $result->row();
+
+        if($result->num_rows() > 0){
+
+            $currentTime = time();
+
+            if($firstRow->expiry_date < $currentTime){
+                
+                return 3;
+            }
+
+            $this->ses->set_userdata("fb_access_token",$firstRow->user_token);
+            $this->ses->set_userdata("fb_expires_at",$firstRow->expiry_date);
+            $this->ses->set_userdata("fb_user_id",$firstRow->user_id);
+
+            return true;
+        }
+
+        return 2;
+
+    }
+    
+
                         
 }
                         

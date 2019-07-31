@@ -145,6 +145,28 @@ class General extends CI_Model {
         return false;
     }
 
+    public function InsertFbInfo($data){
+        $insertfb = $this->db->insert('sys_fb_credentials',$data);
+
+		if($insertfb == true){
+			return true;
+        }
+        return false;
+    }
+
+    public function UpdateFbInfo($data){
+
+        $this->db->where('user_id', $data['user_id']);
+
+        $success = $this->db->update('sys_fb_credentials', $data);
+
+        if($success){
+            return true;
+        }
+
+        return false;
+    }
+
 
 
 

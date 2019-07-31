@@ -8,31 +8,6 @@ class Cms extends CI_Controller {
 
     public function index(){
 
-        // $arry = array(
-        //     'origin' => 'MontegoBay',
-        //     'destination'=>'Kingston'
-        // );
-
-        // $json = json_encode($arry);
-
-        // $decode = json_decode($json);
-
-        // $result = $this->mn->PackageList($decode);
-
-        // if($result != false){
-
-        //     $arry = array(
-        //         'origin'=> $result[0]->price_origin,
-        //         'destination'=>$result[0]->price_destination,
-        //         'packages'=>json_decode(json_encode($result))
-        //     );
-
-        //     $this->ps->parse('templates/price',$arry);
-        //     return;
-        // }
-
-        // echo "No data returned";
-
     }
 
     public function Login(){
@@ -47,6 +22,12 @@ class Cms extends CI_Controller {
 
         if($result != false){
 
+            $fbExist = $this->mn->IsFacebookExist();
+
+            if($fbExist === 2 || $fbExist === 3){
+                echo $this->face->login();
+            }
+
             if($result->first_time == 0){
                 echo "<script>window.location.href = '".site_url('Admin/dashboard?active=0')."?sucess=login sucessfully';</script>";
             }else{
@@ -56,6 +37,57 @@ class Cms extends CI_Controller {
 
         echo "<script>window.location.href = '".site_url('Admin/login')."?error=failed to login';</script>";
         http_response_code(401);
+
+    }
+
+    public function FaceBookHandler(){
+        $token = $this->face->getAccessToken();
+
+        if($token != false){
+
+            $result = $this->face->setAccessToken($token);
+
+            if($result != false){
+
+                $fbExist = $this->mn->IsFacebookExist();
+
+                if($fbExist === 2 || $fbExist === 3){
+                    if($fbExist === 3){
+
+                        $updateData = array(
+                            'user_id'=>$result['fb_user_id'],
+                            'user_token'=>$result['fb_access_token'],
+                            'expiry_date'=>$result['fb_expires_at']
+                        );
+        
+                        if($this->gen->UpdateFbInfo($updateData)){
+                            echo "Fb user updated Successfully!";
+                        }else{
+                            echo "Failed user id must me present";
+                        }
+                       
+                    }else{
+                        $insertData = array(
+                            'user_id'=>$result['fb_user_id'],
+                            'user_token'=>$result['fb_access_token'],
+                            'expiry_date'=>$result['fb_expires_at']
+                        );
+        
+                        if($this->gen->insertFbInfo($insertData)){
+                            echo "Fb user Added Successfully!";
+                        }else{
+                            echo "Failed to add fb user";
+                        }
+                    }
+                }
+
+                
+            }else{
+                echo "Failed to set access token";
+            }
+        }else{
+            echo "Login Failed";
+        }
     }
 
     public function CreateUser(){
@@ -222,6 +254,9 @@ class Cms extends CI_Controller {
 
             $blog_image = ''; 
 
+            $fbpost = $this->input->post('fbpost',true);
+            
+
             if(empty($blog_title) || empty($blog_catch_phrase) || empty($blog_user_visible) || empty($blog_content) || empty($blog_tags)){
                 $result = array(
                     "Message" =>"Please fill out all the feilds necessary for this transaction",
@@ -250,6 +285,14 @@ class Cms extends CI_Controller {
             $blog_title = xss_clean($blog_title);
 
             $blog_catch_phrase = xss_clean($blog_catch_phrase);
+
+            if(!empty($fbpost)){
+
+                // $fbdata = 
+                $arr = array('message' => 'Testing Post for our new tutorial. Graph API.');
+
+                $res = $fb->post('PAGE_ID/feed/', $arr,	'ACCESS_TOKEN');
+            }
 
             $blog_content = $this->encryption->encrypt(xss_clean($blog_content));
 

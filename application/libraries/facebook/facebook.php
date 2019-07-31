@@ -21,8 +21,8 @@ class Facebook {
 
   public function login(){
     $helper = $this->fb->getRedirectLoginHelper();
-    $permissions = ['email','publish_to_groups','publish_pages'];
-    $loginUrl = $helper->getLoginUrl(base_url('/client/FaceBookHandler'), $permissions);
+    $permissions = ['email','publish_to_groups','publish_pages','manage_pages'];
+    $loginUrl = $helper->getLoginUrl(base_url('/cms/FaceBookHandler'), $permissions);
     echo '<script>window.open("'.$loginUrl.'", "Facebook Popup", "height=500,width=400,resizable=no");</script>';
   }
 
@@ -101,6 +101,20 @@ class Facebook {
     return array(
       'fb_access_token'=>(string) $token->getValue(),
       'fb_expires_at'=>strtotime($token->getExpiresAt()->format('Y-m-d H:i:s')),
-      'fb_user_id',$user->getId());
+      'fb_user_id' => $user->getId());
+  }
+
+  public function PostBlog($data = NULL){
+    // $response = $this->fb->get('me/accounts', $_SESSION['fb_access_token']);
+    // $response = $response->getDecodedBody();
+    // print_r($response);
+
+    if(isset($_SESSION['fb_access_token']) && isset($_SESSION['fb_expires_at']) && $_SESSION['fb_expires_at'] > time()){
+      $res = $this->fb->post('208362526252176/feed/', $data,	$_SESSION['fb_access_token']);
+      return $res;
+    }else{
+      echo $this->login();
+    }
+
   }
 }

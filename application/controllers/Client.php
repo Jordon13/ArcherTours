@@ -161,29 +161,34 @@ class Client extends CI_Controller {
     }
 
     public function RequestBlogs(){
-        echo "my user id = ".$_SESSION['fb_user_id'];
-        echo $this->face->login();
+        // echo "my user id = ".$_SESSION['fb_user_id'];
+        $arr = array('message' => 'Testing Post for our new tutorial. Graph API.');
+        echo '<pre>';
+        $this->face->PostBlog($arr);
+        echo'</pre>';
     }
 
-    public function FaceBookHandler(){
-        $token = $this->face->getAccessToken();
+    
 
-        if($token != false){
+    // public function FaceBookHandler(){
+    //     $token = $this->face->getAccessToken();
 
-            $result = $this->face->setAccessToken($token);
+    //     if($token != false){
 
-            if($result != false){
-                print_r($result);
-            }else{
-                echo "Failed to set access token";
-            }
+    //         $result = $this->face->setAccessToken($token);
+
+    //         if($result != false){
+    //             print_r($result);
+    //         }else{
+    //             echo "Failed to set access token";
+    //         }
 
             
 
-        }else{
-            echo "Login Failed";
-        }
-    }
+    //     }else{
+    //         echo "Login Failed";
+    //     }
+    // }
 
 
 

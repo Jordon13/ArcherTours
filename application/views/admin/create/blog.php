@@ -17,8 +17,8 @@ if(!($this->ses->has_userdata("user_ses"))){
         <title>CreateBlog</title>
         <?php adminhead();?>
 
-        <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js"></script>
-        <script>tinymce.init({selector:'textarea'});</script>
+        <!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js"></script>
+        <script>tinymce.init({selector:'textarea'});</script> -->
         
         <style>
 
@@ -196,7 +196,6 @@ if(!($this->ses->has_userdata("user_ses"))){
 
                             <div class="input-field col s12">
                                 <textarea id="content" name="blog_content" min="250" placeholder="Write content here...250 words minimum" required></textarea>
-                                <!-- <label for="content">Content Message <span class="required">*</span></label> -->
                             </div>
 
 
@@ -218,7 +217,15 @@ if(!($this->ses->has_userdata("user_ses"))){
                             <button class="btn waves-effect waves-light  blue accent-4" type="submit" name="action" id="submit">Create Blog
                                 <i class="material-icons right"></i>
                             </button>
+                            
                             </div>
+                            <div class="input-field col" style="width:10%!important;">
+                                <label style="width:100%!important;">
+                                    <input type="checkbox" name="fbpost" class="filled-in"  checked="checked"/>
+                                    <span>FB Post</span>
+                                </label>
+                            </div>
+                            
                         </div>
 
                         <div class="row center-align result">
@@ -268,7 +275,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                     e.preventDefault();
                     $(".result").css("color","#388E3C");
                     $('.result').html("Processing...");
-
+console.log("content - lenth: "+$('#content').val().length);
 
                     if($('#content').val() == '' || $('#content').val().length < 250){
                         
