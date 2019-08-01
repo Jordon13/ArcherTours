@@ -78,7 +78,7 @@ class General extends CI_Model {
 
         $data+=array('blog_post_by'=>$this->ses->userdata("user_ses"));//	blog_unique_id
 
-        $data+=array('blog_unique_id'=> $this->returnRandomString(12));
+        // $data+=array('blog_unique_id'=> $this->returnRandomString(12));
 
         $insertblog= $this->db->insert('sys_blogs',$data);
 
@@ -159,6 +159,21 @@ class General extends CI_Model {
         $this->db->where('user_id', $data['user_id']);
 
         $success = $this->db->update('sys_fb_credentials', $data);
+
+        if($success){
+            return true;
+        }
+
+        return false;
+    }
+
+    public function UpdateBlog($data){
+        
+        //$session_id = $this->ses->userdata('sys_blogs');
+
+        $this->db->where('blog_unique_id', $data['blog_unique_id']);
+
+        $success = $this->db->update('sys_blogs', $data);
 
         if($success){
             return true;

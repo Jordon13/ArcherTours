@@ -32,6 +32,7 @@ class Clientside extends CI_Model {
         $this->db->select('*');
         $this->db->from('sys_blogs');
         $this->db->join('sys_users', 'sys_users.session_id = sys_blogs.blog_post_by');
+        $this->db->order_by('sys_blogs.blog_date_generated', 'desc');
         $query = $this->db->get();
 
         $results = $query->result_array();
@@ -43,6 +44,24 @@ class Clientside extends CI_Model {
 
             $content =$this->enc->decrypt($result->blog_content);
 
+            $fbid = $result->blog_fb_id;
+
+            $comments = $this->face->GetCommentCount((string)$fbid);
+            $likes = $this->face->GetLikesCount((string)$fbid);
+            $shares = $this->face->GetSharesCount((string)$fbid);
+
+            if($comments === NULL){
+                $comments = 0;
+            }
+
+            if($likes === NULL){
+                $likes = 0;
+            }
+
+            if($shares === NULL){
+                $shares = 0;
+            }
+
             $ne = array(
                 'title'=>$result->blog_title,
                 'id'=>$result->blog_unique_id,
@@ -52,6 +71,9 @@ class Clientside extends CI_Model {
                 'content'=>sanitizeInput(substr($content, 0, 150)).'...',
                 'image'=>base_url("uploads/blog-images/$result->blog_image"),
                 'created'=>$result->blog_date_generated,
+                'comments'=>(string)$comments,
+                'likes'=> (string)$likes,
+                'shares'=>(string)$shares,
                 'fullname'=>$result->blog_user_visible=="1" ? $result->first_name.' '.$result->last_name:"anonymous"
                 
             );

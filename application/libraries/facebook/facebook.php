@@ -1,7 +1,10 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+use SebastianBergmann\GlobalState\Exception;
+
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  
 require_once( 'C:\xampp\htdocs\archertours\vendor\facebook\graph-sdk\src\Facebook\autoload.php' );
- 
+ini_set("display_errors", "on");
 class Facebook {
   public $ci;
   public $accessToken;
@@ -77,7 +80,7 @@ class Facebook {
     //$_SESSION['fb_access_token'] = (string) $accessToken;
 
     $_SESSION['fb_access_token'] = (string) $token->getValue();
-    $_SESSION['fb_expires_at'] = strtotime($token->getExpiresAt()->format('Y-m-d H:i:s'));
+    $_SESSION['fb_expires_at'] = "never";//strtotime($token->getExpiresAt()->format('Y-m-d H:i:s'));
   
     try {
     
@@ -100,21 +103,118 @@ class Facebook {
 
     return array(
       'fb_access_token'=>(string) $token->getValue(),
-      'fb_expires_at'=>strtotime($token->getExpiresAt()->format('Y-m-d H:i:s')),
+      'fb_expires_at'=>"never",//strtotime($token->getExpiresAt()->format('Y-m-d H:i:s')),
       'fb_user_id' => $user->getId());
   }
 
   public function PostBlog($data = NULL){
-    // $response = $this->fb->get('me/accounts', $_SESSION['fb_access_token']);
-    // $response = $response->getDecodedBody();
-    // print_r($response);
 
-    if(isset($_SESSION['fb_access_token']) && isset($_SESSION['fb_expires_at']) && $_SESSION['fb_expires_at'] > time()){
-      $res = $this->fb->post('208362526252176/feed/', $data,	$_SESSION['fb_access_token']);
-      return $res;
-    }else{
-      echo $this->login();
+    try{
+      $response = $this->fb->get('me/accounts', $_SESSION['fb_access_token']);
+      $response = $response->getDecodedBody();
+      $page= json_decode(json_encode($response['data'][0]));
+
+      if(isset($_SESSION['fb_access_token'])){
+        $res = $this->fb->post($page->id.'/feed/', $data,	$page->access_token);
+        //$res->getDecodedBody()['id']
+        $item = array(
+          'Message' => $res->getDecodedBody()['id'],
+          'Success' => true
+        );
+        return json_decode(json_encode($item));
+      }else{
+        echo $this->login();
+      }
+
+    }catch(Facebook\Exceptions\FacebookResponseException $e){
+      $errorMessage = $e->getMessage();
+      if(preg_match("/Duplicate/i", $errorMessage)){
+        $item = array(
+          'Message' => "You Cannot Have Duplicate Post",
+          'Success' => false
+        );
+        return json_decode(json_encode($item));
+      }else{
+        $item = array(
+          'Message' => "Unexpected Error Has Occured Try Again Later",
+          'Success' => false
+        );
+        return json_decode(json_encode($item));
+      }
+      
     }
 
+    
+
+    
+
   }
+
+  public function GetFeedData(){
+    try{
+      $response = $this->fb->get('me/accounts', $_SESSION['fb_access_token']);
+      $response = $response->getDecodedBody();
+      $page= json_decode(json_encode($response['data'][0]));
+
+      if(isset($_SESSION['fb_access_token'])){
+        $res = $this->fb->get($page->id.'/feed/',	$page->access_token);
+
+        $res = $res->getDecodedBody();
+        //echo "Id = ".$res['data'][0]['id'];
+        $post = $this->fb->get('/'.$res['data'][0]['id'].'?fields=actions',$page->access_token);
+        print_r($post->getDecodedBody());
+       // print_r($res);
+      }else{
+        echo $this->login();
+      }
+
+    }catch(Facebook\Exceptions\FacebookResponseException $e){
+      print_r($e);//->getMessage();
+    }
+  }
+
+  public function GetCommentCount($ObjectId){
+    try{
+      if(isset($_SESSION['fb_access_token'])){
+        $response = $this->fb->get('/'.$ObjectId.'/comments?summary=true', $_SESSION['fb_access_token']);
+        $result = $response->getDecodedBody()['summary']['total_count'];
+        return $result;
+      }
+
+      return NULL;
+
+    }catch(Facebook\Exceptions\FacebookResponseException $e){
+      return NULL;
+    }
+  }
+
+  public function GetLikesCount($ObjectId){
+    try{
+      if(isset($_SESSION['fb_access_token'])){
+        $response = $this->fb->get('/'.$ObjectId.'/likes?summary=true', $_SESSION['fb_access_token']);
+        $result = $response->getDecodedBody()['summary']['total_count'];
+        return $result;
+      }
+
+      return NULL;
+
+      }catch(Facebook\Exceptions\FacebookResponseException $e){
+        return NULL;
+      }
+  }
+
+  public function GetSharesCount($ObjectId){
+    try{
+      if(isset($_SESSION['fb_access_token'])){
+      $response = $this->fb->get('/'.$ObjectId.'/sharedposts', $_SESSION['fb_access_token']);
+      $response = $response->getDecodedBody();
+      return count($response['data']);
+    }
+
+    return NULL;
+
+    }catch(Facebook\Exceptions\FacebookResponseException $e){
+      return NULL;
+    }
+}
 }

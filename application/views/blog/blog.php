@@ -116,7 +116,7 @@ $this->load->helper('section');
         <div class="card-panel blog">
           <div class="row valign-wrapper">
             <div class="col s3">
-            <img src="{image}" alt="no image" class="responsive-img"/>
+            <img src="{image}" width="200" height="200" alt="no image" class=""/>
             </div>
             <div class="col s10">
               <h4 class="header white-text h1text"><a href="{url}">{title}</a></h4>
@@ -125,8 +125,9 @@ $this->load->helper('section');
               <div class="social-stats">
                 <p><i class="material-icons">access_time</i> {created}</p>
                 <p><i class="material-icons">person</i>  {fullname}</p>
-                <p><i class="material-icons">location_on</i>  Montego Bay. JM</p>
-                <p><i class="material-icons">mode_comment</i> 39</p>
+                <p><i class="material-icons">mode_comment</i>{comments}</p>
+                <p><i class="material-icons">thumb_up</i> {likes}</p>
+                <p><i class="material-icons">screen_share</i> {shares}</p>
               </div>
 
             </div>

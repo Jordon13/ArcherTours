@@ -17,8 +17,8 @@ if(!($this->ses->has_userdata("user_ses"))){
         <title>CreateBlog</title>
         <?php adminhead();?>
 
-        <!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js"></script>
-        <script>tinymce.init({selector:'textarea'});</script> -->
+        <script src="https://cdn.tiny.cloud/1/qrye49zt83t2ywnehqrk36wlt1acm1xvs5964go6t6amc92w/tinymce/5/tinymce.min.js"></script>
+        <script>tinymce.init({selector:'textarea'});</script>
         
         <style>
 
@@ -273,11 +273,15 @@ if(!($this->ses->has_userdata("user_ses"))){
                 $('#submit').click(function(e){
 
                     e.preventDefault();
+
+                    var content = tinyMCE.get('content').getContent();
+
+                    console.log(content);
+
                     $(".result").css("color","#388E3C");
                     $('.result').html("Processing...");
-console.log("content - lenth: "+$('#content').val().length);
 
-                    if($('#content').val() == '' || $('#content').val().length < 250){
+                    if(content == '' || content.length < 250){
                         
                         $(".result").css("color","#d32f2f");
 
@@ -307,7 +311,12 @@ console.log("content - lenth: "+$('#content').val().length);
                 
 
                     for(x = 0; x < form.length; x++){
-                        form_data.append(form[x].name,form[x].value);
+                        if(form[x].name == "blog_content"){
+                            form_data.append(form[x].name,content);
+                        }else{
+                            form_data.append(form[x].name,form[x].value);
+                        }
+                        
                     }
 
                     form_data.append('blog_tags[]',data);

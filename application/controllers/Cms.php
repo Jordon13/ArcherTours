@@ -81,7 +81,6 @@ class Cms extends CI_Controller {
                     }
                 }
 
-                
             }else{
                 echo "Failed to set access token";
             }
@@ -250,6 +249,10 @@ class Cms extends CI_Controller {
 
             $blog_content = $this->input->post('blog_content',true);
 
+            $blog_content_copy = $this->input->post('blog_content',true);
+
+            $blog_unique_id = random_string('alnum', 13);
+
             $blog_tags = $this->input->post('blog_tags',true);
 
             $blog_image = ''; 
@@ -286,14 +289,6 @@ class Cms extends CI_Controller {
 
             $blog_catch_phrase = xss_clean($blog_catch_phrase);
 
-            if(!empty($fbpost)){
-
-                // $fbdata = 
-                $arr = array('message' => 'Testing Post for our new tutorial. Graph API.');
-
-                $res = $fb->post('PAGE_ID/feed/', $arr,	'ACCESS_TOKEN');
-            }
-
             $blog_content = $this->encryption->encrypt(xss_clean($blog_content));
 
             $blog_tags = xss_clean($blog_tags);
@@ -327,6 +322,7 @@ class Cms extends CI_Controller {
                 'blog_content'=>$blog_content,
                 'blog_image'=>$blog_image,
                 'blog_tags'=>$blog_tags,
+                'blog_unique_id'=>$blog_unique_id
             );
             
 
@@ -338,6 +334,49 @@ class Cms extends CI_Controller {
                 
                     "IsSuccess" => true
                 );
+
+                
+                if(!empty($fbpost)){
+
+                    $arr = array('message' => sanitizeInput(xss_clean($blog_content_copy)),
+                'link' => 'https://www.archer1062tours.com');
+
+                    $res = $this->face->PostBlog($arr);
+                    if(!empty($res)){
+
+                        if(!$res->Success){
+                            $result = array(
+                        
+                                "Message" =>'Added to the system but failed to post to facebook due to: '.$res->Message,
+                            
+                                "IsSuccess" => false
+                            );
+    
+                            echo json_encode($result);
+                            http_response_code(400);
+                            return;
+                        }
+                        
+                        $updateRes = $this->cms->UpdateBlog(array(
+                            'blog_unique_id' => $blog_unique_id,
+                            'blog_fb_id' => $res->Message
+                        ));
+
+                        if(!$updateRes){
+                            $result = array(
+                        
+                                "Message" =>'Added to the system and facebook but failed to added commenting features',
+                            
+                                "IsSuccess" => false
+                            );
+    
+                            echo json_encode($result);
+                            http_response_code(400);
+                            return;
+                        }
+                        
+                    }
+                }
 
                 echo json_encode($result);
 
@@ -354,7 +393,7 @@ class Cms extends CI_Controller {
                 "IsSuccess" => false
             );
     
-            echo json_ensode($result);
+            echo json_encode($result);
     
             http_response_code(500);
         }
