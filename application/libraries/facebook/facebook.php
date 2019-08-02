@@ -173,6 +173,24 @@ class Facebook {
     }
   }
 
+
+  public function GetPostAction($postid){
+    try{
+      $response = $this->fb->get(
+        '/'.$postid.'?fields=actions',
+        $_SESSION['fb_access_token']
+      );
+      // $response = $this->fb->get('me/accounts', $_SESSION['fb_access_token']);
+      $response = $response->getDecodedBody();
+      $page= json_decode(json_encode($response));
+      return $page;
+
+
+    }catch(Facebook\Exceptions\FacebookResponseException $e){
+      print_r($e);//->getMessage();
+    }
+  }
+
   public function GetCommentCount($ObjectId){
     try{
       if(isset($_SESSION['fb_access_token'])){

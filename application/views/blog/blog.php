@@ -112,7 +112,7 @@ $this->load->helper('section');
 
 <div class="row blogs">
     {data}
-      <div class="col s12 m8 offset-m2 l8 offset-l2">
+      <div class="col s12 m8 offset-m2 l8 offset-l2" data-aos="fade-up">
         <div class="card-panel blog">
           <div class="row valign-wrapper">
             <div class="col s3">

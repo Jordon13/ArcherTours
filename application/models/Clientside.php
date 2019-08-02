@@ -84,6 +84,69 @@ class Clientside extends CI_Model {
         return $data;
     }
 
+    public function GetBlog($url){
+        $this->db->select('*');
+        $this->db->from('sys_blogs');
+        $this->db->join('sys_users', 'sys_users.session_id = sys_blogs.blog_post_by');
+        $this->db->where("sys_blogs.blog_url", $url);
+        $this->db->order_by('sys_blogs.blog_date_generated', 'desc');
+        $query = $this->db->get();
+
+        $results = $query->result_array();
+
+        if(count($results) > 0){
+                
+            $data = array();
+
+            foreach($results as $res){
+                $result = json_decode(json_encode($res));
+
+                $content =$this->enc->decrypt($result->blog_content);
+
+                $fbid = $result->blog_fb_id;
+
+                $comments = $this->face->GetCommentCount((string)$fbid);
+                $likes = $this->face->GetLikesCount((string)$fbid);
+                $shares = $this->face->GetSharesCount((string)$fbid);
+
+                if($comments === NULL){
+                    $comments = 0;
+                }
+
+                if($likes === NULL){
+                    $likes = 0;
+                }
+
+                if($shares === NULL){
+                    $shares = 0;
+                }
+
+                $ne = array(
+                    'title'=>$result->blog_title,
+                    'id'=>$result->blog_unique_id,
+                    'url'=>site_url("blogs1062/$result->blog_url"),
+                    'tags'=>explode(',',sanitizeInput2(base64_decode($result->blog_tags,true))),
+                    'catch'=>$result->blog_catch_phrase,
+                    'content'=>$content,
+                    'objectlink'=>json_decode(json_encode($this->face->GetPostAction((string)$fbid)),true),
+                    'image'=>base_url("uploads/blog-images/$result->blog_image"),
+                    'created'=>$result->blog_date_generated,
+                    'comments'=>(string)$comments,
+                    'likes'=> (string)$likes,
+                    'shares'=>(string)$shares,
+                    'fullname'=>$result->blog_user_visible=="1" ? $result->first_name.' '.$result->last_name:"anonymous"
+                    
+                );
+
+                array_push($data, $ne);
+            }
+
+            return $data;
+        }
+
+        return false;
+    }
+
     public function SendMessage($data){
 
         $insertContact = $this->db->insert('sys_contact_us',$data);

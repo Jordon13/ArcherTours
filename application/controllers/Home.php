@@ -9,7 +9,36 @@ class Home extends CI_Controller {
     }
 
     public function blogs1062(){
-        $this->load->view('blog/blogs1062');
+
+        $linkId = $this->uri->segment(2,-1);
+
+        $data = array();
+
+
+        if($linkId === -1){
+            $data+=array(
+                'data'=>'Please provide an id for this request.',
+                'IsSuccessful' => false
+            );
+            $this->ps->parse('blog/blogs1062', $data);
+            return;
+        }
+
+        $result = $this->cs->GetBlog($linkId);
+
+        if($result === false){
+            $data+=array(
+                'data'=>'Unable to locate blog, it\'s either removed or doesn\'t exist',
+                'IsSuccessful' => false
+            );
+            $this->ps->parse('blog/blogs1062', $data);
+            return;
+        }
+
+        $data+=$result[0];
+
+
+        $this->ps->parse('blog/blogs1062',array("data"=>$data,'IsSuccessful' => true));
     }
 
     public function about()

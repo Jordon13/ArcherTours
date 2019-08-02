@@ -36,6 +36,17 @@ function sanitizeInput($input){
     return $input;
   }
 
+  function sanitizeInput2($input){
+    $ci=& get_instance();
+    $ci->load->database(); 
+    $input = trim($input);
+    $input = stripslashes($input);
+    // $input = htmlspecialchars($input);
+    $input = $ci->db->escape_str($input);
+    $input = preg_replace('/[^A-Za-z0-9\-\.\@\,\s]/', '', $input);
+    return $input;
+  }
+
   function sanitizeArray($input){
     foreach($input as $key => $value){
         $input[$key] = sanitizeInput($value);

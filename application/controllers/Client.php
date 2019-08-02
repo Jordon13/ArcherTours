@@ -164,20 +164,21 @@ class Client extends CI_Controller {
         // echo "my user id = ".$_SESSION['fb_user_id'];
         $arr = array('message' => 'New Message Postguhhhoh23121asdasasingsfsdfsdfsdfsdfs');
         echo '<pre>';
+        echo json_encode($this->face->GetPostAction("208362526252176_736506393437784"),JSON_PRETTY_PRINT);
         //$item  = $this->face->PostBlog($arr);
         //echo $item->Message;
-        $res = $this->face->GetCommentCount("208362526252176_736506393437784");
-        $ress = $this->face->GetLikesCount("208362526252176_736506393437784");
-        $resss = $this->face->GetSharesCount("208362526252176_736506393437784");
+        //$res = $this->face->GetCommentCount("208362526252176_736506393437784");
+        //$ress = $this->face->GetLikesCount("208362526252176_736506393437784");
+        //$resss = $this->face->GetSharesCount("208362526252176_736506393437784");
        // print_r($res);
         
 
         // $this->face->GetFeedData();
         echo'</pre>';
 
-        print_r("Total Comments = ".$res);
-        print_r("<br/>Total Likes = ".$ress);
-        print_r("<br/>Total Shares = ".$resss);
+       // print_r("Total Comments = ".$res);
+        //print_r("<br/>Total Likes = ".$ress);
+        //print_r("<br/>Total Shares = ".$resss);
         // echo $res['data']['summary']['total_count']." - cool";
     }
 
