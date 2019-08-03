@@ -276,7 +276,7 @@ if(!($this->ses->has_userdata("user_ses"))){
 
                     var content = tinyMCE.get('content').getContent();
 
-                    console.log(content);
+                    // console.log(content);
 
                     $(".result").css("color","#388E3C");
                     $('.result').html("Processing...");
@@ -320,6 +320,8 @@ if(!($this->ses->has_userdata("user_ses"))){
                     }
 
                     form_data.append('blog_tags[]',data);
+
+                    form_data.append('blog_content_copy',$(content).text());
 
                     $.ajax({
                         url: "<?php echo site_url('/cms/AddBlog');?>",

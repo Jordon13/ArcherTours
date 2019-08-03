@@ -249,7 +249,7 @@ class Cms extends CI_Controller {
 
             $blog_content = $this->input->post('blog_content',true);
 
-            $blog_content_copy = $this->input->post('blog_content',true);
+            $blog_content_copy = $this->input->post('blog_content_copy',true);
 
             $blog_unique_id = random_string('alnum', 13);
 
@@ -338,7 +338,7 @@ class Cms extends CI_Controller {
                 
                 if(!empty($fbpost)){
 
-                    $arr = array('message' => sanitizeInput(xss_clean($blog_content_copy)),
+                    $arr = array('message' => sanitizeInput2(xss_clean($blog_content_copy)),
                 'link' => 'https://www.archer1062tours.com');
 
                     $res = $this->face->PostBlog($arr);

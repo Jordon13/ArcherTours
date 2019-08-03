@@ -105,7 +105,7 @@ $this->load->helper('section');
 
 
 </style>
-<body class="blue-grey lighten-5">
+<body class="blue-grey lighten-5" style="position:relative;">
 
     <?php main_nav(); ?>
     
@@ -114,9 +114,9 @@ $this->load->helper('section');
      <div class="row fpage2">
       
      </div>
-
-     <div class="row">
-      <div class="col l8 m8 s12 offset-l2 offset-m2 offset-s0"  style="height:100%!important; z-index:4!important; position:relative;">
+     <!-- style="height:1500px!important;position:relative;" -->
+     <div class="row" >
+      <div class="col l8 m8 s12 offset-l2 offset-m2 offset-s0"  style="z-index:4!important; position:relative;">
         <div class="row">
           <h1 class="header" style="color:rgba(35, 32, 32, 1);"><?php echo $data['title'].': '.$data['catch'];?></h1>
           <p style="color:#9e9e9e;"><em>By <?php echo $data['fullname'];?></em></p>
@@ -147,11 +147,15 @@ $this->load->helper('section');
           </div>
         </div>
 
-        <div id="fb-root"></div>
-  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0&appId=664328337419492&autoLogAppEvents=1"></script>
-  <!-- Your like button code -->
-  <div class="fb-like" data-href="https://www.facebook.com/208362526252176/" data-width="" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+        
+  <div class="row" >
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0&appId=664328337419492&autoLogAppEvents=1"></script>
 
+    <div class="fb-like col s12" data-href="https://www.facebook.com/208362526252176/" data-width="" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+    <div class="fb-comments col s12" data-href="<?php echo $data['objectlink']['actions'][1]['link'];?>" data-width="1000" data-numposts="2"></div>
+    
+  </div>
 
 
       </div>
@@ -159,7 +163,7 @@ $this->load->helper('section');
 
     <?php }else{?>
 
-      <div class="row fpage white-text" style="background-color:rgba(35, 32, 32, 1);">
+      <div class="row fpage white-text" style="background-color:rgba(35, 32, 32, 1);margin-bottom:0px!important;">
       
       <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 center"  style="height:100%!important; z-index:4!important; position:relative;">
         <div class="row valign-wrapper" style="height:100%!important;">

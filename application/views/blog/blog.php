@@ -120,7 +120,7 @@ $this->load->helper('section');
             </div>
             <div class="col s10">
               <h4 class="header white-text h1text"><a href="{url}">{title}</a></h4>
-              <p class="white-text lead"><em>{content}</em></p>
+              <p class="white-text lead"><em>{catch}</em></p>
               <p class="yel-tex">TAGS: <em>{tags}</em></p>
               <div class="social-stats">
                 <p><i class="material-icons">access_time</i> {created}</p>
