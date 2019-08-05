@@ -184,25 +184,30 @@ class Client extends CI_Controller {
 
     
 
-    // public function FaceBookHandler(){
-    //     $token = $this->face->getAccessToken();
+    public function testPay(){
+        // $this->pal->getPayPalClient();
+        // $this->config->load('paypal', TRUE);
+        // $con = json_decode(json_encode($this->config->config));
+        echo '<pre>';
+        $this->pal->getPayPalClient();
+        echo '</pre>';
+    }
 
-    //     if($token != false){
+    public function process(){
+        echo '<pre>';
+        $id = $this->pal->processPayment();
+        echo '</pre>';
 
-    //         $result = $this->face->setAccessToken($token);
+        echo "<a href='".base_url('client/refund?refid='.$id)."'>Cancel Payment</a>";
+    }
 
-    //         if($result != false){
-    //             print_r($result);
-    //         }else{
-    //             echo "Failed to set access token";
-    //         }
 
-            
-
-    //     }else{
-    //         echo "Login Failed";
-    //     }
-    // }
+    public function refund(){
+        $id = $_GET['refid'];
+        echo '<pre>';
+        $this->pal->refundPayment($id);
+        echo '</pre>';
+    }
 
 
 

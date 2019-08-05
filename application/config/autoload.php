@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('session' => 'ses', 'database', 'encryption' => 'enc', 'parser' => 'ps','facebook'=>'face');
+$autoload['libraries'] = array('session' => 'ses', 'database', 'encryption' => 'enc', 'parser' => 'ps','facebook'=>'face','paypal'=>'pal');
 
 /*
 | -------------------------------------------------------------------
@@ -103,7 +103,7 @@ $autoload['helper'] = array("url","string","email","security","db","directory");
 | config files.  Otherwise, leave it blank.
 |
 */
-$autoload['config'] = array('facebook');
+$autoload['config'] = array('facebook','paypal');
 
 /*
 | -------------------------------------------------------------------
