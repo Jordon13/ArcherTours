@@ -43,83 +43,91 @@ class Paypal {
 
 
 
-  public function getPayPalClient(){
-        // Create new payer and method
-    $payer = new Payer();
-    $payer->setPaymentMethod("paypal");
+  public function getPayPalClient($package)
+  {
 
-    // Set redirect URLs
-    $redirectUrls = new RedirectUrls();
-    $redirectUrls->setReturnUrl(base_url('/client/process'))
-    ->setCancelUrl(base_url('/'));
+        $payer = new Payer();
 
-    //setting up items
+        $payer->setPaymentMethod("paypal");
 
-    $item = new Item();
+        $redirectUrls = new RedirectUrls();
 
-    $item->setName('Jimmy Clif Blvd.')
-    ->setCurrency('USD')
-    ->setQuantity(1)
-    ->setSku("123123")
-    ->setPrice(10);
+        $redirectUrls->setReturnUrl(base_url('/client/process'))
+        ->setCancelUrl(base_url('/'));
 
-    $itemList = new ItemList();
-    $itemList->setItems(array($item));
+        $itemList = new ItemList();
 
-    // Set payment amount
-    $amount = new Amount();
-    $amount->setCurrency("USD")
-    ->setTotal(10);
+        foreach($package->items as $itm){
 
-    // Set transaction object
-    $transaction = new Transaction();
-    $transaction->setAmount($amount)
-    ->setItemList($itemList)
-    ->setDescription("Payment description")
-    ->setInvoiceNumber("INV1062".uniqid());
+            $item = new Item();
 
-    // Create the full payment object
-    $payment = new Payment();
-    $payment->setIntent('sale')
-    ->setPayer($payer)
-    ->setNoteToPayer("Please note this is a note to you")
-    ->setRedirectUrls($redirectUrls)
-    ->setTransactions(array($transaction));
+            $item->setName($itm->name)
+            ->setCurrency($itm->currency)
+            ->setQuantity($itm->quantity)
+            ->setSku($itm->id)
+            ->setDescription($itm->desc)
+            ->setPrice($itm->price);
 
-    try {
-        $payment->create($this->apiContext);
+            $itemList->setItems(array($item));
+
+        }
+
         
-        // Get PayPal redirect URL and redirect the customer
-        $approvalUrl = $payment->getApprovalLink();
+        $amount = new Amount();
 
-        echo '<script>window.open("'.$approvalUrl.'", "Payment Portal", "height=500,width=400,resizable=no");</script>';
+        $amount->setCurrency($package->currency)
+        ->setTotal($package->total);
+
+
+        $transaction = new Transaction();
+
+        $transaction->setAmount($amount)
+        ->setItemList($itemList)
+        ->setDescription($package->desc)
+        ->setInvoiceNumber("inv_atours2062_".uniqid());
+
+        // Create the full payment object
+        $payment = new Payment();
+
+        $payment->setIntent('sale')
+        ->setPayer($payer)
+        ->setNoteToPayer($package->note)
+        ->setRedirectUrls($redirectUrls)
+        ->setTransactions(array($transaction));
+
+        try {
+            $payment->create($this->apiContext);
+
+            $approvalUrl = $payment->getApprovalLink();
+
+        return '<script>window.open("'.$approvalUrl.'", "Payment Portal", "height=500,width=400,resizable=no");</script>';
 
         } catch (PayPal\Exception\PayPalConnectionException $ex) {
-        echo $ex->getCode();
-        echo $ex->getData();
-        die($ex);
+            return false;
         } catch (Exception $ex) {
-        die($ex);
+            return false;
         }
 
     
-}
+    }
 
     public function processPayment(){
+
         $paymentId = $_GET['paymentId'];
+
         $payment = Payment::get($paymentId, $this->apiContext);
+
         $payerId = $_GET['PayerID'];
 
         $execution = new PaymentExecution();
+
         $execution->setPayerId($payerId);
 
         try {
-            // Execute payment
+
             $result = $payment->execute($execution, $this->apiContext);
             
             $data = array();
-
-          //print_r($result);
 
             $payer = $result->getPayer();
 
@@ -147,37 +155,43 @@ class Paypal {
             $data+=array("transaction_state"=>$sale->getState());
             $data+=array("item_id"=>$item->getSku());
             $data+=array("item_quntity"=>$item->getQuantity());
-            $data+=array("total_price"=>$item->getPrice());
-            $data+=array("currency"=>$item->getCurrency());
+            $data+=array("total_price"=>$sale->getAmount()->getTotal());
+            $data+=array("currency"=>$sale->getAmount()->getCurrency());
             $data+=array("transaction_fee"=>$tranFee->getValue());
             $data+=array("transaction_date"=>$sale->getCreateTime());
             $data+=array("invoice_number"=>$transaction->invoice_number);
 
-            print_r($data);
-            // print_r($result->getTransactions()[0]->getRelatedResources()[0]->getSale()->getId());
-            // print_r($result->getTransactions()[0]->getRelatedResources()[0]->getSale()->getState());
-            // print_r($result->getTransactions()[0]->getRelatedResources()[0]->getSale()->getTransactionFee()->getValue());
-            // print_r($result->getTransactions()[0]->getRelatedResources()[0]->getSale()->getTransactionFee()->getCurrency());//[0]->getPurchaseUnitReferenceId()
-           return $result->getTransactions()[0]->getRelatedResources()[0]->getSale()->getId();
-            } catch (PayPal\Exception\PayPalConnectionException $ex) {
-            echo $ex->getCode();
-            echo $ex->getData();
-            die($ex);
+            return $data;
+
+        } catch (PayPal\Exception\PayPalConnectionException $ex) {
+            return false;
         } catch (Exception $ex) {
-            die($ex);
+            return false;
         }
     }
 
-    public function refundPayment($id){
+    public function refundPayment($id, $percentage = 10){
 
+        //call back the sale get the amount and refund percentage of amount
+
+        $sale = new Sale();
+
+        $result = $sale->get($id,$this->apiContext);
+
+        $amount = $result->getAmount();
         
+        $total = $amount->getTotal() * ($percentage / 100);
+
+        $total = floor($total);
 
         $amt = new Amount();
-        $amt->setTotal(7.00)
-        ->setCurrency('USD');
+        $amt->setTotal($total)
+        ->setCurrency($amount->getCurrency());
 
         $refund = new Refund();
-        $refund->setAmount($amt);
+        $refund->setAmount($amt)
+        ->setReason("")
+        ->setDescription("");
 
         $sale = new Sale();
         $sale->setId($id);
@@ -186,11 +200,9 @@ class Paypal {
         $refundedSale = $sale->refund($refund, $this->apiContext);
         print_r($refundedSale);
         } catch (PayPal\Exception\PayPalConnectionException $ex) {
-        echo $ex->getCode();
-        echo $ex->getData();
-        die($ex);
+            return false;
         } catch (Exception $ex) {
-        die($ex);
+            return false;
         }
     }
 
