@@ -42,7 +42,6 @@ class Paypal {
   }
 
 
-
   public function getPayPalClient($package)
   {
 

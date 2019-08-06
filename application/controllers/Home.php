@@ -71,22 +71,58 @@ class Home extends CI_Controller {
 
     public function airporttransfer()
     {
-        $this->load->view('airporttransfer');
+        $packages = $this->cs->getPackages(1);
+
+        if($packages === false){
+            $data = array(
+                'data'=>0);
+            $this->ps->parse('tours',$data);
+            return;
+        }
+
+        $data = array(
+            'data'=>$packages
+        );
+
+        $this->ps->parse('airporttransfer',$data);
+        // $this->load->view('airporttransfer');
     }
 
     public function taxiservice()
     {
-        $this->load->view('taxiservice');
-    }
+        $packages = $this->cs->getPackages();
 
-    // public function price()
-    // {
-    //     $this->load->view('templates/price.html');
-    // }
+        if($packages === false){
+            $data = array(
+                'data'=>0);
+            $this->ps->parse('tours',$data);
+            return;
+        }
+
+        $data = array(
+            'data'=>$packages
+        );
+
+        $this->ps->parse('taxiservice',$data);
+    }
 
     public function tours()
     {
-        $this->load->view('tours');
+        $packages = $this->cs->getPackages(2);
+
+        if($packages === false){
+            $data = array(
+                'data'=>0);
+            $this->ps->parse('tours',$data);
+            return;
+        }
+
+        $data = array(
+            'data'=>$packages
+        );
+
+        $this->ps->parse('tours',$data);
+        // $this->load->view('tours');
     }
 
     /*Blog */

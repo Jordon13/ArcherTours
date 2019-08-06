@@ -209,6 +209,11 @@ class Client extends CI_Controller {
         echo '</pre>';
     }
 
+    public function testPackage(){
+        $ptype = $_GET['ptype'];
+        print_r($this->cs->getPackages($ptype));
+    }
+
 
 
 

@@ -21,6 +21,7 @@ $this->load->helper('section');
     body {
         position: relative;
         height: 100%!important;
+        list-style: circle!important;
     }
 
     .fpage {
@@ -57,6 +58,14 @@ $this->load->helper('section');
         margin-bottom: 1em!important;
       }
 
+      .liItem{
+        list-style: circle!important;
+      }
+
+      .liItem li{
+        padding-top: 0.5em!important;
+      }
+
 </style>
 
 </head>
@@ -64,7 +73,7 @@ $this->load->helper('section');
 
     <?php main_nav(); ?>
 
-    <div class="row fpage">
+    <div class="row fpage" style="margin-bottom:0px!important;">
       <div class="overlay"></div>
       
       <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 center"  style="height:100%!important; z-index:4!important; position:relative;">
@@ -78,39 +87,39 @@ $this->load->helper('section');
 
   </div>
     
-    <div class="row">
+  <?php if($data !== 0){?>
+    <div class="row" style="margin-top:1em!important;">
         
         <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
             <div class="row">
-
+                
+            {data}
                 <div class="col l4 m12 s12">
                     <div class="card sticky-action">
                         
 
                         <div class="card-image waves-effect waves-block waves-light">
-                            <span class="card-title" style="font-size:20px!important;">Jimmy Cliff Boulevard (One Way Trip)</span>
-                            <img class="activator" src="https://materializecss.com/images/office.jpg">
+                            <span class="card-title" style="font-size:20px!important;">{price_place} ({trip_type})</span>
+                            <img class="activator" src="<?php echo base_url('/uploads/prices-images/{price_image}')?>">
                         </div>
 
                         <div class="card-content">
-                            <span class="activator grey-text text-darken-4">Depart From Montego Bay<i class="material-icons right">more_vert</i></span>
-                            <br/>
-                            <p>Price: USD $15 (1 - 4 passengers )</p>
+                            <span class="activator grey-text text-darken-4"><i class="material-icons right">more_vert</i><b>Trip: From </b>{price_origin} <b>To</b> {price_destination}</span>
+                            <br/><br/>
+                            <p><b>Price Per Adult:</b> USD ${price_per_adult}</p>
+
+                            <p><b>Price Per Child:</b> USD ${price_per_child}</p>
+
+                            <p><b>Group Price:</b> USD ${display_price} for 4 people.</p><br/>
+
+                            <p><b>Description: </b>{price_description}</p>
                         </div>
 
                         <div class="card-reveal">
                             <span class="card-title grey-text text-darken-4">Additional Information<i class="material-icons right">close</i></span>
-                                <p>Breathless Resorts I Secrets Resorts I Sunscape Resorts  USD $200</p>
-
-                                <p>Hilton Rose Hall I Hyatt Ziva / Zilara I Jewel Grand USD $240</p>
-
-                                <p>Holiday Inn I Zoetry USD $230</p>
-
-                                <p>Riu Reggae I Riu Palace I Riu Montego Bay USD $220</p>
-
-                                <p>Iberostar Rose Hall USD $260</p>
-
-                                <p>Royalton White Sand / Blue Waters USD $280</p>
+                            <ul style="list-style: circle!important; padding:1em!important;" class="liItem">
+                            {price_addtional_info}<li>{item}</li>{/price_addtional_info}
+                            </ul>
                         </div>
 
                         
@@ -119,68 +128,23 @@ $this->load->helper('section');
 
                     </div>
                 </div>
-
-                <div class="col l4 m12 s12">
-                    <div class="card sticky-action">
-                        
-
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <span class="card-title" style="font-size:20px!important;">Jimmy Cliff Boulevard (One Way Trip)</span>
-                            <img class="activator" src="https://materializecss.com/images/office.jpg">
-                        </div>
-
-                        <div class="card-content">
-                            <span class="activator grey-text text-darken-4">Depart From Montego Bay<i class="material-icons right">more_vert</i></span>
-                            <br/>
-                            <p>Price: USD $15 (1 - 4 passengers )</p>
-                        </div>
-
-                        <div class="card-reveal">
-                            <span class="card-title grey-text text-darken-4">Additional Information<i class="material-icons right">close</i></span>
-                            <p>Each additional person  USD $4</p>
-                            <p>Kids Special</p>
-                        </div>
-
-                        
-
-                        <div class="card-action center"><a href="#">Book Now</a></div>
-
-                    </div>
-                </div>
-
-                <div class="col l4 m12 s12">
-                    <div class="card sticky-action">
-                        
-
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <span class="card-title" style="font-size:20px!important;">Jimmy Cliff Boulevard (One Way Trip)</span>
-                            <img class="activator" src="https://materializecss.com/images/office.jpg">
-                        </div>
-
-                        <div class="card-content">
-                            <span class="activator grey-text text-darken-4">Depart From Montego Bay<i class="material-icons right">more_vert</i></span>
-                            <br/>
-                            <p>Price: USD $15 (1 - 4 passengers )</p>
-                        </div>
-
-                        <div class="card-reveal">
-                            <span class="card-title grey-text text-darken-4">Additional Information<i class="material-icons right">close</i></span>
-                            <p>Each additional person  USD $4</p>
-                            <p>Kids Special</p>
-                        </div>
-
-                        
-
-                        <div class="card-action center"><a href="#">Book Now</a></div>
-
-                    </div>
-                </div>
+            {/data}
 
             </div>
         </div>
 
     </div>
+  <?php }else{?>
+    <div class="row white-text" style="background-color:rgba(35, 32, 32, 1);margin-bottom:0px!important;">
+      
+      <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 center"  style="height:100%!important; z-index:4!important; position:relative;">
+        <div class="row center" style="height:100%!important;">
+          <h2>۞ No Packages Available, Sorry. ۞</h2>
+        </div>
+      </div>
 
+    </div>
+  <?php }?>
     <?php main_footer(); ?>
 </body>
 </html>

@@ -105,9 +105,19 @@ class Clientside extends CI_Model {
 
                 $fbid = $result->blog_fb_id;
 
-                $comments = $this->face->GetCommentCount((string)$fbid);
-                $likes = $this->face->GetLikesCount((string)$fbid);
-                $shares = $this->face->GetSharesCount((string)$fbid);
+                $comments = 0;
+                $likes = 0;
+                $shares = 0;
+                $objectLink = '';
+
+                if(!empty($fbid) && $this->ses->userdata('fb_access_token') !== null){
+                    $comments = $this->face->GetCommentCount((string)$fbid);
+                    $likes = $this->face->GetLikesCount((string)$fbid);
+                    $shares = $this->face->GetSharesCount((string)$fbid);
+                    $objectLink = json_decode(json_encode($this->face->GetPostAction((string)$fbid)),true);
+                }
+
+                
 
                 if($comments === NULL){
                     $comments = 0;
@@ -128,7 +138,7 @@ class Clientside extends CI_Model {
                     'tags'=>explode(',',sanitizeInput2(base64_decode($result->blog_tags,true))),
                     'catch'=>$result->blog_catch_phrase,
                     'content'=>$content,
-                    'objectlink'=>json_decode(json_encode($this->face->GetPostAction((string)$fbid)),true),
+                    'objectlink'=>$objectLink,
                     'image'=>base_url("uploads/blog-images/$result->blog_image"),
                     'created'=>$result->blog_date_generated,
                     'comments'=>(string)$comments,
@@ -142,6 +152,58 @@ class Clientside extends CI_Model {
             }
 
             return $data;
+        }
+
+        return false;
+    }
+
+    public function getPackages($packageType = "3"){
+        //ptype 3 = taxi
+        //ptype 2 = toursExcursion
+        //ptype 1 = airporttransfer
+
+        $this->db->select("*");
+        $this->db->where("package_type",$packageType);
+        
+        $return = $this->db->get("sys_prices");
+
+        $result = $return->result_array();
+
+        $newArray = array();
+
+        if(count($result) > 0){
+
+            
+
+            foreach($result as $val){
+
+                $trip_type = 'Round Trip';
+                if($val['trip_type'] == 1){
+                    $trip_type = 'One Way Trip';
+                }
+
+                $val['price_description'] = base64_decode($val['price_description']);//price_addtional_info
+
+                $val['price_addtional_info'] = explode(',', sanitizeInput2(base64_decode($val['price_addtional_info'])));
+
+                $addinfoArray = array();
+
+                foreach($val['price_addtional_info'] as $item){
+                    $ad=array("item"=>'֍ '.$item);
+                    array_push($addinfoArray,$ad);
+                    // print_r($item);
+                }
+
+                $val['price_addtional_info'] = $addinfoArray;
+
+                $val['trip_type'] = $trip_type;
+
+                // $ne = array($val);
+                array_push($newArray,$val);
+                
+            }
+
+            return $newArray;
         }
 
         return false;

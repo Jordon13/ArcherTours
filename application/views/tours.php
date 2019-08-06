@@ -21,6 +21,7 @@ $this->load->helper('section');
     body {
         position: relative;
         height: 100%!important;
+        list-style: circle!important;
     }
 
     .fpage {
@@ -57,14 +58,136 @@ $this->load->helper('section');
         margin-bottom: 1em!important;
       }
 
+      .liItem{
+        list-style: circle!important;
+      }
+
+      .liItem li{
+        padding-top: 0.5em!important;
+      }
+
+      .book{
+          position: fixed!important;
+          background-color: rgba(35, 32, 32,0.4)!important;
+          height:100%!important;
+          width: 100%!important;
+          z-index: 10!important;
+
+      }
+
+      .modal-open {
+    /* disable scrollbar on both x and y axis */
+    overflow: hidden;
+
+    /* disable scrollbar on x-axis only */
+    overflow-x: hidden;
+
+    /* disable scrollbar on y-axis only */
+    overflow-y: hidden;
+
+    /* disable scroll */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    /* OPTIONAL: none of dom element will be click-able */
+    pointer-events: none;
+}
+
+.bcenter{
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
 </style>
 
 </head>
 <body class="">
+<!-- 
+<div class="book">
+        <div class="booknow">
+            
+        </div>
+    </div> -->
 
+    
+
+<!-- Modal Structure -->
+<div id="bookit" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <!-- <h4>Book Trip</h4> -->
+    <div class="divider"></div>
+
+    
+    
+    <form>
+
+        <div class="row">
+            <div class="input-field col l6 s12">
+                <input id="fname" type="text" name="fname" class="validate">
+                <label for="fname">Firstname</label>
+            </div>
+
+            <div class="input-field col l6 s12">
+                <input id="lname" type="text" name="lname" class="validate">
+                <label for="lname">Lastname</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col l6 s12">
+                <input id="adultcount" name="adultcount" type="number" class="validate">
+                <label for="adultcount">No. Of Adults</label>
+            </div>
+
+            <div class="input-field col l6 s12">
+                <input id="childcount" name="childcount" type="number" class="validate">
+                <label for="childcount">No. Of Children</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col l3 s12">
+                <input id="tripdate" name="tripdate" type="date" class="validate">
+                <label for="tripdate">Date Of Trip</label>
+            </div>
+
+            <div class="input-field col l9 s12">
+                <textarea name="adinfo" id="adinfo" type="text" class="materialize-textarea validate"></textarea>
+                <label for="adinfo">Additional Information</label>
+            </div>
+        </div>
+
+        <div class="row bcenter">
+            <div class="input-field col">
+            <button class="btn  btn-large yellow black-text waves-effect waves-light" type="submit" id="submit" style="border-radius:100px!important;">Book It!
+                <i class="material-icons right"></i>
+            </button>
+            </div>
+        </div>
+
+    </form>
+    <div class="divider"></div>
+
+    <blockquote>Please note we only process payments through paypal for this release.</blockquote>
+      
+    <blockquote>In the next release direct card payment will be available.</blockquote>
+      
+    <blockquote>There will be a popup to collect payment, please allow it for a successful booking.</blockquote>
+
+    <blockquote>Only 10% of the original cost will be collected.</blockquote>
+
+    </div>
+    <!-- <div class="modal-footer">
+        <a href="" class="modal-close waves-effect waves-red btn-flat">Close</a>
+    </div> -->
+    </div>
     <?php main_nav(); ?>
-
-    <div class="row fpage">
+    
+    <div class="row fpage" style="margin-bottom:0px!important;">
       <div class="overlay"></div>
       
       <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 center"  style="height:100%!important; z-index:4!important; position:relative;">
@@ -76,101 +199,94 @@ $this->load->helper('section');
         </div>
       </div>
 
-  </div>
+    </div>
     
-    <div class="row">
+    
+
+    <?php if($data !== 0){?>
+    <div class="row" style="margin-top:1em!important;">
         
         <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
             <div class="row">
-
+                
+            {data}
                 <div class="col l4 m12 s12">
                     <div class="card sticky-action">
                         
 
                         <div class="card-image waves-effect waves-block waves-light">
-                            <span class="card-title" style="font-size:20px!important;">Jimmy Cliff Boulevard (One Way Trip)</span>
-                            <img class="activator" src="https://materializecss.com/images/office.jpg">
+                            <span class="card-title" style="font-size:20px!important;">{price_place} ({trip_type})</span>
+                            <img class="activator" width="420" height="280" alt="no image"  src="<?php echo base_url('/uploads/prices-images/{price_image}')?>">
                         </div>
 
                         <div class="card-content">
-                            <span class="activator grey-text text-darken-4">Depart From Montego Bay<i class="material-icons right">more_vert</i></span>
-                            <br/>
-                            <p>Price: USD $15 (1 - 4 passengers )</p>
+                            <span class="activator grey-text text-darken-4"><i class="material-icons right">more_vert</i><b>Trip: From </b>{price_origin} <b>To</b> {price_destination}</span>
+                            <br/><br/>
+                            <p><b>Price Per Adult:</b> USD ${price_per_adult}</p>
+
+                            <p><b>Price Per Child:</b> USD ${price_per_child}</p>
+
+                            <p><b>Group Price:</b> USD ${display_price} for 4 people.</p><br/>
+
+                            <p><b>Description: </b>{price_description}</p>
                         </div>
 
                         <div class="card-reveal">
                             <span class="card-title grey-text text-darken-4">Additional Information<i class="material-icons right">close</i></span>
-                            <p>All inclusive of lunch, open bar, snorkeling, cliff jumping, swimming, live reggae band and transportation. </p>
+                            <ul style="list-style: circle!important; padding:1em!important;" class="liItem">
+                            {price_addtional_info}<li>{item}</li>{/price_addtional_info}
+                            </ul>
                         </div>
 
                         
 
-                        <div class="card-action center"><a href="#">Book Now</a></div>
+                        <div class="card-action center"><a class="waves-effect waves-light btn modal-trigger grey darken-3" href="#bookit">Book Now</a></div>
+                       
 
                     </div>
                 </div>
-
-                <div class="col l4 m12 s12">
-                    <div class="card sticky-action">
-                        
-
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <span class="card-title" style="font-size:20px!important;">Jimmy Cliff Boulevard (One Way Trip)</span>
-                            <img class="activator" src="https://materializecss.com/images/office.jpg">
-                        </div>
-
-                        <div class="card-content">
-                            <span class="activator grey-text text-darken-4">Depart From Montego Bay<i class="material-icons right">more_vert</i></span>
-                            <br/>
-                            <p>Price: USD $15 (1 - 4 passengers )</p>
-                        </div>
-
-                        <div class="card-reveal">
-                            <span class="card-title grey-text text-darken-4">Additional Information<i class="material-icons right">close</i></span>
-                            <p>Each additional person  USD $4</p>
-                            <p>Kids Special</p>
-                        </div>
-
-                        
-
-                        <div class="card-action center"><a href="#">Book Now</a></div>
-
-                    </div>
-                </div>
-
-                <div class="col l4 m12 s12">
-                    <div class="card sticky-action">
-                        
-
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <span class="card-title" style="font-size:20px!important;">Jimmy Cliff Boulevard (One Way Trip)</span>
-                            <img class="activator" src="https://materializecss.com/images/office.jpg">
-                        </div>
-
-                        <div class="card-content">
-                            <span class="activator grey-text text-darken-4">Depart From Montego Bay<i class="material-icons right">more_vert</i></span>
-                            <br/>
-                            <p>Price: USD $15 (1 - 4 passengers )</p>
-                        </div>
-
-                        <div class="card-reveal">
-                            <span class="card-title grey-text text-darken-4">Additional Information<i class="material-icons right">close</i></span>
-                            <p>Each additional person  USD $4</p>
-                            <p>Kids Special</p>
-                        </div>
-
-                        
-
-                        <div class="card-action center"><a href="#">Book Now</a></div>
-
-                    </div>
-                </div>
+            {/data}
 
             </div>
         </div>
 
     </div>
+  <?php }else{?>
+    <div class="row white-text" style="background-color:rgba(35, 32, 32, 1);margin-bottom:0px!important;">
+      
+      <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 center"  style="height:100%!important; z-index:4!important; position:relative;">
+        <div class="row center" style="height:100%!important;">
+          <h2>۞ No Packages Available, Sorry. ۞</h2>
+        </div>
+      </div>
+
+    </div>
+  <?php }?>
 
     <?php main_footer(); ?>
 </body>
+
+<script>
+
+    $('document').ready(()=>{
+        $('.modal').modal();
+
+        $('.modal').on("show", function () {
+            $("body").addClass("modal-open");
+        }).on("hidden", function () {
+            $("body").removeClass("modal-open")
+        });
+        
+
+        $('#submit').click(function(e){
+            
+            e.preventDefault();
+        
+            
+
+        });
+
+    });
+
+</script>
 </html>

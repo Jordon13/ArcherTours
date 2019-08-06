@@ -276,8 +276,6 @@ if(!($this->ses->has_userdata("user_ses"))){
 
                     var content = tinyMCE.get('content').getContent();
 
-                    // console.log(content);
-
                     $(".result").css("color","#388E3C");
                     $('.result').html("Processing...");
 

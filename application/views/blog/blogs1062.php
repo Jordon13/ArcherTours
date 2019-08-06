@@ -98,7 +98,7 @@ $this->load->helper('section');
 
     .chip{
       margin-left: 1%!important;
-      background-color: #fdd800!important;
+      background-color: rgba(35, 32, 32, 1)!important;
       color: white!important;
     }
 
@@ -153,8 +153,10 @@ $this->load->helper('section');
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0&appId=664328337419492&autoLogAppEvents=1"></script>
 
     <div class="fb-like col s12" data-href="https://www.facebook.com/208362526252176/" data-width="" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
-    <div class="fb-comments col s12" data-href="<?php echo $data['objectlink']['actions'][1]['link'];?>" data-width="1000" data-numposts="2"></div>
-    
+
+    <?php if($data['objectlink'] != ''){?>
+      <div class="fb-comments col s12" data-href="<?php echo $data['objectlink']['actions'][1]['link'];?>" data-width="1000" data-numposts="2"></div>
+    <?php }?>
   </div>
 
 
