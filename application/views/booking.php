@@ -384,6 +384,7 @@ $this->load->helper('section');
             <div class="row center-align result">
                 
             </div>
+
         </form>
 
       </div>

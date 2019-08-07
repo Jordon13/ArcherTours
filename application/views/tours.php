@@ -102,6 +102,12 @@ $this->load->helper('section');
       width: 100%;
     }
 
+    .result{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-evenly;
+    }
+
 </style>
 
 </head>
@@ -139,12 +145,26 @@ $this->load->helper('section');
 
         <div class="row">
             <div class="input-field col l6 s12">
-                <input id="adultcount" name="adultcount" type="number" class="validate">
+                <input id="email" type="email" name="email" class="validate">
+                <label for="email">Email Address</label>
+            </div>
+
+            <div class="input-field col l6 s12">
+                <input id="phone" type="text" name="phone" class="validate">
+                <label for="phone">Phone Number</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col l6 s12">
+            
+            
+                <input id="adultcount" name="adultcount" type="number" value="0" class="validate" >
                 <label for="adultcount">No. Of Adults</label>
             </div>
 
             <div class="input-field col l6 s12">
-                <input id="childcount" name="childcount" type="number" class="validate">
+                <input id="childcount" name="childcount" type="number" value="0" class="validate">
                 <label for="childcount">No. Of Children</label>
             </div>
         </div>
@@ -167,6 +187,15 @@ $this->load->helper('section');
                 <i class="material-icons right"></i>
             </button>
             </div>
+        </div>
+
+        <div class="row center-align result green-text">
+                
+        </div>
+
+        
+        <div class="row center-align results">
+                
         </div>
 
     </form>
@@ -203,13 +232,13 @@ $this->load->helper('section');
     
     
 
-    <?php if($data !== 0){?>
+    <?php if($datas !== 0){?>
     <div class="row" style="margin-top:1em!important;">
         
         <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
             <div class="row">
                 
-            {data}
+            {datas}
                 <div class="col l4 m12 s12">
                     <div class="card sticky-action">
                         
@@ -240,12 +269,12 @@ $this->load->helper('section');
 
                         
 
-                        <div class="card-action center"><a class="waves-effect waves-light btn modal-trigger grey darken-3" href="#bookit">Book Now</a></div>
+                        <div class="card-action center"><a class="waves-effect waves-light btn modal-trigger grey darken-3" id="{package_unique_id}" onclick=getItem('{package_unique_id}') href="#bookit">Book Now</a></div>
                        
 
                     </div>
                 </div>
-            {/data}
+            {/datas}
 
             </div>
         </div>
@@ -268,7 +297,26 @@ $this->load->helper('section');
 
 <script>
 
+    var items = new Array();
+
+    var totalCount = 0;
+
+    var currentItem = undefined;
+
+    var adults = 0;
+
+    Object.defineProperty(String.prototype, "ToInt", {
+        value: function ToInt() {
+            return parseInt(this,10) || 0;
+        },
+        writable: true,
+        configurable: true
+    });
+
     $('document').ready(()=>{
+
+        items = <?php echo json_encode($datas);?>
+
         $('.modal').modal();
 
         $('.modal').on("show", function () {
@@ -276,17 +324,98 @@ $this->load->helper('section');
         }).on("hidden", function () {
             $("body").removeClass("modal-open")
         });
-        
+
+        $('#adultcount').keyup(function(){
+            var text = $('#adultcount').val();
+            console.clear();
+            
+            totalCount = $('#childcount').val().ToInt() + text.ToInt();
+
+            adults = text.ToInt();
+
+            calculatePrice(text.ToInt(),$('#childcount').val().ToInt());
+        });
+
+        $('#childcount').keyup(function(){
+            var text = $('#childcount').val();
+            console.clear();
+            
+            totalCount = $('#adultcount').val().ToInt() + text.ToInt();
+
+            calculatePrice($('#adultcount').val().ToInt(),text.ToInt());
+        });
 
         $('#submit').click(function(e){
             
             e.preventDefault();
         
+            if(totalCount <= 0){
+                alert("Please specify the amount of people for this trip");
+            }else if(adults <= 0){
+                alert("Atleast one adult is needed to complete this transaction");
+            }
+
+            var form_data = new FormData();
+
+
             
 
         });
 
     });
+
+
+    function calculatePrice(adultCount, childCount){
+
+        $('.result').html("");
+
+        console.log("total count: "+totalCount);
+
+        var baseAdultPrice = currentItem.price_per_adult == "" ? 0 : currentItem.price_per_adult.ToInt();
+
+        var baseChildPrice = currentItem.price_per_child == "" ? 0 : currentItem.price_per_child.ToInt();
+
+        var displayPrice = currentItem.display_price == "" ? 0 : currentItem.display_price.ToInt();
+
+        var fourGenDiscount = 4;
+
+        if(totalCount === fourGenDiscount){
+            $('.result').html("<p><b>Total Adult Price: $ "+baseAdultPrice*adultCount+" USD</b></p>");
+            $('.result').append("<p><b>Total Children Price: $ "+baseChildPrice*childCount+" USD</b></p>");
+            $('.result').append("<p><b>Total Price (Original): $ "+((baseAdultPrice*adultCount) + (baseChildPrice*childCount))+" USD</b></p>");
+            $('.result').append("<p><b>Total Price (Discounted): $ "+displayPrice+" USD</b></p>");
+        }else{
+
+            $('.result').html("<p><b>Total Adult Price: $ "+baseAdultPrice*adultCount+" USD</b></p>");
+            $('.result').append("<p><b>Total Children Price: $ "+baseChildPrice*childCount+" USD</b></p>");
+            $('.result').append("<p><b>Total Price: $ "+((baseAdultPrice*adultCount) + (baseChildPrice*childCount))+" USD</b></p>");
+
+        }
+
+        console.log(adultCount);
+
+        var TotalPrice = 0;
+
+    }
+
+    function getItem(id){
+        if(id === undefined || id == ""){
+            currentItem = null;
+        }
+
+        if(items == null){
+            currentItem = null;
+        }
+
+        var item = items.filter(i => i.package_unique_id == id);
+
+        if(item === null || item === undefined){
+            currentItem = null;
+        }
+
+        currentItem = item[0];
+
+    }
 
 </script>
 </html>

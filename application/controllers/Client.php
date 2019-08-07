@@ -182,6 +182,10 @@ class Client extends CI_Controller {
         // echo $res['data']['summary']['total_count']." - cool";
     }
 
+    public function CreatePayment(){
+        $this->pal->getPayPalClient();
+    }
+
     
 
     public function testPay(){
@@ -194,15 +198,26 @@ class Client extends CI_Controller {
     }
 
     public function process(){
-        echo '<pre>';
-        $id = $this->pal->processPayment();
-        echo '</pre>';
+        
+        $result = $this->pal->processPayment();
 
-        echo "<a href='".base_url('client/refund?refid='.$id)."'>Cancel Payment</a>";
+        if($result === 200){
+            echo "This transaction has already been processed";
+            return;
+        }else if($result === false){
+            echo "Failed to execute payment, try again later. Could be due to slow connection or invalid information provided";
+            return;
+        }
+
+        
+        
+
+        
     }
 
 
     public function refund(){
+        // echo "<a href='".base_url('client/refund?refid='.$id)."'>Cancel Payment</a>";
         $id = $_GET['refid'];
         echo '<pre>';
         $this->pal->refundPayment($id);

@@ -99,7 +99,7 @@ class Paypal {
 
             $approvalUrl = $payment->getApprovalLink();
 
-        return '<script>window.open("'.$approvalUrl.'", "Payment Portal", "height=500,width=400,resizable=no");</script>';
+            return '<script>window.open("'.$approvalUrl.'", "Payment Portal", "height=800,width=600,resizable=no");</script>';
 
         } catch (PayPal\Exception\PayPalConnectionException $ex) {
             return false;
@@ -113,6 +113,10 @@ class Paypal {
     public function processPayment(){
 
         $paymentId = $_GET['paymentId'];
+
+        if($this->cs->PaymentIdExist($paymentId) === true){
+            return 200;
+        }
 
         $payment = Payment::get($paymentId, $this->apiContext);
 

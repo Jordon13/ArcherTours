@@ -28,6 +28,45 @@ class Clientside extends CI_Model {
         return false;
     }
 
+    public function InsertTransaction($data, $bookingId){
+
+        $inserttrans = $this->db->insert('sys_transaction',$data);
+
+		if($inserttrans == true){
+
+            $this->db->where('booking_unique_key', $bookingId);
+
+            $items = array('txn_id'=>$data['txn_id'],'booking_status'=>'booked');
+
+            $success = $this->db->update('sys_booking', $items);
+
+            if($success){
+                return true;
+            }
+        }
+        return false;
+
+    }
+        
+
+    public function PaymentIdExist($id){
+
+        $this->db->select("*");
+        $this->db->where("pay_id",$id);
+        $this->db->where("txn_state","complete");
+
+        $return = $this->db->get("sys_transaction");
+
+        $result = $return->result_array();
+
+        if(count($result) > 0){
+            return true;
+        }
+
+        return false;
+
+    }
+
     public function GetBlogs(){
         $this->db->select('*');
         $this->db->from('sys_blogs');

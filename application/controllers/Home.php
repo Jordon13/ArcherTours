@@ -75,13 +75,13 @@ class Home extends CI_Controller {
 
         if($packages === false){
             $data = array(
-                'data'=>0);
+                'datas'=>0);
             $this->ps->parse('tours',$data);
             return;
         }
 
         $data = array(
-            'data'=>$packages
+            'datas'=>$packages
         );
 
         $this->ps->parse('airporttransfer',$data);
@@ -94,13 +94,13 @@ class Home extends CI_Controller {
 
         if($packages === false){
             $data = array(
-                'data'=>0);
+                'datas'=>0);
             $this->ps->parse('tours',$data);
             return;
         }
 
         $data = array(
-            'data'=>$packages
+            'datas'=>$packages
         );
 
         $this->ps->parse('taxiservice',$data);
@@ -112,13 +112,13 @@ class Home extends CI_Controller {
 
         if($packages === false){
             $data = array(
-                'data'=>0);
+                'datas'=>0);
             $this->ps->parse('tours',$data);
             return;
         }
 
         $data = array(
-            'data'=>$packages
+            'datas'=>$packages
         );
 
         $this->ps->parse('tours',$data);
