@@ -75,6 +75,9 @@ $this->load->helper('section');
       </div>
 
     </div>
+
+
+    
     <?php main_footer(); ?>
 </body>
 </html>

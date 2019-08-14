@@ -129,7 +129,7 @@ $this->load->helper('section');
 
     
     
-    <form>
+    <form class="my-form">
 
         <div class="row">
             <div class="input-field col l6 s12">
@@ -348,6 +348,8 @@ $this->load->helper('section');
         $('#submit').click(function(e){
             
             e.preventDefault();
+
+            var form = $('.my-form').serializeArray();
         
             if(totalCount <= 0){
                 alert("Please specify the amount of people for this trip");
@@ -357,7 +359,65 @@ $this->load->helper('section');
 
             var form_data = new FormData();
 
+            for(x = 0; x < form.length; x++){
+                form_data.append(form[x].name,form[x].value);
+            }
 
+            form_data.append("PackageId",currentItem.package_unique_id)
+
+            console.log(form_data);
+
+            $.ajax({
+                url: "<?php echo site_url('/client/CreatePayment');?>",
+                method: "POST",
+                data: form_data,
+                beforeSend: function(){
+                  $(".result").css("color","#fdd800");
+
+                  $('.result').html("Processing...");
+
+                  $('.overlay-post').fadeIn(600);
+                },
+                success: function(e) {
+
+                    var result = undefined;
+
+                    try{
+                    //result  = $.parseJSON(e);
+                    }catch(exception){
+                        console.log("Falied To Parse Json Data, No Json Returned. Please check with the site admin there exist an error in the response.");
+
+                        $(".result").css("color","#d32f2f");
+
+                        $(".result").html("An Error Has Occured");
+
+                        $(".result").delay(2000).fadeOut(1000);
+
+                        $('.overlay-post').fadeOut(600);
+
+                        setTimeout(function(){
+                            $('.result').html("Try Again").fadeIn(0);
+                        },3000);
+                        return;
+                    }
+
+                    $(".result").css("color","#388E3C");
+
+                    $(".result").html(e);
+
+                    $(".result").delay(6000).fadeOut(1000);
+
+                    $('.overlay-post').fadeOut(600);
+
+                    setTimeout(function(){
+                        $('.result').html("Add Another Record").fadeIn(0);
+                    },2000);
+                },
+                contentType: false,
+                cache: false,
+                processData:false,       
+
+            });
             
 
         });

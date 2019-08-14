@@ -47,13 +47,28 @@ class Clientside extends CI_Model {
         return false;
 
     }
+
+    public function GetPackageById($id){
+        $this->db->select('*');
+        $this->db->from('sys_prices');
+        $this->db->where('package_unique_id',$id);
+        $query = $this->db->get();
+
+        $item = $query->first_row();
+
+        if($item != null){
+            return $item;
+        }
+
+        return false;
+    }
         
 
     public function PaymentIdExist($id){
 
         $this->db->select("*");
         $this->db->where("pay_id",$id);
-        $this->db->where("txn_state","complete");
+        $this->db->where("txn_state","completed");
 
         $return = $this->db->get("sys_transaction");
 

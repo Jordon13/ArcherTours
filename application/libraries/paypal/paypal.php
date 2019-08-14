@@ -51,10 +51,12 @@ class Paypal {
 
         $redirectUrls = new RedirectUrls();
 
-        $redirectUrls->setReturnUrl(base_url('/client/process'))
+        $redirectUrls->setReturnUrl(base_url('/client/process?bookingid='.$package->bookingid))
         ->setCancelUrl(base_url('/'));
 
         $itemList = new ItemList();
+
+        $items = array();
 
         foreach($package->items as $itm){
 
@@ -64,18 +66,31 @@ class Paypal {
             ->setCurrency($itm->currency)
             ->setQuantity($itm->quantity)
             ->setSku($itm->id)
+            ->setTax(0)
             ->setDescription($itm->desc)
             ->setPrice($itm->price);
 
-            $itemList->setItems(array($item));
+            array_push($items,$item);
 
         }
+
+        $itemList->setItems($items);
+
+        $details = new Details();
+
+        $details
+        ->setFee(0)
+        ->setSubtotal($package->total)
+        ->setTax(0)
+        ->setShipping(0)
+        ->setShippingDiscount(0);
 
         
         $amount = new Amount();
 
         $amount->setCurrency($package->currency)
-        ->setTotal($package->total);
+        ->setTotal($package->total)
+        ->setDetails($details);
 
 
         $transaction = new Transaction();
@@ -113,8 +128,9 @@ class Paypal {
     public function processPayment(){
 
         $paymentId = $_GET['paymentId'];
+        //echo $paymentId;
 
-        if($this->cs->PaymentIdExist($paymentId) === true){
+        if($this->ci->cs->PaymentIdExist($paymentId) === true){
             return 200;
         }
 
@@ -155,21 +171,28 @@ class Paypal {
             $data+=array("payer_id"=>$payerInfo->getPayerId());
             $data+=array("payer_country"=>$payerInfo->getCountryCode());
             $data+=array("txn_id"=>$sale->getId());
-            $data+=array("transaction_state"=>$sale->getState());
+            $data+=array("txn_state"=>$sale->getState());
             $data+=array("item_id"=>$item->getSku());
-            $data+=array("item_quntity"=>$item->getQuantity());
+            $data+=array("item_quantity"=>$item->getQuantity());
             $data+=array("total_price"=>$sale->getAmount()->getTotal());
             $data+=array("currency"=>$sale->getAmount()->getCurrency());
             $data+=array("transaction_fee"=>$tranFee->getValue());
             $data+=array("transaction_date"=>$sale->getCreateTime());
             $data+=array("invoice_number"=>$transaction->invoice_number);
 
-            return $data;
+            if($this->ci->cs->InsertTransaction($data,$_GET['bookingid'])){
+
+                return $data;
+            }
+
+            return false;
 
         } catch (PayPal\Exception\PayPalConnectionException $ex) {
-            return false;
+            // return false;
+            print_r($ex->getData());
         } catch (Exception $ex) {
-            return false;
+            print_r($ex->getData());
+            // return false;
         }
     }
 
