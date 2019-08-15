@@ -343,15 +343,15 @@ class Client extends CI_Controller {
             return;
         }
 
-        echo "<h2 style='color:green;'>Payment was successful</h2><br/>";
-        echo "<b>Transaction Id: </b>".$result['txn_id']."<br/>";
-        echo "<b>Transaction State: </b>".$result['txn_state']."<br/>";
-        echo "<b>Item Amount: </b>".$result['item_quantity']."<br/>";
-        echo "<b>Invoice Id: </b>".$result['invoice_number']."<br/>";
-        echo "<b>Currency: </b>".$result['currency']."<br/>";
-        echo "<b>Total Price: </b>".$result['total_price']."<br/>";
+        // echo "<h2 style='color:green;'>Payment was successful</h2><br/>";
+        // echo "<b>Transaction Id: </b>".$result['txn_id']."<br/>";
+        // echo "<b>Transaction State: </b>".$result['txn_state']."<br/>";
+        // echo "<b>Item Amount: </b>".$result['item_quantity']."<br/>";
+        // echo "<b>Invoice Id: </b>".$result['invoice_number']."<br/>";
+        // echo "<b>Currency: </b>".$result['currency']."<br/>";
+        // echo "<b>Total Price: </b>".$result['total_price']."<br/>";
 
-        return;
+        $this->load->view('sections/paymentsuccess',$result);
         
     }
 
@@ -365,8 +365,7 @@ class Client extends CI_Controller {
     }
 
     public function testPackage(){
-        $ptype = $_GET['ptype'];
-        print_r($this->cs->getPackages($ptype));
+        $this->load->view('sections/paymentsuccess');
     }
 
 
