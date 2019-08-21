@@ -238,8 +238,8 @@ class General extends CI_Model {
             'protocol'  => 'smtp',
             'smtp_host' => 'ssl://smtp.googlemail.com',
             'smtp_port' => 465,
-            'smtp_user' => 'freshcode9@gmail.com',
-            'smtp_pass' => 'Love123456789',
+            'smtp_user' => MY_EMAIL_ADDR,
+            'smtp_pass' => MY_EMAIL_PASSW,
             'mailtype'  => 'html',
             'smtp_keepalive' => 'TRUE',
             '_smtp_auth'=>'TRUE',
@@ -250,7 +250,7 @@ class General extends CI_Model {
         $this->email->set_mailtype("html");
         $this->email->set_newline("\r\n");
         $link = site_url("admin/login?error=Welcome to Archer 1062 Tours, if this is your first time we suggest you create a new password after logging in with the system provided one");
-        $this->email->from('freshcode9@gmail.com', 'Archer 1062 Tours');
+        $this->email->from(MY_EMAIL_ADDR, 'Archer 1062 Tours');
         $this->email->to($emailAddress);
         $this->email->subject('Admin System - Login Cendentials For Archer 1062 Tours');
         $this->email->message('<div style="border-radius:5px;border: 1px solid rgba(100,100,100,0.2);width:250px;background-color:#F5F5F5;">

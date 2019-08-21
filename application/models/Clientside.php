@@ -277,8 +277,8 @@ class Clientside extends CI_Model {
             'protocol'  => 'smtp',
             'smtp_host' => 'ssl://smtp.googlemail.com',
             'smtp_port' => 465,
-            'smtp_user' => 'freshcode9@gmail.com',
-            'smtp_pass' => 'Love123456789',
+            'smtp_user' => MY_EMAIL_ADDR,
+            'smtp_pass' => MY_EMAIL_PASSW,
             'mailtype'  => 'html',
             'smtp_keepalive' => 'TRUE',
             '_smtp_auth'=>'TRUE',
@@ -289,8 +289,8 @@ class Clientside extends CI_Model {
         $this->email->set_mailtype("html");
         $this->email->set_newline("\r\n");
         $link = site_url("admin/");
-        $this->email->from('freshcode9@gmail.com', 'Archer 1062 Tours');
-        $this->email->to('freshcode9@gmail.com');
+        $this->email->from(MY_EMAIL_ADDR, 'Archer 1062 Tours');
+        $this->email->to(MY_EMAIL_ADDR);
         $this->email->subject($data['_subject']);
         $this->email->message('
             <p><b>Name:</b> '.$data['_name'].'</p>
