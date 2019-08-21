@@ -351,7 +351,7 @@ class Client extends CI_Controller {
         // echo "<b>Currency: </b>".$result['currency']."<br/>";
         // echo "<b>Total Price: </b>".$result['total_price']."<br/>";
 
-        $this->load->view('sections/paymentsuccess',$result);
+        $this->load->view('sections/paymentsuccess',array('data'=>$result));
         
     }
 

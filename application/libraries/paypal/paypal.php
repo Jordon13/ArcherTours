@@ -117,10 +117,10 @@ class Paypal {
             return '<script>window.open("'.$approvalUrl.'", "Payment Portal", "height=800,width=600,resizable=no");</script>';
 
         } catch (PayPal\Exception\PayPalConnectionException $ex) {
-            print_r($ex->getData());
+            //print_r($ex->getData());
             return false;
         } catch (Exception $ex) {
-            print_r($ex->getData());
+           //print_r($ex->getData());
             return false;
         }
 
@@ -183,6 +183,8 @@ class Paypal {
             $data+=array("invoice_number"=>$transaction->invoice_number);
 
             if($this->ci->cs->InsertTransaction($data,$_GET['bookingid'])){
+
+                $data+=array("BookingId"=>$_GET['bookingid']);
 
                 return $data;
             }

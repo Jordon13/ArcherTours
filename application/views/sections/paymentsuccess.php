@@ -1,6 +1,7 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->helper('section');
+
 ?>
 <!Doctype html>
 
@@ -73,12 +74,13 @@ $this->load->helper('section');
             <div class="card-stacked">
                 <div class="card-content">
                 
-                <p><b>Transaction Id: </b><? echo $result['txn_id']?></p>
-                <p><b>Transaction State: </b><? echo $result['txn_state']?></p>
-                <p><b>Item Amount: </b><? echo $result['item_quantity']?></p>
-                <p><b>Invoice Id: </b><? echo $result['invoice_number']?></p>
-                <p><b>Currency: </b><? echo $result['currency']?></p>
-                <p><b>Total Price: </b><? echo $result['total_price']?></p>
+                <p><b>Transaction Id: </b><?php echo $data['txn_id'];?></p>
+                <p><b>Transaction State: </b><?php echo $data['txn_state'];?></p>
+                <p><b>Item Amount: </b><?php echo $data['item_quantity'];?></p>
+                <p><b>Booking Id: </b><?php echo $data['BookingId'];?></p>
+                <p><b>Invoice Id: </b><?php echo $data['invoice_number'];?></p>
+                <p><b>Currency: </b><?php echo $data['currency'];?></p>
+                <p><b>Total Price: </b><?php echo $data['total_price'];?></p>
                 </div>
                 <div class="card-action center">
                     <a class="waves-effect waves-light btn modal-trigger green darken-3" href="#">Print</a>
