@@ -125,9 +125,9 @@ $this->load->helper('section');
               <div class="social-stats">
                 <p><i class="material-icons">access_time</i> {created}</p>
                 <p><i class="material-icons">person</i>  {fullname}</p>
-                <p><i class="material-icons">mode_comment</i>{comments}</p>
+                <!-- <p><i class="material-icons">mode_comment</i>{comments}</p>
                 <p><i class="material-icons">thumb_up</i> {likes}</p>
-                <p><i class="material-icons">screen_share</i> {shares}</p>
+                <p><i class="material-icons">screen_share</i> {shares}</p> -->
               </div>
 
             </div>

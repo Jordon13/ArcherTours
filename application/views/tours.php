@@ -105,7 +105,7 @@ $this->load->helper('section');
     .result{
         display: flex;
         flex-flow: row wrap;
-        justify-content: space-evenly;
+        justify-content: center;
     }
 
 </style>

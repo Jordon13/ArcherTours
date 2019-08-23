@@ -48,6 +48,16 @@ class Clientside extends CI_Model {
 
     }
 
+    public function InsertSubscriber($data){
+        $insertsub = $this->db->insert('sys_subscribe',$data);
+
+		if($insertsub == true){
+
+            return true;
+        }
+        return false;
+    }
+
     public function GetPackageById($id){
         $this->db->select('*');
         $this->db->from('sys_prices');
@@ -100,9 +110,9 @@ class Clientside extends CI_Model {
 
             $fbid = $result->blog_fb_id;
 
-            $comments = $this->face->GetCommentCount((string)$fbid);
-            $likes = $this->face->GetLikesCount((string)$fbid);
-            $shares = $this->face->GetSharesCount((string)$fbid);
+            $comments = NULL;//$this->face->GetCommentCount((string)$fbid);
+            $likes = NULL;//$this->face->GetLikesCount((string)$fbid);
+            $shares = NULL;//$this->face->GetSharesCount((string)$fbid);
 
             if($comments === NULL){
                 $comments = 0;
@@ -164,12 +174,12 @@ class Clientside extends CI_Model {
                 $shares = 0;
                 $objectLink = '';
 
-                if(!empty($fbid) && $this->ses->userdata('fb_access_token') !== null){
-                    $comments = $this->face->GetCommentCount((string)$fbid);
-                    $likes = $this->face->GetLikesCount((string)$fbid);
-                    $shares = $this->face->GetSharesCount((string)$fbid);
-                    $objectLink = json_decode(json_encode($this->face->GetPostAction((string)$fbid)),true);
-                }
+                // if(!empty($fbid) && $this->ses->userdata('fb_access_token') !== null){
+                //     $comments = $this->face->GetCommentCount((string)$fbid);
+                //     $likes = $this->face->GetLikesCount((string)$fbid);
+                //     $shares = $this->face->GetSharesCount((string)$fbid);
+                //     $objectLink = json_decode(json_encode($this->face->GetPostAction((string)$fbid)),true);
+                // }
 
                 
 
@@ -192,7 +202,7 @@ class Clientside extends CI_Model {
                     'tags'=>explode(',',sanitizeInput2(base64_decode($result->blog_tags,true))),
                     'catch'=>$result->blog_catch_phrase,
                     'content'=>$content,
-                    'objectlink'=>$objectLink,
+                    'objectlink'=>$result->fb_comment_link,
                     'image'=>base_url("uploads/blog-images/$result->blog_image"),
                     'created'=>$result->blog_date_generated,
                     'comments'=>(string)$comments,

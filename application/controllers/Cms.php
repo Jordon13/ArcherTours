@@ -356,10 +356,13 @@ class Cms extends CI_Controller {
                             http_response_code(400);
                             return;
                         }
+
+                        $var = $this->face->GetPostAction((string)$res->Message);
                         
                         $updateRes = $this->cms->UpdateBlog(array(
                             'blog_unique_id' => $blog_unique_id,
-                            'blog_fb_id' => $res->Message
+                            'blog_fb_id' => $res->Message,
+                            'fb_comment_link'=>$var->actions[1]->link
                         ));
 
                         if(!$updateRes){
@@ -376,6 +379,8 @@ class Cms extends CI_Controller {
                         }
                         
                     }
+
+                    
                 }
 
                 echo json_encode($result);

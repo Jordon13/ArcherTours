@@ -32,7 +32,11 @@
     padding: 0.3em!important;
 }
 
-.cusexp ul li:hover {
+.cusexp ul li a{
+    color:#bdbdbd!important;
+}
+
+.cusexp ul li a:hover {
     color: #fdd800!important;
     cursor: pointer;
     transition: color 0.3s;

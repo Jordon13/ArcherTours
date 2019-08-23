@@ -95,11 +95,11 @@ if(!function_exists('main_nav')){
 
 
     <ul class="sidenav" id="slidenav">
-        <li><a href="sass.html">Services</a></li>
-        <li><a href="badges.html">Gallery</a></li>
-        <li><a href="badges.html">About</a></li>
-        <li><a href="badges.html">Contact</a></li>
-        <li><a href="badges.html">Blog</a></li>
+        <li><a href="'.site_url('/services').'">Services</a></li>
+        <li><a href="'.site_url('/gallery').'">Gallery</a></li>
+        <li><a href="'.site_url('/about').'">About</a></li>
+        <li><a href="'.site_url('/contact').'">Contact</a></li>
+        <li><a href="'.site_url('/blog').'">Blog</a></li>
 
         <div class="nav-misc">
             <button><a href="'.site_url('/booking').'">Book A Trip</a></button>
@@ -124,9 +124,9 @@ if(!function_exists('main_footer')){
               <p style="padding-bottom:1em!important;"><b>Stay Connected</b></p>
 
               <div class="row" style="padding-bottom:0px!important;">
-                <div class="col inner-img"><img class="himg" src="'.base_url('assets/icons/facebook.png').'"/></div>
-                <div class="col inner-img"><img  class="himg" src="'.base_url('assets/icons/instagram.png').'"/></div>
-                <div class="col inner-img"><img class="himg" src="'.base_url('assets/icons/whatsapp.png').'"/></div>
+                <div class="col inner-img"><a href="https://www.facebook.com/archer1062tours"><img class="himg" src="'.base_url('assets/icons/facebook.png').'"/></a></div>
+                <div class="col inner-img"><a href="https://www.instagram.com/archer1062tours/?hl=en"><img  class="himg" src="'.base_url('assets/icons/instagram.png').'"/></a></div>
+                <div class="col inner-img"><a href="tel:1876-804-6480"><img class="himg" src="'.base_url('assets/icons/whatsapp.png').'"/></a></div>
               </div>
 
               <div class="row">
@@ -151,21 +151,20 @@ if(!function_exists('main_footer')){
               <div class="row cusexp" style="padding-bottom:1em!important;">
                 <div class="col l4 m8 s12">
                   <ul>
-                    <li>Home</li>
-                    <li>About</li>
-                    <li>Blogs</li>
-                    <li>Deals</li>
-                    <li>Services</li>
-                    <li>Recent Places</li>
+                    <li><a href="'.site_url('/').'">Home</a></li>
+                    <li><a href="'.site_url('/about').'">About</a></li>
+                    <li><a href="'.site_url('/blog').'">Blogs</a></li>
+                    <li><a href="'.site_url('/deal').'">Deals</a></li>
+                    <li><a href="'.site_url('/services').'">Services</a></li>
+                    
                   </ul>
                 </div>
                 <div class="col l4 m8 s12">
                 <ul>
-                    <li>Gallery</li>
-                    <li>Trip Advisor</li>
-                    <li>Contact Us</li>
-                    <li>Testimonials</li>
-                    <li>Newsletter</li>
+                    <li><a href="'.site_url('/gallery').'">Gallery</a></li>
+                    <li><a href="'.site_url('/contact').'">Contact Us</a></li>
+                    <li><a href="'.site_url('/testi').'">Testimonials</a></li>
+                    <li><a href="'.site_url('/recent').'">Recent Places</a></li>
                   </ul>
                 </div>
               </div>

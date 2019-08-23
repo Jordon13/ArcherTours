@@ -135,9 +135,9 @@ $this->load->helper('section');
         <div class="row" style="margin-top: 3%!important;">
           <div class="social-stats">
             <p><b>Date Posted: </b> <em><?php echo $data['created'];?></em></p>
-            <p><b>Comments: </b> <em><?php echo $data['comments'];?></em></p>
-            <p><b>Likes: </b> <em><?php echo $data['likes'];?></em></p>
-            <p><b>Shares: </b> <em><?php echo $data['shares'];?></em></p>
+            <!-- <p><b>Comments: </b> <em><?php //echo $data['comments'];?></em></p>
+            <p><b>Likes: </b> <em><?php //echo $data['likes'];?></em></p>
+            <p><b>Shares: </b> <em><?php //echo $data['shares'];?></em></p> -->
           </div>
         </div>
 
@@ -155,7 +155,7 @@ $this->load->helper('section');
     <div class="fb-like col s12" data-href="https://www.facebook.com/208362526252176/" data-width="" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
 
     <?php if($data['objectlink'] != ''){?>
-      <div class="fb-comments col s12" data-href="<?php echo $data['objectlink']['actions'][1]['link'];?>" data-width="1000" data-numposts="2"></div>
+      <div class="fb-comments col s12" data-href="<?php echo $data['objectlink'];?>" data-width="1000" data-numposts="2"></div>
     <?php }?>
   </div>
 

@@ -182,6 +182,16 @@ class Client extends CI_Controller {
         // echo $res['data']['summary']['total_count']." - cool";
     }
 
+    public function Subcribe(){
+        //InsertSubscriber
+
+        $_useremail = $this->input->post('email',true);
+
+        if(empty(_useremail)){
+            echo "please enter a valid email address";
+        }
+    }
+
     public function CreatePayment(){
 
         $fname = $this->input->post('fname',true);
@@ -320,8 +330,6 @@ class Client extends CI_Controller {
         
     }
 
-    
-
     public function testPay(){
         // $this->pal->getPayPalClient();
         // $this->config->load('paypal', TRUE);
@@ -354,7 +362,6 @@ class Client extends CI_Controller {
         $this->load->view('sections/paymentsuccess',array('data'=>$result));
         
     }
-
 
     public function refund(){
         // echo "<a href='".base_url('client/refund?refid='.$id)."'>Cancel Payment</a>";

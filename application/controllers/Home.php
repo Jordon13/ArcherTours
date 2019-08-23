@@ -76,7 +76,7 @@ class Home extends CI_Controller {
         if($packages === false){
             $data = array(
                 'datas'=>0);
-            $this->ps->parse('tours',$data);
+            $this->ps->parse('airporttransfer',$data);
             return;
         }
 
@@ -95,7 +95,7 @@ class Home extends CI_Controller {
         if($packages === false){
             $data = array(
                 'datas'=>0);
-            $this->ps->parse('tours',$data);
+            $this->ps->parse('taxiservice',$data);
             return;
         }
 
