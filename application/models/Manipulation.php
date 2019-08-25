@@ -105,15 +105,23 @@ class Manipulation extends CI_Model {
         $this->db->order_by('blog_date_generated','DESC');
         $blogs = $this->db->get("sys_blogs")->result_array();
 
-        $aboutus = $this->db->get("sys_about_us")->result_array();
+        $aboutus = $this->LoadAboutUsPage();
 
 
-        $contact = $this->db->get("sys_contact_page")->result_array();
+        $contact = $this->LoadContactUsPage();
 
         $data = array('homepage'=>$homepage[0],'specials'=>$specials,'blogs'=>$blogs, 'aboutus'=>$aboutus[0], 'contact'=>$contact[0]);
 
         return $data;
 
+    }
+
+    public function LoadAboutUsPage(){
+        return $this->db->get("sys_about_us")->result_array();
+    }
+
+    public function LoadContactUsPage(){
+        return $this->db->get("sys_contact_page")->result_array();
     }
 
 

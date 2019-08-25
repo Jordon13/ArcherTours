@@ -49,9 +49,15 @@ $this->load->helper('section');
       }
 
       .lead {
-        font-size: 18px;
+        font-size: 23px;
         padding: 0.5em;
-        margin-bottom: 1em!important;
+        margin-bottom: 0.5em!important;
+        cursor: pointer;
+      }
+
+
+      .lead:hover{
+        color: rgba(35, 32, 32, 0.6);
       }
 
       .custom-img{
@@ -60,6 +66,10 @@ $this->load->helper('section');
       .custom-img img{
         width:100%;
         /* height:220px; */
+      }
+
+      .media-option{
+        font-size: 20px;
       }
 
 
@@ -84,47 +94,43 @@ $this->load->helper('section');
     </div>
 
     <div class="row">
+
+      <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
+
+        <div class="row media-option" style="margin-bottom:0px!important;">
+
+          <div class="col lead">Photos</div>
+          <div class="col lead">Videos</div>
+
+        </div>
+
+        <div class="divider"></div>
+
+      </div>
+
+      
+
+    </div>
+
+    <!-- <div class="row">
       <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 center">
         <div class="row">
 
           <div class="col l4 m12 s12 custom-img">
             <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" src="<?php echo base_url('assets/23.jpg')?>"> 
           </div>
-          
-          <div class="col l4 m12 s12 custom-img">
-            <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" src="<?php echo base_url('assets/23.jpg')?>">
-          </div>
-          
-          <div class="col l4 m12 s12 custom-img">
-            <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" src="<?php echo base_url('assets/23.jpg')?>">
-          </div>
 
-          <div class="col l4 m12 s12 custom-img center">
-            <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" src="<?php echo base_url('assets/23.jpg')?>"> 
-            <!-- <p class="col s12" style="display:flex!important; align-items:center!important; justify-content: space-between!important;"><i class="material-icons">visibility</i> 12</p>
-            <p class="col s12" style="display:flex!important; align-items:center!important; justify-content: space-between!important;"><span>Date Posted:</span> 12-12-19</p> -->
-          </div>
-          
-          <div class="col l4 m12 s12 custom-img">
-            <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" src="<?php echo base_url('assets/23.jpg')?>">
-          </div>
-          
-          <div class="col l4 m12 s12 custom-img">
-            <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" src="<?php echo base_url('assets/23.jpg')?>">
-          </div>
+        </div>
+      </div>
+    </div> -->
+
+    <div class="row">
+      <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 center">
+        <div class="row">
 
           <div class="col l4 m12 s12 custom-img">
             <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" src="<?php echo base_url('assets/23.jpg')?>"> 
           </div>
-          
-          <div class="col l4 m12 s12 custom-img">
-            <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" src="<?php echo base_url('assets/23.jpg')?>">
-          </div>
-          
-          <div class="col l4 m12 s12 custom-img">
-            <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" src="<?php echo base_url('assets/23.jpg')?>">
-          </div>
-
 
         </div>
       </div>

@@ -44,7 +44,9 @@ class Home extends CI_Controller {
 
     public function about()
     {
-        $this->load->view('about');
+
+
+        $this->load->view('about', array('data'=>$this->mn->LoadAboutUsPage()[0]));
     }
 
     public function services(){
@@ -62,7 +64,7 @@ class Home extends CI_Controller {
 
     public function contact()
     {
-        $this->load->view('contact');
+        $this->load->view('contact', array('data'=>$this->mn->LoadContactUsPage()[0]));
     }
 
     public function gallery()

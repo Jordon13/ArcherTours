@@ -24,7 +24,7 @@ $this->load->helper('section');
       }
 
       .fpage {
-          background-image: url(<?php echo base_url('assets/20.jpg')?>);
+          background-image: url(<?php echo base_url('assets/'.$data['_about_us_back_img'])?>);
           background-size: cover;
           background-repeat: no-repeat;
           background-position: center;
@@ -35,7 +35,7 @@ $this->load->helper('section');
       }
 
       .stats {
-          background-image: url(<?php echo base_url('assets/15.jpg')?>);
+          background-image: url(<?php echo base_url('assets/'.$data['_about_stat_img'])?>);
           background-size: cover;
           background-repeat: no-repeat;
           background-position: center;
@@ -48,7 +48,7 @@ $this->load->helper('section');
       }
 
       .about-back-img {
-          background-image: url(<?php echo base_url('assets/gallery/img1.jpeg')?>);
+          background-image: url(<?php echo base_url('assets/'.$data['_about_title_img'])?>);
           background-size: cover;
           background-repeat: no-repeat;
           background-position: center;
@@ -124,27 +124,21 @@ $this->load->helper('section');
         <div class="col l4 m12 s12">
           <div class="card-panel z-depth-0">
             <h5 class="custom-card-header"><span class="" style="color:#fdd800!important;">01</span> Diverse Destinations</h5>
-            <span class="">I am a very simple card. I am good at containing small bits of information.
-            I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
-            </span>
+            <span class=""><?php echo $data['_about_diverse'];?></span>
           </div>
         </div>
 
         <div class="col l4 m12 s12">
           <div class="card-panel z-depth-0">
             <h5 class="custom-card-header"><span class="" style="color:#fdd800!important;">02</span> Value For Money</h5>
-            <span class="">I am a very simple card. I am good at containing small bits of information.
-            I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
-            </span>
+            <span class=""><?php echo $data['_about_value'];?></span>
           </div>
         </div>
 
         <div class="col l4 m12 s12">
           <div class="card-panel z-depth-0">
             <h5 class="custom-card-header"><span class="" style="color:#fdd800!important;">03</span> Passionate Travel</h5>
-            <span class="">I am a very simple card. I am good at containing small bits of information.
-            I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
-            </span>
+            <span class=""><?php echo $data['_about_passionate'];?></span>
           </div>
         </div>
 
@@ -195,15 +189,8 @@ $this->load->helper('section');
           <div class="col l6 m12 s12 " style="height:auto!important;">
             <div class="row valign-wrapper"  style="height:auto!important; padding-left:2em!important;">
               <div class="col s12" >
-                <h3 class="header">The Best Tour Agency</h3>
-                <p class="lead">We take pride in providing exceptional services to our clients/guests 
-                    here in Jamaica. We provide airport transfer to and from Sangster International Airport.
-                     We will take care of you and yours the minute you exit the custom area at the ports whether
-                     you travel by air or sea No matter how small or how large the group is whether you are here
-                     on vacation, business, church or school mission our reliable, knowledgeable, courteous and
-                     trustworthy drivers will puntually take care of you and yours from day one to the day you
-                     leave We will fullfill your needs for taxi services for any Tours/Excursion or if you just
-                     want go on a "JOYRIDE"</p>
+                <h3 class="header"><?php echo $data['_about_title'];?></h3>
+                <p class="lead"><?php echo $data['_about_msg'];?></p>
               </div>
             </div>
           </div>

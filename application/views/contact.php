@@ -23,7 +23,7 @@ $this->load->helper('section');
         }
 
         .fpage {
-            background-image: url(<?php echo base_url('assets/21.jpg')?>);
+            background-image: url(<?php echo base_url('assets/'.$data['_contact_back_img'])?>);
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
@@ -93,14 +93,14 @@ $this->load->helper('section');
         border: none!important;
         color:white;
         outline: none;
-        background-color:rgba(253, 216, 0, 1);
+        background-color:rgba(35, 32, 32, 1);
         color: white!important;
         font-weight: bolder;
         cursor: pointer;
       }
 
       .custom-input button:hover{
-        background-color: rgba(253, 216, 0, 0.5)!important;
+        background-color: rgba(35, 32, 32, 0.5)!important;
       }
 
       .custom-input button:focus{
@@ -179,19 +179,19 @@ $this->load->helper('section');
           </div>
 
           <div class="col l3 m12 s12">
-            <p class="lead">Address:  198 West 21th Street, Suite 721 New York NY 10016</p>
+            <p class="lead">Address:  <?php echo $data['_contact_address'];?></p>
           </div>
 
           <div class="col l3 m12 s12">
-            <p class="lead">Phone: + 1235 2355 98</p>
+            <p class="lead">Phone: <?php echo $data['_contact_phone'];?></p>
           </div>
 
           <div class="col l3 m12 s12">
-            <p class="lead">Email: info@yoursite.com</p>
+            <p class="lead">Email: <?php echo $data['_contact_email'];?></p>
           </div>
 
           <div class="col l3 m12 s12">
-            <p class="lead">Website yoursite.com</p>
+            <p class="lead">Website: <a href="<?php echo site_url('/')?>">Visit Website</a></p>
           </div>
 
         </div>
@@ -208,7 +208,7 @@ $this->load->helper('section');
           
           <div class="col l6 m12 s12 modify-img" style="position:relative!important; ">
             <!-- <div class="overlay"></div> -->
-            <img src="<?php echo base_url('assets/map.png');?>" alt="no image">
+            <img src="<?php echo base_url('assets/map.jpg');?>" class="responsive-img" alt="no image">
           </div>
           
           <form class="col l6 m12 s12 my-form"

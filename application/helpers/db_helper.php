@@ -47,15 +47,17 @@ if(!function_exists('News')){
             </div>
             <div class="col s11">
               <span class="white-text">
-                '.$item[''].'
+                '.substr($item['recent_desc'],0,80).'...
               </span>
             </div>
           </div>
         </div>';
       }
+
+      return $data;
     }
 
-    return NULL;
+    return 'No recent activites within the company.';
   }
 }
 

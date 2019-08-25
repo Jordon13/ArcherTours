@@ -183,7 +183,7 @@ if(!function_exists('main_footer')){
             <div class="col l4 m4 s12 sec1">
             <h5 style="padding-bottom:1em!important;">Our News</h5>
 
-              
+              '.News().'
 
             </div>
 
