@@ -15,7 +15,7 @@ $this->load->helper('section');
     
     <style>
       .fpage {
-          background-image: url(<?php echo base_url('assets/17.jpg')?>);
+          background-image: url(<?php echo base_url('assets/'.$data['homepage']['_home_img'])?>);
           background-size: cover;
           background-repeat: no-repeat;
           background-position: center;
@@ -25,7 +25,7 @@ $this->load->helper('section');
       }
 
       .contact-section {
-          background-image: url(<?php echo base_url('assets/16.jpg')?>);
+          background-image: url(<?php echo base_url('assets/'.$data['contact']['_contact_img'])?>);
           background-size: cover;
           background-repeat: no-repeat;
           background-position: center;
@@ -37,7 +37,7 @@ $this->load->helper('section');
 
     .whyus {
         position: relative!important;
-        background-image: url(<?php echo base_url('assets/13.jpg')?>);
+        background-image: url(<?php echo base_url('assets/'.$data['aboutus']['_about_us_img'])?>);
         background-size: cover!important;
         background-repeat: no-repeat!important;
         background-position: center!important;
@@ -57,7 +57,6 @@ $this->load->helper('section');
     </style>
     <body>
 
-
       <?php main_nav(); ?>
       <div class="fpage valign-wrapper" style="position:relative;">
         <div class="overlay"></div>
@@ -66,34 +65,26 @@ $this->load->helper('section');
 
 
           <div>
-              <h2  class="animated bounceIn header myhead white-text center">Welcome<br/>Archer 1062 Tours</h2>
+              <h2  class="animated bounceIn header myhead white-text center"><?php echo $data['homepage']['_welcome_msg']?></h2>
           </div>
 
-          <blockquote id="typehead" class="animated flipInX white-text lead"><em> “Travel makes one modest. You see what a tiny place you occupy in the world.” -Gustav Flaubert</em></blockquote>
-
-          <!-- <script>
-          var typed = new Typed('#typehead', {
-            strings: [
-            "<em> “Travel makes one modest. You see what a tiny place you occupy in the world.” -Gustav Flaubert</em>"
-          ],
-          typeSpeed:10,
-          showCursor: false
-          });
-        </script> -->
+          <blockquote id="typehead" class="animated flipInX white-text lead"><em><?php echo $data['homepage']['_welcome_quote']?></em></blockquote>
 
           <div class="row mbtn">
               <div class="col l6 m8 s12 offset-l3 offset-m2 offset-s0 center-align">
                 <button class="animated pulse booknow btn btn-large waves-effect waves-light"><a style="color:black;" href="<?php echo site_url('/deal');?>">View Deals</a></button>
 
-                <!-- <button class="animated booknow btn btn-medium waves-effect waves-light">View Deals</button> -->
               </div>
             </div>
 
       </div>
+
+      
         
       </div>
 
-      <div class="row">
+      <?php if(count($data['specials'])>0){?>
+        <div class="row">
         
         <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
             <h2 class="header center-align blackText">
@@ -111,67 +102,39 @@ $this->load->helper('section');
 
         <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
 
-          <div class="row center-align">
-            <div class="col l4 m6 s12">
-              <div class="card">
-                <div class="card-image custom-hover" >
-                  <div class="custom-overlay-discount" style="display:none">
-                    <p class="ltext1">30% off<br/>Book Now</p>
+          <div class="row">
+
+          
+            <?php foreach($data['specials'] as $item){?>
+              <div class="col l4 m6 s12">
+                <div class="card">
+                  <div class="card-image custom-hover" >
+                    <div class="custom-overlay-discount center-align" style="display:none">
+                      <p class="ltext1"><?php echo $item['special_discount'];?>% off<br/>Book Now</p>
+                    </div>
+                    <img src="<?php echo base_url('uploads/special-images/'.$item['special_image']);?>" alt="no img">
+                    <span class="card-title"><?php echo $item['special_place'];?></span>
                   </div>
-                  <img src="<?php echo base_url('assets/18.jpg');?>" >
-                  <span class="card-title">Dunns River Falls</span>
-                </div>
-                <div class="card-content">
-                  <p>I am a very simple card. I am good at containing small bits of information.
-                  I am convenient because I require little markup to use effectively.</p>
-                </div>
-                <div class="card-action modify-action">
-                  <a href="#" class="custom-link">Request Quote</a>
+                  <div class="card-content">
+                    <p><b>Price:</b> <?php echo $item['special_price'];?></p>
+                    <p><b>Discount:</b> <span class="green-text">-<?php echo $item['special_discount'];?>%</span></p>
+                    <p><b>Offer Ends:</b> <?php echo date("M d, Y",strtotime($item['special_end_date']));?></p>
+                    <p><b>Description:</b> <?php echo substr($item['special_desc'],0,124).'...';?></p>
+                  </div>
+                  <div class="card-action modify-action center-align">
+                    <a href="#" class="custom-link">Add To Cart</a>
+                  </div>
                 </div>
               </div>
+              <?php }?>
+
             </div>
-            <div class="col l4 m6 s12">
-              <div class="card">
-                <div class="card-image custom-hover">
-                <div class="custom-overlay-discount" style="display:none">
-                    <p class="ltext1">30% off<br/>Book Now</p>
-                  </div>
-                  <img src="<?php echo base_url('assets/18.jpg');?>">
-                  <span class="card-title">Green Grotto Cave</span>
-                </div>
-                <div class="card-content">
-                  <p>I am a very simple card. I am good at containing small bits of information.
-                  I am convenient because I require little markup to use effectively.</p>
-                </div>
-                <div class="card-action modify-action">
-                  <a href="#" class="custom-link">Request Quote</a>
-                </div>
-              </div>
-            </div>
-            <div class="col l4 m6 s12">
-              <div class="card">
-                <div class="card-image custom-hover">
-                <div class="custom-overlay-discount" style="display:none">
-                    <p class="ltext1">30% off<br/>Book Now</p>
-                  </div>
-                  <img src="<?php echo base_url('assets/18.jpg');?>">
-                  <span class="card-title">Appleton Estate Tour</span>
-                </div>
-                <div class="card-content">
-                  <p>I am a very simple card. I am good at containing small bits of information.
-                  I am convenient because I require little markup to use effectively.</p>
-                </div>
-                <div class="card-action modify-action">
-                  <a href="#" class="custom-link">Request Quote</a>
-                </div>
-              </div>
-            </div>
+
           </div>
 
-        </div>
-
         
-      </div>
+        </div>
+      <?php }?>
 
       <div class="row">
           <div class="col l8 m8 s12 offset-l2 offset-m2 offset-s0">
@@ -291,10 +254,7 @@ $this->load->helper('section');
               </div>
 
               <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
-                <p class="center-align lead white-text">It is a long established fact that a reader will be distracted by 
-                  the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal 
-                  distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. 
-                </p>
+                <p class="center-align lead white-text"><?php echo $data['aboutus']['_about_pitch'];?></p>
               </div>
 
               <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
@@ -309,9 +269,7 @@ $this->load->helper('section');
                       <h4>Diverse Destinations</h4>
                     </div>
                     <div class="col s12">
-                      <p class="center-align blackText">It is a long established fact that a reader will be distracted by 
-                        the readable content of a page when looking at its layout. 
-                      </p>
+                      <p class="center-align blackText"><?php echo $data['aboutus']['_about_diverse'];?></p>
                     </div>
                   </div>
                   <div class="col l3 m6 s12 center-align white z-depth-1 uscont">
@@ -324,9 +282,7 @@ $this->load->helper('section');
                       <h4>Value For Money</h4>
                     </div>
                     <div class="col s12">
-                      <p class="center-align blackText">It is a long established fact that a reader will be distracted by 
-                        the readable content of a page when looking at its layout. 
-                      </p>
+                      <p class="center-align blackText"><?php echo $data['aboutus']['_about_value'];?></p>
                     </div>
                   </div>
                   <div class="col l3 m6 s12 center-align white z-depth-1 uscont">
@@ -339,9 +295,7 @@ $this->load->helper('section');
                       <h4>Passionate Travel</h4>
                     </div>
                     <div class="col s12">
-                      <p class="center-align blackText">It is a long established fact that a reader will be distracted by 
-                        the readable content of a page when looking at its layout. 
-                      </p>
+                      <p class="center-align blackText"><?php echo $data['aboutus']['_about_passionate'];?></p>
                     </div>
                   </div>
                 </div>
@@ -500,101 +454,61 @@ $this->load->helper('section');
       </div>
       
 
-      <div class="row">
+      <?php if(count($data['blogs']) > 0){?>
+
+        <div class="row">
         
-        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
-            <h2 class="header center-align blackText">
-              Our Blogs
-            </h2>
-        </div>
-
-        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 custom-border-area"  >
-          <div class="divider custom-divider"></div>
-        </div>
-
-        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
-          <p class="center-align blackText lead">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, </p>
-        </div>
-
-        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
-
-          <div class="row ">
-
-            <div class="col l4 m6 s12">
-              <!-- start coding here -->
-              <div class="card">
-                <div class="card-image custom-hover" >
-                  <div class="overlay"></div>
-                  <div class="date-overlay">Jun 22</div>
-                  <img src="https://2w1rgr1gb8231dbubd4236ag-wpengine.netdna-ssl.com/wp-content/uploads/2018/01/Blogging-2.jpg" >
-                  <span class="card-title" style="z-index:3!important;">Good Day AT The Bay</span>
-                </div>
-                <div class="card-content">
-                <p class="blackText" style="padding-bottom:1em;"><b><em>Jermy Pollack</em></b></p>
-                 
-                  <p class="blackText">It is a long established fact that a reader will 
-                      be distracted by the readable content of a page when looking at its layout.
-                        </p>
-                </div>
-                <div class="card-action modify-action center-align">
-                  <a href="#" class="custom-link">Continue Reading</a>
-                </div>
-              </div>
-
-            </div>
-
-            <div class="col l4 m6 s12">
-              <!-- start coding here -->
-              <div class="card">
-                <div class="card-image custom-hover" >
-                  <div class="overlay"></div>
-                  <div class="date-overlay">Jun 23</div>
-                  <img src="https://2w1rgr1gb8231dbubd4236ag-wpengine.netdna-ssl.com/wp-content/uploads/2018/01/Blogging-2.jpg" >
-                  <span class="card-title" style="z-index:3!important;">Good Day AT The Bay</span>
-                </div>
-                <div class="card-content">
-                <p class="blackText" style="padding-bottom:1em;"><b><em>Jermy Pollack</em></b></p>
-                 
-                  <p class="blackText">It is a long established fact that a reader will 
-                      be distracted by the readable content of a page when looking at its layout.
-                        </p>
-                </div>
-                <div class="card-action modify-action center-align">
-                  <a href="#" class="custom-link">Continue Reading</a>
-                </div>
-              </div>
-
-            </div>
-
-            <div class="col l4 m6 s12">
-              <!-- start coding here -->
-              <div class="card">
-                <div class="card-image custom-hover" >
-                  <div class="overlay"></div>
-                  <div class="date-overlay">Jun 25</div>
-                  <img src="https://2w1rgr1gb8231dbubd4236ag-wpengine.netdna-ssl.com/wp-content/uploads/2018/01/Blogging-2.jpg" >
-                  <span class="card-title" style="z-index:3!important;">Good Day AT The Bay</span>
-                </div>
-                <div class="card-content">
-                <p class="blackText" style="padding-bottom:1em;"><b><em>Jermy Pollack</em></b></p>
-                 
-                  <p class="blackText">It is a long established fact that a reader will 
-                      be distracted by the readable content of a page when looking at its layout.
-                        </p>
-                </div>
-                <div class="card-action modify-action center-align">
-                  <a href="#" class="custom-link">Continue Reading</a>
-                </div>
-              </div>
-
-            </div>
-            
+          <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
+              <h2 class="header center-align blackText">
+                Our Blogs
+              </h2>
           </div>
 
-        </div>
+          <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 custom-border-area"  >
+            <div class="divider custom-divider"></div>
+          </div>
+
+          <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
+            <p class="center-align blackText lead">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, </p>
+          </div>
+
+          <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
+
+            <div class="row ">
+
+              <?php foreach($data['blogs'] as $blog){?>
+
+                <div class="col l4 m6 s12">
+                  <!-- start coding here -->
+                  <div class="card">
+                    <div class="card-image custom-hover" >
+                      <div class="overlay"></div>
+                      <div class="date-overlay"><?php echo date("M d",strtotime($blog['blog_last_modified']));?></div>
+                      <img src="<?php echo base_url('uploads/blog-images/'.$blog['blog_image'])?>" >
+                      <span class="card-title" style="z-index:3!important;"><?php echo $blog['blog_title'];?></span>
+                    </div>
+                    <div class="card-content">
+                    <p class="blackText" style="padding-bottom:1em;"><b><em>- <?php echo $blog['first_name'].' '.$blog['last_name'];?></em></b></p>
+                    
+                      <p class="blackText"><?php echo substr($this->enc->decrypt($blog['blog_content']),0,124).'...';//substr(base64_decode(),0,124).'...' ;?></p>
+                    </div>
+                    <div class="card-action modify-action center-align">
+                      <a href="<?php echo site_url('blogs1062/'.$blog['blog_url'])?>" class="custom-link">Continue Reading</a>
+                    </div>
+                  </div>
+
+                </div>
+              <?php } ?>
+            </div>
+
+          </div>
 
         
-      </div>
+        </div>
+
+      <?php }?>
+
+      
 
       <div class="row valign-wrapper contact-section" >
         <div class="contact-overlay"></div>
@@ -613,9 +527,7 @@ $this->load->helper('section');
                       <i class="material-icons">location_on</i>
                     </div>
                     <div class="col s11">
-                      <span class="white-text">
-                        This is a square image. Add the "circle" class to it to make it appear circular.
-                      </span>
+                      <span class="white-text lead"><?php echo $data['contact']['_contact_address']; ?></span>
                     </div>
                   </div>
                 </div>
@@ -626,9 +538,7 @@ $this->load->helper('section');
                       <i class="material-icons">local_phone</i>
                     </div>
                     <div class="col s11">
-                      <span class="white-text">
-                        This is a square image. Add the "circle" class to it to make it appear circular.
-                      </span>
+                      <span class="white-text lead"><?php echo $data['contact']['_contact_phone']; ?></span>
                     </div>
                   </div>
                 </div>
@@ -639,9 +549,7 @@ $this->load->helper('section');
                       <i class="material-icons">mail</i>
                     </div>
                     <div class="col s11">
-                      <span class="white-text">
-                        This is a square image. Add the "circle" class to it to make it appear circular.
-                      </span>
+                      <span class="white-text  lead"><?php echo $data['contact']['_contact_email']; ?></span>
                     </div>
                   </div>
                 </div>
@@ -652,36 +560,35 @@ $this->load->helper('section');
                       <i class="material-icons">timer</i>
                     </div>
                     <div class="col s11">
-                      <span class="white-text">
-                        This is a square image. Add the "circle" class to it to make it appear circular.
-                      </span>
+                      <span class="white-text  lead"><?php echo $data['contact']['operating_hours']; ?></span>
                     </div>
                   </div>
                 </div>
 
             </div>
 
-            <div class="col l6 m8 s12 mycent">
+            <form class="col l6 m8 s12 mycent">
             
               <div class="input-field col s6">
-                <input id="first_name" type="text" placeholder="name" class="validate white">
-                <label for="first_name" class="white-text">Name</label>
+                <input id="name" type="text" placeholder="name" name="name" class="validate white">
+                <label for="name" class="white-text">Name</label>
               </div>
               <div class="input-field col s6">
-                <input id="last_name" placeholder="email" type="text" class="validate white">
-                <label for="last_name" class="white-text">Email</label>
+                <input id="email" placeholder="email" type="text" name="email_address" class="validate white">
+                <label for="email" class="white-text">Email</label>
               </div>
 
               <div class="input-field col s12">
-                <textarea id="textarea2" placeholder="message..." class="materialize-textarea white"></textarea>
-                <label for="textarea2" class="white-text">Textarea</label>
+                <textarea id="message" placeholder="message..." name="message" class="materialize-textarea white"></textarea>
+                <label for="message" class="white-text">Textarea</label>
               </div>
 
               <div class="col">
-              <button class="btn white black-text waves-effect waves-yellow">Send Message</button>
+              <button class="btn white black-text waves-effect waves-yellow" id="sendMsg">Send Message</button>
+              <p class="white-text lead" style="display:none;" id="resDisplay">Sending...</p>
               </div>
             
-          </div>  
+            </form>  
           </div>
         </div>
         
@@ -750,6 +657,29 @@ $this->load->helper('section');
           $('.inid').removeClass('inid-active');
           $('.inid').eq(currentIndex).addClass('inid-active');
           animateTesti(currentIndex);
+        });
+
+
+        $('#sendMsg').click((e)=>{
+          e.preventDefault();
+
+          if($('#message').val() == '' || $('#email').val() == '' || $('#name').val() == ''){
+            alert("Please fill out all fields");
+            return;
+          }
+
+          $("#resDisplay").fadeIn(500);
+
+          $.post('<?php echo base_url("/client/ContactUs")?>',{name:$('#name').val(),email_address:$('#email').val(),message:$('#message').val(),subject:"Message From Client - "+$('#name').val()},(data)=>{
+
+            var result = JSON.parse(data);
+
+            alert(result.Message);
+
+            $("#resDisplay").fadeOut(500);
+
+
+          });
         });
 
       });

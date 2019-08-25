@@ -49,13 +49,18 @@ class Clientside extends CI_Model {
     }
 
     public function InsertSubscriber($data){
-        $insertsub = $this->db->insert('sys_subscribe',$data);
+        try{
+            $insertsub = $this->db->insert('sys_subscribe',$data);
 
-		if($insertsub == true){
+            if($insertsub == true){
 
-            return true;
+                return true;
+            }
+            return false;
+        }catch(Exception $ex){
+            return false;
         }
-        return false;
+        
     }
 
     public function GetPackageById($id){

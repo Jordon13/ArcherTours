@@ -5,7 +5,8 @@ class Home extends CI_Controller {
 
     public function index()
 	{
-		$this->load->view('homepage');
+        //print_r($this->mn->LoadHomepage());
+		$this->load->view('homepage',array('data'=>$this->mn->LoadHomepage()));
     }
 
     public function blogs1062(){

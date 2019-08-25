@@ -25,6 +25,41 @@ if ( ! function_exists('UserExist'))
 }
 
 
+if(!function_exists('News')){
+  function News(){
+    $ci=& get_instance();
+    $ci->load->database();
+    
+    $ci->db->limit(4);
+
+    $ci->db->order_by('date_created','DESC');
+
+    $items = $ci->db->get("sys_recent")->result_array();
+
+    $data = '';
+
+    if(count($items) > 0){
+      foreach($items as $item){
+        $data.='<div class="card-panel transparent z-depth-0 cus-panel1">
+        <div class="row valign-wrapper">
+          <div class="col s1 custom-date z-depth-1">
+              '.date("M d",strtotime($item['date_created'])).'
+            </div>
+            <div class="col s11">
+              <span class="white-text">
+                '.$item[''].'
+              </span>
+            </div>
+          </div>
+        </div>';
+      }
+    }
+
+    return NULL;
+  }
+}
+
+
 function sanitizeInput($input){
     $ci=& get_instance();
     $ci->load->database(); 

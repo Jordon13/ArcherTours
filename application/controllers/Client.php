@@ -182,14 +182,31 @@ class Client extends CI_Controller {
         // echo $res['data']['summary']['total_count']." - cool";
     }
 
-    public function Subcribe(){
-        //InsertSubscriber
+    public function Subscribe(){
 
-        $_useremail = $this->input->post('email',true);
+        try{
+            $_useremail = sanitizeInput($this->input->post('email',true));
 
-        if(empty(_useremail)){
-            echo "please enter a valid email address";
+            if(empty($_useremail)){
+                echo "Please enter a valid email address.";
+                return;
+            }
+
+            $data = array("_useremail"=>strtolower($_useremail));
+
+            if($this->cs->InsertSubscriber($data)){
+                echo "Added Successfully!";
+                return;
+            }
+
+            echo "Failed add email either it already exist or you internet connection is unstable.";
+        
+        }catch(RuntimeException $ex){
+
+            echo "Failed add email either it already exist or you internet connection is unstable.";
         }
+
+        
     }
 
     public function CreatePayment(){

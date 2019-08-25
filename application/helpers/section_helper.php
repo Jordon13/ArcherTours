@@ -66,7 +66,7 @@ if(!function_exists('main_nav')){
 
     <div class="nav-body">
         <div class="nav-logo">
-            <img src="'.base_url('assets/logo.png').'"/>
+        <a href="'.site_url('/').'"><img src="'.base_url('assets/logo.png').'"/></a>
         </div>
 
         <div class="nav-links noshow">
@@ -129,15 +129,15 @@ if(!function_exists('main_footer')){
                 <div class="col inner-img"><a href="tel:1876-804-6480"><img class="himg" src="'.base_url('assets/icons/whatsapp.png').'"/></a></div>
               </div>
 
-              <div class="row">
+              <form class="row">
               
                 <div class="input-field col s10">
                 <p style="font-size:12px;"><b>Subscibe to our newsletter for update on deals and specials avaliable.</b></p>
-                  <input id="first_name" type="text" placeholder="email" class="validate white">
+                  <input id="emailAddr" type="email" placeholder="email" name="email" class="validate white">
                   <!-- <label for="first_name" class="white-text">Name</label> -->
-                  <button class="btn white black-text waves-effect waves-light yellow accent-3">Subscribe</button>
+                  <button class="btn white black-text waves-effect waves-light yellow accent-3" id="submit">Subscribe</button>
                 </div>
-              </div>
+              </form>
 
               <!-- <p class="custom-email-link" style="padding-bottom:1em!important;">jordainegayle@gmail.com</p> -->
 
@@ -183,58 +183,7 @@ if(!function_exists('main_footer')){
             <div class="col l4 m4 s12 sec1">
             <h5 style="padding-bottom:1em!important;">Our News</h5>
 
-            <div class="card-panel transparent z-depth-0 cus-panel1">
-              <div class="row valign-wrapper">
-                <div class="col s1 custom-date z-depth-1">
-                    Jun 22
-                  </div>
-                  <div class="col s11">
-                    <span class="white-text">
-                      This is a square image. Add the "circle" class to it to make it appear circular.
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card-panel transparent z-depth-0 cus-panel1">
-              <div class="row valign-wrapper">
-                <div class="col s1 custom-date z-depth-1">
-                    Jun 25
-                  </div>
-                  <div class="col s11">
-                    <span class="white-text">
-                      This is a square image. Add the "circle" class to it to make it appear circular.
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-
-              <div class="card-panel transparent z-depth-0 cus-panel1">
-              <div class="row valign-wrapper">
-                <div class="col s1 custom-date z-depth-1">
-                    Jun 29
-                  </div>
-                  <div class="col s11">
-                    <span class="white-text">
-                      This is a square image. Add the "circle" class to it to make it appear circular.
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card-panel transparent z-depth-0 cus-panel1">
-              <div class="row valign-wrapper">
-                <div class="col s1 custom-date z-depth-1">
-                    Jun 29
-                  </div>
-                  <div class="col s11">
-                    <span class="white-text">
-                      This is a square image. Add the "circle" class to it to make it appear circular.
-                    </span>
-                  </div>
-                </div>
-              </div>
+              
 
             </div>
 
@@ -289,6 +238,22 @@ s0.parentNode.insertBefore(s1,s0);
             $(this).attr('src','".base_url('assets/icons/facebook1.png')."');
           }).mouseleave(function(){
             $(this).attr('src','".base_url('assets/icons/facebook.png')."');
+          });
+
+
+          $('#submit').on('click',function(e){
+
+            e.preventDefault();
+
+            if($('#emailAddr').val() == ''){
+              alert('Please enter a valid email address');
+              return;
+            }
+
+            $.post('".base_url('client/Subscribe')."',{email:$('#emailAddr').val()},function(data){
+              alert(data);
+            });
+
           });
   
       </script>

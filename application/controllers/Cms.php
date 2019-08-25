@@ -670,7 +670,7 @@ class Cms extends CI_Controller {
 
             $special_place = sanitizeInput($this->input->post('place',true));
             $special_price = sanitizeInput($this->input->post('price',true));
-            $special_discount = sanitizeInput($this->input->post('dicount',true));
+            $special_discount = sanitizeInput($this->input->post('discount',true));
             $special_catch = sanitizeInput($this->input->post('catch_phrase',true));
             $special_start_date = sanitizeInput($this->input->post('sdate',true));
             $special_end_date = sanitizeInput($this->input->post('edate',true));
@@ -718,7 +718,7 @@ class Cms extends CI_Controller {
             $_FILES['file']['error'] = $_FILES['upl']['error'][0];
             $_FILES['file']['size'] = $_FILES['upl']['size'][0];
             if($this->upload->do_upload('file')){
-                $deal_back_img  = $this->upload->data()['file_name'];
+                $special_image  = $this->upload->data()['file_name'];
             }
 
             $dataArray = array(

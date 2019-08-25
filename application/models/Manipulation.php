@@ -90,6 +90,38 @@ class Manipulation extends CI_Model {
         return 2;
 
     }
+
+
+    public function LoadHomepage(){
+
+        $homepage = $this->db->get("sys_home_page")->result_array();
+
+        $this->db->order_by('last_modified','DESC');
+        $specials = $this->db->get_where("sys_specials",array("special_end_date >="=>date("Y-m-d") ),3,0)->result_array();
+
+
+        $this->db->limit(3);
+        $this->db->join('sys_users', 'sys_users.session_id = sys_blogs.blog_post_by');
+        $this->db->order_by('blog_date_generated','DESC');
+        $blogs = $this->db->get("sys_blogs")->result_array();
+
+        $aboutus = $this->db->get("sys_about_us")->result_array();
+
+
+        $contact = $this->db->get("sys_contact_page")->result_array();
+
+        $data = array('homepage'=>$homepage[0],'specials'=>$specials,'blogs'=>$blogs, 'aboutus'=>$aboutus[0], 'contact'=>$contact[0]);
+
+        return $data;
+
+    }
+
+
+
+
+
+
+    
     
 
                         
