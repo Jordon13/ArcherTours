@@ -250,9 +250,9 @@ $this->load->helper('section');
                         <div class="card-content">
                             <span class="activator grey-text text-darken-4"><i class="material-icons right">more_vert</i><b>Trip: From </b>{price_origin} <b>To</b> {price_destination}</span>
                             <br/><br/>
-                            <p><b>Price Per Adult:</b> USD ${price_per_adult}</p>
+                            <p><b>Price Per Person:</b> USD ${price_per_adult}</p>
 
-                            <p><b>Price Per Child:</b> USD ${price_per_child}</p>
+                            <!-- <p><b>Price Per Child:</b> USD ${price_per_child}</p> -->
 
                             <p><b>Group Price:</b> USD ${display_price} for 4 people.</p><br/>
 

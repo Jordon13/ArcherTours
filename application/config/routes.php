@@ -140,6 +140,8 @@ $route['header'] = "home/header";
 
 $route['footer'] = "home/footer";
 
+$route['checkout'] = "home/cart";
+
 // $route['cuser'] = "home/cuser";
 // $route['blog'] = "home/cblog";
 // $route['prices'] = "home/cprices";

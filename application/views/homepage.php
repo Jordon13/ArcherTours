@@ -54,10 +54,13 @@ $this->load->helper('section');
       width:200px!important;
     }
 
+    
+
     </style>
     <body>
 
       <?php main_nav(); ?>
+
       <div class="fpage valign-wrapper" style="position:relative;">
         <div class="overlay"></div>
         

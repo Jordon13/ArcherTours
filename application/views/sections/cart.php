@@ -1,0 +1,254 @@
+<?php 
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+?>
+<!Doctype html>
+<html lang="en">
+
+    <head>
+        <title>Cart Checkout</title>
+        <?php main_head(1);?>
+
+        <style>
+
+html {
+        position: relative;
+        height: 100%!important;
+        font-family: "Nunito";
+    }
+
+    body {
+        position: relative;
+        height: 100%!important;
+    }
+
+
+    .input-field input{
+        border: none!important;
+        color: white!important
+    }
+
+    .row .input-field input:+label{
+        color: white!important;
+    }
+
+    .row .input-field input{
+        border-bottom: 0.5px solid rgba(224,224,224 ,0.02) !important;
+        box-shadow: 0 0.5px 0 0 rgba(224,224,224 ,1) !important
+    }
+
+    .input-field input:focus + label {
+        color: #fdd800!important;
+    }
+
+    .row .input-field textarea{
+        border-bottom: 0.5px solid rgba(224,224,224 ,0.02) !important;
+        box-shadow: 0 0.5px 0 0 rgba(224,224,224 ,1) !important
+    }
+
+    .input-field textarea:focus + label {
+        color: #fdd800!important;
+    }
+
+    .row .input-field textarea:focus {
+        border-bottom: 0.5px solid #fdd800!important;
+        box-shadow: 0 0.5px 0 0 #fdd800!important;
+    }
+
+    .row .input-field input:focus {
+        border-bottom: 0.5px solid #fdd800!important;
+        box-shadow: 0 0.5px 0 0 #fdd800!important;
+    }
+        
+        .my-form{
+        /* background-color: rgba(35, 32, 32, 1)!important; */
+        padding: 10px!important;
+      }
+
+      .datepicker-table td.is-selected{
+          background-color: #fdd800!important;
+      }
+
+      .datepicker-date-display{
+          background-color: #fdd800!important;
+      }
+
+      .datepicker-table td.is-today{
+          color: #e53935!important;
+      }
+
+
+      .datepicker-cancel, .datepicker-clear, .datepicker-today, .datepicker-done{
+          color: #fdd800!important;
+      }
+
+      .dropdown-content li>a, .dropdown-content li>span {
+          color: #fdd800!important;
+      }
+
+      .bcenter{
+            display: flex!important;
+            justify-content: center!important;
+            width: 100%!important;
+        }
+
+    .required{
+        color:#f44336;
+    }
+        
+        </style>
+    </head>
+
+    <body>
+
+    <?php main_nav(); ?>
+
+    <div class="row">
+
+        <div class="col l8 m8 s12">
+            <div class="col"><h2 class="h2">Shopping Cart</h2></div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col l6 m12 offset-l1 offset-m0 offset-s0 s12">
+            <div class="row">
+                <table class="z-depth-1 grey lighten-5">
+
+                    <thead class="grey darken-4 white-text">
+                        <tr>
+                            <th>Item Name</th>
+                            <th>Trip Type</th>
+                            <th>Description</th>
+                            <th>Item Pice</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>112</td>
+                            <td>312</td>
+                            <td>21312312</td>
+                            <td>$45.00</td>
+                            <td><input type="number" value="0"/></td>
+                            <td>0</td>
+                            <td><i class="material-icons red-text">delete</i></td>
+                        </tr>
+                        
+
+                        
+                    </tbody>
+
+                    <tfoot>
+
+                    </tfoot>
+
+                </table>
+            </div>
+
+            <div class="row">
+                <div class="divider"></div>
+
+                <blockquote>Please note we only process payments through paypal for this release.</blockquote>
+                
+                <blockquote>In the next release direct card payment will be available.</blockquote>
+                
+                <blockquote>There will be a popup to collect payment, please allow it for a successful booking.</blockquote>
+
+                <blockquote>Only 10% of the original cost will be collected.</blockquote>
+            </div>
+
+            <div class="row bcenter" style="margin-bottom:0px!important;">
+                
+                <a href="<?php echo base_url('/services');?>" class="btn btn-large grey lighten-4 black-text waves-effect waves-light">
+                Continue Shopping<i class="material-icons right">thumb_up</i>
+                </a>
+                
+            </div>
+
+        </div>
+
+        <div class="col l4 m12 s12 offset-m0 offset-s0">
+            <form class="my-form grey darken-4 z-depth-1">
+
+                <div class="row">
+                    <div class="input-field col l6 s12">
+                        <input id="fname" type="text" name="fname" class="validate">
+                        <label for="fname">Firstname</label>
+                    </div>
+
+                    <div class="input-field col l6 s12">
+                        <input id="lname" type="text" name="lname" class="validate">
+                        <label for="lname">Lastname</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col l6 s12">
+                        <input id="email" type="email" name="email" class="validate">
+                        <label for="email">Email Address</label>
+                    </div>
+
+                    <div class="input-field col l6 s12">
+                        <input id="phone" type="text" name="phone" class="validate">
+                        <label for="phone">Phone Number</label>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="tripdate" name="tripdate" type="date" class="validate">
+                        <label for="tripdate">Date Of Trip</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <textarea name="adinfo" id="adinfo" type="text" class="materialize-textarea validate"></textarea>
+                        <label for="adinfo">Additional Information</label>
+                    </div>
+                </div>
+
+                <div class="row bcenter" style="margin-bottom:0px!important;">
+                    <div class="input-field col" style="margin-bottom:0px!important;">
+                    <button class="btn btn-large yellow black-text waves-effect waves-light" type="submit" id="submit" style="border-radius:100px!important;">
+                    Book Now<i class="material-icons right">forward</i>
+                    </button>
+                    </div>
+                </div>
+
+                <div class="row center-align result green-text">
+                </div>
+
+                
+                <div class="row center-align results">
+                        
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+    <?php main_footer(); ?>
+    </body>
+
+
+    <script>
+
+        console.log($('tbody>tr').length);
+    
+    var total = 0;
+
+    var setTotal = (quantity, price) => {
+
+    }
+
+
+    
+    </script>
+
+</html>

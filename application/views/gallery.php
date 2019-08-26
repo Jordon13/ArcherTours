@@ -111,30 +111,22 @@ $this->load->helper('section');
       
 
     </div>
-
-    <!-- <div class="row">
-      <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 center">
-        <div class="row">
-
-          <div class="col l4 m12 s12 custom-img">
-            <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" src="<?php echo base_url('assets/23.jpg')?>"> 
-          </div>
-
-        </div>
-      </div>
-    </div> -->
-
+    
+    
     <div class="row">
       <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 center">
         <div class="row">
 
-          <div class="col l4 m12 s12 custom-img">
-            <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" src="<?php echo base_url('assets/23.jpg')?>"> 
-          </div>
+          {data}
+            <div class="col l4 m12 s12 custom-img" >
+              <img class="materialboxed" data-caption="{media_file_desc}" src="<?php echo base_url('uploads/media/')?>{media_folder_name}/photos/{media_file_name}"/> 
+            </div>
+          {/data}
 
         </div>
       </div>
     </div>
+    
     <?php main_footer(); ?>
 </body>
 <script>

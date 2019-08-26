@@ -1,7 +1,10 @@
 <?php
 
 if(!function_exists('main_head')){
-	function main_head(){
+	function main_head($inverted = 0){
+
+      $header = $inverted == 0 ? base_url('css/header.css') : base_url('css/header_invert_2.css');
+
         echo '<script src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
         
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
@@ -23,7 +26,7 @@ if(!function_exists('main_head')){
 
         <script src="'.base_url('js/materialize.js').'"></script>
         
-        <link href="'.base_url('css/header.css').'" rel="stylesheet">
+        <link href="'.$header.'" rel="stylesheet">
 
         <link href="'.base_url('css/footer.css').'" rel="stylesheet">
         
@@ -32,13 +35,28 @@ if(!function_exists('main_head')){
         <script src="'.base_url('js/header.js').'" async></script>
 
         
+        <style>
+        
+        
+        
+        </style>
+        
           ';
 	}
 }
 
 if(!function_exists('main_nav')){
 	function main_nav(){
-        echo '<div class="row searcharea valign-wrapper" style="display:none;">
+        echo '
+        
+        <div class="fixed-action-btn">
+      <div class="cart-active white-text" style="display:none;"></div>
+        <a href="'.base_url('/checkout').'" class="btn-floating btn-large grey darken-4 waves-effect waves-light">
+        <i class="large material-icons">add_shopping_cart</i>
+        </a>
+      </div>
+        
+        <div class="row searcharea valign-wrapper" style="display:none;">
 
         <div class="close z-depth-1 valign-wrapper"><i class="material-icons">close</i></div>
     

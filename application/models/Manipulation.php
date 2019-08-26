@@ -124,6 +124,12 @@ class Manipulation extends CI_Model {
         return $this->db->get("sys_contact_page")->result_array();
     }
 
+    public function LoadGallery(){
+        $this->db->join('sys_files', 'sys_files.auto_generated_id = sys_media_upload.sys_folder_id');
+        $this->db->order_by('date_added','DESC');
+        return $this->db->get("sys_media_upload")->result_array();
+    }
+
 
 
 

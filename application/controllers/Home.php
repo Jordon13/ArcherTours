@@ -69,7 +69,8 @@ class Home extends CI_Controller {
 
     public function gallery()
     {
-        $this->load->view('gallery');
+
+        $this->ps->parse('gallery',array('data'=>$this->mn->LoadGallery()));
     }
 
     public function airporttransfer()
@@ -148,6 +149,11 @@ class Home extends CI_Controller {
     public function header()
     {
         $this->load->view('sections/header');
+    }
+
+    public function cart()
+    {
+        $this->load->view('sections/cart');
     }
 
     
