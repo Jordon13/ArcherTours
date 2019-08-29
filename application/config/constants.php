@@ -92,3 +92,5 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
  
  define('MY_EMAIL_ADDR', 'freshcode9@gmail.com');
  define('MY_EMAIL_PASSW','Pussyhole34');
+ define("CARTNAME","acher_1062_cart");
+ define("CARTVAL",0);

@@ -1,5 +1,6 @@
 <?php
 
+
 if(!function_exists('main_head')){
 	function main_head($inverted = 0){
 
@@ -47,10 +48,27 @@ if(!function_exists('main_head')){
 
 if(!function_exists('main_nav')){
 	function main_nav(){
+
+    $getCart = isset($_COOKIE[CARTNAME]) && !empty($_COOKIE[CARTNAME]) ? $_COOKIE[CARTNAME] : null;
+
+    $div = '<div class="cart-active white-text"></div>';
+
+    $_GLOBAL['totalItems'] = 0;
+
+    $total = 0;
+    
+    if($getCart !== null){
+      $total = count(json_decode(base64_decode($getCart),true));
+
+      $_GLOBAL['totalItems'] = $total;
+
+      $div = '<div class="cart-active white-text">'.$_GLOBAL['totalItems'].'</div>';
+    }
+
         echo '
         
         <div class="fixed-action-btn">
-      <div class="cart-active white-text" style="display:none;"></div>
+        '.$div.'
         <a href="'.base_url('/checkout').'" class="btn-floating btn-large grey darken-4 waves-effect waves-light">
         <i class="large material-icons">add_shopping_cart</i>
         </a>

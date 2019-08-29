@@ -347,6 +347,111 @@ class Client extends CI_Controller {
         
     }
 
+    public function CartAdd(){
+        
+        $id = substr(sanitizeInput(base64_decode($this->input->post("id",true))),10);
+        $type = sanitizeInput($this->input->post("type",true));
+
+        if(empty($id) && empty($type)){
+            echo "Please don't modify code";
+            return;
+        }
+
+        if($type==1){
+
+            return;
+        }
+
+
+        $getItem = $this->cs->GetSpecialById($id);
+
+        if($getItem == false){
+            echo "That package has been removed";
+            return;
+        }
+
+        // delete_cookie($_COOKIE[CARTNAME]);
+        if(isset($_COOKIE[CARTNAME]) && !empty($_COOKIE[CARTNAME])){
+
+            $i = $this->input->post("id",true);
+
+            $getVal = json_decode(base64_decode($_COOKIE[CARTNAME]),true);
+
+            //print_r($getVal);
+
+            $totalItems = count($getVal);
+
+            $_GLOBAL['totalItems'] = $totalItems;
+
+            $newArray = array();
+
+            $keyExist = array_key_exists ($i, $getVal);
+
+            if($keyExist === true){
+
+                $getVal[$i]['quantity']+=1;
+
+                $cookie_name = CARTNAME;
+                
+                $cookie_value = $getVal;
+                
+                set_cookie($cookie_name,base64_encode(json_encode($cookie_value)),86400*3);
+
+                print_r($getVal);
+            }else{
+
+                $tempV = $getVal;
+
+                $getVal = array(
+                        $this->input->post("id",true) => array(
+                            "price"=>$getItem->special_price,
+                            "id"=>$this->input->post("id",true),
+                            "discount"=>$getItem->special_discount,
+                            "quantity"=>1,
+                            "description"=>$getItem->special_desc,
+                            "type"=>"one way"
+                        
+                        ),
+                        $tempV
+                    );
+
+                $cookie_name = CARTNAME;
+                $cookie_value = $getVal;
+                set_cookie($cookie_name,base64_encode(json_encode($cookie_value)),86400*3);
+                print_r($getVal);
+            }
+        }else{
+
+            $newArray = array();
+
+
+            $cookie_name = CARTNAME;
+            $cookie_value = array($this->input->post("id",true) => array(
+                    "price"=>$getItem->special_price,
+                    "id"=>$this->input->post("id",true),
+                    "discount"=>$getItem->special_discount,
+                    "quantity"=>1,
+                    "description"=>$getItem->special_desc,
+                    "type"=>"one way"
+                    
+                )
+            
+            );
+
+            //array_push();
+
+            print_r($cookie_value);
+
+            set_cookie($cookie_name,base64_encode(json_encode($cookie_value)),86400*3);
+
+        }
+
+        
+
+        echo "Package Added Successfully!";
+
+    }
+
     public function testPay(){
         // $this->pal->getPayPalClient();
         // $this->config->load('paypal', TRUE);

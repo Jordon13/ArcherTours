@@ -125,7 +125,7 @@ $this->load->helper('section');
                     <p><b>Description:</b> <?php echo substr($item['special_desc'],0,124).'...';?></p>
                   </div>
                   <div class="card-action modify-action center-align">
-                    <a href="#" class="custom-link">Add To Cart</a>
+                    <a onclick="addToCart('<?php echo base64_encode(substr(uniqid(),0,10).$item['special_unique_id']);?>')" class="custom-link">Add To Cart</a>
                   </div>
                 </div>
               </div>
@@ -692,6 +692,13 @@ $this->load->helper('section');
         // testi.eq(index).show();
         testi.fadeOut(500);
         testi.eq(index).delay(498).fadeIn(0);
+      }
+
+
+      var addToCart = (id) =>{
+        $.post("<?php echo base_url('/client/CartAdd'); ?>",{id:id,type:0},function(data){
+          alert(data);
+        });
       }
 
 

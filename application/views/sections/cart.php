@@ -105,13 +105,15 @@ html {
 
     <div class="row">
 
-        <div class="col l8 m8 s12">
-            <div class="col"><h2 class="h2">Shopping Cart</h2></div>
+        <div class="col l8 m8 s12 offset-l1 offset-m0 offset-s0">
+            <div class="col"><b><h3 class="h2">Shopping Cart</h3></b></div>
         </div>
 
     </div>
 
-    <div class="row">
+    <?php if(isset($_COOKIE[CARTNAME]) !== null && !empty($_COOKIE[CARTNAME])){?>
+        <?php $item = json_decode(base64_decode($_COOKIE[CARTNAME]));print_r($item);?>
+        <div class="row">
         <div class="col l6 m12 offset-l1 offset-m0 offset-s0 s12">
             <div class="row">
                 <table class="z-depth-1 grey lighten-5">
@@ -123,6 +125,7 @@ html {
                             <th>Description</th>
                             <th>Item Pice</th>
                             <th>Quantity</th>
+                            <th>Discount</th>
                             <th>Total</th>
                             <th>Remove</th>
                         </tr>
@@ -135,11 +138,10 @@ html {
                             <td>21312312</td>
                             <td>$45.00</td>
                             <td><input type="number" value="0"/></td>
+                            <td>0%</td>
                             <td>0</td>
                             <td><i class="material-icons red-text">delete</i></td>
                         </tr>
-                        
-
                         
                     </tbody>
 
@@ -162,7 +164,7 @@ html {
                 <blockquote>Only 10% of the original cost will be collected.</blockquote>
             </div>
 
-            <div class="row bcenter" style="margin-bottom:0px!important;">
+            <div class="row bcenter">
                 
                 <a href="<?php echo base_url('/services');?>" class="btn btn-large grey lighten-4 black-text waves-effect waves-light">
                 Continue Shopping<i class="material-icons right">thumb_up</i>
@@ -231,6 +233,22 @@ html {
             </form>
         </div>
     </div>
+    <?php }else{?>
+
+        <div class="row valign-wrapper center">
+            <div class="col s12"><h5>No Items In Cart</h5></div>
+            
+        </div>
+
+        <div class="row bcenter">
+                
+            <a href="<?php echo base_url('/services');?>" class="btn btn-large grey lighten-4 black-text waves-effect waves-light">
+            Continue Shopping<i class="material-icons right">thumb_up</i>
+            </a>
+                
+        </div>
+
+    <?php }?>
 
 
     <?php main_footer(); ?>
