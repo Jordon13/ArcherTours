@@ -51,7 +51,7 @@ if(!function_exists('main_nav')){
 
     $getCart = isset($_COOKIE[CARTNAME]) && !empty($_COOKIE[CARTNAME]) ? $_COOKIE[CARTNAME] : null;
 
-    $div = '<div class="cart-active white-text"></div>';
+    $div = '';
 
     $_GLOBAL['totalItems'] = 0;
 

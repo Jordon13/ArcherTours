@@ -95,6 +95,24 @@ html {
     .required{
         color:#f44336;
     }
+
+    tfoot{
+
+    }
+
+    tr.noBorder{
+    border: none!important;
+    }
+
+    tr.noBorder td{
+    border: none!important;
+    border-left: 1px solid inherit;
+    }
+
+    tr.noBorder th{
+    border: none!important;
+    border-top: 2px solid black!important;
+    }
         
         </style>
     </head>
@@ -112,7 +130,7 @@ html {
     </div>
 
     <?php if(isset($_COOKIE[CARTNAME]) !== null && !empty($_COOKIE[CARTNAME])){?>
-        <?php $item = json_decode(base64_decode($_COOKIE[CARTNAME]));print_r($item);?>
+        <?php $item = json_decode(base64_decode($_COOKIE[CARTNAME]));?>
         <div class="row">
         <div class="col l6 m12 offset-l1 offset-m0 offset-s0 s12">
             <div class="row">
@@ -120,33 +138,44 @@ html {
 
                     <thead class="grey darken-4 white-text">
                         <tr>
-                            <th>Item Name</th>
-                            <th>Trip Type</th>
-                            <th>Description</th>
-                            <th>Item Pice</th>
-                            <th>Quantity</th>
+                            <th>Origin</th>
+                            <th>Desitination</th>
+                            <th>Type</th>
+                            <th>Price</th>
+                            <th>Amount</th>
                             <th>Discount</th>
                             <th>Total</th>
+                            <th>Deposit</th>
                             <th>Remove</th>
                         </tr>
                     </thead>
 
+                    <?php $itms = json_decode(base64_decode($_COOKIE[CARTNAME])); $gt = 0?>
+
                     <tbody>
+                        <?php foreach($itms as $item){?>
                         <tr>
-                            <td>112</td>
-                            <td>312</td>
-                            <td>21312312</td>
-                            <td>$45.00</td>
-                            <td><input type="number" value="0"/></td>
-                            <td>0%</td>
-                            <td>0</td>
-                            <td><i class="material-icons red-text">delete</i></td>
+                            <td><?php echo $item->type;?></td>
+                            <td><?php echo $item->type;?></td>
+                            <td><?php echo $item->type;?></td>
+                            <td>$<?php echo $item->price;?></td>
+                            <td><input class="quan" type="number" value="<?php echo $item->quantity;?>"/></td>
+                            <td>%<?php echo $item->discount;?></td>
+                            <td class="tot">$<?php $totalAmt = ($item->quantity * $item->price) - (($item->discount / 100) * ($item->quantity * $item->price)); echo $totalAmt; ?></td>
+                            <td class="dep">$<?php echo $totalAmt * 0.10; $gt+=($totalAmt * 0.10);?></td>
+                            <td class="del"><i class="material-icons red-text">delete</i></td>
                         </tr>
+                        <?php }?>
                         
                     </tbody>
 
-                    <tfoot>
-
+                    <tfoot class="grey darken-4 white-text">
+                        <tr class="noBorder">
+                            <th colspan="9" class="right-align">Grand Total (Total Deposits)</th>
+                        </tr>
+                        <tr class="noBorder">
+                            <td colspan="9" class="right-align" id="gt">$<?php echo $gt;?></td>
+                        </tr>
                     </tfoot>
 
                 </table>
@@ -161,7 +190,7 @@ html {
                 
                 <blockquote>There will be a popup to collect payment, please allow it for a successful booking.</blockquote>
 
-                <blockquote>Only 10% of the original cost will be collected.</blockquote>
+                <blockquote>Only 10% of the original cost will be collected. Remainder must be payed in person.</blockquote>
             </div>
 
             <div class="row bcenter">
@@ -257,16 +286,67 @@ html {
 
     <script>
 
+        Object.defineProperty(String.prototype, "toInt", {
+            value: function toInt() {
+                return parseInt(this,10) || 0;
+            },
+            writable: true,
+            configurable: true
+        });
+
+        Object.defineProperty(String.prototype, "toFlt", {
+            value: function toFlt() {
+                return parseFloat(this,10) || 0;
+            },
+            writable: true,
+            configurable: true
+        });
+
+        function toMoney(money) {
+                return money.toLocaleString('en-US', {style: 'currency',currency: 'USD',}) || 0;
+            }
+
+        var json = <?php echo json_encode(json_decode(base64_decode($_COOKIE[CARTNAME])),JSON_PRETTY_PRINT);?>
+
         console.log($('tbody>tr').length);
+
+        var quan = $('.quan');
+
+        quan.keyup('change',function(){
+            var index = quan.index(this);
+
+            var cur = quan.eq(index);
+
+            var item = getItem(index);
+
+            var quantity  = cur.val() == undefined || cur.val() <= 0 ? 0 : cur.val().toInt();
+
+            var total = (quantity * item.price.toFlt()) - ((quantity * item.price.toFlt()) * (item.discount.toFlt() / 100));
+
+            var dep = total * 0.10;
+
+            $(".tot").eq(index).text(toMoney(total));
+
+            $(".dep").eq(index).text(toMoney(dep));
+
+            var gt = 0;
+
+            for(x =0; x< quan.length; x++){
+
+                var clean1 = $(".dep").eq(x).text().replace('$', '');
+
+                clean1 = clean1.replace(',', '');
+
+                gt+=clean1.toFlt();
+            }
+
+            $("#gt").text(toMoney(gt));
+        });
     
     var total = 0;
 
-    var setTotal = (quantity, price) => {
+    var getItem = (index) => json[index];
 
-    }
-
-
-    
     </script>
 
 </html>

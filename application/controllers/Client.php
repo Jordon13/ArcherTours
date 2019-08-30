@@ -370,50 +370,37 @@ class Client extends CI_Controller {
             return;
         }
 
-        // delete_cookie($_COOKIE[CARTNAME]);
         if(isset($_COOKIE[CARTNAME]) && !empty($_COOKIE[CARTNAME])){
 
-            $i = $this->input->post("id",true);
-
             $getVal = json_decode(base64_decode($_COOKIE[CARTNAME]),true);
-
-            //print_r($getVal);
 
             $totalItems = count($getVal);
 
             $_GLOBAL['totalItems'] = $totalItems;
 
-            $newArray = array();
+            $key = array_search($id, array_column($getVal, 'id'));
 
-            $keyExist = array_key_exists ($i, $getVal);
+            if($key !== false){
 
-            if($keyExist === true){
-
-                $getVal[$i]['quantity']+=1;
+                $getVal[$key]['quantity']+=1;
 
                 $cookie_name = CARTNAME;
-                
+        
                 $cookie_value = $getVal;
-                
+        
                 set_cookie($cookie_name,base64_encode(json_encode($cookie_value)),86400*3);
 
-                print_r($getVal);
             }else{
 
-                $tempV = $getVal;
-
-                $getVal = array(
-                        $this->input->post("id",true) => array(
-                            "price"=>$getItem->special_price,
-                            "id"=>$this->input->post("id",true),
-                            "discount"=>$getItem->special_discount,
-                            "quantity"=>1,
-                            "description"=>$getItem->special_desc,
-                            "type"=>"one way"
-                        
-                        ),
-                        $tempV
-                    );
+                array_push($getVal,array(
+                    "price"=>$getItem->special_price,
+                    "id"=>$id,
+                    "discount"=>$getItem->special_discount,
+                    "quantity"=>1,
+                    "description"=>$getItem->special_desc,
+                    "type"=>"one way"
+                
+                ));
 
                 $cookie_name = CARTNAME;
                 $cookie_value = $getVal;
@@ -422,13 +409,10 @@ class Client extends CI_Controller {
             }
         }else{
 
-            $newArray = array();
-
-
             $cookie_name = CARTNAME;
-            $cookie_value = array($this->input->post("id",true) => array(
+            $cookie_value = array(array(
                     "price"=>$getItem->special_price,
-                    "id"=>$this->input->post("id",true),
+                    "id"=>$id,
                     "discount"=>$getItem->special_discount,
                     "quantity"=>1,
                     "description"=>$getItem->special_desc,
@@ -437,10 +421,6 @@ class Client extends CI_Controller {
                 )
             
             );
-
-            //array_push();
-
-            print_r($cookie_value);
 
             set_cookie($cookie_name,base64_encode(json_encode($cookie_value)),86400*3);
 

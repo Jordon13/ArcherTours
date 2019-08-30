@@ -35,8 +35,7 @@ if(!function_exists('navigation')){
 						<li><a href="'.base_url('admin/cuser?active=1').'">System User</a></li>
 						<li><a href="'.base_url('admin/cblog?active=1').'">Blog</a></li>
 						<li><a href="'.base_url('admin/cprices?active=1').'">Prices</a></li>
-						<li><a href="'.base_url('admin/cdeal?active=1').'">Deals</a></li>
-						<li><a href="'.base_url('admin/cspecial?active=1').'">Specials</a></li>
+						
 					</ul>
 				</li>
 
