@@ -697,7 +697,14 @@ $this->load->helper('section');
 
       var addToCart = (id) =>{
         $.post("<?php echo base_url('/client/CartAdd'); ?>",{id:id,type:0},function(data){
-          alert(data);
+
+          if($(".cartTotal")[0]){
+            $(".cartTotal").text(data);
+          }else{
+            $("#np").prepend("<div class='cart-active white-text cartTotal'>"+data+"</div>");
+          }
+
+          
         });
       }
 

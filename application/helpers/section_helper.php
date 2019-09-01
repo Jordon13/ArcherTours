@@ -58,16 +58,22 @@ if(!function_exists('main_nav')){
     $total = 0;
     
     if($getCart !== null){
+
       $total = count(json_decode(base64_decode($getCart),true));
 
-      $_GLOBAL['totalItems'] = $total;
+      if($total > 0 ){
 
-      $div = '<div class="cart-active white-text">'.$_GLOBAL['totalItems'].'</div>';
+        $_GLOBAL['totalItems'] = $total;
+
+        $div = '<div class="cart-active white-text cartTotal">'.$_GLOBAL['totalItems'].'</div>';
+      }
+
+      
     }
 
         echo '
         
-        <div class="fixed-action-btn">
+        <div class="fixed-action-btn " id="np">
         '.$div.'
         <a href="'.base_url('/checkout').'" class="btn-floating btn-large grey darken-4 waves-effect waves-light">
         <i class="large material-icons">add_shopping_cart</i>
@@ -171,7 +177,7 @@ if(!function_exists('main_footer')){
                 <p style="font-size:12px;"><b>Subscibe to our newsletter for update on deals and specials avaliable.</b></p>
                   <input id="emailAddr" type="email" placeholder="email" name="email" class="validate white">
                   <!-- <label for="first_name" class="white-text">Name</label> -->
-                  <button class="btn white black-text waves-effect waves-light yellow accent-3" id="submit">Subscribe</button>
+                  <button class="btn white black-text waves-effect waves-light yellow accent-3" id="submit1">Subscribe</button>
                 </div>
               </form>
 
@@ -277,7 +283,7 @@ s0.parentNode.insertBefore(s1,s0);
           });
 
 
-          $('#submit').on('click',function(e){
+          $('#submit1').on('click',function(e){
 
             e.preventDefault();
 

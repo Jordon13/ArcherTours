@@ -211,6 +211,10 @@ class Client extends CI_Controller {
 
     public function CreatePayment(){
 
+        
+
+        return;
+
         $fname = $this->input->post('fname',true);
 
         $lname = $this->input->post('lname',true);
@@ -221,7 +225,7 @@ class Client extends CI_Controller {
 
         $adultcount = $this->input->post('adultcount',true);
 
-        $childcount = $this->input->post('childcount',true);
+        //$childcount = $this->input->post('childcount',true);
 
         $tripdate = $this->input->post('tripdate',true);
         
@@ -255,17 +259,6 @@ class Client extends CI_Controller {
         
         $items = array();
 
-        if($item->price_per_child > 0 && $childcount > 0){
-            array_push($items, array(
-                'name'=>$item->price_place,
-                'currency'=>'USD',
-                'quantity'=>$childcount,
-                'id'=>$packageId,
-                'desc'=>"child package",
-                'price'=>$item->price_per_child
-            ));
-        }
-
         array_push($items, array(
             'name'=>$item->price_place,
             'currency'=>'USD',
@@ -279,7 +272,7 @@ class Client extends CI_Controller {
             $item->price_per_child = 0;
         }
 
-        $total = ($item->price_per_adult * $adultcount) + ($item->price_per_child * $childcount);
+        $total = ($item->price_per_adult * $adultcount);
 
 
         array_push($items, array(
@@ -327,7 +320,6 @@ class Client extends CI_Controller {
             'booking_email'=>$email,
             'booking_phone_number'=>$phone,
             'booking_adults'=>$adultcount,
-            'booking_kids'=>$childcount,
             'booking_origin'=>$item->price_origin,
             'booking_dest'=>$item->price_destination,
             'booking_date'=>date("Y-m-d" ,strtotime($tripdate)),
@@ -353,20 +345,16 @@ class Client extends CI_Controller {
         $type = sanitizeInput($this->input->post("type",true));
 
         if(empty($id) && empty($type)){
-            echo "Please don't modify code";
             return;
         }
 
         if($type==1){
-
             return;
         }
-
 
         $getItem = $this->cs->GetSpecialById($id);
 
         if($getItem == false){
-            echo "That package has been removed";
             return;
         }
 
@@ -390,6 +378,8 @@ class Client extends CI_Controller {
         
                 set_cookie($cookie_name,base64_encode(json_encode($cookie_value)),86400*3);
 
+                
+            echo count($cookie_value);
             }else{
 
                 array_push($getVal,array(
@@ -405,7 +395,15 @@ class Client extends CI_Controller {
                 $cookie_name = CARTNAME;
                 $cookie_value = $getVal;
                 set_cookie($cookie_name,base64_encode(json_encode($cookie_value)),86400*3);
-                print_r($getVal);
+                
+                $t = $_GLOBAL['totalItems'];
+
+                $t = $t+=1;
+
+                $_GLOBAL['totalItems'] = $t;
+                
+                
+                echo count($cookie_value);
             }
         }else{
 
@@ -424,12 +422,52 @@ class Client extends CI_Controller {
 
             set_cookie($cookie_name,base64_encode(json_encode($cookie_value)),86400*3);
 
+            $t = $_GLOBAL['totalItems'];
+
+            $t = $t+=1;
+
+            $_GLOBAL['totalItems'] = $t;
+
+            echo count($cookie_value);
         }
 
-        
+    }
 
-        echo "Package Added Successfully!";
+    public function DeleteCartItem(){
 
+        $id = $this->input->post("id",true);
+
+        $getVal = json_decode(base64_decode($_COOKIE[CARTNAME]),true);
+
+        $key = array_search($id, array_column($getVal, 'id'));
+
+        if($key !== false){
+
+            $cookie_name = CARTNAME;
+    
+            $cookie_value = $getVal;
+
+            unset($cookie_value[$key]);
+
+            $newArray = array_values($cookie_value);
+
+            $arryCount = count($newArray);
+    
+            set_cookie($cookie_name,base64_encode(json_encode($newArray)),86400*1);
+
+            if($arryCount > 0 ){
+                
+                echo "none";
+
+                return;
+            }
+
+            echo "<script>location.reload();</script>";
+
+            return;
+        }
+
+        echo "none";
     }
 
     public function testPay(){

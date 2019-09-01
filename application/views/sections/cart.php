@@ -113,6 +113,15 @@ html {
     border: none!important;
     border-top: 2px solid black!important;
     }
+
+    .del{
+        cursor:pointer;
+    }
+
+    .del i:hover{
+        color: rgba(255,68,54,0.6)!important;
+        transition: color 0.2s ease-in-out;
+    }
         
         </style>
     </head>
@@ -129,138 +138,151 @@ html {
 
     </div>
 
+    
+
     <?php if(isset($_COOKIE[CARTNAME]) !== null && !empty($_COOKIE[CARTNAME])){?>
         <?php $item = json_decode(base64_decode($_COOKIE[CARTNAME]));?>
-        <div class="row">
-        <div class="col l6 m12 offset-l1 offset-m0 offset-s0 s12">
-            <div class="row">
-                <table class="z-depth-1 grey lighten-5">
+        <?php if(count($item) > 0){?>
+            
+                <div class="row">
+                <div class="col l6 m12 offset-l1 offset-m0 offset-s0 s12">
+                    <div class="row">
+                        <table class="z-depth-1 grey lighten-5">
 
-                    <thead class="grey darken-4 white-text">
-                        <tr>
-                            <th>Origin</th>
-                            <th>Desitination</th>
-                            <th>Type</th>
-                            <th>Price</th>
-                            <th>Amount</th>
-                            <th>Discount</th>
-                            <th>Total</th>
-                            <th>Deposit</th>
-                            <th>Remove</th>
-                        </tr>
-                    </thead>
+                            <thead class="grey darken-4 white-text">
+                                <tr>
+                                    <th>Origin</th>
+                                    <th>Desitination</th>
+                                    <th>Type</th>
+                                    <th>Price</th>
+                                    <th>Amount</th>
+                                    <th>Discount</th>
+                                    <th>Total</th>
+                                    <th>Deposit</th>
+                                    <th>Remove</th>
+                                </tr>
+                            </thead>
 
-                    <?php $itms = json_decode(base64_decode($_COOKIE[CARTNAME])); $gt = 0?>
+                            <?php $itms = json_decode(base64_decode($_COOKIE[CARTNAME])); $gt = 0?>
 
-                    <tbody>
-                        <?php foreach($itms as $item){?>
-                        <tr>
-                            <td><?php echo $item->type;?></td>
-                            <td><?php echo $item->type;?></td>
-                            <td><?php echo $item->type;?></td>
-                            <td>$<?php echo $item->price;?></td>
-                            <td><input class="quan" type="number" value="<?php echo $item->quantity;?>"/></td>
-                            <td>%<?php echo $item->discount;?></td>
-                            <td class="tot">$<?php $totalAmt = ($item->quantity * $item->price) - (($item->discount / 100) * ($item->quantity * $item->price)); echo $totalAmt; ?></td>
-                            <td class="dep">$<?php echo $totalAmt * 0.10; $gt+=($totalAmt * 0.10);?></td>
-                            <td class="del"><i class="material-icons red-text">delete</i></td>
-                        </tr>
-                        <?php }?>
+                            <tbody>
+                                <?php foreach($itms as $item){?>
+                                <tr>
+                                    <td><?php echo $item->type;?></td>
+                                    <td><?php echo $item->type;?></td>
+                                    <td><?php echo $item->type;?></td>
+                                    <td>$<?php echo $item->price;?></td>
+                                    <td><input class="quan" type="number" value="<?php echo $item->quantity;?>"/></td>
+                                    <td>%<?php echo $item->discount;?></td>
+                                    <td class="tot">$<?php $totalAmt = ($item->quantity * $item->price) - (($item->discount / 100) * ($item->quantity * $item->price)); echo $totalAmt; ?></td>
+                                    <td class="dep">$<?php echo $totalAmt * 0.10; $gt+=($totalAmt * 0.10);?></td>
+                                    <td class="del"><i class="material-icons red-text">delete</i></td>
+                                </tr>
+                                <?php }?>
+                                
+                            </tbody>
+
+                            <tfoot class="grey darken-4 white-text">
+                                <tr class="noBorder">
+                                    <th colspan="9" class="right-align">Grand Total (Total Deposits)</th>
+                                </tr>
+                                <tr class="noBorder">
+                                    <td colspan="9" class="right-align" id="gt">$<?php echo $gt;?></td>
+                                </tr>
+                            </tfoot>
+
+                        </table>
+                    </div>
+
+                    <div class="row">
+                        <div class="divider"></div>
+
+                        <blockquote>Please note we only process payments through paypal for this release.</blockquote>
                         
-                    </tbody>
+                        <blockquote>In the next release direct card payment will be available.</blockquote>
+                        
+                        <blockquote>There will be a popup to collect payment, please allow it for a successful booking.</blockquote>
 
-                    <tfoot class="grey darken-4 white-text">
-                        <tr class="noBorder">
-                            <th colspan="9" class="right-align">Grand Total (Total Deposits)</th>
-                        </tr>
-                        <tr class="noBorder">
-                            <td colspan="9" class="right-align" id="gt">$<?php echo $gt;?></td>
-                        </tr>
-                    </tfoot>
+                        <blockquote>Only 10% of the original cost will be collected. Remainder must be payed in person.</blockquote>
+                    </div>
 
-                </table>
+                    <div class="row bcenter">
+                        
+                        <a href="<?php echo base_url('/services');?>" class="btn btn-large grey lighten-4 black-text waves-effect waves-light">
+                        Continue Shopping<i class="material-icons right">thumb_up</i>
+                        </a>
+                        
+                    </div>
+
+                </div>
+
+                <div class="col l4 m12 s12 offset-m0 offset-s0">
+                    <form class="my-form grey darken-4 z-depth-1">
+
+                        <div class="row">
+                            <div class="input-field col l6 s12">
+                                <input id="fname" type="text" name="fname" class="validate">
+                                <label for="fname">Firstname</label>
+                            </div>
+
+                            <div class="input-field col l6 s12">
+                                <input id="lname" type="text" name="lname" class="validate">
+                                <label for="lname">Lastname</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col l6 s12">
+                                <input id="email" type="email" name="email" class="validate">
+                                <label for="email">Email Address</label>
+                            </div>
+
+                            <div class="input-field col l6 s12">
+                                <input id="phone" type="text" name="phone" class="validate">
+                                <label for="phone">Phone Number</label>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="tripdate" name="tripdate" type="text" class="datepicker validate">
+                                <label for="tripdate">Date Of Trip</label>
+                            </div>
+
+                            <div class="input-field col s12">
+                                <textarea name="adinfo" id="adinfo" type="text" class="materialize-textarea white-text validate"></textarea>
+                                <label for="adinfo">Additional Information</label>
+                            </div>
+                        </div>
+
+                        <div class="row bcenter" style="margin-bottom:0px!important;">
+                            <div class="input-field col" style="margin-bottom:0px!important;">
+                            <button class="btn btn-large yellow black-text waves-effect waves-light" type="submit" id="submit" style="border-radius:100px!important;">
+                            Book Now<i class="material-icons right">forward</i>
+                            </button>
+                            </div>
+                        </div>
+
+                        <div class="row center-align result green-text">
+                        </div>
+
+                    </form>
+                </div>
+        
+            <?php }else{?>
+
+            <div class="row valign-wrapper center">
+                <div class="col s12"><h5>No Items In Cart</h5></div>
             </div>
 
-            <div class="row">
-                <div class="divider"></div>
-
-                <blockquote>Please note we only process payments through paypal for this release.</blockquote>
-                
-                <blockquote>In the next release direct card payment will be available.</blockquote>
-                
-                <blockquote>There will be a popup to collect payment, please allow it for a successful booking.</blockquote>
-
-                <blockquote>Only 10% of the original cost will be collected. Remainder must be payed in person.</blockquote>
-            </div>
-
-            <div class="row bcenter">
-                
+            <div class="row bcenter">  
                 <a href="<?php echo base_url('/services');?>" class="btn btn-large grey lighten-4 black-text waves-effect waves-light">
                 Continue Shopping<i class="material-icons right">thumb_up</i>
                 </a>
-                
             </div>
 
-        </div>
-
-        <div class="col l4 m12 s12 offset-m0 offset-s0">
-            <form class="my-form grey darken-4 z-depth-1">
-
-                <div class="row">
-                    <div class="input-field col l6 s12">
-                        <input id="fname" type="text" name="fname" class="validate">
-                        <label for="fname">Firstname</label>
-                    </div>
-
-                    <div class="input-field col l6 s12">
-                        <input id="lname" type="text" name="lname" class="validate">
-                        <label for="lname">Lastname</label>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="input-field col l6 s12">
-                        <input id="email" type="email" name="email" class="validate">
-                        <label for="email">Email Address</label>
-                    </div>
-
-                    <div class="input-field col l6 s12">
-                        <input id="phone" type="text" name="phone" class="validate">
-                        <label for="phone">Phone Number</label>
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input id="tripdate" name="tripdate" type="date" class="validate">
-                        <label for="tripdate">Date Of Trip</label>
-                    </div>
-
-                    <div class="input-field col s12">
-                        <textarea name="adinfo" id="adinfo" type="text" class="materialize-textarea validate"></textarea>
-                        <label for="adinfo">Additional Information</label>
-                    </div>
-                </div>
-
-                <div class="row bcenter" style="margin-bottom:0px!important;">
-                    <div class="input-field col" style="margin-bottom:0px!important;">
-                    <button class="btn btn-large yellow black-text waves-effect waves-light" type="submit" id="submit" style="border-radius:100px!important;">
-                    Book Now<i class="material-icons right">forward</i>
-                    </button>
-                    </div>
-                </div>
-
-                <div class="row center-align result green-text">
-                </div>
-
-                
-                <div class="row center-align results">
-                        
-                </div>
-
-            </form>
-        </div>
+            <?php }?>    
     </div>
     <?php }else{?>
 
@@ -303,16 +325,15 @@ html {
         });
 
         function toMoney(money) {
-                return money.toLocaleString('en-US', {style: 'currency',currency: 'USD',}) || 0;
-            }
+            return money.toLocaleString('en-US', {style: 'currency',currency: 'USD',}) || 0;
+        }
 
         var json = <?php echo json_encode(json_decode(base64_decode($_COOKIE[CARTNAME])),JSON_PRETTY_PRINT);?>
-
-        console.log($('tbody>tr').length);
 
         var quan = $('.quan');
 
         quan.keyup('change',function(){
+
             var index = quan.index(this);
 
             var cur = quan.eq(index);
@@ -342,10 +363,92 @@ html {
 
             $("#gt").text(toMoney(gt));
         });
-    
-    var total = 0;
 
-    var getItem = (index) => json[index];
+        $(".del").click(function(){
+            
+            index = $(".del").index(this);
+
+            var dep = $(".dep").eq(index).text().replace('$', '');
+
+            var gt = $("#gt").text().replace('$', '');
+
+            var total = gt - dep;
+
+            $("#gt").text(toMoney(total));
+
+            $('tbody>tr').eq(index).fadeOut();
+
+            $('tbody>tr').eq(index).remove();
+
+            $.post("<?php echo site_url("/client/DeleteCartItem")?>",{id:getItem(index).id},function(data){
+
+                $(".cartTotal").text($('tbody>tr').length);
+
+                //console.table(json);
+
+                json = json.filter(r => r.id !== getItem(index).id);
+
+                if(data.trim() == "none"){
+                    //console.table(json);
+                    return;
+                }else{
+                    //console.table(json);
+                    document.write(data);
+                    return;
+                }
+
+                
+                
+            });
+
+        });
+
+        $('.datepicker').eq(0).datepicker({
+            showDaysInNextAndPreviousMonths: false,
+            minDate: new Date()
+        });
+
+
+        $("#submit").on('click',(e) =>{
+            e.preventDefault();
+
+            var form_data = new FormData();
+
+            var form = $('.my-form').serializeArray();
+
+            for(x = 0; x < form.length; x++){
+                form_data.append(form[x].name,form[x].value);
+            }
+
+            form_data.append("items",JSON.stringify(json));
+
+            $.ajax({
+                url: "<?php echo site_url('/client/CreatePayment');?>",
+                method: "POST",
+                data: form_data,
+                beforeSend: function(){
+                  //$(".result").css("color","#fdd800");
+
+                  $('.result').html("Processing...");
+                },
+                success: function(e) {
+                    console.table(e);
+                   //$(".result").css("color","#fdd800");
+                    $('.result').html("Booked Successfully!");
+                },
+                contentType: false,
+                cache: false,
+                processData:false,       
+
+            });
+
+        });
+
+    
+    
+        var total = 0;
+
+        var getItem = (index) => json[index];
 
     </script>
 
