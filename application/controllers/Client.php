@@ -211,8 +211,6 @@ class Client extends CI_Controller {
 
     public function CreatePayment(){
 
-        //return;
-
         $fname = $this->input->post('fname',true);
 
         $lname = $this->input->post('lname',true);
@@ -253,15 +251,42 @@ class Client extends CI_Controller {
 
         $name = $fname.' '.$lname;
 
+        $proc  = '';
+
 
         foreach($cartItems as $cartItem){
 
             $item = null;
 
-            if($type == 0){
+            $discount = 0;
+
+            $utype = $cartItem->utype;
+
+            if($utype == 0){
                 $item = $this->cs->GetPackageById($cartItem->id);
+
+                if($cartItem->quantity == 4){
+                    $ogp = $item->price_per_adult * $cartItem->quantity;
+
+                    $ngp = $item->display_price;
+
+                    $diff = $ogp - $ngp;
+
+                    if($diff < 0){
+                        $discount = 0;
+                    }else{
+                        $discount = (($diff/$ogp) * 100);
+
+                        $discount = $discount/100;
+                    }
+                }
+
             }else{
-                $item = $this->cs->GetPackageById($this->cs->GetSpecialById($cartItem->id)->_service_id);
+                $n = $this->cs->GetSpecialById($cartItem->id);
+
+                $item = $this->cs->GetPackageById($n->_service_id);
+
+                $discount = $n->special_discount/100;
             }
 
             
@@ -274,10 +299,19 @@ class Client extends CI_Controller {
                 'desc'=>"adult package",
                 'price'=>$item->price_per_adult
             ));
-    
-            $total = ($item->price_per_adult * $cartItem->quantity);
 
-            $grand_total+=($total*0.10);
+            array_push($items, array(
+                'name'=>"package discount",
+                'currency'=>'USD',
+                'quantity'=>1,
+                'id'=>$cartItem->id,
+                'desc'=>"This is an applied discount, for our customers.",
+                'price'=>(($item->price_per_adult * $cartItem->quantity) * $discount) * -1
+            ));
+    
+            $total = ($item->price_per_adult * $cartItem->quantity) - (($item->price_per_adult * $cartItem->quantity) * $discount);//(($item->price_per_adult * $cartItem->quantity) * $discount)
+
+            $grand_total+=$total*0.10;
 
             array_push($items, array(
                 'name'=>"90% waiver to offset balance to only collect 10% upfront. *amount waived should be payed in person*",
@@ -289,6 +323,12 @@ class Client extends CI_Controller {
             ));
 
         }
+
+        // echo $proc;
+
+        // echo "Grand Total: ".$grand_total;
+
+        //return;
 
         
         $jsDeArray = json_decode(json_encode($items));
@@ -302,7 +342,7 @@ class Client extends CI_Controller {
             'desc' => $description,
             'currency'=>"USD",
             "note"=>$note,
-            "total"=>(float)$grand_total,
+            "total"=>(float)2.6,
             "bookingid"=>$booking_unique_key
         );
 
@@ -349,19 +389,52 @@ class Client extends CI_Controller {
         
         $id = substr(sanitizeInput(base64_decode($this->input->post("id",true))),10);
         $type = sanitizeInput($this->input->post("type",true));
+        $discount = 0;
+        $trip_type = '';
+        
 
         if(empty($id) && empty($type)){
             return;
         }
 
-        if($type==1){
-            return;
+        if($type == 0){
+            $getItem = $this->cs->GetPackageById($id);
+
+            if($getItem->quantity == 4){
+                $ogp = $getItem->price_per_adult * $getItem->quantity;
+
+                $ngp = $getItem->display_price;
+
+                $diff = $ogp - $ngp;
+
+                if($diff < 0){
+                    $discount = 0;
+                }else{
+                    $discount = (($diff/$ogp) * 100);
+                }
+            }
+
+        }else{
+            
+            $n = $this->cs->GetSpecialById($id);
+
+            $getItem = $this->cs->GetPackageById($n->_service_id);
+
+            //$id = $getItem->package_unique_id;
+
+            $discount = $n->special_discount;
         }
 
-        $getItem = $this->cs->GetSpecialById($id);
+        //print_r($getItem);
 
         if($getItem == false){
             return;
+        }
+        
+        $trip_type = "Round Trip";
+        
+        if($getItem->trip_type == 1){
+            $trip_type = 'One Way Trip';
         }
 
         if(isset($_COOKIE[CARTNAME]) && !empty($_COOKIE[CARTNAME])){
@@ -389,12 +462,14 @@ class Client extends CI_Controller {
             }else{
 
                 array_push($getVal,array(
-                    "price"=>$getItem->special_price,
+                    "price"=>$getItem->price_per_adult,
                     "id"=>$id,
-                    "discount"=>$getItem->special_discount,
+                    "discount"=>$discount,
                     "quantity"=>1,
-                    "description"=>$getItem->special_desc,
-                    "type"=>"one way"
+                    "type"=>$trip_type,
+                    "Origin"=>$getItem->price_origin,
+                    "Destination"=>$getItem->price_destination,
+                    "utype"=>$type
                 
                 ));
 
@@ -415,14 +490,16 @@ class Client extends CI_Controller {
 
             $cookie_name = CARTNAME;
             $cookie_value = array(array(
-                    "price"=>$getItem->special_price,
-                    "id"=>$id,
-                    "discount"=>$getItem->special_discount,
-                    "quantity"=>1,
-                    "description"=>$getItem->special_desc,
-                    "type"=>"one way"
-                    
-                )
+                "price"=>$getItem->price_per_adult,
+                "id"=>$id,
+                "discount"=>$discount,
+                "quantity"=>1,
+                "type"=>$trip_type,
+                "Origin"=>$getItem->price_origin,
+                "Destination"=>$getItem->price_destination,
+                "utype"=>$type
+            
+            )
             
             );
 

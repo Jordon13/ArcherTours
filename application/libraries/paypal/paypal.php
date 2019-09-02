@@ -109,6 +109,10 @@ class Paypal {
         ->setRedirectUrls($redirectUrls)
         ->setTransactions(array($transaction));
 
+        //print_r($payment);
+
+        //return;
+
         try {
             $payment->create($this->apiContext);
 

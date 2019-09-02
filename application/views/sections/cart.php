@@ -153,7 +153,7 @@ html {
                                 <tr>
                                     <th>Origin</th>
                                     <th>Desitination</th>
-                                    <th>Type</th>
+                                    <th>Trip Type</th>
                                     <th>Price</th>
                                     <th>Amount</th>
                                     <th>Discount</th>
@@ -168,8 +168,8 @@ html {
                             <tbody>
                                 <?php foreach($itms as $item){?>
                                 <tr>
-                                    <td><?php echo $item->type;?></td>
-                                    <td><?php echo $item->type;?></td>
+                                    <td><?php echo $item->Origin;?></td>
+                                    <td><?php echo $item->Destination;?></td>
                                     <td><?php echo $item->type;?></td>
                                     <td>$<?php echo $item->price;?></td>
                                     <td><input class="quan" type="number" value="<?php echo $item->quantity;?>"/></td>

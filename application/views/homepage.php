@@ -696,7 +696,7 @@ $this->load->helper('section');
 
 
       var addToCart = (id) =>{
-        $.post("<?php echo base_url('/client/CartAdd'); ?>",{id:id,type:0},function(data){
+        $.post("<?php echo base_url('/client/CartAdd'); ?>",{id:id,type:1},function(data){
 
           if($(".cartTotal")[0]){
             $(".cartTotal").text(data);
