@@ -117,11 +117,11 @@ class Paypal {
             return '<script>window.open("'.$approvalUrl.'", "Payment Portal", "height=800,width=600,resizable=no");</script>';
 
         } catch (PayPal\Exception\PayPalConnectionException $ex) {
-            //print_r($ex->getData());
-            return false;
+            print_r($ex->getData());
+            return $ex->getMessage();
         } catch (Exception $ex) {
-           //print_r($ex->getData());
-            return false;
+           print_r($ex->getData());
+            return $ex->getMessage();
         }
 
     

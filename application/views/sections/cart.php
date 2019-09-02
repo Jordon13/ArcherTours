@@ -420,7 +420,13 @@ html {
                 form_data.append(form[x].name,form[x].value);
             }
 
-            form_data.append("items",JSON.stringify(json));
+            for(i = 0; i < $(".quan").length; i++){
+                json[i].quantity = $(".quan").eq(i).val().toFlt();
+            }
+
+           form_data.append("items",JSON.stringify(json));
+
+           form_data.append("type",1);
 
             $.ajax({
                 url: "<?php echo site_url('/client/CreatePayment');?>",
@@ -435,6 +441,7 @@ html {
                     console.table(e);
                    //$(".result").css("color","#fdd800");
                     $('.result').html("Booked Successfully!");
+                    $('.result').html(e);
                 },
                 contentType: false,
                 cache: false,

@@ -78,6 +78,7 @@ class Clientside extends CI_Model {
         return false;
     }
 
+
     public function GetSpecialById($id){
         
         $result = $this->db->get_where("sys_specials",array('special_unique_id'=>$id))->first_row();

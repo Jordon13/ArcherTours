@@ -211,9 +211,7 @@ class Client extends CI_Controller {
 
     public function CreatePayment(){
 
-        
-
-        return;
+        //return;
 
         $fname = $this->input->post('fname',true);
 
@@ -231,11 +229,15 @@ class Client extends CI_Controller {
         
         $addinfo = $this->input->post('adinfo',true);
 
-        $packageId = $this->input->post('PackageId',true);
+        $type = $this->input->post('type',true);
+
+        //$packageId = $this->input->post('PackageId',true);
 
         $booking_unique_key = random_string('alnum', 10);
 
-        if(empty($fname) && empty($lname) && empty($email) && empty($phone) && empty($adultcount) && empty($tripdate) && empty($addinfo) && empty($packageId) ){
+        $cartItems = json_decode($_POST['items']);
+
+        if(empty($fname) && empty($lname) && empty($email) && empty($phone) && empty($adultcount) && empty($tripdate)){
 
             echo "All feilds are required for this request";
 
@@ -243,98 +245,102 @@ class Client extends CI_Controller {
 
         }
 
-        $name = $fname.' '.$lname;
-
-        $item = $this->cs->GetPackageById($packageId);
-
-        
-
-        if($item === false){
-            
-            echo "Failed to identify package";
-
-            return;
-        }
-
-        
         $items = array();
 
-        array_push($items, array(
-            'name'=>$item->price_place,
-            'currency'=>'USD',
-            'quantity'=>$adultcount,
-            'id'=>$packageId,
-            'desc'=>"adult package",
-            'price'=>$item->price_per_adult
-        ));
+        $total = 0;
 
-        if($item->price_per_child == null){
-            $item->price_per_child = 0;
+        $grand_total = 0;
+
+        $name = $fname.' '.$lname;
+
+
+        foreach($cartItems as $cartItem){
+
+            $item = null;
+
+            if($type == 0){
+                $item = $this->cs->GetPackageById($cartItem->id);
+            }else{
+                $item = $this->cs->GetPackageById($this->cs->GetSpecialById($cartItem->id)->_service_id);
+            }
+
+            
+
+            array_push($items, array(
+                'name'=>$item->price_place,
+                'currency'=>'USD',
+                'quantity'=>$cartItem->quantity,
+                'id'=>$cartItem->id,
+                'desc'=>"adult package",
+                'price'=>$item->price_per_adult
+            ));
+    
+            $total = ($item->price_per_adult * $cartItem->quantity);
+
+            $grand_total+=($total*0.10);
+
+            array_push($items, array(
+                'name'=>"90% waiver to offset balance to only collect 10% upfront. *amount waived should be payed in person*",
+                'currency'=>'USD',
+                'quantity'=>1,
+                'id'=>$cartItem->id,
+                'desc'=>"down payment waiver - *amount waived should be payed in person*",
+                'price'=>($total * 0.90) * -1
+            ));
+
         }
 
-        $total = ($item->price_per_adult * $adultcount);
-
-
-        array_push($items, array(
-            'name'=>"90% waiver to offset balance to only collect 10% upfront. *amount waived should be payed in person*",
-            'currency'=>'USD',
-            'quantity'=>"1",
-            'id'=>$packageId,
-            'desc'=>"down payment waiver - *amount waived should be payed in person*",
-            'price'=>($total * 0.90) * -1
-        ));
-
-        $note = "Going from ".$item->price_origin." to ".$item->price_destination;
-
-        $description = $item->price_description;
-
-        $total = ($total-($total * 0.90));
-
+        
         $jsDeArray = json_decode(json_encode($items));
+
+        $note = "General Booking";
+
+        $description = "Please note this is just a down payment the remaining balance should be payed in person";
 
         $pack = array(
             'items'=>$jsDeArray,
-            'desc'=>base64_decode($description),
+            'desc' => $description,
             'currency'=>"USD",
             "note"=>$note,
-            "total"=>(float)$total,
+            "total"=>(float)$grand_total,
             "bookingid"=>$booking_unique_key
         );
 
         $package = json_decode(json_encode($pack));
 
-        //print_r($package);
-
         $result = $this->pal->getPayPalClient($package);
 
+
         if($result === false){
-            echo "failed to process payment";
+            echo "Failed To Process Payment";
             return;
         }
 
 
-        $dataArray = array(
-            'booking_unique_key'=>$booking_unique_key,
-            'booking_first_name'=>$fname,
-            'booking_last_name'=>$lname,
-            'booking_email'=>$email,
-            'booking_phone_number'=>$phone,
-            'booking_adults'=>$adultcount,
-            'booking_origin'=>$item->price_origin,
-            'booking_dest'=>$item->price_destination,
-            'booking_date'=>date("Y-m-d" ,strtotime($tripdate)),
-            'booking_type'=>$item->package_type,
-            'booking_special_inst'=>$addinfo
-        );
-
-        $dataArray = $this->gen->xss_cleanse($dataArray);
-
-        if($this->cs->InsertBooking($dataArray)){
-            echo $result;
-            return;
+        foreach($cartItems as $itm){
+            $dataArray = array(
+                'booking_unique_key'=>$booking_unique_key,
+                'booking_first_name'=>$fname,
+                'booking_last_name'=>$lname,
+                'booking_email'=>$email,
+                'booking_phone_number'=>$phone,
+                'booking_adults'=>$itm->quantity,
+                'booking_origin'=>$item->price_origin,
+                'booking_dest'=>$item->price_destination,
+                'booking_date'=>date("Y-m-d" ,strtotime($tripdate)),
+                'booking_type'=>$item->package_type,
+                'booking_special_inst'=>$addinfo
+            );
+    
+            $dataArray = $this->gen->xss_cleanse($dataArray);
+    
+            // if($this->cs->InsertBooking($dataArray)){
+            //     echo $result;
+            //  //   return;
+            // }
         }
 
-        echo "failed to add booking and accept payment";
+        echo $result;
         return;
         
     }
