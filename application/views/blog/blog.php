@@ -2,12 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $this->load->helper('section');
-
 ?>
 <html lang="en">
 <head>
     <title>Blogs</title>
     <?php main_head();?>
+    <script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.min.js"></script>
 </head>
 
 <style>       
@@ -59,21 +59,19 @@ $this->load->helper('section');
         color:#fdd800!important;
       }
 
-    .blog{
-      border: 0.9px solid rgba(224,224,224 ,1);
-      background-color: rgba(35, 32, 32, 1)!important;
-    }
-
-    .social-stats{
-      color:#bdbdbd;
-      display: flex;
-      justify-content:flex-start;
+    .blogs{
+      /* border: 0.9px solid rgba(224,224,224 ,1);
+      background-color: rgba(35, 32, 32, 1)!important; */
       flex-flow: row wrap;
-      margin-top:10px;
       align-items: center;
     }
 
-    .social-stats p{
+    .social-stats{
+      /* padding:0.3em!important; */
+      font-size: 14px;
+    }
+
+    /* .social-stats p{
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -87,7 +85,7 @@ $this->load->helper('section');
     .h1text a{
       color:white;
       text-decoration: underline;
-    }
+    } */
 
 
 </style>
@@ -110,34 +108,91 @@ $this->load->helper('section');
 
     </div>
 
-<div class="row blogs">
+    <div class="row valign-wrapper blogs">
     {data}
-      <div class="col s12 m8 offset-m2 l8 offset-l2" data-aos="fade-up">
-        <div class="card-panel blog">
-          <div class="row valign-wrapper">
-            <div class="col s3">
-            <img src="{image}" width="200" height="200" alt="no image" class=""/>
-            </div>
-            <div class="col s10">
-              <h4 class="header white-text h1text"><a href="{url}">{title}</a></h4>
-              <p class="white-text lead"><em>{catch}</em></p>
-              <p class="yel-tex">TAGS: <em>{tags}</em></p>
-              <div class="social-stats">
-                <p><i class="material-icons">access_time</i> {created}</p>
-                <p><i class="material-icons">person</i>  {fullname}</p>
-                <!-- <p><i class="material-icons">mode_comment</i>{comments}</p>
-                <p><i class="material-icons">thumb_up</i> {likes}</p>
-                <p><i class="material-icons">screen_share</i> {shares}</p> -->
-              </div>
 
-            </div>
+        <div class="col s12 l3 m4 item">
+        <div class="card">
+          <div class="card-image">
+            <img src="{image}" alt="no image" class="">
+          </div>
+          <div class="card-content">
+
+           <a class="" href="{url}"><b>{catch}</b></a> | <a class="" href="{url}"><b>{tags}</b></a> <!--<p class="">TAGS: <em>{tags}</em></p> -->
+          <p class="grey-text lighten-1 social-stats">on {created} / <em>by {fullname}</em></p>
+
+          <span class="card-title" style="padding-top:0.3em!important;padding-bottom:0.3em!important;"><a class="black-text" href="{url}">{title}</a></span>
+            <p class="">{content}</p>
             
+            
+          <div class="card-action center-align">
+            <a href="{url}">Continue Reading</a>
           </div>
         </div>
       </div>
+      </div>
+
     {/data}
 
-      </div>
+      
+  </div>
     <?php main_footer(); ?>
 </body>
 </html>
+
+<script>
+
+    var loadCount = 0;
+
+    const incremntBy = 8;
+
+    $("document").ready(function(){
+      $(window).scroll(function() {
+        if($(window).scrollTop() + $(window).height() == $(document).height()) {
+            $.get('<?php echo site_url("/client/GetMoreBlogs")?>'+'?position=' + nextPage(), function(datas){
+
+                if(datas == 0){
+                  return;
+                }
+
+                var data = JSON.parse(datas);
+
+                for(x = 0; x < data.length; x++){
+                    $(`<div class="col s12 l3 m4 item">
+                      <div class="card">
+                        <div class="card-image">
+                          <img src="${data[x].image}" alt="no image" class="">
+                        </div>
+                        <div class="card-content">
+
+                        <a class="" href="${data[x].url}"><b>${data[x].catch}</b></a> | <a class="" href="${data[x].url}"><b>${data[x].tags}</b></a> <!--<p class="">TAGS: <em>${data[x].tags}</em></p> -->
+                        <p class="grey-text lighten-1 social-stats">on ${data[x].created} / <em>by ${data[x].fullname}</em></p>
+
+                        <span class="card-title" style="padding-top:0.3em!important;padding-bottom:0.3em!important;"><a class="black-text" href="${data[x].url}">${data[x].title}</a></span>
+                          <p class="">${data[x].content}</p>
+                          
+                          
+                        <div class="card-action center-align">
+                          <a href="${data[x].url}">Continue Reading</a>
+                        </div>
+                      </div>
+                    </div>
+                    </div>`).appendTo(".blogs").fadeIn(1000);
+                }
+
+          });
+        }
+      });
+    });
+
+
+    var nextPage = () =>{
+      loadCount = loadCount+1;
+      return loadCount * incremntBy;
+    }
+
+
+
+    
+
+</script>

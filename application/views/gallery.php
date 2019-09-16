@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $this->load->helper('section');
-
+$images = $data['images'];
 ?>
 <html lang="en">
 <head>
@@ -40,6 +40,11 @@ $this->load->helper('section');
           z-index: 2!important;
       }
 
+      .medias{
+        flex-flow: row wrap;
+        align-items: flex-start;
+      }
+
       .custom-hone-link{
         color:white!important;
       }
@@ -70,6 +75,11 @@ $this->load->helper('section');
 
       .media-option{
         font-size: 20px;
+      }
+
+      .formatt{
+          padding:1em!important;
+          height:100%;
       }
 
 
@@ -115,15 +125,37 @@ $this->load->helper('section');
     
     <div class="row">
       <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 center">
-        <div class="row">
+        <div class="row valign-wrapper medias">
 
-          {data}
+        
+        <?php foreach($data['images'] as $img){?>
+
             <div class="col l4 m12 s12 custom-img" >
-              <img class="materialboxed" data-caption="{media_file_desc}" src="<?php echo base_url('uploads/media/')?>{media_folder_name}/photos/{media_file_name}"/> 
+              <img class="materialboxed" data-caption="<?php echo $img['media_file_desc']?>" src="<?php echo base_url('uploads/media/')?><?php echo $img['media_folder_name']?>/photos/<?php echo $img['media_file_name']?>"/> 
             </div>
-          {/data}
+        <?php }?>
 
         </div>
+      </div>
+    </div>
+
+
+    <div class="row formatt">
+      <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 center">
+       
+
+        
+        <?php foreach($data['videos'] as $vid){?>
+          <div class="col l4 m12 s12 custom-img" >
+          <video controls class="player materialboxed" data-caption="<?php echo $vid['media_file_desc']?>" id="player1"
+            width="100%" loop muted poster="<?php echo base_url('assets/trips/19.jpeg') ?>"
+            preload="auto" src="<?php echo base_url('uploads/media/')?><?php echo $vid['media_folder_name']?>/videos/<?php echo $vid['media_file_name']?>"
+            tabindex="0" title="MediaElement">
+          </video>
+          </div>
+          
+        <?php }?>
+
       </div>
     </div>
     

@@ -826,12 +826,16 @@ class Cms extends CI_Controller {
 
             for($count = 0; $count<count($_FILES['upl']['name']); $count++){
 
+                $isVideo = false;
+
                 $info = pathinfo($_FILES['upl']['name'][$count], PATHINFO_EXTENSION);
 
                 if($info == "mp4"){
                     $config['upload_path'] = './uploads/media/'.$sys_folder_name.'/videos/';
+                    $isVideo = true;
                 }else{
                     $config['upload_path'] = './uploads/media/'.$sys_folder_name.'/photos/';
+                    $isVideo = false;
                 }
 
                 $config['allowed_types'] = "jpg|jpeg|png|mp4";
@@ -852,7 +856,8 @@ class Cms extends CI_Controller {
                         'media_file_desc'=>$media_file_desc,
                         'media_file_name'=>$media_file_name,
                         'sys_folder_id'=>$sys_folder_id,
-                        'sys_user'=>$sys_user
+                        'sys_user'=>$sys_user,
+                        'media_file_type'=> $isVideo == true ? "video" : "image"
                     );
 
                     $dataArray = $this->gen->xss_cleanse($dataArray);

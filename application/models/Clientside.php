@@ -78,7 +78,6 @@ class Clientside extends CI_Model {
         return false;
     }
 
-
     public function GetSpecialById($id){
         
         $result = $this->db->get_where("sys_specials",array('special_unique_id'=>$id))->first_row();
@@ -89,10 +88,6 @@ class Clientside extends CI_Model {
 
         return false;
     }
-
-
-    
-        
 
     public function PaymentIdExist($id){
 
@@ -117,6 +112,7 @@ class Clientside extends CI_Model {
         $this->db->from('sys_blogs');
         $this->db->join('sys_users', 'sys_users.session_id = sys_blogs.blog_post_by');
         $this->db->order_by('sys_blogs.blog_date_generated', 'desc');
+        $this->db->limit(8,0);
         $query = $this->db->get();
 
         $results = $query->result_array();
@@ -150,14 +146,60 @@ class Clientside extends CI_Model {
                 'title'=>$result->blog_title,
                 'id'=>$result->blog_unique_id,
                 'url'=>site_url("blogs1062/$result->blog_url"),
-                'tags'=>sanitizeInput(base64_decode($result->blog_tags)),
+                'tags'=>explode(",",sanitizeInput(base64_decode($result->blog_tags)))[0],
                 'catch'=>$result->blog_catch_phrase,
-                'content'=>sanitizeInput(substr($content, 0, 150)).'...',
+                'content'=>sanitizeInput2(strip_tags(substr($content, 0, 250))).'...',
                 'image'=>base_url("uploads/blog-images/$result->blog_image"),
-                'created'=>$result->blog_date_generated,
+                'created'=>date("F d, Y", strtotime($result->blog_date_generated)),
                 'comments'=>(string)$comments,
                 'likes'=> (string)$likes,
                 'shares'=>(string)$shares,
+                'fullname'=>$result->blog_user_visible=="1" ? $result->first_name.' '.$result->last_name:"anonymous"
+                
+            );
+
+            array_push($data, $ne);
+        }
+
+        return $data;
+    }
+
+    public function GetBlogs2($lastPos = 0){
+
+
+        //return "8, ". $lastPos;
+
+
+        $this->db->select('*');
+        $this->db->from('sys_blogs');
+        $this->db->join('sys_users', 'sys_users.session_id = sys_blogs.blog_post_by');
+        $this->db->order_by('sys_blogs.blog_date_generated', 'desc');
+        $this->db->limit(8, $lastPos);
+        $query = $this->db->get();
+
+        $results = $query->result_array();
+
+        if(count($results) <= 0){
+           // echo 0;
+            return false;
+        }
+
+        $data = array();
+
+        foreach($results as $res){
+            $result = json_decode(json_encode($res));
+
+            $content =$this->enc->decrypt($result->blog_content);
+
+            $ne = array(
+                'title'=>$result->blog_title,
+                'id'=>$result->blog_unique_id,
+                'url'=>site_url("blogs1062/$result->blog_url"),
+                'tags'=>explode(",",sanitizeInput(base64_decode($result->blog_tags)))[0],
+                'catch'=>$result->blog_catch_phrase,
+                'content'=>sanitizeInput2(strip_tags(substr($content, 0, 250))).'...',
+                'image'=>base_url("uploads/blog-images/$result->blog_image"),
+                'created'=>date("F d, Y", strtotime($result->blog_date_generated)),
                 'fullname'=>$result->blog_user_visible=="1" ? $result->first_name.' '.$result->last_name:"anonymous"
                 
             );

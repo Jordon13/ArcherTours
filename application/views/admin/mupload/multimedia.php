@@ -533,6 +533,14 @@ if(!($this->ses->has_userdata("user_ses"))){
                         </video>
                     </div>
 
+                    <div class="col l3 m4 s12 bx">
+                        <video controls class="player materialboxed z-depth-1" id="player1" height="100%"
+	                        width="100%" loop muted poster="<?php echo base_url('assets/trips/19.jpeg') ?>"
+	                        preload="auto" src="<?php echo base_url('assets/trips/23.mp4') ?>"
+	                        tabindex="0" title="MediaElement">
+                        </video>
+                    </div>
+
                 </div>
             </div>
 

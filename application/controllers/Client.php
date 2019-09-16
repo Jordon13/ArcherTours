@@ -323,13 +323,6 @@ class Client extends CI_Controller {
             ));
 
         }
-
-        // echo $proc;
-
-        // echo "Grand Total: ".$grand_total;
-
-        //return;
-
         
         $jsDeArray = json_decode(json_encode($items));
 
@@ -337,24 +330,24 @@ class Client extends CI_Controller {
 
         $description = "Please note this is just a down payment the remaining balance should be payed in person";
 
-        $pack = array(
-            'items'=>$jsDeArray,
-            'desc' => $description,
-            'currency'=>"USD",
-            "note"=>$note,
-            "total"=>(float)2.6,
-            "bookingid"=>$booking_unique_key
-        );
+        // $pack = array(
+        //     'items'=>$jsDeArray,
+        //     'desc' => $description,
+        //     'currency'=>"USD",
+        //     "note"=>$note,
+        //     "total"=>(float)2.6,
+        //     "bookingid"=>$booking_unique_key
+        // );
 
-        $package = json_decode(json_encode($pack));
+        // $package = json_decode(json_encode($pack));
 
-        $result = $this->pal->getPayPalClient($package);
+        // $result = $this->pal->getPayPalClient($package);
 
 
-        if($result === false){
-            echo "Failed To Process Payment";
-            return;
-        }
+        // if($result === false){
+        //     echo "Failed To Process Payment";
+        //     return;
+        // }
 
 
         foreach($cartItems as $itm){
@@ -373,14 +366,9 @@ class Client extends CI_Controller {
             );
     
             $dataArray = $this->gen->xss_cleanse($dataArray);
-    
-            // if($this->cs->InsertBooking($dataArray)){
-            //     echo $result;
-            //  //   return;
-            // }
         }
 
-        echo $result;
+        //echo $result;
         return;
         
     }
@@ -551,6 +539,32 @@ class Client extends CI_Controller {
         }
 
         echo "none";
+    }
+
+
+    public function GetMoreBlogs(){
+
+        $last_position = $_GET['position'];
+
+        if(!isset($last_position) && empty($last_position)){
+            
+            echo "Don't modify code please.";
+
+            return;
+        }
+
+        $results = $this->cs->GetBlogs2($last_position);
+
+        if($results === false){
+            echo 0;
+            return;
+        }else{
+            echo json_encode($results,JSON_PRETTY_PRINT);
+            return;
+        }
+
+        echo 0;
+
     }
 
     public function testPay(){

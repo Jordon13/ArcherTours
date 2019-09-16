@@ -126,8 +126,18 @@ class Manipulation extends CI_Model {
 
     public function LoadGallery(){
         $this->db->join('sys_files', 'sys_files.auto_generated_id = sys_media_upload.sys_folder_id');
+        $this->db->where("sys_media_upload.media_file_type","image");
         $this->db->order_by('date_added','DESC');
-        return $this->db->get("sys_media_upload")->result_array();
+        $images = $this->db->get("sys_media_upload")->result_array();
+
+        $this->db->join('sys_files', 'sys_files.auto_generated_id = sys_media_upload.sys_folder_id');
+        $this->db->where("sys_media_upload.media_file_type","video");
+        $this->db->order_by('date_added','DESC');
+        $videos = $this->db->get("sys_media_upload")->result_array();
+
+        $data = array('images'=>$images, 'videos'=>$videos);
+
+        return $data;
     }
 
 

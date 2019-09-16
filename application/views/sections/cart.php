@@ -158,7 +158,7 @@ html {
                                     <th>Amount</th>
                                     <th>Discount</th>
                                     <th>Total</th>
-                                    <th>Deposit</th>
+                                    <!-- <th>Deposit</th> -->
                                     <th>Remove</th>
                                 </tr>
                             </thead>
@@ -175,7 +175,8 @@ html {
                                     <td><input class="quan" type="number" value="<?php echo $item->quantity;?>"/></td>
                                     <td>%<?php echo $item->discount;?></td>
                                     <td class="tot">$<?php $totalAmt = ($item->quantity * $item->price) - (($item->discount / 100) * ($item->quantity * $item->price)); echo $totalAmt; ?></td>
-                                    <td class="dep">$<?php echo $totalAmt * 0.10; $gt+=($totalAmt * 0.10);?></td>
+                                    <!-- <td class="dep">$<?php //echo $totalAmt; $gt+=($totalAmt);?></td> -->
+                                    <!-- <td class="dep">$<?php $gt+=$totalAmt; //echo $totalAmt * 0.10; $gt+=($totalAmt * 0.10);?></td> -->
                                     <td class="del"><i class="material-icons red-text">delete</i></td>
                                 </tr>
                                 <?php }?>
@@ -344,7 +345,9 @@ html {
 
             var total = (quantity * item.price.toFlt()) - ((quantity * item.price.toFlt()) * (item.discount.toFlt() / 100));
 
-            var dep = total * 0.10;
+            //var dep = total * 0.10;
+
+            var dep = total;
 
             $(".tot").eq(index).text(toMoney(total));
 
