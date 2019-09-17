@@ -318,7 +318,7 @@ class Client extends CI_Controller {
 
             $body.="</div><div style='margin-top:0.5em;width: 200px;padding:0.4em;border:0.3px solid rgba(170,170,170,0.3); background-color: rgba(253,253,253,0.4);'><p><b>Booking Id:<b/>".$booking_unique_key."</p>";
 
-            $body.="<p><b>Date Booked:<b/>".date("F d, y")."</p>";
+            $body.="<p><b>Date Booked:<b/>".date("F d, Y")."</p>";
             
             $body.="<p><b>Booking Total Price:<b/>".$grand_total."</p></div>";
 
@@ -337,32 +337,43 @@ class Client extends CI_Controller {
 
     public function CartAdd(){
         
-        $id = substr(sanitizeInput(base64_decode($this->input->post("id",true))),10);
+        $id = "";
         $type = sanitizeInput($this->input->post("type",true));
         $discount = 0;
         $trip_type = '';
+
+        if($type == 0){
+            $id = $this->input->post("id",true);
+        }else{
+            $id= substr(sanitizeInput(base64_decode($this->input->post("id",true))),10);
+        }
         
 
         if(empty($id) && empty($type)){
             return;
         }
 
+        
+
         if($type == 0){
             $getItem = $this->cs->GetPackageById($id);
 
-            if($getItem->quantity == 4){
-                $ogp = $getItem->price_per_adult * $getItem->quantity;
+            // // print_r($getItem);
+            // // return;
 
-                $ngp = $getItem->display_price;
+            // if($getItem->quantity == 4){
+            //     $ogp = $getItem->price_per_adult * $getItem->quantity;
 
-                $diff = $ogp - $ngp;
+            //     $ngp = $getItem->display_price;
 
-                if($diff < 0){
-                    $discount = 0;
-                }else{
-                    $discount = (($diff/$ogp) * 100);
-                }
-            }
+            //     $diff = $ogp - $ngp;
+
+            //     if($diff < 0){
+            //         $discount = 0;
+            //     }else{
+            //         $discount = (($diff/$ogp) * 100);
+            //     }
+            // }
 
         }else{
             

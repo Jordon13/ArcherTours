@@ -356,8 +356,11 @@ html {
 
                 $('.discount').eq(index).text("%"+disc.toFixed(2));
 
+            }else if(item.utype == 0 && quantity != 4){
+                total = (quantity * item.price.toFlt()) - ((quantity * item.price.toFlt()) * (item.discount.toLocaleString().toFlt() / 100));
+                $('.discount').eq(index).text("%0");
             }else{
-                total = (quantity * item.price.toFlt()) - ((quantity * item.price.toFlt()) * (item.discount.toFlt() / 100));
+                total = (quantity * item.price.toFlt()) - ((quantity * item.price.toFlt()) * (item.discount.toLocaleString().toFlt() / 100));
             }
 
             
