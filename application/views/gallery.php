@@ -65,6 +65,10 @@ $images = $data['images'];
         color: rgba(35, 32, 32, 0.6);
       }
 
+      .activeView{
+        color: rgba(35, 32, 32, 0.6);
+      }
+
       .custom-img{
         padding:1em!important;
       }
@@ -80,6 +84,10 @@ $images = $data['images'];
       .formatt{
           padding:1em!important;
           height:100%;
+      }
+
+      .videos{
+        
       }
 
 
@@ -109,8 +117,8 @@ $images = $data['images'];
 
         <div class="row media-option" style="margin-bottom:0px!important;">
 
-          <div class="col lead">Photos</div>
-          <div class="col lead">Videos</div>
+          <div class="col lead imgclick">Photos</div>
+          <div class="col lead vidclick">Videos</div>
 
         </div>
 
@@ -123,7 +131,7 @@ $images = $data['images'];
     </div>
     
     
-    <div class="row">
+    <div class="row photos" >
       <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 center">
         <div class="row valign-wrapper medias">
 
@@ -140,7 +148,7 @@ $images = $data['images'];
     </div>
 
 
-    <div class="row formatt">
+    <div class="row videos" style="display:none;">
       <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 center">
        
 
@@ -165,6 +173,25 @@ $images = $data['images'];
 
 $('document').ready( ()=>{
   $('.materialboxed').materialbox();
+
+  $(".imgclick").on('click',function(){
+
+    $(".videos").fadeOut(800);
+    $(".photos").delay(800).fadeIn(800);
+    $(this).addClass("activeView");
+    $(".vidclick").removeClass("activeView");
+
+  });
+
+  $(".vidclick").on('click',function(){
+
+    $(".photos").fadeOut(800);
+    $(".videos").delay(800).fadeIn(800);
+    $(".imgclick").removeClass("activeView");
+    $(this).addClass("activeView");
+
+  });
+
 });
 
 </script>

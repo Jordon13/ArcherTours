@@ -173,7 +173,7 @@ html {
                                     <td><?php echo $item->type;?></td>
                                     <td>$<?php echo $item->price;?></td>
                                     <td><input class="quan" type="number" value="<?php echo $item->quantity;?>"/></td>
-                                    <td>%<?php echo $item->discount;?></td>
+                                    <td class="discount">%<?php echo $item->discount;?></td>
                                     <td class="tot">$<?php $totalAmt = ($item->quantity * $item->price) - (($item->discount / 100) * ($item->quantity * $item->price)); echo $totalAmt; ?></td>
                                     <!-- <td class="dep">$<?php //echo $totalAmt; $gt+=($totalAmt);?></td> -->
                                     <!-- <td class="dep">$<?php $gt+=$totalAmt; //echo $totalAmt * 0.10; $gt+=($totalAmt * 0.10);?></td> -->
@@ -195,7 +195,7 @@ html {
                         </table>
                     </div>
 
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="divider"></div>
 
                         <blockquote>Please note we only process payments through paypal for this release.</blockquote>
@@ -205,7 +205,7 @@ html {
                         <blockquote>There will be a popup to collect payment, please allow it for a successful booking.</blockquote>
 
                         <blockquote>Only 10% of the original cost will be collected. Remainder must be payed in person.</blockquote>
-                    </div>
+                    </div> -->
 
                     <div class="row bcenter">
                         
@@ -331,6 +331,8 @@ html {
 
         var json = <?php echo json_encode(json_decode(base64_decode($_COOKIE[CARTNAME])),JSON_PRETTY_PRINT);?>
 
+        console.log(json);
+
         var quan = $('.quan');
 
         quan.keyup('change',function(){
@@ -343,7 +345,24 @@ html {
 
             var quantity  = cur.val() == undefined || cur.val() <= 0 ? 0 : cur.val().toInt();
 
-            var total = (quantity * item.price.toFlt()) - ((quantity * item.price.toFlt()) * (item.discount.toFlt() / 100));
+            total = 0;
+
+            if(item.utype == 0 && quantity == 4){
+                total = item.DisplayPrice.toFlt();
+
+                var tempdisc = (quantity * item.price.toFlt()) - total;
+
+                var disc = tempdisc/(quantity * item.price.toFlt()) * 100;
+
+                $('.discount').eq(index).text("%"+disc.toFixed(2));
+
+            }else{
+                total = (quantity * item.price.toFlt()) - ((quantity * item.price.toFlt()) * (item.discount.toFlt() / 100));
+            }
+
+            
+
+            
 
             //var dep = total * 0.10;
 
@@ -357,7 +376,7 @@ html {
 
             for(x =0; x< quan.length; x++){
 
-                var clean1 = $(".dep").eq(x).text().replace('$', '');
+                var clean1 = $(".tot").eq(x).text().replace('$', '');
 
                 clean1 = clean1.replace(',', '');
 
@@ -371,7 +390,7 @@ html {
             
             index = $(".del").index(this);
 
-            var dep = $(".dep").eq(index).text().replace('$', '');
+            var dep = $(".tot").eq(index).text().replace('$', '');
 
             var gt = $("#gt").text().replace('$', '');
 

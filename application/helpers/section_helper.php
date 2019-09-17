@@ -261,7 +261,9 @@ s0.parentNode.insertBefore(s1,s0);
       
           $(document).ready(function(){
             $('.sidenav').sidenav();
-            AOS.init();
+            AOS.init({
+              once: true
+           });
           });
   
           $('.himg').eq(1).hover(function(){

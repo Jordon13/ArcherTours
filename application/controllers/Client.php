@@ -221,19 +221,23 @@ class Client extends CI_Controller {
 
         $adultcount = $this->input->post('adultcount',true);
 
-        //$childcount = $this->input->post('childcount',true);
-
         $tripdate = $this->input->post('tripdate',true);
         
         $addinfo = $this->input->post('adinfo',true);
 
         $type = $this->input->post('type',true);
 
-        //$packageId = $this->input->post('PackageId',true);
-
         $booking_unique_key = random_string('alnum', 10);
 
         $cartItems = json_decode($_POST['items']);
+
+        $total = 0;
+
+        $grand_total = 0;
+
+        $body = "<div style='width: 200px;padding:0.4em;border:0.3px solid rgba(170,170,170,0.3); background-color: rgba(253,253,253,0.4);'>";
+
+        $batchArray = array();
 
         if(empty($fname) && empty($lname) && empty($email) && empty($phone) && empty($adultcount) && empty($tripdate)){
 
@@ -242,16 +246,7 @@ class Client extends CI_Controller {
             return;
 
         }
-
-        $items = array();
-
-        $total = 0;
-
-        $grand_total = 0;
-
-        $name = $fname.' '.$lname;
-
-        $proc  = '';
+        
 
 
         foreach($cartItems as $cartItem){
@@ -289,86 +284,53 @@ class Client extends CI_Controller {
                 $discount = $n->special_discount/100;
             }
 
-            
+            $total = ($item->price_per_adult * $cartItem->quantity) - (($item->price_per_adult * $cartItem->quantity) * $discount);
 
-            array_push($items, array(
-                'name'=>$item->price_place,
-                'currency'=>'USD',
-                'quantity'=>$cartItem->quantity,
-                'id'=>$cartItem->id,
-                'desc'=>"adult package",
-                'price'=>$item->price_per_adult
-            ));
+            $grand_total += $total;
 
-            array_push($items, array(
-                'name'=>"package discount",
-                'currency'=>'USD',
-                'quantity'=>1,
-                'id'=>$cartItem->id,
-                'desc'=>"This is an applied discount, for our customers.",
-                'price'=>(($item->price_per_adult * $cartItem->quantity) * $discount) * -1
-            ));
-    
-            $total = ($item->price_per_adult * $cartItem->quantity) - (($item->price_per_adult * $cartItem->quantity) * $discount);//(($item->price_per_adult * $cartItem->quantity) * $discount)
-
-            $grand_total+=$total*0.10;
-
-            array_push($items, array(
-                'name'=>"90% waiver to offset balance to only collect 10% upfront. *amount waived should be payed in person*",
-                'currency'=>'USD',
-                'quantity'=>1,
-                'id'=>$cartItem->id,
-                'desc'=>"down payment waiver - *amount waived should be payed in person*",
-                'price'=>($total * 0.90) * -1
-            ));
-
-        }
-        
-        $jsDeArray = json_decode(json_encode($items));
-
-        $note = "General Booking";
-
-        $description = "Please note this is just a down payment the remaining balance should be payed in person";
-
-        // $pack = array(
-        //     'items'=>$jsDeArray,
-        //     'desc' => $description,
-        //     'currency'=>"USD",
-        //     "note"=>$note,
-        //     "total"=>(float)2.6,
-        //     "bookingid"=>$booking_unique_key
-        // );
-
-        // $package = json_decode(json_encode($pack));
-
-        // $result = $this->pal->getPayPalClient($package);
-
-
-        // if($result === false){
-        //     echo "Failed To Process Payment";
-        //     return;
-        // }
-
-
-        foreach($cartItems as $itm){
             $dataArray = array(
                 'booking_unique_key'=>$booking_unique_key,
                 'booking_first_name'=>$fname,
                 'booking_last_name'=>$lname,
                 'booking_email'=>$email,
                 'booking_phone_number'=>$phone,
-                'booking_adults'=>$itm->quantity,
+                'booking_adults'=>$cartItem->quantity,
                 'booking_origin'=>$item->price_origin,
                 'booking_dest'=>$item->price_destination,
                 'booking_date'=>date("Y-m-d" ,strtotime($tripdate)),
                 'booking_type'=>$item->package_type,
-                'booking_special_inst'=>$addinfo
+                'booking_special_inst'=>$addinfo,
+                'booking_price'=>$total
             );
+
+            $body.= "<p><b>Origin:</b>".$item->price_origin." </p>";
+            $body.="<p><b>Destination:</b>".$item->price_destination." </p>";
     
             $dataArray = $this->gen->xss_cleanse($dataArray);
+
+            array_push($batchArray,$dataArray);
         }
 
-        //echo $result;
+
+        if($this->cs->InsertBooking2($batchArray)){
+
+            $subject = "Booking Details For Archer 1062 Tours";
+
+            $body.="</div><div style='margin-top:0.5em;width: 200px;padding:0.4em;border:0.3px solid rgba(170,170,170,0.3); background-color: rgba(253,253,253,0.4);'><p><b>Booking Id:<b/>".$booking_unique_key."</p>";
+
+            $body.="<p><b>Date Booked:<b/>".date("F d, y")."</p>";
+            
+            $body.="<p><b>Booking Total Price:<b/>".$grand_total."</p></div>";
+
+            $this->cs->SendEmail($email,$subject,$body);
+
+            echo "Booked Successfully. Please check your email for the booking details.";
+
+
+            return;
+
+        }
+
         return;
         
     }
@@ -457,6 +419,7 @@ class Client extends CI_Controller {
                     "type"=>$trip_type,
                     "Origin"=>$getItem->price_origin,
                     "Destination"=>$getItem->price_destination,
+                    "DisplayPrice"=>$getItem->display_price,
                     "utype"=>$type
                 
                 ));
@@ -485,6 +448,7 @@ class Client extends CI_Controller {
                 "type"=>$trip_type,
                 "Origin"=>$getItem->price_origin,
                 "Destination"=>$getItem->price_destination,
+                "DisplayPrice"=>$getItem->display_price,
                 "utype"=>$type
             
             )

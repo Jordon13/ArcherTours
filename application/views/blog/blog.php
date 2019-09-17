@@ -156,9 +156,12 @@ $this->load->helper('section');
                 }
 
                 var data = JSON.parse(datas);
-
+                z = 500;
                 for(x = 0; x < data.length; x++){
-                    $(`<div class="col s12 l3 m4 item">
+
+                    z+=500;
+
+                    $(`<div class="col s12 l3 m4 item" data-aos="fade-up" >
                       <div class="card">
                         <div class="card-image">
                           <img src="${data[x].image}" alt="no image" class="">

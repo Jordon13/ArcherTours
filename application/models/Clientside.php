@@ -28,6 +28,20 @@ class Clientside extends CI_Model {
         return false;
     }
 
+    public function InsertBooking2($data){
+        $isInserted = false;
+        foreach($data as $d){
+            
+            $insertbooking = $this->db->insert('sys_booking',$d);
+
+		    if($insertbooking == true){
+			    $isInserted = true;
+            }
+        }
+
+        return $isInserted;
+    }
+
     public function InsertTransaction($data, $bookingId){
 
         $inserttrans = $this->db->insert('sys_transaction',$data);
@@ -369,6 +383,39 @@ class Clientside extends CI_Model {
             <p><b>Email Address:</b> '.$data['_email'].'</p>
             <p><b>Message:</b> '.$data['_message'].'</p>
         ');
+        $sent = $this->email->send();
+        if(!$sent){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+
+    public function SendEmail($email,$subject,$body){
+
+        
+
+        $this->load->library('email');
+            $config = array(
+            'protocol'  => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_port' => 465,
+            'smtp_user' => MY_EMAIL_ADDR,
+            'smtp_pass' => MY_EMAIL_PASSW,
+            'mailtype'  => 'html',
+            'smtp_keepalive' => 'TRUE',
+            '_smtp_auth'=>'TRUE',
+            '_replyto_flag'=>'TRUE',
+            'charset'   => 'utf-8'
+            );
+        $this->email->initialize($config);
+        $this->email->set_mailtype("html");
+        $this->email->set_newline("\r\n");
+        $this->email->from(MY_EMAIL_ADDR, 'Archer 1062 Tours');
+        $this->email->to($email);
+        $this->email->subject($subject);
+        $this->email->message($body);
         $sent = $this->email->send();
         if(!$sent){
             return false;

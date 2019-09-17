@@ -72,6 +72,9 @@ class Manipulation extends CI_Model {
         }
     }
     
+
+    
+
     public function IsFacebookExist(){
         $result = $this->db->get('sys_fb_credentials');
         $firstRow = $result->row();
