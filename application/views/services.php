@@ -169,7 +169,7 @@ $this->load->helper('section');
 
    
       <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 center">
-      <iframe width="100%" height="600px" src="https://www.youtube-nocookie.com/embed/b8Ogpm-RINk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe width="100%" height="600px" src="https://www.youtube.com/embed/DPWYizIpGOc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     
     </div>
