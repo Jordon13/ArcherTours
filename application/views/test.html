@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+        <style>
+            html,body{
+                padding:0px;
+                margin: 0px;
+                font-family:sans-serif;
+                width: 100%;
+                font-weight: 100;
+            }
+
+            table{
+                padding: 1em;
+                width:900px!important; 
+                margin-left:auto;
+                margin-right: auto;
+                border-spacing: 0;
+                
+            }
+
+            thead{
+                width: 100%;
+            }
+
+            thead tr th{
+                /* font-size: 13px; */
+                padding: 0.6em;
+                text-align: left;
+            }
+
+            thead tr td{
+                /* font-size: 13px; */
+                padding: 0.6em;
+                text-align: left;
+                color:white;
+            }
+
+            tbody tr td{
+                /* font-size: 13px; */
+                padding: 0.6em;
+                text-align: left;
+            }
+
+            tfoot tr td{
+                /* font-size: 13px; */
+                padding: 0.6em;
+                text-align: left;
+                color:white;
+            }
+
+            tfoot tr th{
+                /* font-size: 13px; */
+                padding: 0.6em;
+                text-align: left;
+                color:white;
+            }
+
+            .inner td{
+                border:0.5px solid rgba(130,130,130,0.3);
+                color:#212121!important;
+            }
+
+            .inner th{
+                border:0.5px solid rgba(130,130,130,0.3);
+                color:#212121!important;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+        <table >
+
+            <thead style="background-color:#212121;">
+
+                <!-- <tr >
+                    <th style="border-bottom: 0.1px solid #000!important;" colspan="7"></th>
+                </tr> -->
+
+                <tr>
+                    <th rowspan="8" ><img src="http://localhost/archertours/assets/logo.png" alt="no image"/></th>
+                    
+                </tr>
+                <tr>
+                    <th colspan="7" style="text-align: right; color:#FFEE58;"><h1>Arboshiki</h1></th>
+                </tr>
+
+                <tr>
+                    <td colspan="7" style="text-align: right;">455 Foggy Heights, AZ 85004, US</td>
+                </tr>
+
+                <tr>
+                    <td colspan="7" style="text-align: right;">(123) 456-789</td>
+                </tr>
+
+                <tr >
+                    <td colspan="7" style="text-align: right;">company@example.com</td>
+                </tr>
+
+                <tr >
+                    <td style="border-bottom: 0.1px solid #000!important;" colspan="7"></td>
+                </tr>
+
+            </thead>
+
+            <thead style="background-color: rgba(170,170,170,0.3); ">
+
+                   
+    
+                    <tr>
+                        <th colspan="3" style="text-align: left; color:#212121!important;">INVOICE TO:</th>
+                        <th  colspan="4" style="text-align: right; color:#212121!important;">INVOICE 3-2-1</th>
+                       
+                    </tr>
+
+                    <tr>
+                        <td colspan="3" style="text-align: left; color:#212121!important;">Jordaine Gayle</td>
+                        <td colspan="4" style="text-align: right; color:#212121!important;">Date of Invoice: 01/10/2018</td>
+                        
+                    </tr>
+
+                    <tr>
+                        <td colspan="3" style="text-align: left; color:#212121!important;">796 Silver Harbour, TX 79273, US</td>
+                        <td colspan="4" style="text-align: right; color:#212121!important;">Due Date: 30/10/2018</td>
+                    </tr>
+                    
+                    <tr>
+                        <td colspan="7" style="text-align: left; color:#212121!important;">john@example.com</td>
+                    </tr>
+                   
+    
+                </thead>
+
+                <thead style="background-color: rgba(170,170,170,0.3);">
+                    <tr class="inner">
+                        <th>Origin</th>
+                        <th>Destination</th>
+                        <th>Trip Type</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Discount</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+
+            <tbody style="background-color: rgba(170,170,170,0.3);">
+
+                <tr class="inner">
+
+                    <td>Trelawny</td>
+                    <td>Clarendon</td>
+                    <td>Round Trip</td>
+                    <td>$35.00</td>
+                    <td>3</td>
+                    <td>%20</td>
+                    <td>$100.90</td>
+
+                </tr>
+
+                <tr class="inner">
+
+                    <td>Trelawny</td>
+                    <td>Clarendon</td>
+                    <td>Round Trip</td>
+                    <td>$35.00</td>
+                    <td>3</td>
+                    <td>%20</td>
+                    <td>$100.90</td>
+
+                </tr>
+
+
+            </tbody>
+
+            <tfoot style="background-color:#212121;">
+
+                <tr>
+                    <td rowspan="4" style="text-align: right; color:#FFEE58;"><h1>Thank you!</h1></td>
+                </tr>
+
+                <tr>
+                        <td colspan="4"></td>
+                    <td style="text-align: left;">Trelawny</td>
+                    <td style="text-align: left;">Clarendon</td>
+                </tr>
+
+                <tr>
+                    <td colspan="4"></td>
+                    <td style="text-align: left;">Trelawny</td>
+                    <td style="text-align: left;">Clarendon</td>
+                </tr>
+
+                <tr>
+                    <td colspan="4"></td>
+                    <th style="text-align: left;">Trelawny</th>
+                    <th style="text-align: left;">Clarendon</th>
+                </tr>
+
+                <tr>
+                    <td rowspan="2" colspan="7" style="text-align: left; border-left: 3px solid #FFEE58;">We value you here at Archer 1062 Tours.<br/>Come travel with us again.</td>
+                </tr>
+
+            </tfoot>
+        </table>
+        
+    </body>
+</html>

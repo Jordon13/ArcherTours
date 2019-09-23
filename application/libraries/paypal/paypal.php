@@ -4,6 +4,7 @@ use SebastianBergmann\GlobalState\Exception;
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 require_once( 'C:\xampp\htdocs\archertours\vendor\autoload.php' );
+//C:\xampp\htdocs\archertours\application\models\Invoiced
 ini_set("display_errors", "on");
 
 use PayPal\Api\Amount;

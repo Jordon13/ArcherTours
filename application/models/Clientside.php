@@ -423,6 +423,44 @@ class Clientside extends CI_Model {
             return true;
         }
     }
+
+    public function DeleteCartItem($ids, $reloadOption = 0){
+
+        $id = $ids;
+
+        $getVal = json_decode(base64_decode($_COOKIE[CARTNAME]),true);
+
+        $key = array_search($id, array_column($getVal, 'id'));
+
+        if($key !== false){
+
+            $cookie_name = CARTNAME;
+    
+            $cookie_value = $getVal;
+
+            unset($cookie_value[$key]);
+
+            $newArray = array_values($cookie_value);
+
+            $arryCount = count($newArray);
+    
+            set_cookie($cookie_name,base64_encode(json_encode($newArray)),86400*1);
+
+            if($arryCount > 0 ){
+                
+                return "none";
+            }
+
+            if($reloadOption == 0){
+                return "<script>location.reload;</script>";
+            }else{
+                return "reload";
+            }
+            return;
+        }
+
+        return "none";
+    }
                    
 }
                         

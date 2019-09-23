@@ -1,7 +1,12 @@
 <?php 
         
 defined('BASEPATH') OR exit('No direct script access allowed');
-        
+
+
+// use Models\Invoiced\InvoiceFields;
+// use Models\Invoiced\Invoice;
+// use Models\Invoiced\SerializeInvoice;
+
 class Client extends CI_Controller {
 
     public function AddBooking(){
@@ -235,7 +240,9 @@ class Client extends CI_Controller {
 
         $grand_total = 0;
 
-        $body = "<div style='width: 200px;padding:0.4em;border:0.3px solid rgba(170,170,170,0.3); background-color: rgba(253,253,253,0.4);'>";
+        $reloadPage = "";
+
+        $body = "";
 
         $batchArray = array();
 
@@ -303,12 +310,32 @@ class Client extends CI_Controller {
                 'booking_price'=>$total
             );
 
-            $body.= "<p><b>Origin:</b>".$item->price_origin." </p>";
-            $body.="<p><b>Destination:</b>".$item->price_destination." </p>";
+            $trip_type = 'Round Trip';
+            if($item->package_type == 1){
+                $trip_type = 'One Way Trip';
+            }
+
+
+            $body.=<<<EOT
+
+            <tr class="inner">
+
+                <td>$item->price_origin</td>
+                <td>$item->price_destination</td>
+                <td>$trip_type</td>
+                <td>$$item->price_per_adult</td>
+                <td>$cartItem->quantity</td>
+                <td>%$discount</td>
+                <td>$$total</td>
+
+            </tr>
+EOT;
     
             $dataArray = $this->gen->xss_cleanse($dataArray);
 
             array_push($batchArray,$dataArray);
+
+            $reloadPage = $this->cs->DeleteCartItem($cartItem->id,1);
         }
 
 
@@ -316,16 +343,216 @@ class Client extends CI_Controller {
 
             $subject = "Booking Details For Archer 1062 Tours";
 
-            $body.="</div><div style='margin-top:0.5em;width: 200px;padding:0.4em;border:0.3px solid rgba(170,170,170,0.3); background-color: rgba(253,253,253,0.4);'><p><b>Booking Id:<b/>".$booking_unique_key."</p>";
+            $uid = uniqid();
 
-            $body.="<p><b>Date Booked:<b/>".date("F d, Y")."</p>";
+            $invDate = date('F d, Y');
+
+            $dueDate = date("F d, Y" ,strtotime($tripdate));
+
+            $mainBody = <<<EOT
             
-            $body.="<p><b>Booking Total Price:<b/>".$grand_total."</p></div>";
+            <!DOCTYPE html>
 
-            $this->cs->SendEmail($email,$subject,$body);
+<html>
+
+    <head>
+
+        <style>
+            html,body{
+                padding:0px;
+                margin: 0px;
+                font-family:sans-serif;
+                width: 100%;
+                font-weight: 100;
+            }
+
+            table{
+                padding: 1em;
+                width:900px!important; 
+                margin-left:auto;
+                margin-right: auto;
+                border-spacing: 0;
+                
+            }
+
+            thead{
+                width: 100%;
+            }
+
+            thead tr th{
+                /* font-size: 13px; */
+                padding: 0.6em;
+                text-align: left;
+            }
+
+            thead tr td{
+                /* font-size: 13px; */
+                padding: 0.6em;
+                text-align: left;
+                color:white;
+            }
+
+            tbody tr td{
+                /* font-size: 13px; */
+                padding: 0.6em;
+                text-align: left;
+            }
+
+            tfoot tr td{
+                /* font-size: 13px; */
+                padding: 0.6em;
+                text-align: left;
+                color:white;
+            }
+
+            tfoot tr th{
+                /* font-size: 13px; */
+                padding: 0.6em;
+                text-align: left;
+                color:#FFEE58;
+            }
+
+            .inner td{
+                border:0.5px solid rgba(130,130,130,0.3);
+                color:#212121!important;
+            }
+
+            .inner th{
+                border:0.5px solid rgba(130,130,130,0.3);
+                color:#fff;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+        <table >
+
+            <thead style="background-color:#212121;">
+
+                <!-- <tr >
+                    <th style="border-bottom: 0.1px solid #000!important;" colspan="7"></th>
+                </tr> -->
+
+                <tr>
+                    <th rowspan="8" ><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZF5j_offbmgzVWL3WoOfn0ETr0btw3pqnhyVJMp_FOJjtM2glXw" alt="no image"/></th>
+                    
+                </tr>
+                <tr>
+                    <th colspan="7" style="text-align: right; color:#FFEE58;"><h1>Vincent Archer</h1></th>
+                </tr>
+
+                <tr>
+                    <td colspan="7" style="text-align: right;">Montego Bay, Jamaica</td>
+                </tr>
+
+                <tr>
+                    <td colspan="7" style="text-align: right;">1-876-804-6480</td>
+                </tr>
+
+                <tr >
+                    <td colspan="7" style="text-align: right;">archer1062tours@yahoo.com</td>
+                </tr>
+
+                <tr >
+                    <td style="border-bottom: 0.1px solid #000!important;" colspan="7"></td>
+                </tr>
+
+            </thead>
+
+            <thead style="background-color: rgba(170,170,170,0.3); ">
+
+                   
+    
+                    <tr>
+                        <th colspan="3" style="text-align: left; color:#212121!important;">INVOICE TO:</th>
+                        <th  colspan="4" style="text-align: right; color:#212121!important;">INVOICE #$uid</th>
+                       
+                    </tr>
+
+                    <tr>
+                        <td colspan="3" style="text-align: left; color:#212121!important;">$fname $lname</td>
+                        <td colspan="4" style="text-align: right; color:#212121!important;">Date of Invoice: $invDate</td>
+                        
+                    </tr>
+
+                    <tr>
+                        <td colspan="3" style="text-align: left; color:#212121!important;">Outter State</td>
+                        <td colspan="4" style="text-align: right; color:#212121!important;">Due Date: $dueDate</td>
+                    </tr>
+                    
+                    <tr>
+                        <td colspan="7" style="text-align: left; color:#212121!important;">$email</td>
+                    </tr>
+                   
+    
+                </thead>
+
+                <thead style="background-color: #212121">
+                    <tr class="inner">
+                        <th>Origin</th>
+                        <th>Destination</th>
+                        <th>Trip Type</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Discount</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+
+            <tbody style="background-color: rgba(170,170,170,0.3);">
+
+                $body
+
+            </tbody>
+
+            <tfoot style="background-color:#212121;">
+
+                <tr>
+                    <td rowspan="4" style="text-align: left; color:#FFEE58;"><h1>Thank you!</h1></td>
+                </tr>
+
+                <tr>
+                        <td colspan="4"></td>
+                    <td style="text-align: left;">Sub Total</td>
+                    <td style="text-align: left;">$$grand_total</td>
+                </tr>
+
+                <tr>
+                    <td colspan="4"></td>
+                    <td style="text-align: left;">Tax</td>
+                    <td style="text-align: left;">0%</td>
+                </tr>
+
+                <tr>
+                    <td colspan="4"></td>
+                    <th style="text-align: left;">Grand Total</th>
+                    <th style="text-align: left;">$$grand_total</th>
+                </tr>
+
+                <tr>
+                    <td rowspan="2" colspan="7" style="text-align: left; border-left: 3px solid #FFEE58;">We value you here at Archer 1062 Tours.<br/>Come travel with us again.<br/>Reference Id: $booking_unique_key</td>
+                </tr>
+
+            </tfoot>
+        </table>
+        
+    </body>
+</html>
+EOT;
+
+            $this->cs->SendEmail($email,$subject,$mainBody);
 
             echo "Booked Successfully. Please check your email for the booking details.";
 
+            if($reloadPage == "reload"){
+                echo "<script>setTimeout(function(){location.reload();},3200);</script>";
+            }
+
+            //unset($_COOKIE[CARTNAME]);
+
+            //set_cookie(CARTNAME,null,time() - 3600);
 
             return;
 
@@ -353,28 +580,8 @@ class Client extends CI_Controller {
             return;
         }
 
-        
-
         if($type == 0){
             $getItem = $this->cs->GetPackageById($id);
-
-            // // print_r($getItem);
-            // // return;
-
-            // if($getItem->quantity == 4){
-            //     $ogp = $getItem->price_per_adult * $getItem->quantity;
-
-            //     $ngp = $getItem->display_price;
-
-            //     $diff = $ogp - $ngp;
-
-            //     if($diff < 0){
-            //         $discount = 0;
-            //     }else{
-            //         $discount = (($diff/$ogp) * 100);
-            //     }
-            // }
-
         }else{
             
             $n = $this->cs->GetSpecialById($id);
@@ -385,8 +592,6 @@ class Client extends CI_Controller {
 
             $discount = $n->special_discount;
         }
-
-        //print_r($getItem);
 
         if($getItem == false){
             return;
@@ -468,9 +673,9 @@ class Client extends CI_Controller {
 
             set_cookie($cookie_name,base64_encode(json_encode($cookie_value)),86400*3);
 
-            $t = $_GLOBAL['totalItems'];
+            //$t = $_GLOBAL['totalItems'];
 
-            $t = $t+=1;
+            $t = 1;
 
             $_GLOBAL['totalItems'] = $t;
 
@@ -585,6 +790,46 @@ class Client extends CI_Controller {
 
     public function testPackage(){
         $this->load->view('sections/paymentsuccess');
+    }
+
+    public function test(){
+
+        $data = $this->inv->Invoice();
+
+        // echo $data;
+
+        // $ch = curl_init();
+		// 	curl_setopt($ch, CURLOPT_URL, "https://invoice-generator.com");
+		// 	curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+		// 	curl_setopt($ch, CURLOPT_POST, 1);
+        //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);//CURLOPT_HEADER
+        //    // curl_setopt($ch, CURLOPT_HEADER, true);
+		// 	$response = curl_exec($ch);
+		// 	$statusOfTranscation = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        //     curl_close($ch);
+            
+        //    // $headers = explode("\n", $response);
+
+        //    // $clen = explode(":",$headers[2]);
+
+        //     //print_r();
+
+        //     //print_r($response);
+
+        //     $id = uniqid();
+
+        //     $file = $response;
+		// 	header('Content-Description: File Transfer');
+		// 	header('Content-Type: application/octet-stream');
+		// 	header('Content-Disposition: attachment; filename="invoice_'.$id.'.pdf"');
+		// 	header('Expires: 0');
+		// 	header('Cache-Control: must-revalidate');
+		// 	header('Pragma: public');
+		// 	header('Content-Length: 100000');
+		// 	echo $file;
+
+
+        $this->load->view("test.html");
     }
 
 
