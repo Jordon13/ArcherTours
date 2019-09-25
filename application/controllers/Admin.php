@@ -112,7 +112,7 @@ class Admin extends CI_Controller {
 
 public function about()
 {
-    $this->load->view('admin/pages/about');
+    $this->load->view('admin/pages/about',array('data'=>$this->mn->LoadAboutUsPage()[0]));
 }
 
 public function blog()
