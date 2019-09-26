@@ -107,7 +107,7 @@ $this->load->helper('section');
         <div class="row valign-wrapper" style="height:100%!important;">
           <div class="col s12" >
           <h5 class="white-text"><a class="custom-hone-link" href="<?php echo site_url('/')?>">Home</a> | <span style="color:rgba(255,255,255,0.8)!important;">About</span></h5>
-            <h1 class="white-text header">About Us</h1>
+            <h1 class="white-text header"><?php echo $data['_about_us_back_title']; ?></h1>
           </div>
         </div>
       </div>

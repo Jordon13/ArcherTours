@@ -136,6 +136,8 @@ class General extends CI_Model {
         return false;
     }
 
+
+
     public function InsertFolder($data){
         $insertfile = $this->db->insert('sys_files',$data);
 
@@ -180,6 +182,22 @@ class General extends CI_Model {
         }
 
         return false;
+    }
+
+
+
+    public function UpdateAboutUsFields($data){
+
+        $this->db->where("auto_generated_id",1);
+
+        $result = $this->db->update('sys_about_us',$data);
+
+        if($result){
+            return true;
+        }
+
+        return false;
+
     }
 
 

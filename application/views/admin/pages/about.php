@@ -20,37 +20,37 @@ if(!($this->ses->has_userdata("user_ses"))){
 
         <style>
 
-            .input-field input:+label{
+            /* input:+label{
                 color: rgba(224,224,224 ,1);
             }
 
-            .row .input-field input{
+            input{
                 border-bottom: 0.5px solid rgba(224,224,224 ,1) !important;
                 box-shadow: 0 0.5px 0 0 rgba(224,224,224 ,1) !important
             }
 
-            .input-field input:focus + label {
+            input:focus + label {
                 color: rgba(3,169,244 ,1) !important;
             }
 
-            .row .input-field textarea{
+            textarea{
                 border-bottom: 0.5px solid rgba(224,224,224 ,1) !important;
                 box-shadow: 0 0.5px 0 0 rgba(224,224,224 ,1) !important
             }
 
-            .input-field textarea:focus + label {
+            textarea:focus + label {
                 color: rgba(3,169,244 ,1) !important;
             }
 
-            .row .input-field textarea:focus {
+            textarea:focus {
                 border-bottom: 0.5px solid rgba(3,169,244 ,1) !important;
                 box-shadow: 0 0.5px 0 0 rgba(3,169,244 ,1) !important
             }
 
-            .row .input-field input:focus {
+            input:focus {
                 border-bottom: 0.5px solid rgba(3,169,244 ,1) !important;
                 box-shadow: 0 0.5px 0 0 rgba(3,169,244 ,1) !important
-            }
+            } */
 
             .bcenter{
                 display: flex;
@@ -112,6 +112,12 @@ if(!($this->ses->has_userdata("user_ses"))){
                                 <label for="abt_bck_title">About Us Header</label>
                             </div>
 
+                            <div class="col s12 hidden_btn center-align" style="display:none;">
+                                <div class="row">
+                                    <button class="btn waves-effect waves-light green save_btn" onclick="save()">Save</button>
+                                </div>
+                            </div>
+
                         </div>
 
                         <div class="row white image-sec abt-why-choose-us-sec z-depth-1">
@@ -132,7 +138,11 @@ if(!($this->ses->has_userdata("user_ses"))){
                                 <label for="abt-header-name">Passionate Travel</label>
                             </div>
 
-                            
+                            <div class="col s12 hidden_btn center-align" style="display:none;">
+                                <div class="row">
+                                    <button class="btn waves-effect waves-light green save_btn" onclick="save()">Save</button>
+                                </div>
+                            </div>
 
                         </div>
 
@@ -160,6 +170,11 @@ if(!($this->ses->has_userdata("user_ses"))){
 
                             </div>
                             
+                            <div class="col s12 hidden_btn center-align" style="display:none;">
+                                <div class="row">
+                                    <button class="btn waves-effect waves-light green save_btn" onclick="save()">Save</button>
+                                </div>
+                            </div>
 
                         </div>
 
@@ -209,6 +224,12 @@ if(!($this->ses->has_userdata("user_ses"))){
                                 </div>
                             </div>
 
+                            <div class="col s12 hidden_btn center-align" style="display:none;">
+                                <div class="row">
+                                    <button class="btn waves-effect waves-light green save_btn" onclick="save()">Save</button>
+                                </div>
+                            </div>
+
                         </div>
 
                         
@@ -227,6 +248,9 @@ if(!($this->ses->has_userdata("user_ses"))){
     <?php adminjs();?>
 
     <script>
+            let map = new Map();
+
+            let imgs = new Map();
     
             $('document').ready(function(){
 
@@ -238,6 +262,32 @@ if(!($this->ses->has_userdata("user_ses"))){
 
                 });
 
+                $('.abt').on('change',function(){
+
+                    var index = $('.abt').index(this);
+
+                    var image = $('.abt').eq(index).attr('type');
+
+                    var val = $(".abt").eq(index).val();
+
+                    var attrValue = $(`.abt:eq(${index})`).attr('name');
+
+                    if(image  == "file"){
+
+                        var attrValue = $(`.abt:eq(${index})`).attr('name');
+
+                        imgs.set(attrValue,val);
+
+                        console.log(imgs);
+
+                        return;
+                    }
+
+                    map.set(attrValue,val);
+
+                    console.log(map);
+                });
+
                 $(".image-sec").on('click', function() {
 
                     var index = $(".image-sec").index(this);
@@ -247,6 +297,8 @@ if(!($this->ses->has_userdata("user_ses"))){
                         $(this).prop('disabled', false);;
                     });
 
+                    $(".hidden_btn").eq(index).show();
+
                 }).mouseleave(function(){
                     var index = $(".image-sec").index(this);
 
@@ -254,10 +306,59 @@ if(!($this->ses->has_userdata("user_ses"))){
                     .each(function(){
                         $(this).prop('disabled', true);;
                     });
+
+                    $(".hidden_btn").eq(index).hide();
                 });
 
 
+
+
             });
+
+
+            var save = () =>{
+
+                if(map.size <= 0){
+                    console.log("No changes made in dataset");
+                    return;
+                }
+
+                var form_data = new FormData();
+
+                map.forEach((val,key,map) =>{
+                    form_data.append(key,val);
+                });
+
+                $.ajax({
+                    url: "<?php echo site_url('/cms/UpdateAboutPage');?>",
+                    method: "POST",
+                    data: form_data,
+                    beforeSend:function(){
+                        $('.save_btn').html('Processing...');
+                        $('.save_btn').prop('disabled',true);
+                    },
+                    success: function(res) {
+                        map = new Map();
+                        imgs = new Map();
+                        $('.save_btn').text('Saved!');
+
+                        setTimeout(function(){
+                            
+                            $('.save_btn').text('Save');
+                            $('.save_btn').prop('disabled',false);
+                        },2000);
+                        console.log(res);
+                    },
+                    contentType: false,
+                    cache: false,
+                    processData:false
+                });
+
+            }
+
+            function kFormatter(num) {
+                return Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' : Math.sign(num)*Math.abs(num)
+            }
 
     </script>
 
