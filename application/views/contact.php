@@ -161,7 +161,7 @@ $this->load->helper('section');
         <div class="row valign-wrapper" style="height:100%!important;">
           <div class="col s12" >
           <h5 class="white-text"><a class="custom-hone-link" href="<?php echo site_url('/')?>">Home</a> | <span style="color:rgba(255,255,255,0.8)!important;">Contact</span></h5>
-            <h1 class="white-text header">Contact Us</h1>
+            <h1 class="white-text header"><?php echo $data['_contact_us_back_title'];?></h1>
           </div>
         </div>
       </div>
@@ -208,7 +208,7 @@ $this->load->helper('section');
           
           <div class="col l6 m12 s12 modify-img" style="position:relative!important; ">
             <!-- <div class="overlay"></div> -->
-            <img src="<?php echo base_url('assets/map.jpg');?>" class="responsive-img" alt="no image">
+            <img src="<?php echo base_url('assets/').$data['_contact_img'];?>" class="responsive-img" alt="no image">
           </div>
           
           <form class="col l6 m12 s12 my-form"

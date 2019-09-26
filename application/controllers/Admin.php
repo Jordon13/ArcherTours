@@ -127,7 +127,7 @@ public function booking()
 
 public function contact()
 {
-    $this->load->view('admin/pages/contact');
+    $this->load->view('admin/pages/contact',array('data'=>$this->mn->LoadContactUsPage()[0]));
 }
 
 public function gallery()

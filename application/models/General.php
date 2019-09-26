@@ -200,6 +200,20 @@ class General extends CI_Model {
 
     }
 
+    public function UpdateContactUsFields($data){
+
+        $this->db->where("auto_generated_id",1);
+
+        $result = $this->db->update('sys_contact_page',$data);
+
+        if($result){
+            return true;
+        }
+
+        return false;
+
+    }
+
 
 
 
