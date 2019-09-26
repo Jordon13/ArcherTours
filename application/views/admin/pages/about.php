@@ -20,38 +20,6 @@ if(!($this->ses->has_userdata("user_ses"))){
 
         <style>
 
-            /* input:+label{
-                color: rgba(224,224,224 ,1);
-            }
-
-            input{
-                border-bottom: 0.5px solid rgba(224,224,224 ,1) !important;
-                box-shadow: 0 0.5px 0 0 rgba(224,224,224 ,1) !important
-            }
-
-            input:focus + label {
-                color: rgba(3,169,244 ,1) !important;
-            }
-
-            textarea{
-                border-bottom: 0.5px solid rgba(224,224,224 ,1) !important;
-                box-shadow: 0 0.5px 0 0 rgba(224,224,224 ,1) !important
-            }
-
-            textarea:focus + label {
-                color: rgba(3,169,244 ,1) !important;
-            }
-
-            textarea:focus {
-                border-bottom: 0.5px solid rgba(3,169,244 ,1) !important;
-                box-shadow: 0 0.5px 0 0 rgba(3,169,244 ,1) !important
-            }
-
-            input:focus {
-                border-bottom: 0.5px solid rgba(3,169,244 ,1) !important;
-                box-shadow: 0 0.5px 0 0 rgba(3,169,244 ,1) !important
-            } */
-
             .bcenter{
                 display: flex;
                 justify-content: center;
@@ -213,17 +181,6 @@ if(!($this->ses->has_userdata("user_ses"))){
 
                             </div>
 
-                            <div class="row valign-wrapper switchsec">
-                                <div class="switch">
-                                    <label>
-                                    Manual Handling
-                                    <input type="checkbox" name="SystemHandle" class="abt">
-                                    <span class="lever"></span>
-                                    System Handling
-                                    </label>
-                                </div>
-                            </div>
-
                             <div class="col s12 hidden_btn center-align" style="display:none;">
                                 <div class="row">
                                     <button class="btn waves-effect waves-light green save_btn" onclick="save()">Save</button>
@@ -251,6 +208,8 @@ if(!($this->ses->has_userdata("user_ses"))){
             let map = new Map();
 
             let imgs = new Map();
+
+            let form_data = new FormData();
     
             $('document').ready(function(){
 
@@ -276,7 +235,13 @@ if(!($this->ses->has_userdata("user_ses"))){
 
                         var attrValue = $(`.abt:eq(${index})`).attr('name');
 
-                        imgs.set(attrValue,val);
+                        imgs.set(attrValue);
+
+                        var files = $(`.abt:eq(${index})`)[0].files;
+    
+                        for(var count = 0; count <files.length; count++){
+                            form_data.append("upl[]",files[count]);
+                        }
 
                         console.log(imgs);
 
@@ -310,24 +275,30 @@ if(!($this->ses->has_userdata("user_ses"))){
                     $(".hidden_btn").eq(index).hide();
                 });
 
-
-
-
             });
 
 
             var save = () =>{
 
-                if(map.size <= 0){
+                if(map.size <= 0 && imgs.size <= 0){
                     console.log("No changes made in dataset");
                     return;
                 }
 
-                var form_data = new FormData();
+                
 
-                map.forEach((val,key,map) =>{
-                    form_data.append(key,val);
-                });
+                if(map.size > 0){
+                    map.forEach((val,key,map) =>{
+                        form_data.append(key,val);
+                    });
+                }
+
+                if(imgs.size > 0){
+                    
+                    form_data.append('images',Array.from(imgs));
+                }
+
+                
 
                 $.ajax({
                     url: "<?php echo site_url('/cms/UpdateAboutPage');?>",
@@ -340,6 +311,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                     success: function(res) {
                         map = new Map();
                         imgs = new Map();
+                        form_data = new FormData();
                         $('.save_btn').text('Saved!');
 
                         setTimeout(function(){
