@@ -127,6 +127,18 @@ class Manipulation extends CI_Model {
         return $this->db->get("sys_contact_page")->result_array();
     }
 
+    public function LoadGalleryPage(){
+        return $this->db->get("sys_gallery_page")->result_array();
+    }
+
+    public function LoadBlogPage(){
+        return $this->db->get("sys_blog_page")->result_array();
+    }
+
+    public function LoadBookingPage(){
+        return $this->db->get("sys_booking_page")->result_array();
+    }
+
     public function LoadGallery(){
         $this->db->join('sys_files', 'sys_files.auto_generated_id = sys_media_upload.sys_folder_id');
         $this->db->where("sys_media_upload.media_file_type","image");
@@ -138,7 +150,7 @@ class Manipulation extends CI_Model {
         $this->db->order_by('date_added','DESC');
         $videos = $this->db->get("sys_media_upload")->result_array();
 
-        $data = array('images'=>$images, 'videos'=>$videos);
+        $data = array('images'=>$images, 'videos'=>$videos, 'pageDetails'=>$this->LoadGalleryPage()[0]);
 
         return $data;
     }

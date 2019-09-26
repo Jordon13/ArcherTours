@@ -136,8 +136,6 @@ class General extends CI_Model {
         return false;
     }
 
-
-
     public function InsertFolder($data){
         $insertfile = $this->db->insert('sys_files',$data);
 
@@ -184,8 +182,6 @@ class General extends CI_Model {
         return false;
     }
 
-
-
     public function UpdateAboutUsFields($data){
 
         $this->db->where("auto_generated_id",1);
@@ -214,35 +210,47 @@ class General extends CI_Model {
 
     }
 
+    public function UpdateGalleryPageFields($data){
 
+        $this->db->where("auto_generated_id",1);
 
+        $result = $this->db->update('sys_gallery_page',$data);
 
+        if($result){
+            return true;
+        }
 
+        return false;
 
+    }
 
+    public function UpdateBlogPageFields($data){
 
+        $this->db->where("auto_generated_id",1);
 
+        $result = $this->db->update('sys_blog_page',$data);
 
+        if($result){
+            return true;
+        }
 
+        return false;
 
-    
+    }
 
-    
+    public function UpdateBookingPageFields($data){
 
+        $this->db->where("auto_generated_id",1);
 
+        $result = $this->db->update('sys_booking_page',$data);
 
+        if($result){
+            return true;
+        }
 
+        return false;
 
-
-
-
-
-
-
-
-
-
-
+    }
 
     public function Validatelogin(){
         if(!($this->ses->has_userdata("user_ses"))){
@@ -254,14 +262,6 @@ class General extends CI_Model {
             echo json_encode($result);
           } 
     }
-
-
-
-
-
-
-
-
 
 
     public function emailUserPassword($emailAddress, $password){

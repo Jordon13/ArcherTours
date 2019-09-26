@@ -117,12 +117,12 @@ public function about()
 
 public function blog()
 {
-    $this->load->view('admin/pages/blog');
+    $this->load->view('admin/pages/blog',array('data'=>$this->mn->LoadBlogPage()[0]));
 }
 
 public function booking()
 {
-    $this->load->view('admin/pages/booking');
+    $this->load->view('admin/pages/booking',array('data'=>$this->mn->LoadBookingPage()[0]));
 }
 
 public function contact()
@@ -132,7 +132,7 @@ public function contact()
 
 public function gallery()
 {
-    $this->load->view('admin/pages/gallery');
+    $this->load->view('admin/pages/gallery',array('data'=>$this->mn->LoadGalleryPage()[0]));
 }
 
 public function home()

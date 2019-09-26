@@ -3,6 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $this->load->helper('section');
 $images = $data['images'];
+$pageData = $data['pageDetails'];
+
 ?>
 <html lang="en">
 <head>
@@ -22,7 +24,7 @@ $images = $data['images'];
     }
 
     .fpage {
-        background-image: url(<?php echo base_url('assets/23.jpg')?>);
+        background-image: url(<?php echo base_url('assets/').$pageData['_gallery_img']?>);
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
@@ -104,7 +106,7 @@ $images = $data['images'];
         <div class="row valign-wrapper" style="height:100%!important;">
           <div class="col s12" >
           <h5 class="white-text"><a class="custom-hone-link" href="<?php echo site_url('/')?>">Home</a> | <span style="color:rgba(255,255,255,0.8)!important;">Gallery</span></h5>
-            <h1 class="white-text header">Gallery</h1>
+            <h1 class="white-text header"><?php echo $pageData['_gallery_back_title'];?></h1>
           </div>
         </div>
       </div>

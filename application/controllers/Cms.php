@@ -1174,6 +1174,476 @@ class Cms extends CI_Controller {
 
     }
 
+    public function UpdateGalleryPage(){
+
+        $images = $this->input->post('images',true);
+
+        if(!empty($images)){
+
+            $imageArray = explode(',',$images);
+
+            for($i = 0; $i < count($imageArray); $i++){
+
+                if($imageArray[$i] == ""){
+                    unset($imageArray[$i]);
+                }
+            }
+
+            $newArray = array_values($imageArray);
+
+            if((isset($_FILES['upl']))  && (count($_FILES['upl']) > 0 )){
+                    
+                for($x =0; $x < count($_FILES['upl']['name']); $x++){
+                    $config['upload_path'] = './assets/';
+                    $config['allowed_types'] = "jpg|jpeg|";
+                    $config['encrypt_name'] = TRUE;
+                    $this->load->library('upload',$config);
+                    $this->upload->initialize($config);
+                    $_FILES['file']['name'] = $_FILES['upl']['name'][$x];
+                    $_FILES['file']['type'] = $_FILES['upl']['type'][$x];
+                    $_FILES['file']['tmp_name'] = $_FILES['upl']['tmp_name'][$x];
+                    $_FILES['file']['error'] = $_FILES['upl']['error'][$x];
+                    $_FILES['file']['size'] = $_FILES['upl']['size'][$x];
+                    if($this->upload->do_upload('file')){
+                        $newImage  = $this->upload->data()['file_name'];
+                        $array = array($newArray[$x]=>$newImage);
+                        $this->gen->UpdateGalleryPageFields($array);
+                    }
+                }
+            }
+
+            array_pop($_POST);
+        }
+
+        if(count($_POST) > 0){
+            $result = $this->gen->UpdateGalleryPageFields($_POST);
+        }
+
+    }
+
+
+    public function UpdateBlogPage(){
+
+        $images = $this->input->post('images',true);
+
+        if(!empty($images)){
+
+            $imageArray = explode(',',$images);
+
+            for($i = 0; $i < count($imageArray); $i++){
+
+                if($imageArray[$i] == ""){
+                    unset($imageArray[$i]);
+                }
+            }
+
+            $newArray = array_values($imageArray);
+
+            if((isset($_FILES['upl']))  && (count($_FILES['upl']) > 0 )){
+                    
+                for($x =0; $x < count($_FILES['upl']['name']); $x++){
+                    $config['upload_path'] = './assets/';
+                    $config['allowed_types'] = "jpg|jpeg|";
+                    $config['encrypt_name'] = TRUE;
+                    $this->load->library('upload',$config);
+                    $this->upload->initialize($config);
+                    $_FILES['file']['name'] = $_FILES['upl']['name'][$x];
+                    $_FILES['file']['type'] = $_FILES['upl']['type'][$x];
+                    $_FILES['file']['tmp_name'] = $_FILES['upl']['tmp_name'][$x];
+                    $_FILES['file']['error'] = $_FILES['upl']['error'][$x];
+                    $_FILES['file']['size'] = $_FILES['upl']['size'][$x];
+                    if($this->upload->do_upload('file')){
+                        $newImage  = $this->upload->data()['file_name'];
+                        $array = array($newArray[$x]=>$newImage);
+                        $this->gen->UpdateBlogPageFields($array);
+                    }
+                }
+            }
+
+            array_pop($_POST);
+        }
+
+        if(count($_POST) > 0){
+            $result = $this->gen->UpdateBlogPageFields($_POST);
+        }
+
+    }
+
+    public function UpdateBookingPage(){
+
+        $images = $this->input->post('images',true);
+
+        if(!empty($images)){
+
+            $imageArray = explode(',',$images);
+
+            for($i = 0; $i < count($imageArray); $i++){
+
+                if($imageArray[$i] == ""){
+                    unset($imageArray[$i]);
+                }
+            }
+
+            $newArray = array_values($imageArray);
+
+            if((isset($_FILES['upl']))  && (count($_FILES['upl']) > 0 )){
+                    
+                for($x =0; $x < count($_FILES['upl']['name']); $x++){
+                    $config['upload_path'] = './assets/';
+                    $config['allowed_types'] = "jpg|jpeg|";
+                    $config['encrypt_name'] = TRUE;
+                    $this->load->library('upload',$config);
+                    $this->upload->initialize($config);
+                    $_FILES['file']['name'] = $_FILES['upl']['name'][$x];
+                    $_FILES['file']['type'] = $_FILES['upl']['type'][$x];
+                    $_FILES['file']['tmp_name'] = $_FILES['upl']['tmp_name'][$x];
+                    $_FILES['file']['error'] = $_FILES['upl']['error'][$x];
+                    $_FILES['file']['size'] = $_FILES['upl']['size'][$x];
+                    if($this->upload->do_upload('file')){
+                        $newImage  = $this->upload->data()['file_name'];
+                        $array = array($newArray[$x]=>$newImage);
+                        $this->gen->UpdateBookingPageFields($array);
+                    }
+                }
+            }
+
+            array_pop($_POST);
+        }
+
+        if(count($_POST) > 0){
+            $result = $this->gen->UpdateBookingPageFields($_POST);
+        }
+
+    }
+
+    public function UpdateSerivePage(){
+
+        $images = $this->input->post('images',true);
+
+        if(!empty($images)){
+
+            $imageArray = explode(',',$images);
+
+            for($i = 0; $i < count($imageArray); $i++){
+
+                if($imageArray[$i] == ""){
+                    unset($imageArray[$i]);
+                }
+            }
+
+            $newArray = array_values($imageArray);
+
+            if((isset($_FILES['upl']))  && (count($_FILES['upl']) > 0 )){
+                    
+                for($x =0; $x < count($_FILES['upl']['name']); $x++){
+                    $config['upload_path'] = './assets/';
+                    $config['allowed_types'] = "jpg|jpeg|";
+                    $config['encrypt_name'] = TRUE;
+                    $this->load->library('upload',$config);
+                    $this->upload->initialize($config);
+                    $_FILES['file']['name'] = $_FILES['upl']['name'][$x];
+                    $_FILES['file']['type'] = $_FILES['upl']['type'][$x];
+                    $_FILES['file']['tmp_name'] = $_FILES['upl']['tmp_name'][$x];
+                    $_FILES['file']['error'] = $_FILES['upl']['error'][$x];
+                    $_FILES['file']['size'] = $_FILES['upl']['size'][$x];
+                    if($this->upload->do_upload('file')){
+                        $newImage  = $this->upload->data()['file_name'];
+                        $array = array($newArray[$x]=>$newImage);
+                        $this->gen->UpdateGalleryPageFields($array);
+                    }
+                }
+            }
+
+            array_pop($_POST);
+        }
+
+        if(count($_POST) > 0){
+            $result = $this->gen->UpdateGalleryPageFields($_POST);
+        }
+
+    }
+
+    public function UpdateTaxiServicePage(){
+
+        $images = $this->input->post('images',true);
+
+        if(!empty($images)){
+
+            $imageArray = explode(',',$images);
+
+            for($i = 0; $i < count($imageArray); $i++){
+
+                if($imageArray[$i] == ""){
+                    unset($imageArray[$i]);
+                }
+            }
+
+            $newArray = array_values($imageArray);
+
+            if((isset($_FILES['upl']))  && (count($_FILES['upl']) > 0 )){
+                    
+                for($x =0; $x < count($_FILES['upl']['name']); $x++){
+                    $config['upload_path'] = './assets/';
+                    $config['allowed_types'] = "jpg|jpeg|";
+                    $config['encrypt_name'] = TRUE;
+                    $this->load->library('upload',$config);
+                    $this->upload->initialize($config);
+                    $_FILES['file']['name'] = $_FILES['upl']['name'][$x];
+                    $_FILES['file']['type'] = $_FILES['upl']['type'][$x];
+                    $_FILES['file']['tmp_name'] = $_FILES['upl']['tmp_name'][$x];
+                    $_FILES['file']['error'] = $_FILES['upl']['error'][$x];
+                    $_FILES['file']['size'] = $_FILES['upl']['size'][$x];
+                    if($this->upload->do_upload('file')){
+                        $newImage  = $this->upload->data()['file_name'];
+                        $array = array($newArray[$x]=>$newImage);
+                        $this->gen->UpdateGalleryPageFields($array);
+                    }
+                }
+            }
+
+            array_pop($_POST);
+        }
+
+        if(count($_POST) > 0){
+            $result = $this->gen->UpdateGalleryPageFields($_POST);
+        }
+
+    }
+
+    public function UpdateToursSerivePage(){
+
+        $images = $this->input->post('images',true);
+
+        if(!empty($images)){
+
+            $imageArray = explode(',',$images);
+
+            for($i = 0; $i < count($imageArray); $i++){
+
+                if($imageArray[$i] == ""){
+                    unset($imageArray[$i]);
+                }
+            }
+
+            $newArray = array_values($imageArray);
+
+            if((isset($_FILES['upl']))  && (count($_FILES['upl']) > 0 )){
+                    
+                for($x =0; $x < count($_FILES['upl']['name']); $x++){
+                    $config['upload_path'] = './assets/';
+                    $config['allowed_types'] = "jpg|jpeg|";
+                    $config['encrypt_name'] = TRUE;
+                    $this->load->library('upload',$config);
+                    $this->upload->initialize($config);
+                    $_FILES['file']['name'] = $_FILES['upl']['name'][$x];
+                    $_FILES['file']['type'] = $_FILES['upl']['type'][$x];
+                    $_FILES['file']['tmp_name'] = $_FILES['upl']['tmp_name'][$x];
+                    $_FILES['file']['error'] = $_FILES['upl']['error'][$x];
+                    $_FILES['file']['size'] = $_FILES['upl']['size'][$x];
+                    if($this->upload->do_upload('file')){
+                        $newImage  = $this->upload->data()['file_name'];
+                        $array = array($newArray[$x]=>$newImage);
+                        $this->gen->UpdateGalleryPageFields($array);
+                    }
+                }
+            }
+
+            array_pop($_POST);
+        }
+
+        if(count($_POST) > 0){
+            $result = $this->gen->UpdateGalleryPageFields($_POST);
+        }
+
+    }
+
+    public function UpdateAirportSerivePage(){
+
+        $images = $this->input->post('images',true);
+
+        if(!empty($images)){
+
+            $imageArray = explode(',',$images);
+
+            for($i = 0; $i < count($imageArray); $i++){
+
+                if($imageArray[$i] == ""){
+                    unset($imageArray[$i]);
+                }
+            }
+
+            $newArray = array_values($imageArray);
+
+            if((isset($_FILES['upl']))  && (count($_FILES['upl']) > 0 )){
+                    
+                for($x =0; $x < count($_FILES['upl']['name']); $x++){
+                    $config['upload_path'] = './assets/';
+                    $config['allowed_types'] = "jpg|jpeg|";
+                    $config['encrypt_name'] = TRUE;
+                    $this->load->library('upload',$config);
+                    $this->upload->initialize($config);
+                    $_FILES['file']['name'] = $_FILES['upl']['name'][$x];
+                    $_FILES['file']['type'] = $_FILES['upl']['type'][$x];
+                    $_FILES['file']['tmp_name'] = $_FILES['upl']['tmp_name'][$x];
+                    $_FILES['file']['error'] = $_FILES['upl']['error'][$x];
+                    $_FILES['file']['size'] = $_FILES['upl']['size'][$x];
+                    if($this->upload->do_upload('file')){
+                        $newImage  = $this->upload->data()['file_name'];
+                        $array = array($newArray[$x]=>$newImage);
+                        $this->gen->UpdateGalleryPageFields($array);
+                    }
+                }
+            }
+
+            array_pop($_POST);
+        }
+
+        if(count($_POST) > 0){
+            $result = $this->gen->UpdateGalleryPageFields($_POST);
+        }
+
+    }
+
+    public function UpdateDealsPage(){
+
+        $images = $this->input->post('images',true);
+
+        if(!empty($images)){
+
+            $imageArray = explode(',',$images);
+
+            for($i = 0; $i < count($imageArray); $i++){
+
+                if($imageArray[$i] == ""){
+                    unset($imageArray[$i]);
+                }
+            }
+
+            $newArray = array_values($imageArray);
+
+            if((isset($_FILES['upl']))  && (count($_FILES['upl']) > 0 )){
+                    
+                for($x =0; $x < count($_FILES['upl']['name']); $x++){
+                    $config['upload_path'] = './assets/';
+                    $config['allowed_types'] = "jpg|jpeg|";
+                    $config['encrypt_name'] = TRUE;
+                    $this->load->library('upload',$config);
+                    $this->upload->initialize($config);
+                    $_FILES['file']['name'] = $_FILES['upl']['name'][$x];
+                    $_FILES['file']['type'] = $_FILES['upl']['type'][$x];
+                    $_FILES['file']['tmp_name'] = $_FILES['upl']['tmp_name'][$x];
+                    $_FILES['file']['error'] = $_FILES['upl']['error'][$x];
+                    $_FILES['file']['size'] = $_FILES['upl']['size'][$x];
+                    if($this->upload->do_upload('file')){
+                        $newImage  = $this->upload->data()['file_name'];
+                        $array = array($newArray[$x]=>$newImage);
+                        $this->gen->UpdateGalleryPageFields($array);
+                    }
+                }
+            }
+
+            array_pop($_POST);
+        }
+
+        if(count($_POST) > 0){
+            $result = $this->gen->UpdateGalleryPageFields($_POST);
+        }
+
+    }
+
+    public function UpdateTestimonialsPage(){
+
+        $images = $this->input->post('images',true);
+
+        if(!empty($images)){
+
+            $imageArray = explode(',',$images);
+
+            for($i = 0; $i < count($imageArray); $i++){
+
+                if($imageArray[$i] == ""){
+                    unset($imageArray[$i]);
+                }
+            }
+
+            $newArray = array_values($imageArray);
+
+            if((isset($_FILES['upl']))  && (count($_FILES['upl']) > 0 )){
+                    
+                for($x =0; $x < count($_FILES['upl']['name']); $x++){
+                    $config['upload_path'] = './assets/';
+                    $config['allowed_types'] = "jpg|jpeg|";
+                    $config['encrypt_name'] = TRUE;
+                    $this->load->library('upload',$config);
+                    $this->upload->initialize($config);
+                    $_FILES['file']['name'] = $_FILES['upl']['name'][$x];
+                    $_FILES['file']['type'] = $_FILES['upl']['type'][$x];
+                    $_FILES['file']['tmp_name'] = $_FILES['upl']['tmp_name'][$x];
+                    $_FILES['file']['error'] = $_FILES['upl']['error'][$x];
+                    $_FILES['file']['size'] = $_FILES['upl']['size'][$x];
+                    if($this->upload->do_upload('file')){
+                        $newImage  = $this->upload->data()['file_name'];
+                        $array = array($newArray[$x]=>$newImage);
+                        $this->gen->UpdateGalleryPageFields($array);
+                    }
+                }
+            }
+
+            array_pop($_POST);
+        }
+
+        if(count($_POST) > 0){
+            $result = $this->gen->UpdateGalleryPageFields($_POST);
+        }
+
+    }
+
+    public function UpdateRecentNewsPage(){
+
+        $images = $this->input->post('images',true);
+
+        if(!empty($images)){
+
+            $imageArray = explode(',',$images);
+
+            for($i = 0; $i < count($imageArray); $i++){
+
+                if($imageArray[$i] == ""){
+                    unset($imageArray[$i]);
+                }
+            }
+
+            $newArray = array_values($imageArray);
+
+            if((isset($_FILES['upl']))  && (count($_FILES['upl']) > 0 )){
+                    
+                for($x =0; $x < count($_FILES['upl']['name']); $x++){
+                    $config['upload_path'] = './assets/';
+                    $config['allowed_types'] = "jpg|jpeg|";
+                    $config['encrypt_name'] = TRUE;
+                    $this->load->library('upload',$config);
+                    $this->upload->initialize($config);
+                    $_FILES['file']['name'] = $_FILES['upl']['name'][$x];
+                    $_FILES['file']['type'] = $_FILES['upl']['type'][$x];
+                    $_FILES['file']['tmp_name'] = $_FILES['upl']['tmp_name'][$x];
+                    $_FILES['file']['error'] = $_FILES['upl']['error'][$x];
+                    $_FILES['file']['size'] = $_FILES['upl']['size'][$x];
+                    if($this->upload->do_upload('file')){
+                        $newImage  = $this->upload->data()['file_name'];
+                        $array = array($newArray[$x]=>$newImage);
+                        $this->gen->UpdateGalleryPageFields($array);
+                    }
+                }
+            }
+
+            array_pop($_POST);
+        }
+
+        if(count($_POST) > 0){
+            $result = $this->gen->UpdateGalleryPageFields($_POST);
+        }
+
+    }
 }
 
 ?>
