@@ -477,8 +477,6 @@ if(!($this->ses->has_userdata("user_ses"))){
     
                 $('.result').html("Processing...");
     
-               // var items = new Array();
-                    
                 var form_data = new FormData();
     
                 var files = $('#file')[0].files;

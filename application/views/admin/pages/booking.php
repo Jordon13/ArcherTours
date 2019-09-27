@@ -198,7 +198,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                 
 
                 $.ajax({
-                    url: "<?php echo site_url('/cms/UpdateGalleryPage');?>",
+                    url: "<?php echo site_url('/cms/UpdateBookingPage');?>",
                     method: "POST",
                     data: form_data,
                     beforeSend:function(){

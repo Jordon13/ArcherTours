@@ -59,7 +59,7 @@ class Home extends CI_Controller {
 
     public function booking()
     {
-        $this->load->view('booking');
+        $this->load->view('booking', array('data'=>$this->mn->LoadBookingPage()[0]));//
     }
 
     public function contact()
@@ -140,7 +140,8 @@ class Home extends CI_Controller {
         }
 
         $data = array(
-            'data'=>$blogs
+            'data'=>$blogs,
+            'pageDetails'=>$this->mn->LoadBlogPage()[0]
         );
         
         $this->ps->parse('blog/blog', $data);
