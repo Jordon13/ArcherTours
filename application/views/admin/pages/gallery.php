@@ -107,6 +107,10 @@ if(!($this->ses->has_userdata("user_ses"))){
             let imgs = new Map();
 
             let form_data = new FormData();
+
+            var globalIndex = undefined;
+
+            var once = false;
     
             $('document').ready(function(){
 
@@ -154,6 +158,8 @@ if(!($this->ses->has_userdata("user_ses"))){
 
                     var index = $(".image-sec").index(this);
 
+                    globalIndex = index;
+
                     var elementsIndiv = $(`.image-sec:eq(${index})`).find(".abt")
                     .each(function(){
                         $(this).prop('disabled', false);;
@@ -161,15 +167,37 @@ if(!($this->ses->has_userdata("user_ses"))){
 
                     $(".hidden_btn").eq(index).show();
 
-                }).mouseleave(function(){
-                    var index = $(".image-sec").index(this);
+                    if(!once){
+                        var toastHTML = '<span>Press \'esc on keyboard\' to close </span>';
+                        M.toast({
+                            html: toastHTML,
+                            displayLength:10000
+                        });
+                    }
 
-                    var elementsIndiv = $(`.image-sec:eq(${index})`).find(".abt")
+                    once = true;
+
+                });
+
+                $('.cncl').click(function(){
+                    var elementsIndiv = $(`.image-sec:eq(${globalIndex})`).find(".abt")
                     .each(function(){
-                        $(this).prop('disabled', true);;
+                    $(this).prop('disabled', true);
                     });
 
-                    $(".hidden_btn").eq(index).hide();
+                    $(".hidden_btn").eq(globalIndex).hide();
+                });
+                
+                $(document).keyup(function(e){
+                    if (e.keyCode === 27){
+                        var elementsIndiv = $(`.image-sec`).find(".abt")
+                        .each(function(){
+                        $(this).prop('disabled', true);;
+                        });
+
+                        $(".hidden_btn").hide();
+                    }
+                    
                 });
 
             });
@@ -230,5 +258,4 @@ if(!($this->ses->has_userdata("user_ses"))){
             }
 
     </script>
-
 </html>
