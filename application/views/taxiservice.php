@@ -26,7 +26,7 @@ $this->load->helper('section');
     }
 
     .fpage {
-        background-image: url(<?php echo base_url('assets/34.jpg')?>);
+        background-image: url(<?php echo base_url('assets/').$pageDetails['_taxi_img'];?>);
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
@@ -132,7 +132,7 @@ $this->load->helper('section');
         <div class="row valign-wrapper" style="height:100%!important;">
           <div class="col s12" >
           <h5 class="white-text"><a class="custom-hone-link" href="<?php echo site_url('/')?>">Home</a> | <span style="color:rgba(255,255,255,0.8)!important;">Tours</span></h5>
-            <h1 class="white-text header">Private Taxi</h1>
+            <h1 class="white-text header"><?php echo $pageDetails['_taxi_title'];?></h1>
           </div>
         </div>
       </div>

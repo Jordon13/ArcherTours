@@ -71,6 +71,8 @@ $route['a'] = "home/about";
 $route['ab'] = "home/about";
 
 $route['deal'] = "home/deals";
+$route['news'] = "home/recentstories";
+$route['testimonial'] = "home/testimonials";
 
 
 $route['booking/(:any)'] = "home/booking";

@@ -137,7 +137,33 @@ public function gallery()
 
 public function home()
 {
-    $this->load->view('admin/pages/home');
+    $this->load->view('admin/pages/home',array('data'=>$this->mn->LoadHome()[0]));//LoadHome()[0]
+}
+
+public function service()
+{
+    $this->load->view('admin/pages/service',array('data'=>$this->mn->LoadServicePage()[0]));
+}
+
+public function airportservice()
+{
+    $this->load->view('admin/pages/airportService',array('data'=>$this->mn->LoadAirportServicePage()[0]));
+}
+
+
+public function taxiservice()
+{
+    $this->load->view('admin/pages/taxiService',array('data'=>$this->mn->LoadTaxiServicePage()[0]));
+}
+
+public function toursservice()
+{
+    $this->load->view('admin/pages/toursService',array('data'=>$this->mn->LoadToursServicePage()[0]));
+}
+
+public function deal()
+{
+    $this->load->view('admin/pages/dealPage',array('data'=>$this->mn->LoadDealsPage()[0]));
 }
 
 

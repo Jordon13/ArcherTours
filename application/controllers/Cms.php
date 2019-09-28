@@ -1079,6 +1079,52 @@ class Cms extends CI_Controller {
 
     /************************************ */
 
+    public function UpdateHomePage(){
+
+        $images = $this->input->post('images',true);
+
+        if(!empty($images)){
+
+            $imageArray = explode(',',$images);
+
+            for($i = 0; $i < count($imageArray); $i++){
+
+                if($imageArray[$i] == ""){
+                    unset($imageArray[$i]);
+                }
+            }
+
+            $newArray = array_values($imageArray);
+
+            if((isset($_FILES['upl']))  && (count($_FILES['upl']) > 0 )){
+                    
+                for($x =0; $x < count($_FILES['upl']['name']); $x++){
+                    $config['upload_path'] = './assets/';
+                    $config['allowed_types'] = "jpg|jpeg|png";
+                    $config['encrypt_name'] = TRUE;
+                    $this->load->library('upload',$config);
+                    $this->upload->initialize($config);
+                    $_FILES['file']['name'] = $_FILES['upl']['name'][$x];
+                    $_FILES['file']['type'] = $_FILES['upl']['type'][$x];
+                    $_FILES['file']['tmp_name'] = $_FILES['upl']['tmp_name'][$x];
+                    $_FILES['file']['error'] = $_FILES['upl']['error'][$x];
+                    $_FILES['file']['size'] = $_FILES['upl']['size'][$x];
+                    if($this->upload->do_upload('file')){
+                        $newImage  = $this->upload->data()['file_name'];
+                        $array = array($newArray[$x]=>$newImage);
+                        $this->gen->UpdateHomePageFields($array);
+                    }
+                }
+            }
+
+            array_pop($_POST);
+        }
+
+        if(count($_POST) > 0){
+            $result = $this->gen->UpdateHomePageFields($_POST);
+        }
+
+    }
 
     public function UpdateAboutPage(){
 
@@ -1316,7 +1362,7 @@ class Cms extends CI_Controller {
 
     }
 
-    public function UpdateSerivePage(){
+    public function UpdateServicePage(){
 
         $images = $this->input->post('images',true);
 
@@ -1337,7 +1383,7 @@ class Cms extends CI_Controller {
                     
                 for($x =0; $x < count($_FILES['upl']['name']); $x++){
                     $config['upload_path'] = './assets/';
-                    $config['allowed_types'] = "jpg|jpeg|";
+                    $config['allowed_types'] = "jpg|jpeg|mp4|avi|3gp|ogg|wmv|wma|webm|flv";
                     $config['encrypt_name'] = TRUE;
                     $this->load->library('upload',$config);
                     $this->upload->initialize($config);
@@ -1349,7 +1395,7 @@ class Cms extends CI_Controller {
                     if($this->upload->do_upload('file')){
                         $newImage  = $this->upload->data()['file_name'];
                         $array = array($newArray[$x]=>$newImage);
-                        $this->gen->UpdateGalleryPageFields($array);
+                        $this->gen->UpdateServicePageFields($array);
                     }
                 }
             }
@@ -1358,7 +1404,7 @@ class Cms extends CI_Controller {
         }
 
         if(count($_POST) > 0){
-            $result = $this->gen->UpdateGalleryPageFields($_POST);
+            $result = $this->gen->UpdateServicePageFields($_POST);
         }
 
     }
@@ -1396,7 +1442,7 @@ class Cms extends CI_Controller {
                     if($this->upload->do_upload('file')){
                         $newImage  = $this->upload->data()['file_name'];
                         $array = array($newArray[$x]=>$newImage);
-                        $this->gen->UpdateGalleryPageFields($array);
+                        $this->gen->UpdateTaxiPageFields($array);
                     }
                 }
             }
@@ -1405,12 +1451,12 @@ class Cms extends CI_Controller {
         }
 
         if(count($_POST) > 0){
-            $result = $this->gen->UpdateGalleryPageFields($_POST);
+            $result = $this->gen->UpdateTaxiPageFields($_POST);
         }
 
     }
 
-    public function UpdateToursSerivePage(){
+    public function UpdateToursServicePage(){
 
         $images = $this->input->post('images',true);
 
@@ -1443,7 +1489,7 @@ class Cms extends CI_Controller {
                     if($this->upload->do_upload('file')){
                         $newImage  = $this->upload->data()['file_name'];
                         $array = array($newArray[$x]=>$newImage);
-                        $this->gen->UpdateGalleryPageFields($array);
+                        $this->gen->UpdateToursPageFields($array);
                     }
                 }
             }
@@ -1452,12 +1498,12 @@ class Cms extends CI_Controller {
         }
 
         if(count($_POST) > 0){
-            $result = $this->gen->UpdateGalleryPageFields($_POST);
+            $result = $this->gen->UpdateToursPageFields($_POST);
         }
 
     }
 
-    public function UpdateAirportSerivePage(){
+    public function UpdateAirportServicePage(){
 
         $images = $this->input->post('images',true);
 
@@ -1490,7 +1536,7 @@ class Cms extends CI_Controller {
                     if($this->upload->do_upload('file')){
                         $newImage  = $this->upload->data()['file_name'];
                         $array = array($newArray[$x]=>$newImage);
-                        $this->gen->UpdateGalleryPageFields($array);
+                        $this->gen->UpdateAirportPageFields($array);
                     }
                 }
             }
@@ -1499,7 +1545,7 @@ class Cms extends CI_Controller {
         }
 
         if(count($_POST) > 0){
-            $result = $this->gen->UpdateGalleryPageFields($_POST);
+            $result = $this->gen->UpdateAirportPageFields($_POST);
         }
 
     }
@@ -1537,7 +1583,7 @@ class Cms extends CI_Controller {
                     if($this->upload->do_upload('file')){
                         $newImage  = $this->upload->data()['file_name'];
                         $array = array($newArray[$x]=>$newImage);
-                        $this->gen->UpdateGalleryPageFields($array);
+                        $this->gen->UpdateDealsPageFields($array);
                     }
                 }
             }
@@ -1546,7 +1592,7 @@ class Cms extends CI_Controller {
         }
 
         if(count($_POST) > 0){
-            $result = $this->gen->UpdateGalleryPageFields($_POST);
+            $result = $this->gen->UpdateDealsPageFields($_POST);
         }
 
     }
@@ -1584,7 +1630,7 @@ class Cms extends CI_Controller {
                     if($this->upload->do_upload('file')){
                         $newImage  = $this->upload->data()['file_name'];
                         $array = array($newArray[$x]=>$newImage);
-                        $this->gen->UpdateGalleryPageFields($array);
+                        $this->gen->UpdateTestimonialsPageFields($array);
                     }
                 }
             }
@@ -1593,7 +1639,7 @@ class Cms extends CI_Controller {
         }
 
         if(count($_POST) > 0){
-            $result = $this->gen->UpdateGalleryPageFields($_POST);
+            $result = $this->gen->UpdateTestimonialsPageFields($_POST);
         }
 
     }
@@ -1631,7 +1677,7 @@ class Cms extends CI_Controller {
                     if($this->upload->do_upload('file')){
                         $newImage  = $this->upload->data()['file_name'];
                         $array = array($newArray[$x]=>$newImage);
-                        $this->gen->UpdateGalleryPageFields($array);
+                        $this->gen->UpdateNewsPageFields($array);
                     }
                 }
             }
@@ -1640,7 +1686,7 @@ class Cms extends CI_Controller {
         }
 
         if(count($_POST) > 0){
-            $result = $this->gen->UpdateGalleryPageFields($_POST);
+            $result = $this->gen->UpdateNewsPageFields($_POST);
         }
 
     }

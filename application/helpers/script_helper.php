@@ -72,14 +72,16 @@ if(!function_exists('navigation')){
 					<p  class="collapsible-header '.$active5.' waves-effect waves" ><i class="fa fa-file-text" aria-hidden="true"></i> Pages</p>
 					<ul class="collapsible-body grey lighten-3">
 						<li><a href="'.base_url('admin/home?active=5').'">Home</a></li>
+						<li><a href="'.base_url('admin/blog?active=5').'">Blog</a></li>
+						<li><a href="'.base_url('admin/deal?active=5').'">Deal</a></li>
 						<li><a href="'.base_url('admin/about?active=5').'">About</a></li>
 						<li><a href="'.base_url('admin/contact?active=5').'">Contact</a></li>
-						<li><a href="'.base_url('admin/').'">Taxi Service</a></li>
-						<li><a href="'.base_url('admin/').'">Airport Service</a></li>
-						<li><a href="'.base_url('admin/').'">Tours Service</a></li>
 						<li><a href="'.base_url('admin/booking?active=5').'">Booking</a></li>
-						<li><a href="'.base_url('admin/blog?active=5').'">Blog</a></li>
 						<li><a href="'.base_url('admin/gallery?active=5').'">Gallery</a></li>
+						<li><a href="'.base_url('admin/service?active=5').'">Service</a></li>
+						<li><a href="'.base_url('admin/taxiservice?active=5').'">Taxi Service</a></li>
+						<li><a href="'.base_url('admin/toursservice?active=5').'">Tours Service</a></li>
+						<li><a href="'.base_url('admin/airportservice?active=5').'">Airport Service</a></li>
 					</ul>
 				</li>
 			</ul>

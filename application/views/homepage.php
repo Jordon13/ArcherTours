@@ -149,7 +149,7 @@ $this->load->helper('section');
         
         <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
             <h2 class="header center-align blackText">
-              Services
+              <?php echo $data['services']['_service_ack_title']?>
             </h2>
         </div>
 
@@ -158,9 +158,7 @@ $this->load->helper('section');
         </div>
 
         <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
-          <p class="center-align blackText lead">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, 
-            or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing
-             hidden in the middle of text.</p>
+          <p class="center-align blackText lead"><?php echo $data['services']['_service_ptich']?></p>
         </div>
 
         <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
@@ -169,20 +167,19 @@ $this->load->helper('section');
             <div class="col l4 m6 s12">
               <div class="card">
                 <div class="card-image custom-hover" >
-                  <div class="custom-overlay-discount" style="display:none">
+                  <!-- <div class="custom-overlay-discount" style="display:none">
 
                     <div class="input-field col s12" style="width:100%!important; height:auto!important">
                         <input id="rqrate" type="search" class="z-depth-1" placeholder="Enter Email Address..."/>
                         <button class="custom-btn">Request Rates</button>
                     </div>                   
 
-                  </div>
-                  <img src="<?php echo base_url('assets/trips/13.jpeg');?>" >
-                  <span class="card-title">Airport Transfer</span>
+                  </div> -->
+                  <img src="<?php echo base_url('assets/').$data['services']['_service_airport_img'];?>" >
+                  <span class="card-title"><?php echo $data['services']['_service_airport_title']?></span>
                 </div>
                 <div class="card-content">
-                  <p>I am a very simple card. I am good at containing small bits of information.
-                  I am convenient because I require little markup to use effectively.</p>
+                  <p><?php echo $data['services']['_service_airport_desc']?></p>
                 </div>
                 <div class="card-action modify-action">
                   <a href="<?php echo site_url('/airport');?>" class="custom-link">View Packages</a>
@@ -192,20 +189,19 @@ $this->load->helper('section');
             <div class="col l4 m6 s12">
               <div class="card">
                 <div class="card-image custom-hover" >
-                  <div class="custom-overlay-discount" style="display:none">
+                  <!-- <div class="custom-overlay-discount" style="display:none">
 
                     <div class="input-field col s12" style="width:100%!important; height:auto!important">
                         <input id="rqrate" type="search" class="z-depth-1" placeholder="Enter Email Address..."/>
                         <button class="custom-btn">Request Rates</button>
                     </div>                   
 
-                  </div>
-                  <img src="<?php echo base_url('assets/trips/5.jpeg');?>" >
-                  <span class="card-title">Taxi</span>
+                  </div> -->
+                  <img src="<?php echo base_url('assets/').$data['services']['_service_taxi_img'];?>" >
+                  <span class="card-title"><?php echo $data['services']['_service_taxi_title']?></span>
                 </div>
                 <div class="card-content">
-                  <p>I am a very simple card. I am good at containing small bits of information.
-                  I am convenient because I require little markup to use effectively.</p>
+                  <p><?php echo $data['services']['_service_taxi_desc']?></p>
                 </div>
                 <div class="card-action modify-action">
                   <a href="<?php echo site_url('/taxi');?>" class="custom-link">View Packages</a>
@@ -215,20 +211,19 @@ $this->load->helper('section');
             <div class="col l4 m6 s12">
               <div class="card">
                 <div class="card-image custom-hover" >
-                  <div class="custom-overlay-discount" style="display:none">
+                  <!-- <div class="custom-overlay-discount" style="display:none">
 
                     <div class="input-field col s12" style="width:100%!important; height:auto!important">
                         <input id="rqrate" type="search" class="z-depth-1" placeholder="Enter Email Address..."/>
                         <button class="custom-btn">Request Rates</button>
                     </div>                   
 
-                  </div>
-                  <img src="<?php echo base_url('assets/trips/3.jpeg');?>" >
-                  <span class="card-title">Tours & Excursion</span>
+                  </div> -->
+                  <img src="<?php echo base_url('assets/').$data['services']['_service_tours_img'];?>" >
+                  <span class="card-title"><?php echo $data['services']['_service_tours_title'];?></span>
                 </div>
                 <div class="card-content">
-                  <p>I am a very simple card. I am good at containing small bits of information.
-                  I am convenient because I require little markup to use effectively.</p>
+                  <p><?php echo $data['services']['_service_tours_desc'];?></p>
                 </div>
                 <div class="card-action modify-action">
                   <a href="<?php echo site_url('/tour');?>" class="custom-link">View Packages</a>

@@ -113,7 +113,7 @@ class Manipulation extends CI_Model {
 
         $contact = $this->LoadContactUsPage();
 
-        $data = array('homepage'=>$homepage[0],'specials'=>$specials,'blogs'=>$blogs, 'aboutus'=>$aboutus[0], 'contact'=>$contact[0]);
+        $data = array('homepage'=>$homepage[0],'specials'=>$specials,'blogs'=>$blogs, 'aboutus'=>$aboutus[0], 'contact'=>$contact[0], 'services'=>$this->LoadServicePage()[0]);
 
         return $data;
 
@@ -121,6 +121,11 @@ class Manipulation extends CI_Model {
 
     public function LoadAboutUsPage(){
         return $this->db->get("sys_about_us")->result_array();
+    }
+
+
+    public function LoadHome(){
+        return $this->db->get("sys_home_page")->result_array();
     }
 
     public function LoadContactUsPage(){
@@ -135,8 +140,36 @@ class Manipulation extends CI_Model {
         return $this->db->get("sys_blog_page")->result_array();
     }
 
+    public function LoadServicePage(){
+        return $this->db->get("sys_service_page")->result_array();
+    }
+
+    public function LoadTaxiServicePage(){
+        return $this->db->get("sys_taxi_service_page")->result_array();
+    }
+
+    public function LoadAirportServicePage(){
+        return $this->db->get("sys_airport_service_page")->result_array();
+    }
+
+    public function LoadToursServicePage(){
+        return $this->db->get("sys_tours_service_page")->result_array();
+    }
+
     public function LoadBookingPage(){
         return $this->db->get("sys_booking_page")->result_array();
+    }
+
+    public function LoadDealsPage(){
+        return $this->db->get("sys_deals_page")->result_array();
+    }
+
+    public function LoadNewsPage(){
+        return $this->db->get("sys_recent_news_page")->result_array();
+    }
+
+    public function LoadTestimonialsPage(){
+        return $this->db->get("sys_testimonals_page")->result_array();
     }
 
     public function LoadGallery(){

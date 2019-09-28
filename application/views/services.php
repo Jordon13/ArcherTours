@@ -24,7 +24,7 @@ $this->load->helper('section');
     }
 
     .fpage {
-        background-image: url(<?php echo base_url('assets/32.jpg')?>);
+        background-image: url(<?php echo base_url('assets/').$data['_service_img'];?>);
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
@@ -110,6 +110,10 @@ $this->load->helper('section');
       .green-overlay{
         background-color: rgba(20, 120, 61, 0.9)!important;
       }
+
+      .nooutline{
+        outline: none!important;
+      }
 </style>
 
 </head>
@@ -123,7 +127,7 @@ $this->load->helper('section');
         <div class="row valign-wrapper" style="height:100%!important;">
           <div class="col s12" >
           <h5 class="white-text"><a class="custom-hone-link" href="<?php echo site_url('/')?>">Home</a> | <span style="color:rgba(255,255,255,0.8)!important;">Services</span></h5>
-            <h1 class="white-text header">Services</h1>
+            <h1 class="white-text header"><?php echo $data['_service_ack_title'];?></h1>
           </div>
         </div>
       </div>
@@ -139,23 +143,23 @@ $this->load->helper('section');
     <div class="col l4 m12 s12 custom-img" style="position:relative;" title="Click to see rates">
         <div style="position:relative; overflow: hidden;">
         <div class="dark-overlay">
-          <a href="<?php echo site_url('/airport');?>">Airport Transfer</a>
+          <a href="<?php echo site_url('/airport');?>"><?php echo $data['_service_airport_title'];?></a>
         </div>
-        <img class="imgmod" src="<?php echo base_url('assets/trips/13.jpeg');?>" />
-        </div>
-      </div>
-
-      <div class="col l4 m12 s12 custom-img" style="position:relative;" title="Click to see rates">
-        <div style="position:relative; overflow: hidden;">
-        <div class="yellow-overlay"><a href="<?php echo site_url('/taxi');?>">Private Taxi</a></div>
-        <img class="imgmod" src="<?php echo base_url('assets/trips/5.jpeg');?>" />
+        <img class="imgmod" src="<?php echo base_url('assets/').$data['_service_airport_img'];?>" />
         </div>
       </div>
 
       <div class="col l4 m12 s12 custom-img" style="position:relative;" title="Click to see rates">
         <div style="position:relative; overflow: hidden;">
-        <div class="green-overlay"><a href="<?php echo site_url('/tour');?>">Tours & Excursion</a></div>
-        <img class="imgmod" src="<?php echo base_url('assets/trips/3.jpeg');?>" />
+        <div class="yellow-overlay"><a href="<?php echo site_url('/taxi');?>"><?php echo $data['_service_taxi_title'];?></a></div>
+        <img class="imgmod" src="<?php echo base_url('assets/').$data['_service_taxi_img'];?>" />
+        </div>
+      </div>
+
+      <div class="col l4 m12 s12 custom-img" style="position:relative;" title="Click to see rates">
+        <div style="position:relative; overflow: hidden;">
+        <div class="green-overlay"><a href="<?php echo site_url('/tour');?>"><?php echo $data['_service_tours_title'];?></a></div>
+        <img class="imgmod" src="<?php echo base_url('assets/').$data['_service_tours_img'];?>" />
         </div>
       </div>
       
@@ -167,10 +171,15 @@ $this->load->helper('section');
 
     <div class="row">
 
-   
+      
+    <?php if($data['_service_vid'] != null && $data['_service_vid'] != ""){?>
       <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 center">
-        <iframe width="100%" height="600px" src="https://www.youtube.com/embed/DPWYizIpGOc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <video src="<?php echo base_url('assets/').$data['_service_vid'];?>" class="nooutline" width="100%" height="900px" preload="metadata" crossorigin="anonymous" controls>
+          <p>If you are reading this, it is because your browser does not support the HTML5 video element.</p>
+          <!-- <track kind="subtitles" label="English" src="<?php //echo base_url('assets/web.vtt');?>" srclang="en"> -->
+        </video>
       </div>
+    <?php }?>
     
     </div>
     <?php main_footer(); ?>

@@ -44,17 +44,25 @@ class Home extends CI_Controller {
 
     public function about()
     {
-
-
         $this->load->view('about', array('data'=>$this->mn->LoadAboutUsPage()[0]));
     }
 
+    public function recentstories()
+    {
+        $this->load->view('recentnews',array('data'=>$this->mn->LoadDealsPage()[0]));
+    }
+
+    public function testimonials()
+    {
+        $this->load->view('testimonials',array('data'=>$this->mn->LoadDealsPage()[0]));
+    }
+
     public function services(){
-        $this->load->view('services');
+        $this->load->view('services', array('data'=>$this->mn->LoadServicePage()[0]));//LoadServicePage()
     }
 
     public function deals(){
-        $this->load->view('deals');
+        $this->load->view('deals',array('data'=>$this->mn->LoadDealsPage()[0]));
     }
 
     public function booking()
@@ -85,7 +93,8 @@ class Home extends CI_Controller {
         }
 
         $data = array(
-            'datas'=>$packages
+            'datas'=>$packages,
+            'pageDetails' =>$this->mn->LoadAirportServicePage()[0]
         );
 
         $this->ps->parse('airporttransfer',$data);
@@ -104,7 +113,8 @@ class Home extends CI_Controller {
         }
 
         $data = array(
-            'datas'=>$packages
+            'datas'=>$packages,
+            'pageDetails' =>$this->mn->LoadTaxiServicePage()[0]
         );
 
         $this->ps->parse('taxiservice',$data);
@@ -122,7 +132,8 @@ class Home extends CI_Controller {
         }
 
         $data = array(
-            'datas'=>$packages
+            'datas'=>$packages,
+            'pageDetails' =>$this->mn->LoadToursServicePage()[0]
         );
 
         $this->ps->parse('tours',$data);

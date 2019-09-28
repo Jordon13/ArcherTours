@@ -6,7 +6,7 @@ $this->load->helper('section');
 ?>
 <html lang="en">
 <head>
-    <title>Deals</title>
+    <title>Recent Stories</title>
     <?php main_head();?>
 
 </head>

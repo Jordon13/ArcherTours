@@ -49,6 +49,11 @@ if(!function_exists('main_head')){
 if(!function_exists('main_nav')){
 	function main_nav(){
 
+    $ci=& get_instance();
+    $ci->load->database(); 
+
+    $logo = $ci->mn->LoadHome()[0]['_home_logo_img'];
+
     $getCart = isset($_COOKIE[CARTNAME]) && !empty($_COOKIE[CARTNAME]) ? $_COOKIE[CARTNAME] : null;
 
     $div = '';
@@ -108,7 +113,7 @@ if(!function_exists('main_nav')){
 
     <div class="nav-body">
         <div class="nav-logo">
-        <a href="'.site_url('/').'"><img src="'.base_url('assets/logo.png').'"/></a>
+        <a href="'.site_url('/').'"><img src="'.base_url('assets/').$logo.'"/></a>
         </div>
 
         <div class="nav-links noshow">
@@ -205,8 +210,8 @@ if(!function_exists('main_footer')){
                 <ul>
                     <li><a href="'.site_url('/gallery').'">Gallery</a></li>
                     <li><a href="'.site_url('/contact').'">Contact Us</a></li>
-                    <li><a href="'.site_url('/testi').'">Testimonials</a></li>
-                    <li><a href="'.site_url('/recent').'">Recent Places</a></li>
+                    <li><a href="'.site_url('/testimonial').'">Testimonials</a></li>
+                    <li><a href="'.site_url('/news').'">Recent Places</a></li>
                   </ul>
                 </div>
               </div>

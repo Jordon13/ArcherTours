@@ -15,7 +15,7 @@ if(!($this->ses->has_userdata("user_ses"))){
 <html>
 
     <head>
-        <title>Home</title>
+        <title>Airport Service</title>
         <?php adminhead();?>
 
         <style>
@@ -66,33 +66,17 @@ if(!($this->ses->has_userdata("user_ses"))){
                             <div class="file-field input-field col s12">
                                 <div class="btn blue-grey lighten-2">
                                     <span>Background Image</span></span>
-                                    <input type="file" id="file" class="abt" name="_home_img" disabled>
+                                    <input type="file" id="file" class="abt" name="_airport_img" disabled>
                                 </div>
                                 <div class="file-path-wrapper">
-                                    <input class="file-path validate" type="text" value="<?php echo $data['_home_img'];?>" placeholder="Change Background Image" disabled>
-                                </div>
-
-                            </div>
-
-                            <div class="file-field input-field col s12">
-                                <div class="btn blue-grey lighten-2">
-                                    <span>Logo</span></span>
-                                    <input type="file" id="file" class="abt" name="_home_logo_img" disabled>
-                                </div>
-                                <div class="file-path-wrapper">
-                                    <input class="file-path validate" type="text" value="<?php echo $data['_home_logo_img'];?>" placeholder="Change Background Image" disabled>
+                                    <input class="file-path validate" type="text" value="<?php echo $data['_airport_img'];?>" placeholder="Change Background Image" disabled>
                                 </div>
 
                             </div>
 
                             <div class="col s12">
-                                <input id="abt_bck_title" name="_welcome_msg" class="abt" id="me" type="text" value="<?php echo $data['_welcome_msg'];?>" disabled/>
-                                <label for="abt_bck_title">Home Page Message</label>
-                            </div>
-
-                            <div class="col s12">
-                                <input id="abt_bck_title" name="_welcome_quote" class="abt" id="me" type="text" value="<?php echo $data['_welcome_quote'];?>" disabled/>
-                                <label for="abt_bck_title">Home Page Quote</label>
+                                <input id="abt_bck_title" name="_airport_title" class="abt" id="me" type="text" value="<?php echo $data['_airport_title'];?>" disabled/>
+                                <label for="abt_bck_title">Airport Header</label>
                             </div>
 
                             <div class="col s12 hidden_btn center-align" style="display:none;">
@@ -242,7 +226,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                 
 
                 $.ajax({
-                    url: "<?php echo site_url('/cms/UpdateHomePage');?>",
+                    url: "<?php echo site_url('/cms/UpdateAirportServicePage');?>",
                     method: "POST",
                     data: form_data,
                     beforeSend:function(){
@@ -274,5 +258,4 @@ if(!($this->ses->has_userdata("user_ses"))){
             }
 
     </script>
-
 </html>

@@ -252,6 +252,123 @@ class General extends CI_Model {
 
     }
 
+    public function UpdateHomePageFields($data){
+
+        $this->db->where("auto_generated_id",1);
+
+        $result = $this->db->update('sys_home_page',$data);
+
+        if($result){
+            return true;
+        }
+
+        return false;
+
+    }
+
+
+    public function UpdateServicePageFields($data){
+
+        $this->db->where("auto_generated_id",1);
+
+        $result = $this->db->update('sys_service_page',$data);
+
+        if($result){
+            return true;
+        }
+
+        return false;
+
+    }
+
+    public function UpdateTaxiPageFields($data){
+
+        $this->db->where("auto_generated_id",1);
+
+        $result = $this->db->update('sys_taxi_service_page',$data);
+
+        if($result){
+            return true;
+        }
+
+        return false;
+
+    }
+
+    public function UpdateToursPageFields($data){
+
+        $this->db->where("auto_generated_id",1);
+
+        $result = $this->db->update('sys_tours_service_page',$data);
+
+        if($result){
+            return true;
+        }
+
+        return false;
+
+    }
+
+
+    public function UpdateAirportPageFields($data){
+
+        $this->db->where("auto_generated_id",1);
+
+        $result = $this->db->update('sys_airport_service_page',$data);
+
+        if($result){
+            return true;
+        }
+
+        return false;
+
+    }
+
+
+    public function UpdateDealsPageFields($data){
+
+        $this->db->where("auto_generated_id",1);
+
+        $result = $this->db->update('sys_deals_page',$data);
+
+        if($result){
+            return true;
+        }
+
+        return false;
+
+    }
+
+
+    public function UpdateTestimonialsPageFields($data){
+
+        $this->db->where("auto_generated_id",1);
+
+        $result = $this->db->update('sys_testimonials_page',$data);
+
+        if($result){
+            return true;
+        }
+
+        return false;
+
+    }
+
+    public function UpdateNewsPageFields($data){
+
+        $this->db->where("auto_generated_id",1);
+
+        $result = $this->db->update('sys_recent_news_page',$data);
+
+        if($result){
+            return true;
+        }
+
+        return false;
+
+    }
+
+
     public function Validatelogin(){
         if(!($this->ses->has_userdata("user_ses"))){
             $result = array(
