@@ -79,6 +79,8 @@ if(!function_exists('navigation')){
 						<li><a href="'.base_url('admin/booking?active=5').'">Booking</a></li>
 						<li><a href="'.base_url('admin/gallery?active=5').'">Gallery</a></li>
 						<li><a href="'.base_url('admin/service?active=5').'">Service</a></li>
+						<li><a href="'.base_url('admin/newspage?active=5').'">Recent News</a></li>
+						<li><a href="'.base_url('admin/testimonialspage?active=5').'">Testimonials</a></li>
 						<li><a href="'.base_url('admin/taxiservice?active=5').'">Taxi Service</a></li>
 						<li><a href="'.base_url('admin/toursservice?active=5').'">Tours Service</a></li>
 						<li><a href="'.base_url('admin/airportservice?active=5').'">Airport Service</a></li>

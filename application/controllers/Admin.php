@@ -108,87 +108,98 @@ class Admin extends CI_Controller {
         $this->load->view('admin/mupload/recent');
     }
 
-// pages redesign
+    // pages redesign
 
-public function about()
-{
-    $this->load->view('admin/pages/about',array('data'=>$this->mn->LoadAboutUsPage()[0]));
-}
+    public function about()
+    {
+        $this->load->view('admin/pages/about',array('data'=>$this->mn->LoadAboutUsPage()[0]));
+    }
 
-public function blog()
-{
-    $this->load->view('admin/pages/blog',array('data'=>$this->mn->LoadBlogPage()[0]));
-}
+    public function blog()
+    {
+        $this->load->view('admin/pages/blog',array('data'=>$this->mn->LoadBlogPage()[0]));
+    }
 
-public function booking()
-{
-    $this->load->view('admin/pages/booking',array('data'=>$this->mn->LoadBookingPage()[0]));
-}
+    public function booking()
+    {
+        $this->load->view('admin/pages/booking',array('data'=>$this->mn->LoadBookingPage()[0]));
+    }
 
-public function contact()
-{
-    $this->load->view('admin/pages/contact',array('data'=>$this->mn->LoadContactUsPage()[0]));
-}
+    public function contact()
+    {
+        $this->load->view('admin/pages/contact',array('data'=>$this->mn->LoadContactUsPage()[0]));
+    }
 
-public function gallery()
-{
-    $this->load->view('admin/pages/gallery',array('data'=>$this->mn->LoadGalleryPage()[0]));
-}
+    public function gallery()
+    {
+        $this->load->view('admin/pages/gallery',array('data'=>$this->mn->LoadGalleryPage()[0]));
+    }
 
-public function home()
-{
-    $this->load->view('admin/pages/home',array('data'=>$this->mn->LoadHome()[0]));//LoadHome()[0]
-}
+    public function home()
+    {
+        $this->load->view('admin/pages/home',array('data'=>$this->mn->LoadHome()[0]));//LoadHome()[0]
+    }
 
-public function service()
-{
-    $this->load->view('admin/pages/service',array('data'=>$this->mn->LoadServicePage()[0]));
-}
+    public function service()
+    {
+        $this->load->view('admin/pages/service',array('data'=>$this->mn->LoadServicePage()[0]));
+    }
 
-public function airportservice()
-{
-    $this->load->view('admin/pages/airportService',array('data'=>$this->mn->LoadAirportServicePage()[0]));
-}
-
-
-public function taxiservice()
-{
-    $this->load->view('admin/pages/taxiService',array('data'=>$this->mn->LoadTaxiServicePage()[0]));
-}
-
-public function toursservice()
-{
-    $this->load->view('admin/pages/toursService',array('data'=>$this->mn->LoadToursServicePage()[0]));
-}
-
-public function deal()
-{
-    $this->load->view('admin/pages/dealPage',array('data'=>$this->mn->LoadDealsPage()[0]));
-}
+    public function airportservice()
+    {
+        $this->load->view('admin/pages/airportService',array('data'=>$this->mn->LoadAirportServicePage()[0]));
+    }
 
 
-//analytics
+    public function taxiservice()
+    {
+        $this->load->view('admin/pages/taxiService',array('data'=>$this->mn->LoadTaxiServicePage()[0]));
+    }
 
-public function booking_analytics()
-{
-    $this->load->view('admin/analytics/booking_analytics');
-}
+    public function toursservice()
+    {
+        $this->load->view('admin/pages/toursService',array('data'=>$this->mn->LoadToursServicePage()[0]));
+    }
+
+    public function deal()
+    {
+        $this->load->view('admin/pages/dealPage',array('data'=>$this->mn->LoadDealsPage()[0]));
+    }
+
+    public function testimonialspage()
+    {
+        $this->load->view('admin/pages/testimonialPage',array('data'=>$this->mn->LoadTestimonialsPage()[0]));
+    }
 
 
-public function handlebookings()
-{
-    $this->load->view('admin/analytics/handlebookings');
-}
+    public function newspage()
+    {
+        $this->load->view('admin/pages/newsPage',array('data'=>$this->mn->LoadNewsPage()[0]));
+    }
 
-public function profitloss()
-{
-    $this->load->view('admin/analytics/profitloss');
-}
 
-public function calender()
-{
-    $this->load->view('admin/analytics/bcalender');
-}
+    //analytics
+
+    public function booking_analytics()
+    {
+        $this->load->view('admin/analytics/booking_analytics');
+    }
+
+
+    public function handlebookings()
+    {
+        $this->load->view('admin/analytics/handlebookings');
+    }
+
+    public function profitloss()
+    {
+        $this->load->view('admin/analytics/profitloss');
+    }
+
+    public function calender()
+    {
+        $this->load->view('admin/analytics/bcalender');
+    }
 
 }
 

@@ -17,6 +17,7 @@ class Client extends CI_Controller {
 
             $booking_unique_key = random_string('alnum', 10);
             $booking_first_name = sanitizeInput($this->input->post('fname',true));//required
+            $packageid = sanitizeInput($this->input->post('pid',true));//required
             $booking_last_name = sanitizeInput($this->input->post('lname',true));//required
             $booking_email = sanitizeInput($this->input->post('email',true));//required
             $booking_phone_number = empty(sanitizeInput($this->input->post('phone',true))) ? "" : sanitizeInput($this->input->post('phone',true)) ;
@@ -307,7 +308,8 @@ class Client extends CI_Controller {
                 'booking_date'=>date("Y-m-d" ,strtotime($tripdate)),
                 'booking_type'=>$item->package_type,
                 'booking_special_inst'=>$addinfo,
-                'booking_price'=>$total
+                'booking_price'=>$total,
+                'booking_package_id'=>$item->package_unique_id
             );
 
             $trip_type = 'Round Trip';

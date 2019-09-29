@@ -66,17 +66,17 @@ if(!($this->ses->has_userdata("user_ses"))){
                             <div class="file-field input-field col s12">
                                 <div class="btn blue-grey lighten-2">
                                     <span>Background Image</span></span>
-                                    <input type="file" id="file" class="abt" name="_gallery_img" disabled>
+                                    <input type="file" id="file" class="abt" name="_testimonial_img" disabled>
                                 </div>
                                 <div class="file-path-wrapper">
-                                    <input class="file-path validate" type="text" value="<?php echo $data['_gallery_img'];?>" placeholder="Change Background Image" disabled>
+                                    <input class="file-path validate" type="text" value="<?php echo $data['_testimonial_img'];?>" placeholder="Change Background Image" disabled>
                                 </div>
 
                             </div>
 
                             <div class="col s12">
-                                <input id="abt_bck_title" name="_gallery_back_title" class="abt" id="me" type="text" value="<?php echo $data['_gallery_back_title'];?>" disabled/>
-                                <label for="abt_bck_title">Gallery Header</label>
+                                <input id="abt_bck_title" name="_testimonial_title" class="abt" id="me" type="text" value="<?php echo $data['_testimonial_title'];?>" disabled/>
+                                <label for="abt_bck_title">Testimonial Header</label>
                             </div>
 
                             <div class="col s12 hidden_btn center-align" style="display:none;">

@@ -266,7 +266,6 @@ class General extends CI_Model {
 
     }
 
-
     public function UpdateServicePageFields($data){
 
         $this->db->where("auto_generated_id",1);
@@ -344,7 +343,7 @@ class General extends CI_Model {
 
         $this->db->where("auto_generated_id",1);
 
-        $result = $this->db->update('sys_testimonials_page',$data);
+        $result = $this->db->update('sys_testimonals_page',$data);
 
         if($result){
             return true;

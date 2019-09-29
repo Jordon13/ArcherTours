@@ -49,12 +49,12 @@ class Home extends CI_Controller {
 
     public function recentstories()
     {
-        $this->load->view('recentnews',array('data'=>$this->mn->LoadDealsPage()[0]));
+        $this->load->view('recentnews',array('data'=>$this->mn->LoadNewsPage()[0]));
     }
 
     public function testimonials()
     {
-        $this->load->view('testimonials',array('data'=>$this->mn->LoadDealsPage()[0]));
+        $this->load->view('testimonials',array('data'=>$this->mn->LoadTestimonialsPage()[0]));
     }
 
     public function services(){
