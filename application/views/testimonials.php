@@ -8,6 +8,8 @@ $this->load->helper('section');
 <head>
     <title>Testimonials</title>
     <?php main_head();?>
+    <script src="<?php echo base_url('js/')?>jquery.star-rating-svg.js"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/')?>star-rating-svg.css">
 
 </head>
 
@@ -145,90 +147,7 @@ $this->load->helper('section');
             <div class="input-field col s12">
               <div class="row valign-wrapper"style="justify-content:center;margin-bottom:0px;">
                 
-                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                  aria-hidden="true" focusable="false"
-                  width="30px" height="30px" 
-                  style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" 
-                  preserveAspectRatio="xMidYMid meet" 
-                  viewBox="0 0 24 24" 
-                  class="iconify grey-text accent-5" 
-                  data-icon="mdi:star" 
-                  data-inline="false" 
-                  data-width="30px" 
-                  data-height="30px">
-                  <path d="M12 17.27l6.18 3.728-1.636-7.03L22 9.244l-7.19-.618-2.81-6.627L9.19
-                  8.625 2 9.243l5.454 4.726-1.635 7.029L12 17.27z"
-                  fill="currentColor">
-                  </path>
-                  </svg>
-
-                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                  aria-hidden="true" focusable="false"
-                  width="30px" height="30px" 
-                  style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" 
-                  preserveAspectRatio="xMidYMid meet" 
-                  viewBox="0 0 24 24" 
-                  class="iconify grey-text accent-5" 
-                  data-icon="mdi:star" 
-                  data-inline="false" 
-                  data-width="30px" 
-                  data-height="30px">
-                  <path d="M12 17.27l6.18 3.728-1.636-7.03L22 9.244l-7.19-.618-2.81-6.627L9.19
-                  8.625 2 9.243l5.454 4.726-1.635 7.029L12 17.27z"
-                  fill="currentColor">
-                  </path>
-                  </svg>
-
-                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                  aria-hidden="true" focusable="false"
-                  width="30px" height="30px" 
-                  style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" 
-                  preserveAspectRatio="xMidYMid meet" 
-                  viewBox="0 0 24 24" 
-                  class="iconify grey-text accent-5" 
-                  data-icon="mdi:star" 
-                  data-inline="false" 
-                  data-width="30px" 
-                  data-height="30px">
-                  <path d="M12 17.27l6.18 3.728-1.636-7.03L22 9.244l-7.19-.618-2.81-6.627L9.19
-                  8.625 2 9.243l5.454 4.726-1.635 7.029L12 17.27z"
-                  fill="currentColor">
-                  </path>
-                  </svg>
-
-                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                  aria-hidden="true" focusable="false"
-                  width="30px" height="30px" 
-                  style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" 
-                  preserveAspectRatio="xMidYMid meet" 
-                  viewBox="0 0 24 24" 
-                  class="iconify grey-text accent-5" 
-                  data-icon="mdi:star" 
-                  data-inline="false" 
-                  data-width="30px" 
-                  data-height="30px">
-                  <path d="M12 17.27l6.18 3.728-1.636-7.03L22 9.244l-7.19-.618-2.81-6.627L9.19
-                  8.625 2 9.243l5.454 4.726-1.635 7.029L12 17.27z"
-                  fill="currentColor">
-                  </path>
-                  </svg>
-
-                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                  aria-hidden="true" focusable="false"
-                  width="30px" height="30px" 
-                  style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" 
-                  preserveAspectRatio="xMidYMid meet" 
-                  viewBox="0 0 24 24" 
-                  class="iconify grey-text accent-5" 
-                  data-icon="mdi:star" 
-                  data-inline="false" 
-                  data-width="30px" 
-                  data-height="30px">
-                  <path d="M12 17.27l6.18 3.728-1.636-7.03L22 9.244l-7.19-.618-2.81-6.627L9.19
-                  8.625 2 9.243l5.454 4.726-1.635 7.029L12 17.27z"
-                  fill="currentColor">
-                  </path>
-                  </svg>
+                <div class="my-rating-4"></div>
 
               </div>
             </div>
@@ -238,7 +157,7 @@ $this->load->helper('section');
 
             <div class="input-field col s12">
               <div class="row valign-wrapper" style="justify-content:center;">
-                <button class="btn black-text yellow">Submit</button>
+                <button class="btn black-text yellow send">Submit</button>
               </div>
             </div>
           
@@ -255,7 +174,7 @@ $this->load->helper('section');
             <h5 class="white-text"><a class="custom-hone-link" href="<?php echo site_url('/')?>">Home</a> | <span style="color:rgba(255,255,255,0.8)!important;">Deals</span></h5>
             <h1 class="white-text header"><?php echo $data['_testimonial_title'];?></h1>
             <div class="row valign-wrapper centerbtn">
-              <button class="btn btn-large yellow black-text waves-effect waves-light pulse">Share your experience</button>
+              <button class="btn btn-large yellow black-text waves-effect waves-light pulse ">Share your experience</button>
             </div>
           </div>
           
@@ -268,5 +187,28 @@ $this->load->helper('section');
 
     
     <?php main_footer(); ?>
+
+    <script>
+    
+      $('document').ready(function(){
+
+        $(".my-rating-4").starRating({
+          totalStars: 5,
+          starShape: 'rounded',
+          starSize: 30,
+          emptyColor: 'lightgray',
+          hoverColor: '#ffff8d',
+          ratedColor: '#ffd600',
+          useGradient: false,
+          useFullStars: true
+        });
+
+      });
+
+      $('.send').click(function(){
+        alert($('.my-rating-4').starRating('getRating'));
+      });
+    
+    </script>
 </body>
 </html>
