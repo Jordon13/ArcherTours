@@ -749,6 +749,37 @@ EOT;
 
     }
 
+    public function AddTestimonial(){
+        // InsertTestimonial($data)
+
+        //sanitizeArray();
+
+        $_username = $this->input->post('_username',true); 
+
+        $_useremail = $this->input->post('_useremail',true);
+
+        $_user_msg = $this->input->post('_user_msg',true);
+
+        $_rating = $this->input->post('_rating',true);
+
+        if(empty($_username) || empty($_useremail) || empty($_user_msg) ){
+            
+            echo "all fields are mandatory for this request";
+
+            return;
+        }
+
+        $cleanedData = sanitizeArray($_POST);
+
+        if($this->cs->InsertTestimonial($cleanedData)){
+            echo "successfully added!";
+            return;
+        }
+
+        echo "failed to process request, an unexpected error has occured. Please contact owner to fix issue.";
+
+    }
+
     public function testPay(){
         // $this->pal->getPayPalClient();
         // $this->config->load('paypal', TRUE);

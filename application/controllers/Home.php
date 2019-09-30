@@ -54,7 +54,7 @@ class Home extends CI_Controller {
 
     public function testimonials()
     {
-        $this->load->view('testimonials',array('data'=>$this->mn->LoadTestimonialsPage()[0]));
+        $this->ps->parse('testimonials',array('data'=>$this->mn->LoadTestimonialsPage()[0], 'items'=>$this->mn->LoadTestimonials()));
     }
 
     public function services(){

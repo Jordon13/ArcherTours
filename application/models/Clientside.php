@@ -77,6 +77,21 @@ class Clientside extends CI_Model {
         
     }
 
+    public function InsertTestimonial($data){
+        try{
+            $insertsub = $this->db->insert('sys_testimonials',$data);
+
+            if($insertsub == true){
+
+                return true;
+            }
+            return false;
+        }catch(Exception $ex){
+            return false;
+        }
+        
+    }
+
     public function GetPackageById($id){
         $this->db->select('*');
         $this->db->from('sys_prices');

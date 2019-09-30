@@ -172,6 +172,10 @@ class Manipulation extends CI_Model {
         return $this->db->get("sys_testimonals_page")->result_array();
     }
 
+    public function LoadTestimonials(){
+        return $this->db->get("sys_testimonials")->result_array();
+    }
+
     public function LoadGallery(){
         $this->db->join('sys_files', 'sys_files.auto_generated_id = sys_media_upload.sys_folder_id');
         $this->db->where("sys_media_upload.media_file_type","image");
