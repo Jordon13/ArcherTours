@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->helper('section');
 
 ?>
-<!-- <!DOCTYPE html> -->
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>About</title>
@@ -53,9 +53,7 @@ $this->load->helper('section');
           background-repeat: no-repeat;
           background-position: center;
           width: 100%;
-          /* background-attachment: fixed; */
-          height: 50%!important;
-          position: relative;
+          height: 400px!important;
           padding-top:4em!important;
           padding-bottom:4em!important;
           margin-bottom:0px!important;
@@ -178,28 +176,26 @@ $this->load->helper('section');
 
     <div class="row">
       
-      <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"style="padding-top:4em!important; padding-bottom:4em!important;">
+      <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0" style="padding-top:4em!important; padding-bottom:4em!important;">
 
-        <div class="row" style="position:relative!important;">
+        <div class="col l6 m12 s12 about-back-img">
+
+       </div>
+
+      <div class="col l6 m12 s12 " >
+        <div class="col s12" >
+          <h3 class="header"><?php echo $data['_about_title'];?></h3>
           
-          <div class="col l6 m12 s12 about-back-img" style="position:relative;">
-
-          </div>
-
-          <div class="col l6 m12 s12 " style="height:auto!important;">
-            <div class="row valign-wrapper"  style="height:auto!important; padding-left:2em!important;">
-              <div class="col s12" >
-                <h3 class="header"><?php echo $data['_about_title'];?></h3>
-                <p class="lead"><?php echo $data['_about_msg'];?></p>
-              </div>
-            </div>
-          </div>
         </div>
+        <div class="col s12">
+          <p class="lead"><?php echo $data['_about_msg'];?></p>
+        </div>
+      </div>
 
       </div>
 
     </div>
     
-    <?php main_footer(); ?>
+  <?php main_footer(); ?>
 </body>
 </html>

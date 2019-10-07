@@ -3,12 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $this->load->helper('section');
 ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Testimonials</title>
     <?php main_head();?>
-    <script src="<?php echo base_url('js/')?>jquery.star-rating-svg.js"></script>
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/')?>star-rating-svg.css">
+    
 
 </head>
 
@@ -126,6 +126,10 @@ $this->load->helper('section');
         margin: 0.3em;
       }
 
+      .character-counter{
+        color:white!important;
+      }
+
 </style>
 <body class="">
 
@@ -148,7 +152,7 @@ $this->load->helper('section');
             </div>
 
             <div class="input-field col s12">
-              <textarea  id="message" type="text" name="_user_msg" class="white-text materialize-textarea validate"></textarea>
+              <textarea  id="message" type="text" name="_user_msg" class="white-text materialize-textarea validate" data-length="210"></textarea>
               <label for="message">Message</label>
             </div>
 
@@ -202,14 +206,33 @@ $this->load->helper('section');
 
         <?php foreach($items as $item){ ?>
 
-        <div class="animated col l3 m6 s12" data-aos="fade-up-right">
-          <div class="card-panel grey lighten-4 " style="border-radius:10px;">
-            <h3 class="flow-text" style="margin:0px;vertical-align:center"><b><?php echo $item['_username']; ?></b></h3>
-            <p class="grey-text" style="margin-bottom:10px!important;font-size:12px;"><?php echo date("F d, Y",strtotime($item['date_created'])); ?></p>
-            <p style="margin:20px!important;"><em><?php echo $item['_user_msg']; ?></em></p>
-            <div class="rating" data-rating="<?php echo $item['_rating']; ?>"></div>
-          </div>
-        </div>
+        <div class="col animated l4 m6 s12" data-aos="fade-up"><!-- Repeating section-->
+
+            <div class="card-panel grey lighten-5 z-depth-1" style="border-radius:10px;">
+              <div class="row valign-wrapper">
+                <div class="col s3"><img class="circle responsive-img" src="http://budotrader.pl/wp-content/uploads/2018/12/placeholder-image-sq-2.png"></div>  
+                <div class="col s9">
+                  <p><b><?php echo strtoupper($item['_username']); ?></b></p>
+                  <p class="grey-text" style="margin-bottom:10px!important;font-size:12px;"><b><?php echo date("F d, Y",strtotime($item['date_created'])); ?></b></p>
+                  
+                </div>
+              </div>
+
+              <div class="container">
+                <div class="row">
+                <span class=""style="font-size:14px;"><?php echo $item['_user_msg']; ?></span>
+                </div>
+              </div>
+
+              <div class="container">
+                <div class="row valign-wrapper" style="justify-content:center;">
+                  <div class="rating" data-rating="<?php echo $item['_rating']; ?>"></div>
+                </div>
+              </div>
+            
+            </div>
+
+          </div><!-- Repeating section ends-->
 
         <?php }?>
 
@@ -228,7 +251,7 @@ $this->load->helper('section');
     <script>
     
       $('document').ready(function(){
-
+        $('textarea#message').characterCounter();
         $(".my-rating-4").starRating({
           totalStars: 5,
           starShape: 'rounded',

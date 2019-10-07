@@ -41,7 +41,7 @@ class Manipulation extends CI_Model {
         $this->email->initialize($config);
         $this->email->set_mailtype("html");
         $this->email->set_newline("\r\n");
-        $link = site_url("admin/login?error=Welcome to Archer 1062 Tours, if this is your first time we suggest you create a new password after logging in with the system provided one");
+        //$link = site_url("admin/login?error=Welcome to Archer 1062 Tours, if this is your first time we suggest you create a new password after logging in with the system provided one");
         $this->email->from('freshcode9@gmail.com', 'Archer 1062 Tours');
         $this->email->to($data->UserEmail);
         
@@ -99,8 +99,9 @@ class Manipulation extends CI_Model {
 
         $homepage = $this->db->get("sys_home_page")->result_array();
 
-        $this->db->order_by('last_modified','DESC');
-        $specials = $this->db->get_where("sys_specials",array("special_end_date >="=>date("Y-m-d") ),3,0)->result_array();
+        $this->db->join('sys_prices', 'sys_prices.package_unique_id = sys_specials._service_id');
+        $this->db->order_by('sys_specials.last_modified','DESC');
+        $specials = $this->db->get_where("sys_specials",array("special_end_date >="=>date("Y-m-d") ),10,0)->result_array();
 
 
         $this->db->limit(3);
@@ -113,7 +114,16 @@ class Manipulation extends CI_Model {
 
         $contact = $this->LoadContactUsPage();
 
-        $data = array('homepage'=>$homepage[0],'specials'=>$specials,'blogs'=>$blogs, 'aboutus'=>$aboutus[0], 'contact'=>$contact[0], 'services'=>$this->LoadServicePage()[0]);
+        $data = array(
+            'homepage'=>$homepage[0],
+            'specials'=>$specials,
+            'blogs'=>$blogs,
+            'aboutus'=>$aboutus[0], 
+            'contact'=>$contact[0], 
+            'services'=>$this->LoadServicePage()[0],
+            'testimonial'=>$this->LoadTestimonials10(),
+            'deal'=>$this->mn->LoadDealsPage()[0]
+        );
 
         return $data;
 
@@ -173,6 +183,13 @@ class Manipulation extends CI_Model {
     }
 
     public function LoadTestimonials(){
+        $this->db->order_by('date_created','DESC');
+        return $this->db->get("sys_testimonials")->result_array();
+    }
+
+    public function LoadTestimonials10(){
+        $this->db->limit(10);
+        $this->db->order_by('date_created','DESC');
         return $this->db->get("sys_testimonials")->result_array();
     }
 

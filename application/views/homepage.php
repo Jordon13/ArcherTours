@@ -58,6 +58,7 @@ $this->load->helper('section');
 
     </style>
     <body>
+    
 
       <?php main_nav(); ?>
 
@@ -81,7 +82,7 @@ $this->load->helper('section');
             </div>
 
       </div>
-
+      
       
         
       </div>
@@ -91,7 +92,7 @@ $this->load->helper('section');
         
         <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
             <h2 class="header center-align blackText">
-              Specials
+            <?php echo $data['deal']['_deals_title'];?>
             </h2>
         </div>
 
@@ -100,12 +101,12 @@ $this->load->helper('section');
         </div>
 
         <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
-          <p class="center-align blackText lead">30% off all pacages offer ends Decenber 31, 2019</p>
+          <p class="center-align blackText lead"><?php echo $data['deal']['_deals_pitch'];?></p>
         </div>
 
         <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
 
-          <div class="row">
+          <div class="row my-slider2">
 
           
             <?php foreach($data['specials'] as $item){?>
@@ -115,14 +116,14 @@ $this->load->helper('section');
                     <div class="custom-overlay-discount center-align" style="display:none">
                       <p class="ltext1"><?php echo $item['special_discount'];?>% off<br/>Book Now</p>
                     </div>
-                    <img src="<?php echo base_url('uploads/special-images/'.$item['special_image']);?>" alt="no img">
-                    <span class="card-title"><?php echo $item['special_place'];?></span>
+                    <img height="300px"src="<?php echo base_url('uploads/prices-images/'.$item['price_image']);?>" class="" alt="no img">
+                    <span class="card-title"><?php echo $item['price_place'];?></span>
                   </div>
                   <div class="card-content">
-                    <p><b>Price:</b> <?php echo $item['special_price'];?></p>
+                    <p><b>Price:</b> <?php echo $item['price_per_adult'];?></p>
                     <p><b>Discount:</b> <span class="green-text">-<?php echo $item['special_discount'];?>%</span></p>
                     <p><b>Offer Ends:</b> <?php echo date("M d, Y",strtotime($item['special_end_date']));?></p>
-                    <p><b>Description:</b> <?php echo substr($item['special_desc'],0,124).'...';?></p>
+                    <p><b>Description:</b> <?php echo base64_decode(substr($item['price_description'],0,124)).'...';?></p>
                   </div>
                   <div class="card-action modify-action center-align">
                     <a onclick="addToCart('<?php echo base64_encode(substr(uniqid(),0,10).$item['special_unique_id']);?>')" class="custom-link">Add To Cart</a>
@@ -351,100 +352,43 @@ $this->load->helper('section');
 
           <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0" >
 
-            <div class="row  valign-wrapper center-align test-area">
+            <div class="row my-slider">
+              <?php foreach($data['testimonial'] as $item){ ?>
+              <div class="col s4" ><!-- Repeating section-->
 
-              <div class="col l4 m6 s12 offset-l4 offset-m3 offset-s0 custom-blogs" >
-                <div class="card-panel z-depth-3 ">
-                      <div class="the-img">
-                        <img src="https://www.qmul.ac.uk/busman/media/sbm/postgraduate/staff/administrative-staff/profiles/RipaParvin200x200.jpg" alt="no img" width="200px" height="200px" class="circle responsive-img"> <!-- notice the "circle" class -->
-                      </div>
-
-                      <div class="col s12">
-                        <p class="lead">
-                          Shana Brown
-                        </p>
-                      </div>
-
-                      <div class="col s12">
-                        <p class="lead grey-text lighten-3">
-                          <em>"Day At Dunns Rivier Falls"</em>
-                        </p>
-                      </div>
-
-                      <span class="">I am a very simple card. I am good at containing small bits of information.
-                        I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
-                      </span>
+                <div class="card-panel grey lighten-5 z-depth-3" style="border-radius:10px;">
+                  <div class="row valign-wrapper">
+                    <div class="col s3"><img class="circle responsive-img" src="http://budotrader.pl/wp-content/uploads/2018/12/placeholder-image-sq-2.png"></div>  
+                    <div class="col s9">
+                      <p><b><?php echo strtoupper($item['_username']); ?></b></p>
+                      <p class="grey-text" style="margin-bottom:10px!important;font-size:12px;"><b><?php echo date("F d, Y",strtotime($item['date_created'])); ?></b></p>
+                      
                     </div>
-              </div>
+                  </div>
 
-              <div class="col l4 m6 s12 offset-l4 offset-m3 offset-s0 custom-blogs" style="display:none">
-                <div class="card-panel z-depth-3 ">
-                      <div class="the-img">
-                        <img src="https://i.pinimg.com/originals/39/f5/63/39f5630b733d053761eef4e376ce3928.jpg" alt="no img" width="200px" height="200px" class="circle responsive-img"> <!-- notice the "circle" class -->
-                      </div>
-
-                      <div class="col s12">
-                        <p class="lead">
-                          Shana Brown
-                        </p>
-                      </div>
-
-                      <div class="col s12">
-                        <p class="lead grey-text lighten-3">
-                          <em>"Day At Dunns Rivier Falls"</em>
-                        </p>
-                      </div>
-
-                      <span class="">I am a very simple card. I am good at containing small bits of information.
-                        I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
-                      </span>
+                  <div class="container">
+                    <div class="row">
+                    <span class=""style="font-size:14px;"><?php echo substr($item['_user_msg'],0,204); ?>...</span>
                     </div>
-              </div>
+                  </div>
 
-              <div class="col l4 m6 s12 offset-l4 offset-m3 offset-s0 custom-blogs" style="display:none">
-                <div class="card-panel z-depth-3 ">
-                      <div class="the-img">
-                        <img src="https://cdnb.artstation.com/p/assets/images/images/001/863/575/large/irakli-nadar-artstation-da.jpg?1453903033" alt="no img" width="200px" height="200px" class="circle responsive-img"> <!-- notice the "circle" class -->
-                      </div>
-
-                      <div class="col s12">
-                        <p class="lead">
-                          Shana Brown
-                        </p>
-                      </div>
-
-                      <div class="col s12">
-                        <p class="lead grey-text lighten-3">
-                          <em>"Day At Dunns Rivier Falls"</em>
-                        </p>
-                      </div>
-
-                      <span class="">I am a very simple card. I am good at containing small bits of information.
-                        I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
-                      </span>
+                  <div class="container">
+                    <div class="row valign-wrapper" style="justify-content:center;">
+                      <div class="rating" data-rating="<?php echo $item['_rating']; ?>"></div>
                     </div>
-              </div>
-
-              <div class="carousel-controls-custom">
-              
-                <div class="controller z-depth-1">
-                  <i class="material-icons">keyboard_arrow_left</i>
-                </div>
-                <div class="controller z-depth-1">
-                  <i class="material-icons">keyboard_arrow_right</i>
+                  </div>
+                  
                 </div>
 
-              </div>
-              
+              </div><!-- Repeating section ends-->
+              <?php }?>
 
             </div>
 
-            <div class="row  valign-wrapper center-align">
-
-              <div class="col s12 inids">
-                
+            <div class="container">
+              <div class="row center-align">
+                <a href="<?php echo site_url('/testimonial')?>" class="btn btn-large yellow waves-effect waves-light black-text z-depth-3" style="border-radius:30px;">View All</a>
               </div>
-
             </div>
 
           </div>
@@ -596,6 +540,74 @@ $this->load->helper('section');
     </body>
 
     <script>
+  var slider = tns({
+    container: '.my-slider',
+    items: 1,
+    autoplay: true,
+    controls:false,
+    mouseDrag: true,
+    speed: 400,
+    nav:false,
+    arrowKeys: true,
+    autoplayHoverPause:true,
+    autoplayResetOnVisibility:true,
+    autoplayButtonOutput:false,
+    responsive: {
+      640: {
+        edgePadding: 10,
+        gutter: 10,
+        items: 2
+      },
+      700: {
+        gutter: 10
+      },
+      900: {
+        items: 3
+      }
+    }
+  });
+
+
+  var slider2 = tns({
+    container: '.my-slider2',
+    items: 1,
+    controls:false,
+    mouseDrag: true,
+    speed: 400,
+    nav:false,
+    arrowKeys: true,
+    autoplayHoverPause:true,
+    autoplayResetOnVisibility:true,
+    autoplayButtonOutput:false,
+    responsive: {
+      640: {
+        edgePadding: 10,
+        gutter: 10,
+        items: 2
+      },
+      700: {
+        gutter: 10
+      },
+      900: {
+        items: 3
+      }
+    }
+  });
+</script>
+
+    <script>
+
+$(".rating").starRating({
+          totalStars: 5,
+          starShape: 'rounded',
+          starSize: 20,
+          emptyColor: 'lightgray',
+          hoverColor: '#ffff8d',
+          ratedColor: '#ffd600',
+          useGradient: false,
+          useFullStars: true,
+          readOnly: true
+        });
 
       var testiCount = $('.custom-blogs').length;
 

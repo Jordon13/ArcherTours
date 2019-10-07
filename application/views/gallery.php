@@ -6,6 +6,7 @@ $images = $data['images'];
 $pageData = $data['pageDetails'];
 
 ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Gallery</title>

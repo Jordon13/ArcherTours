@@ -769,6 +769,12 @@ EOT;
             return;
         }
 
+        if(strlen($_user_msg) != 210){
+            echo "testimonial length should be atleast 210 characters in length.";
+
+            return;
+        }
+
         $cleanedData = sanitizeArray($_POST);
 
         if($this->cs->InsertTestimonial($cleanedData)){

@@ -18,11 +18,17 @@ if(!function_exists('main_head')){
 
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>  
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
+
         <link href="https://fonts.googleapis.com/css?family=Dekko|Gamja+Flower|Itim|Merienda+One|Patrick+Hand+SC|Sriracha&display=swap" rel="stylesheet">
 
         <link href="https://fonts.googleapis.com/css?family=Hind&display=swap" rel="stylesheet">
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+        <script src="'.base_url('js/').'jquery.star-rating-svg.js"></script>
+        
+        <link rel="stylesheet" type="text/css" href="'.base_url('css/').'star-rating-svg.css">
 
 
         <script src="'.base_url('js/materialize.js').'"></script>
@@ -34,6 +40,8 @@ if(!function_exists('main_head')){
         <link href="'.base_url('css/materialize.css').'" rel="stylesheet">
         
         <script src="'.base_url('js/header.js').'" async></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/tiny-slider.css">
 
         
         <style>
@@ -259,6 +267,8 @@ s1.setAttribute(\'crossorigin\',\'*\');
 s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
+
+
 <!--End of Tawk.to Script-->';
 
       echo "
