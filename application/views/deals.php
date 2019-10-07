@@ -79,8 +79,78 @@ $this->load->helper('section');
 
     </div>
 
+    <?php if(count($items)>0){?>
+        <div class="row">
+        
+
+        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
+
+          <div class="row my-slider2">
+
+          
+            <?php foreach($items as $item){?>
+              <div class="col l4 m6 s12">
+                <div class="card">
+                  <div class="card-image custom-hover" >
+                    <div class="custom-overlay-discount center-align" style="display:none">
+                      <p class="ltext1"><?php echo $item['special_discount'];?>% off<br/>Book Now</p>
+                    </div>
+                    <img height="300px"src="<?php echo base_url('uploads/prices-images/'.$item['price_image']);?>" class="" alt="no img">
+                    <span class="card-title"><?php echo $item['price_place'];?></span>
+                  </div>
+                  <div class="card-content">
+                    <p><b>Price:</b> <?php echo $item['price_per_adult'];?></p>
+                    <p><b>Discount:</b> <span class="green-text">-<?php echo $item['special_discount'];?>%</span></p>
+                    <p><b>Offer Ends:</b> <?php echo date("M d, Y",strtotime($item['special_end_date']));?></p>
+                    <p><b>Description:</b> <?php echo base64_decode(substr($item['price_description'],0,124)).'...';?></p>
+                  </div>
+                  <div class="card-action modify-action center-align ">
+                    <a onclick="addToCart('<?php echo base64_encode(substr(uniqid(),0,10).$item['special_unique_id']);?>')" class="custom-link waves-effect waves-light btn grey darken-3">Add To Cart</a>
+                  </div>
+                </div>
+              </div>
+              <?php }?>
+
+            </div>
+
+          </div>
+
+        
+        </div>
+      <?php }else{?>
+
+        <div class="row">
+        
+
+        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
+
+          <h1 class="center-align">No Deals Available.<h1>
+
+        </div>
+
+        
+        </div>
+
+      <?php }?>
+
 
     
     <?php main_footer(); ?>
 </body>
 </html>
+
+<script>
+
+  var addToCart = (id) =>{
+    $.post("<?php echo base_url('/client/CartAdd'); ?>",{id:id,type:1},function(data){
+
+      if($(".cartTotal")[0]){
+        $(".cartTotal").text(data);
+      }else{
+        $("#np").prepend("<div class='cart-active white-text cartTotal'>"+data+"</div>");
+      }
+
+    });
+  }
+
+</script>

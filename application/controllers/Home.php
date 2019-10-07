@@ -62,7 +62,7 @@ class Home extends CI_Controller {
     }
 
     public function deals(){
-        $this->load->view('deals',array('data'=>$this->mn->LoadDealsPage()[0]));
+        $this->load->view('deals',array('data'=>$this->mn->LoadDealsPage()[0],'items'=>$this->mn->LoadSpecials()));
     }
 
     public function booking()

@@ -68,7 +68,7 @@ $this->load->helper('section');
       <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 center"  style="height:100%!important; z-index:4!important; position:relative;">
         <div class="row valign-wrapper" style="height:100%!important;">
           <div class="col s12">
-          <h5 class="white-text"><a class="custom-hone-link" href="<?php echo site_url('/')?>">Home</a> | <span style="color:rgba(255,255,255,0.8)!important;">Deals</span></h5>
+          <h5 class="white-text"><a class="custom-hone-link" href="<?php echo site_url('/')?>">Home</a> | <span style="color:rgba(255,255,255,0.8)!important;">News</span></h5>
             <h1 class="white-text header"><?php echo $data['_news_title'];?></h1>
           </div>
           

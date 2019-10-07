@@ -174,6 +174,12 @@ class Manipulation extends CI_Model {
         return $this->db->get("sys_deals_page")->result_array();
     }
 
+    public function LoadSpecials(){
+        $this->db->join('sys_prices', 'sys_prices.package_unique_id = sys_specials._service_id');
+        $this->db->order_by('sys_specials.last_modified','DESC');
+        return $this->db->get_where("sys_specials")->result_array();
+    }
+
     public function LoadNewsPage(){
         return $this->db->get("sys_recent_news_page")->result_array();
     }
