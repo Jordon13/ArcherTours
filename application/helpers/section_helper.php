@@ -132,6 +132,7 @@ if(!function_exists('main_nav')){
                 <li><a href="'.site_url('/gallery').'">Gallery</a></li>
                 <li class="trigger-menu"><a href="'.site_url('/services').'">Services</a></li>
                 <li><a href="'.site_url('/blog').'">Blog</a></li>
+                <li><a href="'.site_url('/news').'">Recent</a></li>
                 
             </ul>
         </div>
@@ -210,7 +211,6 @@ if(!function_exists('main_footer')){
                     <li><a href="'.site_url('/about').'">About</a></li>
                     <li><a href="'.site_url('/blog').'">Blogs</a></li>
                     <li><a href="'.site_url('/deal').'">Deals</a></li>
-                    <li><a href="'.site_url('/services').'">Services</a></li>
                     
                   </ul>
                 </div>
@@ -235,11 +235,11 @@ if(!function_exists('main_footer')){
             </div>
             
             
-            <div class="col l4 m4 s12 sec1">
-            <h5 style="padding-bottom:1em!important;">Our News</h5>
-
+            <div class="col l4 m4 s12 sec1 ">
+            <h5 style="padding-bottom:1em!important;"><a class="cusexp" href="'.site_url("/news").'">Our News</a></h5>
+    <div class="verticalSlide">
               '.News().'
-
+</div>
             </div>
 
           </div>
@@ -298,7 +298,20 @@ s0.parentNode.insertBefore(s1,s0);
           }).mouseleave(function(){
             $(this).attr('src','".base_url('assets/icons/facebook.png')."');
           });
-
+          var verticalSlide = tns({
+            container: '.verticalSlide',
+            items: 4,
+            axis: 'vertical',
+            controls:false,
+            autoplay:true,
+            mouseDrag: true,
+            speed: 400,
+            nav:false,
+            arrowKeys: true,
+            autoplayHoverPause:true,
+            autoplayResetOnVisibility:true,
+            autoplayButtonOutput:false
+          });
 
           $('#submit1').on('click',function(e){
 

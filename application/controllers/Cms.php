@@ -957,7 +957,7 @@ class Cms extends CI_Controller {
             }
 
             $config['upload_path'] = './uploads/recent/';
-            $config['allowed_types'] = "jpg|jpeg|png";
+            $config['allowed_types'] = "jpg|jpeg|png|mp4";
             $config['encrypt_name'] = TRUE;
             $this->load->library('upload',$config);
             $this->upload->initialize($config);

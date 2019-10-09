@@ -49,7 +49,7 @@ class Home extends CI_Controller {
 
     public function recentstories()
     {
-        $this->load->view('recentnews',array('data'=>$this->mn->LoadNewsPage()[0]));
+        $this->load->view('recentnews',array('data'=>$this->mn->LoadNewsPage()[0], 'items'=>$this->mn->LoadRecentEvents()));
     }
 
     public function testimonials()

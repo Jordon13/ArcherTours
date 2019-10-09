@@ -30,7 +30,7 @@ if(!function_exists('News')){
     $ci=& get_instance();
     $ci->load->database();
     
-    $ci->db->limit(4);
+    $ci->db->limit(10);
 
     $ci->db->order_by('date_created','DESC');
 
@@ -40,7 +40,7 @@ if(!function_exists('News')){
 
     if(count($items) > 0){
       foreach($items as $item){
-        $data.='<div class="card-panel transparent z-depth-0 cus-panel1">
+        $data.='<div class="card-panel transparent z-depth-0 cus-panel11">
         <div class="row valign-wrapper">
           <div class="col s1 custom-date z-depth-1">
               '.date("M d",strtotime($item['date_created'])).'

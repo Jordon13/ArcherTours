@@ -193,6 +193,11 @@ class Manipulation extends CI_Model {
         return $this->db->get("sys_testimonials")->result_array();
     }
 
+    public function LoadRecentEvents(){
+        $this->db->order_by('date_created','DESC');
+        return $this->db->get("sys_recent")->result_array();
+    }
+
     public function LoadTestimonials10(){
         $this->db->limit(10);
         $this->db->order_by('date_created','DESC');

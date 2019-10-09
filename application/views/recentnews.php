@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->helper('section');
 
 ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Recent Stories</title>
@@ -76,6 +77,118 @@ $this->load->helper('section');
         
       </div>
 
+    </div>
+
+    <div class="container">
+      <div class="row">
+
+      <?php foreach($items as $item){ ?>
+
+        <?php 
+          
+          $filename = FCPATH."uploads/recent/".$item['recent_file_name'];
+
+          $mime = mime_content_type($filename);
+
+          $exp = explode("/",$mime);
+
+          $type = $exp[0];
+
+          if($type == "image"){
+          
+        ?>
+          <div class="col s12 m6 l4">
+            <div class="card">
+              <div class="card-image">
+                <img class="materialboxed" src="<?php echo site_url("uploads/recent/").$item['recent_file_name'];?>">
+                <span class="card-title"><?php echo $item['recent_title'];?></span>
+              </div>
+              <div class="card-content">
+                <p><?php echo $item['recent_desc'];?></p>
+              </div>
+              <div class="card-action">
+                
+                <div class="row valign-wrapper" style="justify-content:space-evenly; align-items:center;margin-bottom:0px;">
+
+                  <div class="col grey-text light-4">
+                    <p>Likes: <?php echo $item['recent_likes'];?></p>
+                  </div>
+                  <div class="col grey-text light-4">
+                    <p>Dislikes: <?php echo $item['recent_dislikes'];?></p>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="card-action">
+
+                <div class="row valign-wrapper" style="justify-content:center; margin-bottom:0px;">
+
+                  <div class="col grey-text light-4"><i class="material-icons">thumb_up</i></div>
+                  <div class="col grey-text light-4"><i class="material-icons">thumb_down</i></div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        
+
+          <?php }else if($type == "video"){ ?>
+
+              <div class="col s12 m6 l4">
+                <div class="card">
+                  <div class="card-image">
+                    <video controls class="player materialboxed" data-caption="" id="player1"
+                    width="100%" loop muted poster=""
+                    preload="auto" src="<?php echo site_url("uploads/recent/").$item['recent_file_name'];?>"
+                    tabindex="0" title="MediaElement">
+                    </video>
+                    <span class="card-title"><?php echo $item['recent_title'];?></span>
+                  </div>
+                  <div class="card-content">
+                    <p><?php echo $item['recent_desc'];?></p>
+                  </div>
+                  <div class="card-action">
+                    
+
+                    
+
+                    <div class="row valign-wrapper" style="justify-content:space-evenly; align-items:center;margin-bottom:0px;">
+
+                      <div class="col grey-text light-4">
+                        <p>Likes: <?php echo $item['recent_likes'];?></p>
+                      </div>
+                      <div class="col grey-text light-4">
+                        <p>Dislikes: <?php echo $item['recent_dislikes'];?></p>
+                      </div>
+                      <div class="col grey-text light-4">
+                        <p>Views: <?php echo $item['recent_views'];?></p>
+                      </div>
+                    </div>
+
+                    <!-- <div class="divider"></div> -->
+                    
+                    
+
+                    
+                  </div>
+
+                  <div class="card-action">
+
+                    <div class="row valign-wrapper" style="justify-content:center; margin-bottom:0px;">
+
+                      <div class="col grey-text light-4"><i class="material-icons">thumb_up</i></div>
+                      <div class="col grey-text light-4"><i class="material-icons">thumb_down</i></div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+          <?php }?>
+      <?php }?>
+      </div>
     </div>
 
 

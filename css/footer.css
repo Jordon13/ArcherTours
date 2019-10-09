@@ -28,6 +28,16 @@
     padding: 1em!important;
 }
 
+.sec1 h5 a{
+    color:#bdbdbd!important;
+}
+
+.sec1 h5 a:hover {
+    color: #fdd800!important;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
 .cusexp ul li {
     padding: 0.3em!important;
 }
@@ -42,6 +52,8 @@
     transition: color 0.3s;
 }
 
+
+
 .custom-date {
     width: 50px!important;
     height: 50px!important;
@@ -52,8 +64,11 @@
     vertical-align: center;
 }
 
-.cus-panel1 {
-    padding: 0em!important;
+.cus-panel11 {
+    padding-left: 1em!important;
+    padding-right: 0em!important;
+    padding-top: 0em!important;
+    padding-bottom: 0em!important;
 }
 
 blockquote {
