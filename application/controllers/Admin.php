@@ -78,7 +78,7 @@ class Admin extends CI_Controller {
 // Edit Pages
     public function euser()
     {
-        $this->load->view('admin/edit/user');
+        $this->ps->parse('admin/edit/user',array('data'=>$this->gen->GetSystemUsers()));
     }
 
     public function eblog()
@@ -199,6 +199,40 @@ class Admin extends CI_Controller {
     public function calender()
     {
         $this->load->view('admin/analytics/bcalender');
+    }
+
+
+    public function editprofile()
+    {
+        $this->load->view('admin/editprofile');
+    }
+
+    public function edituser()
+    {
+        $linkId = $this->uri->segment(3,-1);
+
+        $result = $this->gen->GetUserById($linkId);
+
+        $this->load->view('admin/temp/edituser',array('data'=>$result[0]));
+    }
+
+    public function editprice()
+    {
+        $this->load->view('admin/temp/editprice');
+    }
+
+
+    public function editblog()
+    {
+        $linkId = $this->uri->segment(2,-1);
+
+        print_r($linkId);
+
+        $this->load->view('admin/temp/editblog');
+    }
+    public function logout(){
+        $this->gen->killSession("user_ses");
+        redirect(site_url('/admin/login?success=Thanks for using the service'),'location');
     }
 
 }

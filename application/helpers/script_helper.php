@@ -42,11 +42,11 @@ if(!function_exists('navigation')){
 				<li class = "'.$active2.'">
 					<p  class="collapsible-header '.$active2.' waves-effect waves" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> View / Edit</p>
 					<ul class="collapsible-body grey lighten-3">
-					<li><a href="'.base_url('admin/euser?active=2').'">System Users </a><span class="new badge blue darken-1 z-depth-1">4</span></li>
-						<li><a href="'.base_url('admin/genusers?active=2').'">Users </a><span class="new badge blue darken-1 z-depth-1">4</span></li>
-						<li><a href="'.base_url('admin/eblog?active=2').'">Blogs </a> <span class="new badge blue darken-1 z-depth-1">2</span></li>
-						<li><a href="'.base_url('admin/testimonials?active=2').'">Testimonals </a><span class="new badge blue darken-1 z-depth-1">1</span></li>
-						<li><a href="'.base_url('admin/eprices?active=2').'">Prices </a><span class="new badge blue darken-1 z-depth-1">8</span></li>
+					<li><a href="'.base_url('admin/euser?active=2').'">System Users </a><!--<span class="new badge blue darken-1 z-depth-1">4</span>--></li>
+						<li><a href="'.base_url('admin/edeals?active=2').'">Deals </a><!--<span class="new badge blue darken-1 z-depth-1">4</span>--></li>
+						<li><a href="'.base_url('admin/eblog?active=2').'">Blogs </a> <!--<span class="new badge blue darken-1 z-depth-1">2</span>--></li>
+						<li><a href="'.base_url('admin/testimonials?active=2').'">Testimonals </a><!--<span class="new badge blue darken-1 z-depth-1">1</span>--></li>
+						<li><a href="'.base_url('admin/eprices?active=2').'">Prices </a><!--<span class="new badge blue darken-1 z-depth-1">8</span>--></li>
 					</ul>
 				</li>
 
@@ -103,8 +103,8 @@ if(!function_exists('navigation')){
 		</div>
 		</header>
 			<ul class="profile-drop grey lighten-5">
-					<li><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Profile</li>
-					<li><i class="fa fa-sign-out" aria-hidden="true"></i> Log out</li>
+					<li><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <a style="color:black;" href="'.site_url('admin/editprofile').'">Edit Profile</a></li>
+					<li><i class="fa fa-sign-out" aria-hidden="true"></i> <a style="color:black;" href="'.site_url('/admin/logout').'">Log out</a></li>
 				</ul>
 
 				<ul class="notification-drop grey lighten-5" id="">

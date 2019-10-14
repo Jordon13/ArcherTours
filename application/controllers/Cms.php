@@ -1073,10 +1073,6 @@ class Cms extends CI_Controller {
 
     }
 
-    public function DeleteUser(){
-
-    }
-
     /************************************ */
 
     public function UpdateHomePage(){
@@ -1688,6 +1684,58 @@ class Cms extends CI_Controller {
         if(count($_POST) > 0){
             $result = $this->gen->UpdateNewsPageFields($_POST);
         }
+
+    }
+
+    public function DeleteUser(){
+        $id = $_POST['id'];
+
+        if($this->gen->DeleteUserById($id)){
+            echo 0;
+            return;
+        }
+
+        echo 1;
+    }
+
+    public function EditUser(){
+
+        $newArray = sanitizeArray($_POST);
+
+        $id = $newArray['id'];
+
+        array_pop($newArray);
+        
+        if($this->gen->UpdateUserById($newArray,$id)){
+            echo "Successfully Updated.";
+            return;
+        }
+
+        echo "Failed to update.";
+
+    }
+
+    public function EditBlog(){
+
+    }
+
+    public function EditPrice(){
+
+    }
+
+    public function EditDeal(){
+
+    }
+
+    public function EditRecentNews(){
+
+    }
+
+    public function EditImageCaption(){
+
+    }
+
+    public function EditBooking(){
 
     }
 }

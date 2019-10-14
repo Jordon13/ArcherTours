@@ -367,6 +367,20 @@ class General extends CI_Model {
 
     }
 
+    public function UpdateUserById($data, $id){
+
+        $this->db->where("auto_generated_id",$id);
+
+        $result = $this->db->update('sys_users',$data);
+
+        if($result){
+            return true;
+        }
+
+        return false;
+
+    }
+
 
     public function Validatelogin(){
         if(!($this->ses->has_userdata("user_ses"))){
@@ -377,6 +391,24 @@ class General extends CI_Model {
 
             echo json_encode($result);
           } 
+    }
+
+
+    public function GetSystemUsers(){
+
+        $this->db->select("auto_generated_id,first_name,last_name,email_address,session_id");
+
+        return $this->db->get("sys_users")->result_array();
+
+    }
+
+
+    public function GetUserById($id){
+        return $this->db->get_where("sys_users", "auto_generated_id = ".$id)->result_array();
+    }
+
+    public function DeleteUserById($id){
+        return $this->db->delete('sys_users', array('auto_generated_id' => $id)); 
     }
 
 

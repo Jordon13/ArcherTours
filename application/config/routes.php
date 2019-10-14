@@ -144,6 +144,8 @@ $route['footer'] = "home/footer";
 
 $route['checkout'] = "home/cart";
 
+$route['admin/edituser/(:any)']['GET'] = "admin/edituser";
+
 // $route['cuser'] = "home/cuser";
 // $route['blog'] = "home/cblog";
 // $route['prices'] = "home/cprices";

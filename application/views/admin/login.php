@@ -4,10 +4,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->helper('script');
 
 $error = "";
+$setGreen = false;
 if(isset($_GET['error'])){
 	$error = $_GET['error'];
+}else if(isset($_GET['success'])){
+    $error = $_GET['success'];
+    $setGreen = true;
 }else{
-	$error = "";
+    $error = "";
 }
 ?>
 
@@ -117,13 +121,13 @@ if(isset($_GET['error'])){
 
             .result{
                 text-align: center!important;
-                color: #E65100!important;
+                color: <?php $c = $setGreen == true ? "#43a047" : "#E65100"; echo $c; ?>!important;
                 font-weight: bold;
                 font-size: 12px;
                 font-style: italic;
             }
             
-
+            /*  */
         </style>
     </head>
 
