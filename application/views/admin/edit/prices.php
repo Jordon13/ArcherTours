@@ -1,6 +1,7 @@
 <?php 
 
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 if(!($this->ses->has_userdata("user_ses"))){
     redirect(site_url("Admin/login")."?error=Unauthorized Access: please login to use services");
 }else{
@@ -14,22 +15,14 @@ if(!($this->ses->has_userdata("user_ses"))){
 
     <head>
 
-        <title>ViewPrices</title>
+        <title>View Prices</title>
         <?php adminhead();?>
         <style>
-            .content-area{
-                height: 100%!important;
-                min-height: 100%;
-            }
+            
 
-            .inner-content{
-                margin-top: 2em;
-                height: 100%!important;
-                min-height: 100%!important;
-            }
+            
             .searchArea {
                 display: flex;
-                width: 50%;
                 background-image: linear-gradient(65deg, rgba(41,98,255,1) 81%, rgba(0,145,234,1) 100%);
                 align-items: center;
                 padding: 0.7em;
@@ -76,6 +69,16 @@ if(!($this->ses->has_userdata("user_ses"))){
                 background-color:#eceff1!important;
                 cursor: pointer;
             }
+
+            tbody:hover{
+             overflow-y: scroll!important;
+          }
+
+          #tbl{
+             overflow-y: scroll!important;
+          }
+
+            
         </style>
 
     </head>
@@ -88,7 +91,7 @@ if(!($this->ses->has_userdata("user_ses"))){
 
                     <div class="row sbox">
 
-                        <div class="col l6 m8 s12 offset-l1 offset-m1 offset-s0">
+                        <div class="col l10 s10 offset-s1 offset-l1">
                             <div class="searchArea z-depth-1">
                                 <div class="searchbox">
                                     search table...
@@ -99,192 +102,36 @@ if(!($this->ses->has_userdata("user_ses"))){
 
                     </div>
 
-                    <div class="row">
+                    <div class="row " >
 
-                        <div class="col 18 m10 s12 offset-l1 offset-m1 offset-s0">
-                            <table class="highlight white z-depth-1">
+                        <div id="tbl"class="col 18 m10 s12 offset-l1 offset-m1 offset-s0" style="height:500px!important;">
+                            <table  class="highlight white z-depth-1 " style="">
                                 <thead class=" blue accent-4 white-text">
                                     <tr>
-                                        <th>Select</th>
                                         <th>Id</th>
+                                        <th>Image</th>
+                                        <th>Place</th>
+                                        <th>Price</th>
                                         <th>Origin</th>
                                         <th>Destination</th>
-                                        <th>Package Category</th>
-                                        <th>Price Per Person</th>
                                         <th>Edit</th>
+                                        <th>Remove</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
+                                    {data}
                                     <tr>
-                                        <td>
-                                            <p>
-                                                <label>
-                                                    <input id="indeterminate-checkbox" class="filled-in" type="checkbox" />
-                                                    <span></span>
-                                                </label>
-                                            </p>
-                                        </td>
-                                        <td>0</td>
-                                        <td>Alvin</td>
-                                        <td>Eclair</td>
-                                        <td>alvine32@mail.com</td>
-                                        <td>$1,200.00</td>
-                                        <td><i class="material-icons blue-text accent-4">mode_edit</i></td>
+                                        <td>{auto_generated_id}</td>
+                                        <td><img src="<?php echo base_url('uploads/prices-images/')?>{price_image}" width="40px" height="40px" class="materialboxed"/></td>
+                                        <td>{price_place}</td>
+                                        <td>{price_per_adult}</td>
+                                        <td>{price_origin}</td>
+                                        <td>{price_destination}</td>
+                                        <td id=""><a class="grey-text" href="<?php echo site_url('admin/editprice/')?>{auto_generated_id}"><i class="material-icons">mode_edit</i></a></td>
+                                        <td id="{auto_generated_id}" onclick="del({auto_generated_id})"><i class="red-text material-icons">delete</i></td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <p>
-                                                <label>
-                                                    <input id="indeterminate-checkbox" class="filled-in" type="checkbox" />
-                                                    <span></span>
-                                                </label>
-                                            </p>
-                                        </td>
-                                        <td>1</td>
-                                        <td>Alan</td>
-                                        <td>Jellybean</td>
-                                        <td>alr32212anj@mail.com</td>
-                                        <td>$1,200.00</td>
-                                        <td><i class="material-icons blue-text accent-4">mode_edit</i></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <p>
-                                                <label>
-                                                    <input id="indeterminate-checkbox" class="filled-in" type="checkbox" />
-                                                    <span></span>
-                                                </label>
-                                            </p>
-                                        </td>
-                                        <td>2</td>
-                                        <td>Alan</td>
-                                        <td>Jelly867bean</td>
-                                        <td>alanj@mail.com</td>
-                                        <td>$1,200.00</td>
-                                        <td><i class="material-icons blue-text accent-4">mode_edit</i></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <p>
-                                                <label>
-                                                    <input id="indeterminate-checkbox" class="filled-in" type="checkbox" />
-                                                    <span></span>
-                                                </label>
-                                            </p>
-                                        </td>
-                                        <td>3</td>
-                                        <td>Alan</td>
-                                        <td>Je975llybean</td>
-                                        <td>alanj@mail.com</td>
-                                        <td>$1,200.00</td>
-                                        <td><i class="material-icons blue-text accent-4">mode_edit</i></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <p>
-                                                <label>
-                                                    <input id="indeterminate-checkbox" class="filled-in" type="checkbox" />
-                                                    <span></span>
-                                                </label>
-                                            </p>
-                                        </td>
-                                        <td>4</td>
-                                        <td>Alqqzxan</td>
-                                        <td>Jellybean</td>
-                                        <td>alanj@mail.com</td>
-                                        <td>$1,200.00</td>
-                                        <td><i class="material-icons blue-text accent-4">mode_edit</i></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <p>
-                                                <label>
-                                                    <input id="indeterminate-checkbox" class="filled-in" type="checkbox" />
-                                                    <span></span>
-                                                </label>
-                                            </p>
-                                        </td>
-                                        <td>5</td>
-                                        <td>Alan</td>
-                                        <td>Jellybean</td>
-                                        <td>alanj@mail.com</td>
-                                        <td>$1,200.00</td>
-                                        <td><i class="material-icons blue-text accent-4">mode_edit</i></td>
-                                    </tr>
-
-
-                                    <tr>
-                                        <td>
-                                            <p>
-                                                <label>
-                                                    <input id="indeterminate-checkbox" class="filled-in" type="checkbox" />
-                                                    <span></span>
-                                                </label>
-                                            </p>
-                                        </td>
-                                        <td>6</td>
-                                        <td>Alan</td>
-                                        <td>Jellybean</td>
-                                        <td>alanj@mail.com</td>
-                                        <td>$1,200.00</td>
-                                        <td><i class="material-icons blue-text accent-4">mode_edit</i></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <p>
-                                                <label>
-                                                    <input id="indeterminate-checkbox" class="filled-in" type="checkbox" />
-                                                    <span></span>
-                                                </label>
-                                            </p>
-                                        </td>
-                                        <td>7</td>
-                                        <td>Alan</td>
-                                        <td>Jellybean</td>
-                                        <td>alanj@mail.com</td>
-                                        <td>$1,200.00</td>
-                                        <td><i class="material-icons blue-text accent-4">mode_edit</i></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <p>
-                                                <label>
-                                                    <input id="indeterminate-checkbox" class="filled-in" type="checkbox" />
-                                                    <span></span>
-                                                </label>
-                                            </p>
-                                        </td>
-                                        <td>8</td>
-                                        <td>Alan</td>
-                                        <td>Jellybean</td>
-                                        <td>alanj@mail.com</td>
-                                        <td>$1,200.00</td>
-                                        <td><i class="material-icons blue-text accent-4">mode_edit</i></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <p>
-                                                <label>
-                                                    <input id="indeterminate-checkbox" class="filled-in" type="checkbox" />
-                                                    <span></span>
-                                                </label>
-                                            </p>
-                                        </td>
-                                        <td>9</td>
-                                        <td>Alan</td>
-                                        <td>Jellybean</td>
-                                        <td>alanj@mail.com</td>
-                                        <td>$1,200.00</td>
-                                        <td><i class="material-icons blue-text accent-4">mode_edit</i></td>
-                                    </tr>
+                                    {/data}
 
                                     <tr class="noshow" style="display:none;text-align:center;" >
                                         <td colspan="6" style="text-align:center;" ><em>no results found</em></td>
@@ -323,9 +170,9 @@ if(!($this->ses->has_userdata("user_ses"))){
                     $('.searchArea').addClass('lightText');
 
                 }).mouseleave(() => {
-                    $('.searchArea').animate({
-                        'width': '50%'
-                    }, 500);
+                    // $('.searchArea').animate({
+                    //     'width': '50%'
+                    // }, 500);
                     if ($('.searchbox').text() == "") {
                         $('.searchbox').text("search table...");
                     }
@@ -338,6 +185,8 @@ if(!($this->ses->has_userdata("user_ses"))){
         </script>
 
         <script>
+
+            
         
             $('document').ready(()=>{
 
@@ -362,7 +211,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                             $('.searchArea').removeClass('pg');
                             $('.searchArea').removeClass('lightText');
 
-                        }
+                    }
                       var text = $('.searchbox').text();
 
                       var ptr = new RegExp(text,'i');
@@ -371,7 +220,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                         var td = row[x].getElementsByTagName('td');  
                         var tdlen = row[x].getElementsByTagName('td').length;
 
-                        for(j = 1; j < tdlen-1; j++){
+                        for(j = 0; j < tdlen; j++){
 
                             var result = $(td[j]).text();
                             var sres = result.search(ptr);
@@ -396,10 +245,24 @@ if(!($this->ses->has_userdata("user_ses"))){
                         
                       }else{
                         $('.noshow').hide();
+                        
                       }
                   });
 
             });
+
+
+            var del = (id) =>{
+                $.post("<?php echo site_url('cms/DeletePrice')?>",{id:id},function(res){
+
+                    if(res == 0){
+                        $(`#${id}`).parent().fadeOut(1000);
+                    }else{
+                        console.log("Falied to delete record.");
+                    }
+
+                });
+            }
 
         </script>
 

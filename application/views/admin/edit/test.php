@@ -1,6 +1,7 @@
 <?php 
 
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 if(!($this->ses->has_userdata("user_ses"))){
     redirect(site_url("Admin/login")."?error=Unauthorized Access: please login to use services");
 }else{
@@ -8,345 +9,268 @@ if(!($this->ses->has_userdata("user_ses"))){
 }
 ?>
 
-<!Doctype html>
+    <!Doctype html>
 
-
-<html>
+    <html>
 
     <head>
-        <title>Testimonials</title>
+
+        <title>View Testimonials</title>
         <?php adminhead();?>
-        <script src="https://code.iconify.design/1/1.0.2/iconify.min.js"></script>
-
         <style>
-        
-        .content-area{
-                height: auto!important;
-                min-height: 100%;
+            
+            input{
+                opacity: 1!important;
+            }
+            
+            .searchArea {
+                display: flex;
+                background-image: linear-gradient(65deg, rgba(41,98,255,1) 81%, rgba(0,145,234,1) 100%);
+                align-items: center;
+                padding: 0.7em;
+                border-radius: 30px;
+                cursor: pointer;
+                justify-content: flex-end;
+                color: white;
+            }
+            
+            .pg {
+                background-image: none;
+                background-color: white;
+            }
+            
+            .lightText {
+                color: #ccc;
+                height: 100%;
+            }
+            
+            .searchbox {
+                width: 87%;
+                font-size: 17px;
+                outline: none;
+                cursor: text;
+
+            }
+            
+            .searchIcon {
+                width: 10%;
+                text-align: center;
+                font-size: 35px;
             }
 
-            .inner-content{
+            .inner-content .sbox{
                 margin-top: 2em;
-                height: auto!important;
-                min-height: 100%!important;
             }
 
-            .iconify{
-                color: #eeeeee;
-            }
-        
-            .para{}
-
-            .card-image img{
-                height: 300px!important;
-                width: 100%!important;
+            tbody tr td{
+                padding:0.5em!important;
+                vertical-align: center;
             }
 
+            tbody > tr:hover{
+                background-color:#eceff1!important;
+                cursor: pointer;
+            }
+
+            tbody:hover{
+             overflow-y: scroll!important;
+          }
+
+          #tbl{
+             overflow-y: scroll!important;
+          }
+
+            
         </style>
+
     </head>
 
     <body>
         <?php navigation($_GET['active']);?>
-        <section class="content-area">
-            
-            <div class="inner-content">
+            <section class="content-area">
 
-                <div class="row">
+                <div class="inner-content">
 
-                    <div class="col l4 m6 s12 offset-l0 offset-s0">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="http://andamanemeraldholidays.com/image/cache/catalog/aaaaa/holidays/image1/Andaman%20Family%20Tour1-1250x917.jpg">
-                                <span class="card-title">Alcia Ricketts</span>
-                                <a class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">edit</i></a>
-                            </div>
-                            <div class="card-content">
-                                <div class="row">
-                                    <div class="col">
-                                    <p class="para"><blockquote><em>"Our gulet cruise from Kos to Patmos was everything and more than expected. 
-                                        It lived up to the Peter Sommer Travels' emphasis on culture, history, archaeology,
-                                         comfort and camaraderie. Exceptional guides attended to each guest's interests and needs 
-                                         and were exceptional hosts. "</em></blockquote></p>
-                                    </div>
-                                </div>
-                                
-                                <div class="row">
-                                    <div class="col s12">
-                                        <p><b>Trip:</b> Appleton Tour</p>
-                                    </div>
-                                </div>
+                    <div class="row sbox">
 
-                                <div class="row">
-                                    <div class="col s12 rating">
-                                    <span class="iconify yellow-text accent-3" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    <span class="iconify yellow-text accent-3" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    <span class="iconify yellow-text accent-3" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    <span class="iconify yellow-text accent-3" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    <span class="iconify" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    </div>
+                        <div class="col l10 s10 offset-s1 offset-l1">
+                            <div class="searchArea z-depth-1">
+                                <div class="searchbox">
+                                    search table...
                                 </div>
+                                <i class="material-icons searchIcon">search</i>
                             </div>
                         </div>
+
                     </div>
 
-                    <div class="col l4 m6 s12 offset-l0 offset-s0">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpuQAqo7AbMcl8u291SJbnINqgLxPTgtYWk0B_eO5WJooo_C-P">
-                                <span class="card-title">Alcia Ricketts</span>
-                                <a class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">edit</i></a>
-                            </div>
-                            <div class="card-content">
-                                <div class="row">
-                                    <div class="col">
-                                    <p class="para"><blockquote><em>"Our gulet cruise from Kos to Patmos was everything and more than expected. 
-                                        It lived up to the Peter Sommer Travels' emphasis on culture, history, archaeology,
-                                         comfort and camaraderie. Exceptional guides attended to each guest's interests and needs 
-                                         and were exceptional hosts. "</em></blockquote></p>
-                                    </div>
-                                </div>
-                                
-                                <div class="row">
-                                    <div class="col s12">
-                                        <p><b>Trip:</b> Appleton Tour</p>
-                                    </div>
-                                </div>
+                    <div class="row " >
 
-                                <div class="row">
-                                    <div class="col s12 rating">
-                                    <span class="iconify yellow-text accent-3" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    <span class="iconify yellow-text accent-3" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    <span class="iconify yellow-text accent-3" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    <span class="iconify yellow-text accent-3" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    <span class="iconify" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    </div>
-                                </div>
-                            </div>
+                        <div id="tbl"class="col 18 m10 s12 offset-l1 offset-m1 offset-s0" style="height:500px!important;">
+                            <table  class="highlight white z-depth-1 " style="">
+                                <thead class=" blue accent-4 white-text">
+                                    <tr>
+                                        <!-- $this->db->select("auto_generated_id,_username,_user_msg,_useremail,_rating,_isVisible"); -->
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Message</th>
+                                        <th>Rating</th>
+                                        <th>Visibility</th>
+                                        <th>Edit</th>
+                                        <th>Remove</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {data}
+                                    <tr>
+                                        <td>{auto_generated_id}</td>
+                                        <td>{_username}</td>
+                                        <td>{_useremail}</td>
+                                        <td>{_user_msg}</td>
+                                        <td>{_rating}/5</td>
+                                        <td><div class="switch">
+                                            <label>
+                                            <input type="checkbox">
+                                            <span class="lever"></span>
+                                            </label>
+                                        </div></td>
+                                        <td id=""><a class="grey-text" href="<?php echo site_url('admin/edittest/')?>{auto_generated_id}"><i class="material-icons">mode_edit</i></a></td>
+                                        <td id="{auto_generated_id}" onclick="del({auto_generated_id})"><i class="red-text material-icons">delete</i></td>
+                                    </tr>
+                                    {/data}
+
+                                    <tr class="noshow" style="display:none;text-align:center;" >
+                                        <td colspan="6" style="text-align:center;" ><em>no results found</em></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                    </div>
 
-                    <div class="col l4 m6 s12 offset-l0 offset-s0">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="https://previews.123rf.com/images/tidty/tidty1803/tidty180300102/98757438-happy-asian-friends-having-a-good-time-together-while-travel-camping-vacation-trip-by-the-lake.jpg">
-                                <span class="card-title">Alcia Ricketts</span>
-                                <a class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">edit</i></a>
-                            </div>
-                            <div class="card-content">
-                                <div class="row">
-                                    <div class="col">
-                                    <p class="para"><blockquote><em>"Our gulet cruise from Kos to Patmos was everything and more than expected. 
-                                        It lived up to the Peter Sommer Travels' emphasis on culture, history, archaeology,
-                                         comfort and camaraderie. Exceptional guides attended to each guest's interests and needs 
-                                         and were exceptional hosts. "</em></blockquote></p>
-                                    </div>
-                                </div>
-                                
-                                <div class="row">
-                                    <div class="col s12">
-                                        <p><b>Trip:</b> Appleton Tour</p>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col s12 rating">
-                                    <span class="iconify yellow-text accent-3" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    <span class="iconify yellow-text accent-3" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    <span class="iconify yellow-text accent-3" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    <span class="iconify yellow-text accent-3" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    <span class="iconify" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col l4 m6 s12 offset-l0 offset-s0">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="http://andamanemeraldholidays.com/image/cache/catalog/aaaaa/holidays/image1/Andaman%20Family%20Tour1-1250x917.jpg">
-                                <span class="card-title">Alcia Ricketts</span>
-                                <a class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">edit</i></a>
-                            </div>
-                            <div class="card-content">
-                                <div class="row">
-                                    <div class="col">
-                                    <p class="para"><blockquote><em>"Our gulet cruise from Kos to Patmos was everything and more than expected. 
-                                        It lived up to the Peter Sommer Travels' emphasis on culture, history, archaeology,
-                                         comfort and camaraderie. Exceptional guides attended to each guest's interests and needs 
-                                         and were exceptional hosts. "</em></blockquote></p>
-                                    </div>
-                                </div>
-                                
-                                <div class="row">
-                                    <div class="col s12">
-                                        <p><b>Trip:</b> Appleton Tour</p>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col s12 rating">
-                                    <span class="iconify yellow-text accent-3" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    <span class="iconify yellow-text accent-3" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    <span class="iconify yellow-text accent-3" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    <span class="iconify yellow-text accent-3" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    <span class="iconify" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col l4 m6 s12 offset-l0 offset-s0">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="http://andamanemeraldholidays.com/image/cache/catalog/aaaaa/holidays/image1/Andaman%20Family%20Tour1-1250x917.jpg">
-                                <span class="card-title">Alcia Ricketts</span>
-                                <a class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">edit</i></a>
-                            </div>
-                            <div class="card-content">
-                                <div class="row">
-                                    <div class="col">
-                                    <p class="para"><blockquote><em>"Our gulet cruise from Kos to Patmos was everything and more than expected. 
-                                        It lived up to the Peter Sommer Travels' emphasis on culture, history, archaeology,
-                                         comfort and camaraderie. Exceptional guides attended to each guest's interests and needs 
-                                         and were exceptional hosts. "</em></blockquote></p>
-                                    </div>
-                                </div>
-                                
-                                <div class="row">
-                                    <div class="col s12">
-                                        <p><b>Trip:</b> Appleton Tour</p>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col s12 rating">
-                                    <span class="iconify yellow-text accent-3" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    <span class="iconify yellow-text accent-3" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    <span class="iconify yellow-text accent-3" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    <span class="iconify yellow-text accent-3" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    <span class="iconify" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col l4 m6 s12 offset-l0 offset-s0">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="http://andamanemeraldholidays.com/image/cache/catalog/aaaaa/holidays/image1/Andaman%20Family%20Tour1-1250x917.jpg">
-                                <span class="card-title">Alcia Ricketts</span>
-                                <a class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">edit</i></a>
-                            </div>
-                            <div class="card-content">
-                                <div class="row">
-                                    <div class="col">
-                                    <p class="para"><blockquote><em>"Our gulet cruise from Kos to Patmos was everything and more than expected. 
-                                        It lived up to the Peter Sommer Travels' emphasis on culture, history, archaeology,
-                                         comfort and camaraderie. Exceptional guides attended to each guest's interests and needs 
-                                         and were exceptional hosts. "</em></blockquote></p>
-                                    </div>
-                                </div>
-                                
-                                <div class="row">
-                                    <div class="col s12">
-                                        <p><b>Trip:</b> Appleton Tour</p>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col s12 rating">
-                                    <span class="iconify yellow-text accent-3" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    <span class="iconify yellow-text accent-3" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    <span class="iconify yellow-text accent-3" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    <span class="iconify yellow-text accent-3" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    <span class="iconify" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col l4 m6 s12 offset-l0 offset-s0">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="http://andamanemeraldholidays.com/image/cache/catalog/aaaaa/holidays/image1/Andaman%20Family%20Tour1-1250x917.jpg">
-                                <span class="card-title">Alcia Ricketts</span>
-                                <a class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">edit</i></a>
-                            </div>
-                            <div class="card-content">
-                                <div class="row">
-                                    <div class="col">
-                                    <p class="para"><blockquote><em>"Our gulet cruise from Kos to Patmos was everything and more than expected. 
-                                        It lived up to the Peter Sommer Travels' emphasis on culture, history, archaeology,
-                                         comfort and camaraderie. Exceptional guides attended to each guest's interests and needs 
-                                         and were exceptional hosts. "</em></blockquote></p>
-                                    </div>
-                                </div>
-                                
-                                <div class="row">
-                                    <div class="col s12">
-                                        <p><b>Trip:</b> Appleton Tour</p>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col s12 rating">
-                                    <span class="iconify yellow-text accent-3" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    <span class="iconify yellow-text accent-3" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    <span class="iconify yellow-text accent-3" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    <span class="iconify yellow-text accent-3" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    <span class="iconify" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col l4 m6 s12 offset-l0 offset-s0">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="http://andamanemeraldholidays.com/image/cache/catalog/aaaaa/holidays/image1/Andaman%20Family%20Tour1-1250x917.jpg">
-                                <span class="card-title">Alcia Ricketts</span>
-                                <a class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">edit</i></a>
-                            </div>
-                            <div class="card-content">
-                                <div class="row">
-                                    <div class="col">
-                                    <p class="para"><blockquote><em>"Our gulet cruise from Kos to Patmos was everything and more than expected. 
-                                        It lived up to the Peter Sommer Travels' emphasis on culture, history, archaeology,
-                                         comfort and camaraderie. Exceptional guides attended to each guest's interests and needs 
-                                         and were exceptional hosts. "</em></blockquote></p>
-                                    </div>
-                                </div>
-                                
-                                <div class="row">
-                                    <div class="col s12">
-                                        <p><b>Trip:</b> Appleton Tour</p>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col s12 rating">
-                                    <span class="iconify yellow-text accent-3" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    <span class="iconify yellow-text accent-3" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    <span class="iconify yellow-text accent-3" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    <span class="iconify yellow-text accent-3" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    <span class="iconify" data-icon="mdi:star" data-inline="false" data-width="30px" data-height="30px"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                 </div>
 
-            </div>
+            </section>
 
-        </section>
-
-        
     </body>
     <?php adminjs();?>
 
-    <script>
-    </script>
+        <script>
+            $('document').ready(() => {
 
-</html>
+                $('.searchArea').click(() => {
+                    
+                    $('tbody>tr').css('display','');
+                    $('.noshow').hide();
+                    $('.searchArea').animate({
+                        'width': '100%'
+                    }, 500);
+
+                    $('.searchbox').attr('contenteditable', 'true');
+
+                    $('.searchbox').focus();
+
+                    $('.searchbox').text("");
+
+                    $('.searchArea').addClass('pg');
+                    $('.searchArea').addClass('lightText');
+
+                }).mouseleave(() => {
+                    // $('.searchArea').animate({
+                    //     'width': '50%'
+                    // }, 500);
+                    if ($('.searchbox').text() == "") {
+                        $('.searchbox').text("search table...");
+                    }
+                    $('.searchbox').removeAttr('contenteditable', 'true');
+                    $('.searchArea').removeClass('pg');
+                    $('.searchArea').removeClass('lightText');
+                });
+
+            });
+        </script>
+
+        <script>
+
+            
+        
+            $('document').ready(()=>{
+
+                var row = $('tbody>tr');
+                let rowlen = row.length;
+                $('.noshow').hide();
+                  $('.searchbox').keyup((e)=>{
+                    
+                    var counter = 0;
+
+                    if (e.keyCode === 13) {
+
+                            e.preventDefault();
+
+                            $('.searchArea').animate({
+                                'width': '50%'
+                            }, 500);
+                            if ($('.searchbox').text() == "") {
+                                $('.searchbox').text("search table...");
+                            }
+                            $('.searchbox').removeAttr('contenteditable', 'true');
+                            $('.searchArea').removeClass('pg');
+                            $('.searchArea').removeClass('lightText');
+
+                    }
+                      var text = $('.searchbox').text();
+
+                      var ptr = new RegExp(text,'i');
+
+                      for(x = 0; x < rowlen; x++){
+                        var td = row[x].getElementsByTagName('td');  
+                        var tdlen = row[x].getElementsByTagName('td').length;
+
+                        for(j = 0; j < tdlen; j++){
+
+                            var result = $(td[j]).text();
+                            var sres = result.search(ptr);
+                            if(sres > -1){
+
+                                $(row).eq(x).css('display','');
+                                
+                                counter++;
+                                break;
+                               
+                            }else{
+                                $(row).eq(x).css('display','none');
+                                
+                            }
+                            
+                        }
+                      }
+
+                      if(counter == 0){
+
+                            $('.noshow').show();
+                        
+                      }else{
+                        $('.noshow').hide();
+                      }
+                  });
+
+            });
+
+
+            var del = (id) =>{
+                $.post("<?php echo site_url('cms/DeleteTestimonial')?>",{id:id},function(res){
+
+                    if(res == 0){
+                        $(`#${id}`).parent().fadeOut(1000);
+                    }else{
+                        console.log("Falied to delete record.");
+                    }
+
+                });
+            }
+
+        </script>
+
+    </html>

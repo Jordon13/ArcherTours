@@ -83,17 +83,17 @@ class Admin extends CI_Controller {
 
     public function eblog()
     {
-        $this->load->view('admin/edit/blog');
+        $this->ps->parse('admin/edit/blog',array('data'=>$this->gen->GetSystemBlogs()));
     }
 
     public function eprices()
     {
-        $this->load->view('admin/edit/prices');
+        $this->ps->parse('admin/edit/prices',array('data'=>$this->gen->GetSystemPrices()));
     }
 
     public function testimonials()
     {
-        $this->load->view('admin/edit/test');
+        $this->ps->parse('admin/edit/test',array('data'=>$this->gen->GetSystemTestimonials()));
     }
 
 

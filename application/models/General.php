@@ -412,6 +412,80 @@ class General extends CI_Model {
     }
 
 
+    public function GetSystemPrices(){
+
+        $this->db->select("auto_generated_id,price_place,price_per_adult,price_origin,price_destination,price_image");
+
+        return $this->db->get("sys_prices")->result_array();
+
+    }
+
+
+    public function GetPriceById($id){
+        return $this->db->get_where("sys_prices", "auto_generated_id = ".$id)->result_array();
+    }
+
+    public function DeletePriceById($id){
+        return $this->db->delete('sys_prices', array('auto_generated_id' => $id)); 
+    }
+
+
+    public function GetSystemDeals(){
+
+        $this->db->join('sys_specials', 'sys_specials.special_unique_id = sys_prices.package_unique_id');
+        $this->db->select("auto_generated_id,sys_specials.special_discount,sys_specials.special_start_date,sys_specials.special_end_date,sys_specials.special_unique_id,
+        sys_prices.price_origin,sys_prices.price_destination,sys_prices.price_image");
+
+        return $this->db->get("sys_specials")->result_array();
+
+    }
+
+
+    public function GetDealById($id){
+        return $this->db->get_where("sys_specials", "auto_generated_id = ".$id)->result_array();
+    }
+
+    public function DeleteDealById($id){
+        return $this->db->delete('sys_specials', array('auto_generated_id' => $id)); 
+    }
+
+
+    public function GetSystemTestimonials(){
+
+        $this->db->select("auto_generated_id,_username,_user_msg,_useremail,_rating,_isVisible");
+
+        return $this->db->get("sys_testimonials")->result_array();
+
+    }
+
+
+    public function GetTestimonialById($id){
+        return $this->db->get_where("sys_testimonials", "auto_generated_id = ".$id)->result_array();
+    }
+
+    public function DeleteTestimonialById($id){
+        return $this->db->delete('sys_testimonials', array('auto_generated_id' => $id)); 
+    }
+
+
+    public function GetSystemBlogs(){
+
+        $this->db->select("auto_generated_blog_id,blog_title,blog_catch_phrase,blog_image,blog_user_visible");
+
+        return $this->db->get("sys_blogs")->result_array();
+
+    }
+
+
+    public function GetBlogById($id){
+        return $this->db->get_where("sys_blogs", "auto_generated_blog_id = ".$id)->result_array();
+    }
+
+    public function DeleteBlogById($id){
+        return $this->db->delete('sys_blogs', array('auto_generated_blog_id' => $id)); 
+    }
+
+
     public function emailUserPassword($emailAddress, $password){
         $this->load->library('email');
             $config = array(

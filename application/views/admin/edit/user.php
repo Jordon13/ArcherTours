@@ -105,7 +105,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                     <div class="row " >
 
                         <div id="tbl"class="col 18 m10 s12 offset-l1 offset-m1 offset-s0" style="height:500px!important;">
-                            <table  class="highlight white z-depth-1 " style="height:100%!important;">
+                            <table  class="highlight white z-depth-1 " style="">
                                 <thead class=" blue accent-4 white-text">
                                     <tr>
                                         <th>Id</th>
@@ -214,7 +214,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                         var td = row[x].getElementsByTagName('td');  
                         var tdlen = row[x].getElementsByTagName('td').length;
 
-                        for(j = 1; j < tdlen-1; j++){
+                        for(j = 0; j < tdlen; j++){
 
                             var result = $(td[j]).text();
                             var sres = result.search(ptr);
