@@ -381,6 +381,19 @@ class General extends CI_Model {
 
     }
 
+    public function UpdateTestimonialById($data,$id){
+        //SetTestimonialVisibility
+        $this->db->where("auto_generated_id",$id);
+
+        $result = $this->db->update('sys_testimonials',$data);
+
+        if($result){
+            return true;
+        }
+
+        return false;
+    }
+
 
     public function Validatelogin(){
         if(!($this->ses->has_userdata("user_ses"))){
@@ -432,9 +445,9 @@ class General extends CI_Model {
 
     public function GetSystemDeals(){
 
-        $this->db->join('sys_specials', 'sys_specials.special_unique_id = sys_prices.package_unique_id');
-        $this->db->select("auto_generated_id,sys_specials.special_discount,sys_specials.special_start_date,sys_specials.special_end_date,sys_specials.special_unique_id,
-        sys_prices.price_origin,sys_prices.price_destination,sys_prices.price_image");
+        $this->db->join('sys_prices','sys_specials._service_id = sys_prices.package_unique_id');
+        $this->db->select("sys_specials.auto_generated_id,sys_specials.special_discount,sys_specials.special_start_date,sys_specials.special_end_date,sys_specials.special_unique_id,
+        sys_prices.price_origin,sys_prices.price_destination,sys_prices.price_image,sys_prices.price_per_adult");
 
         return $this->db->get("sys_specials")->result_array();
 
@@ -483,6 +496,52 @@ class General extends CI_Model {
 
     public function DeleteBlogById($id){
         return $this->db->delete('sys_blogs', array('auto_generated_blog_id' => $id)); 
+    }
+
+
+    public function UpdateDealById($data, $id){
+
+        $this->db->where("auto_generated_id",$id);
+
+        $result = $this->db->update('sys_specials',$data);
+
+        if($result){
+            return true;
+        }
+
+        return false;
+
+    }
+
+
+
+    public function UpdatePriceById($data, $id){
+
+        $this->db->where("auto_generated_id",$id);
+
+        $result = $this->db->update('sys_prices',$data);
+
+        if($result){
+            return true;
+        }
+
+        return false;
+
+    }
+
+
+    public function UpdateBlogById($data, $id){
+
+        $this->db->where("auto_generated_blog_id",$id);
+
+        $result = $this->db->update('sys_blogs',$data);
+
+        if($result){
+            return true;
+        }
+
+        return false;
+
     }
 
 

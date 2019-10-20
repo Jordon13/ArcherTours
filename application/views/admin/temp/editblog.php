@@ -16,9 +16,10 @@ $linkId = $this->uri->segment(3,-1);
 <html>
 
     <head>
-        <title>Edit User</title>
+        <title>Edit Blog</title>
         <?php adminhead();?>
-
+        <script src="https://cdn.tiny.cloud/1/qrye49zt83t2ywnehqrk36wlt1acm1xvs5964go6t6amc92w/tinymce/5/tinymce.min.js"></script>
+        <script>tinymce.init({selector:'textarea'});</script>
         <style>
 
             .bcenter{
@@ -27,7 +28,7 @@ $linkId = $this->uri->segment(3,-1);
                 width: 100%;
             }
 
-            /* .content-area{
+            .content-area{
                 height: auto!important;
                 min-height: 100%;
             }
@@ -36,7 +37,7 @@ $linkId = $this->uri->segment(3,-1);
                 margin-top: 2em;
                 height: auto!important;
                 min-height: 100%!important;
-            } */
+            }
         
             .image-sec{
                 border-radius:10px;
@@ -45,6 +46,18 @@ $linkId = $this->uri->segment(3,-1);
 
             .switchsec{
                 justify-content: center;
+            }
+
+            #content{
+                margin:1em!important;
+                height:400px!important;
+            }
+
+            #staticimg{
+                margin-top:0.9em!important;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                /* filter: blur(1px); */
             }
 
             input[disabled] {pointer-events:none}
@@ -64,42 +77,40 @@ $linkId = $this->uri->segment(3,-1);
 
                     <div class="row white image-sec z-depth-1">
 
+                    <div class="col s12">
+                            <img id="staticimg" src="<?php echo base_url('uploads/blog-images/').$data['blog_image'];?>" width="100%"/>
+                        </div>
+
+                    <div class="file-field input-field col s12">
+                            <div class="btn blue-grey lighten-2">
+                                <span>Blog Background Image</span></span>
+                                <input type="file" id="file" class="abt" name="blog_image" disabled>
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text" value="<?php echo $data['blog_image'];?>" placeholder="Change Background Image" disabled>
+                                
+                            </div>
+                        </div>
+
+                        <div class="col s12">
+                            <input id="lname" name="blog_title" class="abt"  type="text" value="<?php echo $data['blog_title']; ?>" disabled/>
+                            <label for="lname">Blog Title</label>
+                        </div>
+                        
+                        <div class="col s12">
+                            <input id="phone" name="blog_catch_phrase" class="abt"  type="text" value="<?php echo $data['blog_catch_phrase']; ?>" disabled/>
+                            <label for="phone">Catch Phrase</label>
+                        </div>
+
+                        
+
                         
 
                         <div class="col s12">
-                            <input id="fname" name="first_name" class="abt" type="text" value="<?php echo $data['first_name']; ?>" disabled/>
-                            <label for="fname">First Name</label>
-                        </div>
-
-                        <div class="col s12">
-                            <input id="lname" name="last_name" class="abt"  type="text" value="<?php echo $data['last_name']; ?>" disabled/>
-                            <label for="lname">Last Name</label>
-                        </div>
-                        
-                        <div class="col s12">
-                            <input id="phone" name="user_phone" class="abt"  type="text" value="<?php echo $data['user_phone']; ?>" disabled/>
-                            <label for="phone">Phone Number</label>
-                        </div>
-
-
-                        <div class="col s12">
-                            <input id="email" name="email_address" class="abt"  type="text" value="<?php echo strtolower($data['email_address']);?>" disabled/>
-                            <label for="email">Email</label>
-                        </div>
-
-                        <div class="col s12">
-                            <input id="city" name="user_city" class="abt"  type="text" value="<?php echo $data['user_city']; ?>" disabled/>
-                            <label for="city">City</label>
-                        </div>
-
-                        <div class="col s12">
-                            <input id="state" name="user_state" class="abt"  type="text" value="<?php echo $data['user_state']; ?>" disabled/>
-                            <label for="state">State</label>
-                        </div>
-
-                        <div class="col s12">
-                            <input id="zip" name="user_zip" class="abt"  type="text" value="<?php echo $data['user_zip']; ?>" disabled/>
-                            <label for="zip">Zip</label>
+                            <textarea id="content" class="abt" name="blog_content" min="250" placeholder="Write content here...250 words minimum" required>
+                                <?php echo $this->enc->decrypt($data['blog_content']); ?>
+                            </textarea>
+                            <label for="content">Content</label>
                         </div>
 
                         
@@ -137,6 +148,10 @@ $linkId = $this->uri->segment(3,-1);
 
             var once = false;
     
+            $('.mce-content-body').removeAttr("spellcheck");
+
+            $('.mce-content-body').attr("spellcheck","true");
+
             $('document').ready(function(){
 
                 $('.abt').click(function(){
@@ -230,18 +245,22 @@ $linkId = $this->uri->segment(3,-1);
 
             var save = () =>{
 
-                if(map.size <= 0 && imgs.size <= 0){
+                var content = tinyMCE.get('content').getContent();
+
+                if((map.size <= 0 && imgs.size <= 0) && (content == `<?php echo $this->enc->decrypt($data['blog_content']); ?>`) ){
                     console.log("No changes made in dataset");
                     return;
                 }
 
-                
+                form_data.append('blog_content',content);
 
                 if(map.size > 0){
                     map.forEach((val,key,map) =>{
                         form_data.append(key,val);
                     });
                 }
+
+                
 
                 if(imgs.size > 0){
                     
@@ -251,7 +270,7 @@ $linkId = $this->uri->segment(3,-1);
                 form_data.append('id',<?php echo $linkId;?>);
 
                 $.ajax({
-                    url: "<?php echo site_url('/cms/EditUser');?>",
+                    url: "<?php echo site_url('/cms/EditBlog');?>",
                     method: "POST",
                     data: form_data,
                     beforeSend:function(){

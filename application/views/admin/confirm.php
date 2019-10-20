@@ -241,7 +241,7 @@ if(!($this->ses->has_userdata("user_ses")) ){
             e.preventDefault();
             $(".result").css("color","#388E3C");
             $('.result').html("Processing...");
-            $.post('<?php echo site_url('/cms/UpdateUserData');?>', $('.my-form').serialize(), function(data){
+            $.post('<?php echo site_url('/client/UpdateUserData');?>', $('.my-form').serialize(), function(data){
                 
                 console.log(data);
 

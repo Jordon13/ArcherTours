@@ -140,7 +140,7 @@ if(isset($_GET['error'])){
                 <div class="col s12 l8 m8 offset-l2 offset-m2 offset-s0 white inner-content z-depth-2">
 
                     <div class="row">
-                        <form class="col s12" action="<?php echo site_url('/cms/Login');?>" method="POST" >
+                        <form class="col s12" action="<?php echo site_url('/client/Login');?>" method="POST" >
                             
                             <div class="col s12">
                                 <h4 class="col s12 center purple-text accent-4">Login</h4>

@@ -15,7 +15,7 @@ if(!($this->ses->has_userdata("user_ses"))){
 
     <head>
 
-        <title>View Deals</title>
+        <title>View Blogs</title>
         <?php adminhead();?>
         <style>
             
@@ -113,7 +113,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                                         <th>Image</th>
                                         <th>Title</th>
                                         <th>Summary</th>
-                                        <th>Visibility</th>
+                                        <!-- <th>Visibility</th> -->
                                         <th>Edit</th>
                                         <th>Remove</th>
                                     </tr>
@@ -126,7 +126,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                                         <td><img src="<?php echo base_url('uploads/blog-images/')?>{blog_image}" width="40px" height="40px" class="materialboxed"/></td>
                                         <td>{blog_title}</td>
                                         <td>{blog_catch_phrase}</td>
-                                        <td>{blog_user_visible}</td>
+                                        <!-- <td>{blog_user_visible}</td> -->
                                         <td id=""><a class="grey-text" href="<?php echo site_url('admin/editblog/')?>{auto_generated_blog_id}"><i class="material-icons">mode_edit</i></a></td>
                                         <td id="{auto_generated_blog_id}" onclick="del({auto_generated_blog_id})"><i class="red-text material-icons">delete</i></td>
                                     </tr>

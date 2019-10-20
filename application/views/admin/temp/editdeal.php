@@ -16,7 +16,7 @@ $linkId = $this->uri->segment(3,-1);
 <html>
 
     <head>
-        <title>Edit Price</title>
+        <title>Edit Deal</title>
         <?php adminhead();?>
 
         <style>
@@ -27,7 +27,7 @@ $linkId = $this->uri->segment(3,-1);
                 width: 100%;
             }
 
-            .content-area{
+            /* .content-area{
                 height: auto!important;
                 min-height: 100%;
             }
@@ -36,7 +36,7 @@ $linkId = $this->uri->segment(3,-1);
                 margin-top: 2em;
                 height: auto!important;
                 min-height: 100%!important;
-            }
+            } */
         
             .image-sec{
                 border-radius:10px;
@@ -45,13 +45,6 @@ $linkId = $this->uri->segment(3,-1);
 
             .switchsec{
                 justify-content: center;
-            }
-
-            #staticimg{
-                margin-top:1em!important;
-                border-top-left-radius: 10px;
-                border-top-right-radius: 10px;
-                /* filter: blur(1px); */
             }
 
             input[disabled] {pointer-events:none}
@@ -71,68 +64,28 @@ $linkId = $this->uri->segment(3,-1);
 
                     <div class="row white image-sec z-depth-1">
 
-
-                        <div class="col s12">
-                            
-                            <img id="staticimg" src="<?php echo base_url('uploads/prices-images/').$data['price_image'];?>" width="100%" class=""/>
-
-                        </div>
-
-                        <div class="file-field input-field col s12">
-                            <div class="btn blue-grey lighten-2">
-                                <span>Price Image</span></span>
-                                <input type="file" id="file" class="abt" name="price_image" disabled>
-                            </div>
-                            <div class="file-path-wrapper">
-                                <input class="file-path validate" type="text" value="<?php echo $data['price_image'];?>" placeholder="Change Image" disabled>
-                                
-                            </div>
-                        </div>
-
-                        <div class="col s12">
-                            <input id="fname" name="price_origin" class="abt" type="text" value="<?php echo $data['price_origin']; ?>" disabled/>
-                            <label for="fname">Origin</label>
-                        </div>
-
-                        <div class="col s12">
-                            <input id="lname" name="price_destination" class="abt"  type="text" value="<?php echo $data['price_destination']; ?>" disabled/>
-                            <label for="lname">Destination</label>
-                        </div>
-                        
-                        <div class="col s12">
-                            <input id="phone" name="price_place" class="abt"  type="text" value="<?php echo $data['price_place']; ?>" disabled/>
-                            <label for="phone">Place</label>
-                        </div>
-
-
-                        <div class="col s12">
-                            <input id="email" name="price_discount" class="abt"  type="text" value="<?php echo strtolower($data['price_discount']);?>" disabled/>
-                            <label for="email">Discount</label>
-                        </div>
-
-                        <div class="col s12">
-                            <input id="zip" name="display_price" class="abt"  type="text" value="<?php echo $data['display_price']; ?>" disabled/>
-                            <label for="zip">Display Price For 4</label>
-                        </div>
-
-                        <div class="col s12">
-                            <input id="zip1" name="price_per_adult" class="abt"  type="text" value="<?php echo $data['price_per_adult']; ?>" disabled/>
-                            <label for="zip1">Price</label>
-                        </div>
                         
 
                         <div class="col s12">
-                            <input id="city" name="price_description" class="abt"  type="text" value="<?php echo base64_decode($data['price_description']); ?>" disabled/>
-                            <label for="city">Description</label>
+                            <input id="fname" name="special_discount" class="abt" type="text" value="<?php echo $data['special_discount']; ?>" disabled/>
+                            <label for="fname">Discount</label>
                         </div>
 
                         <div class="col s12">
-                            <input id="state" name="trip_type" class="abt"  type="text" value="<?php echo $data['trip_type']; ?>" disabled/>
-                            <label for="state">Trip Type</label>
+                            <input id="lname" name="special_catch" class="abt"  type="text" value="<?php echo $data['special_catch']; ?>" disabled/>
+                            <label for="lname">Catch Phrase</label>
+                        </div>
+                        
+                        <div class="col s12">
+                            <input id="phone" name="special_start_date" class="abt"  type="date" value="<?php echo $data['special_start_date']; ?>" disabled/>
+                            <label for="phone">Start Date</label>
                         </div>
 
-                        
 
+                        <div class="col s12">
+                            <input id="email" name="special_end_date" class="abt"  type="date" value="<?php echo strtolower($data['special_end_date']);?>" disabled/>
+                            <label for="email">End Date</label>
+                        </div>
                         
 
                         <div class="col s12 hidden_btn center-align" style="display:none;">
@@ -282,7 +235,7 @@ $linkId = $this->uri->segment(3,-1);
                 form_data.append('id',<?php echo $linkId;?>);
 
                 $.ajax({
-                    url: "<?php echo site_url('/cms/EditPrice');?>",
+                    url: "<?php echo site_url('/cms/EditDeal');?>",
                     method: "POST",
                     data: form_data,
                     beforeSend:function(){

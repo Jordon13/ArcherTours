@@ -3,6 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin extends CI_Controller {
 
+    
+
     public function login(){
 
         $this->load->library('parser');
@@ -94,6 +96,11 @@ class Admin extends CI_Controller {
     public function testimonials()
     {
         $this->ps->parse('admin/edit/test',array('data'=>$this->gen->GetSystemTestimonials()));
+    }
+
+    public function edeals()
+    {
+        $this->ps->parse('admin/edit/deal',array('data'=>$this->gen->GetSystemDeals()));
     }
 
 
@@ -216,20 +223,43 @@ class Admin extends CI_Controller {
         $this->load->view('admin/temp/edituser',array('data'=>$result[0]));
     }
 
+    public function edittest()
+    {
+        $linkId = $this->uri->segment(3,-1);
+
+        $result = $this->gen->GetTestimonialById($linkId);
+
+        $this->load->view('admin/temp/edittest',array('data'=>$result[0]));
+    }
+
+    public function editdeal()
+    {
+        $linkId = $this->uri->segment(3,-1);
+
+        $result = $this->gen->GetDealById($linkId);
+
+        $this->load->view('admin/temp/editdeal',array('data'=>$result[0]));
+    }
+
     public function editprice()
     {
-        $this->load->view('admin/temp/editprice');
+        $linkId = $this->uri->segment(3,-1);
+
+        $result = $this->gen->GetPriceById($linkId);
+
+        $this->load->view('admin/temp/editprice',array('data'=>$result[0]));
     }
 
 
     public function editblog()
     {
-        $linkId = $this->uri->segment(2,-1);
+        $linkId = $this->uri->segment(3,-1);
 
-        print_r($linkId);
+        $result = $this->gen->GetBlogById($linkId);
 
-        $this->load->view('admin/temp/editblog');
+        $this->load->view('admin/temp/editblog',array('data'=>$result[0]));
     }
+
     public function logout(){
         $this->gen->killSession("user_ses");
         redirect(site_url('/admin/login?success=Thanks for using the service'),'location');

@@ -190,6 +190,7 @@ class Manipulation extends CI_Model {
 
     public function LoadTestimonials(){
         $this->db->order_by('date_created','DESC');
+        $this->db->where('_isVisible','1');
         return $this->db->get("sys_testimonials")->result_array();
     }
 

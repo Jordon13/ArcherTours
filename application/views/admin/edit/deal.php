@@ -15,13 +15,11 @@ if(!($this->ses->has_userdata("user_ses"))){
 
     <head>
 
-        <title>View Testimonials</title>
+        <title>View Deals</title>
         <?php adminhead();?>
         <style>
             
-            input{
-                opacity: 1!important;
-            }
+
             
             .searchArea {
                 display: flex;
@@ -80,53 +78,6 @@ if(!($this->ses->has_userdata("user_ses"))){
              overflow-y: scroll!important;
           }
 
-
-          .cswitch{
-              display: flex;
-              position: relative;
-              background-color: rgba(150,150,150,0.8);
-              padding: 0px!important;
-          }
-
-          .cswitch div{
-              margin:0.1em;
-              padding:0.2em;
-              z-index: 100;
-              color:white;
-              font-weight: bolder;
-          }
-
-          .cstate{
-              position: absolute;
-              background-color: rgba(150,150,150,0.8);
-              height: 100%;
-              width: 50%;
-              margin:0px!important;
-              left:0%;
-              transition: left 0.2s, background-color 0.2s linear;
-          }
-
-          .offstate{
-              position: absolute;
-              background-color: rgba(255,15,15,0.9);
-              height: 100%;
-              width: 50%;
-              margin:0px!important;
-              left:0%;
-              transition: left 0.2s, background-color 0.2s linear;
-          }
-
-
-          .onstate{
-              position: absolute;
-              background-color: rgba(15,255,15,0.5);
-              height: 100%;
-              width: 50%;
-              margin:0px!important;
-              left:50%;
-              transition: left 0.2s, background-color 0.2s linear;
-          }
-
             
         </style>
 
@@ -158,33 +109,33 @@ if(!($this->ses->has_userdata("user_ses"))){
                                 <thead class=" blue accent-4 white-text">
                                     <tr>
                                         <th>Id</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Message</th>
-                                        <th>Rating</th>
-                                        <th>Visibility</th>
+                                        <th>Image</th>
+                                        <th>Price</th>
+                                        <th>Discount</th>
+                                        <th>Origin</th>
+                                        <th>Destination</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th>Edit</th>
                                         <th>Remove</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                    <?php foreach($data as $d){?>
+                                    {data}
                                     <tr>
-                                        <td><?php echo $d['auto_generated_id'];?></td>
-                                        <td><?php echo $d['_username'];?></td>
-                                        <td><?php echo $d['_useremail'];?></td>
-                                        <td><?php echo $d['_user_msg'];?></td>
-                                        <td><?php echo $d['_rating'];?>/5</td>
-                                        <td>
-                                            <div id="state<?php echo $d['auto_generated_id'];?>" class="cswitch" onclick="setVisibilityState('state'+<?php echo $d['auto_generated_id'];?>,<?php echo $d['_isVisible'];?>,<?php echo $d['auto_generated_id'];?>)">
-                                                <div id="ac<?php echo $d['auto_generated_id'];?>" class="<?php $state = $d['_isVisible']; $currentState = $state == '0' ? 'offstate' : 'onstate'; echo $currentState;?>"></div>
-                                                <div class="off">NO</div>
-                                                <div class="on">YES</div>
-                                            </div>
-                                        </td>
-                                        <td id="<?php echo $d['auto_generated_id'];?>" onclick="del(<?php echo $d['auto_generated_id'];?>)"><i class="red-text material-icons">delete</i></td>
+                                        <td>{auto_generated_id}</td>
+                                        <td><img src="<?php echo base_url('uploads/prices-images/')?>{price_image}" width="40px" height="40px" class="materialboxed"/></td> 
+                                        <td>{price_per_adult}</td>
+                                        <td>{special_discount}</td>
+                                        <td>{price_origin}</td>
+                                        <td>{price_destination}</td>
+                                        <td>{special_start_date}</td>
+                                        <td>{special_end_date}</td>
+                                        <td id=""><a class="grey-text" href="<?php echo site_url('admin/editdeal/')?>{auto_generated_id}"><i class="material-icons">mode_edit</i></a></td>
+                                        <td id="{auto_generated_id}" onclick="del({auto_generated_id})"><i class="red-text material-icons">delete</i></td>
                                     </tr>
-                                    <?php } ?>
+                                    {/data}
 
                                     <tr class="noshow" style="display:none;text-align:center;" >
                                         <td colspan="6" style="text-align:center;" ><em>no results found</em></td>
@@ -298,6 +249,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                         
                       }else{
                         $('.noshow').hide();
+                        
                       }
                   });
 
@@ -305,7 +257,7 @@ if(!($this->ses->has_userdata("user_ses"))){
 
 
             var del = (id) =>{
-                $.post("<?php echo site_url('cms/DeleteTestimonial')?>",{id:id},function(res){
+                $.post("<?php echo site_url('cms/DeleteDeal')?>",{id:id},function(res){
 
                     if(res == 0){
                         $(`#${id}`).parent().fadeOut(1000);
@@ -315,34 +267,6 @@ if(!($this->ses->has_userdata("user_ses"))){
 
                 });
             }
-
-            var setVisibilityState = (element,state,target) =>{
-                //console.log(state);
-                var ele = $(`#${element}`).children(":first").attr("id");
-
-                var acelement = $(`#${ele}`);
-
-                var currentState = 2;
-
-                if(state == 0){
-                    acelement.addClass('onstate');
-                    acelement.removeClass('offstate');
-                    acelement.removeClass('cstate');
-                    $(`#${element}`).attr("onclick",`setVisibilityState('${element}',1)`);
-                    currentState = 1;
-                }else{
-                    acelement.addClass('offstate');
-                    acelement.removeClass('onstate');
-                    acelement.removeClass('cstate');
-                    $(`#${element}`).attr("onclick",`setVisibilityState('${element}',0)`);
-                    currentState = 0;
-                }
-
-                $.post("<?php echo base_url('cms/SetTestimonialVisibility')?>",{state:currentState,id:target});
-                
-            }
-
-           
 
         </script>
 

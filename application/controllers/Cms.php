@@ -6,39 +6,18 @@ class Cms extends CI_Controller {
 
     public $is_hookable = TRUE;
 
+    function __construct(){
+        parent::__construct();
+        if(!($this->ses->has_userdata("user_ses"))){
+            redirect(site_url("Admin/login")."?error=Unauthorized Access: please login to use services");
+        }
+    }
+
     public function index(){
 
     }
 
-    public function Login(){
-
-        $this->load->model('General','cms');
-
-        $email = $this->input->post('email',true);
-
-        $password = $this->input->post('password',true);
-
-        $result = $this->cms->LoginUser($email,$password);
-
-        if($result != false){
-
-            $fbExist = $this->mn->IsFacebookExist();
-
-            if($fbExist === 2 || $fbExist === 3){
-                echo $this->face->login();
-            }
-
-            if($result->first_time == 0){
-                echo "<script>window.location.href = '".site_url('Admin/dashboard?active=0')."?sucess=login sucessfully';</script>";
-            }else{
-                echo "<script>window.location.href = '".site_url('Admin/confirm')."?error=please set a new password or continue and do it on your next login';</script>";
-            }
-        }
-
-        echo "<script>window.location.href = '".site_url('Admin/login')."?error=failed to login';</script>";
-        http_response_code(401);
-
-    }
+    
 
     public function FaceBookHandler(){
         $token = $this->face->getAccessToken();
@@ -155,71 +134,7 @@ class Cms extends CI_Controller {
 
     }
 
-    public function UpdateUserData(){
-
-        $this->gen->Validatelogin();
-
-        if(!($this->ses->has_userdata('user_ses'))){
-            echo "<script>window.location.href = '".site_url('Admin/login')."?error=failed to login';</script>";
-            return;
-        }
-
-        if(empty( $this->input->post("user_password",true))){
-            $result = array('Message'=>'Pasword cannot be null or empty.','IsSuccess' => false);
-
-            echo json_encode($result);
-            http_response_code(400);
-            return;
-        }
-
-        if(strlen($this->input->post("user_password",true)) < 8){
-            $result = array('Message'=>'Password must be 8 or more characters in length.','IsSuccess' => false);
-
-            echo json_encode($result);
-            http_response_code(400);
-            return;
-        }
-
-        $pa = $this->input->post("user_password",true);
-
-        if(preg_match('/[!@#$%^&*(),.?":{}|<>\'\`\~\=\+\;\/\_\-\¨\]\[]/',$pa,$match) > 0){
-            
-            $result = array('Message'=>'Not a valid password. Only word and letter allowed','IsSuccess' => false);
-
-            echo json_encode($result);
-            http_response_code(400);
-            return;
-        }
-
-        $this->load->model('General','cms');
-
-        $this->load->helper('db');
-
-        $password = sanitizeInput($this->input->post('user_password',true));
-
-        $data = array(
-            'user_password'=>password_hash($password,PASSWORD_DEFAULT),
-            'first_time'=>0
-        );
-
-        $res = $this->cms->UpdateUser($data);
-
-        if($res){
-            echo "";
-
-            $this->ses->set_userdata("first_time",0);
-
-            $result = array('Message'=>"<script>window.location.href = '".site_url('Admin/dashboard')."?success=password created successfully login success&active=0';</script>",'IsSuccess' => true);
-
-            echo json_encode($result);
-            return;
-        }
-
-        $result = array('Message'=>'Failed to update user password','IsSuccess' => false);
-
-        echo json_encode($result);
-        http_response_code(417);
-    }
+    
 
     /************************************ */
 
@@ -1687,6 +1602,8 @@ class Cms extends CI_Controller {
 
     }
 
+    
+
     public function DeleteUser(){
         $id = $_POST['id'];
 
@@ -1715,16 +1632,187 @@ class Cms extends CI_Controller {
 
     }
 
-    public function EditBlog(){
+    public function DeleteBlog(){
+        $id = $_POST['id'];
 
+        if($this->gen->DeleteBlogById($id)){
+            echo 0;
+            return;
+        }
+
+        echo 1;
+    }
+
+    public function EditBlog(){
+        $images = $this->input->post('images',true);
+        
+        $this->load->helper('security');
+
+        $this->load->helper('string');
+
+        $this->load->library('encryption');
+
+        $id = $_POST['id'];
+
+        array_pop($_POST);
+
+        if(!empty($images)){
+
+            $imageArray = explode(',',$images);
+
+            for($i = 0; $i < count($imageArray); $i++){
+
+                if($imageArray[$i] == ""){
+                    unset($imageArray[$i]);
+                }
+            }
+
+            $newArray = array_values($imageArray);
+            // print_r($newArray);
+            // return;
+
+            
+
+            if((isset($_FILES['upl']))  && (count($_FILES['upl']) > 0 )){
+                    
+                for($x =0; $x < count($_FILES['upl']['name']); $x++){
+                    $config['upload_path'] = './uploads/blog-images/';
+                    $config['allowed_types'] = "jpg|jpeg|";
+                    $config['encrypt_name'] = TRUE;
+                    $this->load->library('upload',$config);
+                    $this->upload->initialize($config);
+                    $_FILES['file']['name'] = $_FILES['upl']['name'][$x];
+                    $_FILES['file']['type'] = $_FILES['upl']['type'][$x];
+                    $_FILES['file']['tmp_name'] = $_FILES['upl']['tmp_name'][$x];
+                    $_FILES['file']['error'] = $_FILES['upl']['error'][$x];
+                    $_FILES['file']['size'] = $_FILES['upl']['size'][$x];
+                    if($this->upload->do_upload('file')){
+                        $newImage  = $this->upload->data()['file_name'];
+                        $array = array($newArray[$x]=>$newImage);
+                        $this->gen->UpdateBlogById($array,$id);
+                    }
+                }
+            }
+
+            array_pop($_POST);
+
+            //print_r($_POST);
+        }
+
+        $_POST['blog_content'] = $this->encryption->encrypt(xss_clean($_POST['blog_content']));
+
+        if(count($_POST) > 0){
+            $result = $this->gen->UpdateBlogById($_POST,$id);
+        }
+    }
+
+    public function DeletePrice(){
+        $id = $_POST['id'];
+
+        if($this->gen->DeletePriceById($id)){
+            echo 0;
+            return;
+        }
+
+        echo 1;
     }
 
     public function EditPrice(){
+        $images = $this->input->post('images',true);
+        
+        $this->load->helper('security');
 
+        $this->load->helper('string');
+
+        $this->load->library('encryption');
+
+        $id = $_POST['id'];
+
+        array_pop($_POST);
+
+        if(!empty($images)){
+
+            $imageArray = explode(',',$images);
+
+            for($i = 0; $i < count($imageArray); $i++){
+
+                if($imageArray[$i] == ""){
+                    unset($imageArray[$i]);
+                }
+            }
+
+            $newArray = array_values($imageArray);
+            // print_r($newArray);
+            // return;
+
+            
+
+            if((isset($_FILES['upl']))  && (count($_FILES['upl']) > 0 )){
+                    
+                for($x =0; $x < count($_FILES['upl']['name']); $x++){
+                    $config['upload_path'] = './uploads/prices-images/';
+                    $config['allowed_types'] = "jpg|jpeg|";
+                    $config['encrypt_name'] = TRUE;
+                    $this->load->library('upload',$config);
+                    $this->upload->initialize($config);
+                    $_FILES['file']['name'] = $_FILES['upl']['name'][$x];
+                    $_FILES['file']['type'] = $_FILES['upl']['type'][$x];
+                    $_FILES['file']['tmp_name'] = $_FILES['upl']['tmp_name'][$x];
+                    $_FILES['file']['error'] = $_FILES['upl']['error'][$x];
+                    $_FILES['file']['size'] = $_FILES['upl']['size'][$x];
+                    if($this->upload->do_upload('file')){
+                        $newImage  = $this->upload->data()['file_name'];
+                        $array = array($newArray[$x]=>$newImage);
+                        $this->gen->UpdatePriceById($array,$id);
+                    }
+                }
+            }
+
+            array_pop($_POST);
+
+            //print_r($_POST);
+        }
+
+        if(count($_POST) > 0){
+            $result = $this->gen->UpdatePriceById($_POST,$id);
+        }
+    }
+
+    public function DeleteDeal(){
+        $id = $_POST['id'];
+
+        if($this->gen->DeleteDealById($id)){
+            echo 0;
+            return;
+        }
+
+        echo 1;
     }
 
     public function EditDeal(){
+        $newArray = sanitizeArray($_POST);
 
+        $id = $newArray['id'];
+
+        array_pop($newArray);
+        
+        if($this->gen->UpdateDealById($newArray,$id)){
+            echo "Successfully Updated.";
+            return;
+        }
+
+        echo "Failed to update.";
+    }
+
+    public function DeleteNews(){
+        $id = $_POST['id'];
+
+        if($this->gen->DeleteNewsById($id)){
+            echo 0;
+            return;
+        }
+
+        echo 1;
     }
 
     public function EditRecentNews(){
@@ -1737,6 +1825,33 @@ class Cms extends CI_Controller {
 
     public function EditBooking(){
 
+    }
+
+    public function DeleteTestimonial(){
+        $id = $_POST['id'];
+
+        if($this->gen->DeleteTestimonialById($id)){
+            echo 0;
+            return;
+        }
+
+        echo 1;
+    }
+
+    public function SetTestimonialVisibility(){
+       
+        $_POST = sanitizeArray($_POST);
+
+        $id = $_POST['id'];
+
+        $newArray = array("_isVisible"=>$_POST['state']);
+        
+        if($this->gen->UpdateTestimonialById($newArray,$id)){
+            echo "Successfully Updated.";
+            return;
+        }
+
+        echo "Failed to update.";
     }
 }
 

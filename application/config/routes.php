@@ -145,6 +145,10 @@ $route['footer'] = "home/footer";
 $route['checkout'] = "home/cart";
 
 $route['admin/edituser/(:any)']['GET'] = "admin/edituser";
+$route['admin/editdeal/(:any)']['GET'] = "admin/editdeal";
+$route['admin/editprice/(:any)']['GET'] = "admin/editprice";
+$route['admin/edittest/(:any)']['GET'] = "admin/edittest";
+$route['admin/editblog/(:any)']['GET'] = "admin/editblog";
 
 // $route['cuser'] = "home/cuser";
 // $route['blog'] = "home/cblog";
