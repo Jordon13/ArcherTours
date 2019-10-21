@@ -107,7 +107,8 @@ class Admin extends CI_Controller {
 // uploads and content creation
     public function media()
     {
-        $this->load->view('admin/mupload/multimedia');
+        //print_r($this->gen->GetSystemFolders());
+        $this->load->view('admin/mupload/multimedia',array('data'=>$this->gen->GetSystemFolders()));
     }
 
     public function recent()
@@ -230,6 +231,21 @@ class Admin extends CI_Controller {
         $result = $this->gen->GetTestimonialById($linkId);
 
         $this->load->view('admin/temp/edittest',array('data'=>$result[0]));
+    }
+
+    public function viewfiles()
+    {
+        $linkId = $this->uri->segment(3,-1);
+
+        $result = $this->gen->GetFilesByFolderId($linkId);
+
+        if($result == false){
+            $this->load->view('admin/temp/viewfolder',array('data'=>0));
+        }else{
+            $this->load->view('admin/temp/viewfolder',array('data'=>$result));
+        }
+
+        
     }
 
     public function editdeal()

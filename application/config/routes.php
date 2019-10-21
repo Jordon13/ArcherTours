@@ -149,6 +149,8 @@ $route['admin/editdeal/(:any)']['GET'] = "admin/editdeal";
 $route['admin/editprice/(:any)']['GET'] = "admin/editprice";
 $route['admin/edittest/(:any)']['GET'] = "admin/edittest";
 $route['admin/editblog/(:any)']['GET'] = "admin/editblog";
+$route['admin/viewfiles/(:any)']['GET'] = "admin/viewfiles";
+
 
 // $route['cuser'] = "home/cuser";
 // $route['blog'] = "home/cblog";

@@ -415,6 +415,36 @@ class General extends CI_Model {
 
     }
 
+    public function GetSystemFolders(){
+        return $this->db->get("sys_files")->result_array();
+    }
+
+
+    public function GetFilesByFolderId($id){
+
+       
+        $this->db->join('sys_files', 'sys_files.auto_generated_id = sys_media_upload.sys_folder_id');
+        $this->db->where(array("sys_media_upload.sys_folder_id"=>$id,"sys_media_upload.media_file_type"=>"image"));
+        $this->db->order_by('date_added','DESC');
+        $images = $this->db->get("sys_media_upload")->result_array();
+
+        $this->db->reset_query();
+
+        
+        $this->db->join('sys_files', 'sys_files.auto_generated_id = sys_media_upload.sys_folder_id');
+        $this->db->where(array("sys_media_upload.sys_folder_id"=>$id,"sys_media_upload.media_file_type"=>"video"));
+        $this->db->order_by('date_added','DESC');
+        $videos = $this->db->get("sys_media_upload")->result_array();
+
+        if(count($videos) <=0 && count($images) <= 0){
+            return false;
+        }
+
+        $data = array('images'=>$images,'videos'=>$videos);
+
+        return $data;
+    }
+
 
     public function GetUserById($id){
         return $this->db->get_where("sys_users", "auto_generated_id = ".$id)->result_array();
@@ -423,6 +453,7 @@ class General extends CI_Model {
     public function DeleteUserById($id){
         return $this->db->delete('sys_users', array('auto_generated_id' => $id)); 
     }
+    
 
 
     public function GetSystemPrices(){
@@ -542,6 +573,12 @@ class General extends CI_Model {
 
         return false;
 
+    }
+
+
+    public function DeleteFilesAndFoldersById($id){
+        $this->db->delete('sys_files', array('auto_generated_id' => $id));
+        return $this->db->delete('sys_media_upload', array('sys_folder_id' => $id)); 
     }
 
 

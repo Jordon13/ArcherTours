@@ -1838,6 +1838,21 @@ class Cms extends CI_Controller {
         echo 1;
     }
 
+    public function DeleteFolderFiles(){
+        
+
+        $_POST = sanitizeArray($_POST);
+
+        $id = $_POST['id'];
+        
+        if($this->gen->DeleteFilesAndFoldersById($id)){
+            echo "Successfully Deleted.";
+            return;
+        }
+
+        echo "Failed to update.";
+    }
+
     public function SetTestimonialVisibility(){
        
         $_POST = sanitizeArray($_POST);
