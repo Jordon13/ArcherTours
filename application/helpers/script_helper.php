@@ -35,7 +35,7 @@ if(!function_exists('navigation')){
 						<li><a href="'.base_url('admin/cuser?active=1').'">System User</a></li>
 						<li><a href="'.base_url('admin/cblog?active=1').'">Blog</a></li>
 						<li><a href="'.base_url('admin/cprices?active=1').'">Prices</a></li>
-						
+						<li><a href="'.base_url('admin/crecent?active=1').'">Recent Places</a></li>
 					</ul>
 				</li>
 
@@ -47,6 +47,7 @@ if(!function_exists('navigation')){
 						<li><a href="'.base_url('admin/eblog?active=2').'">Blogs </a> <!--<span class="new badge blue darken-1 z-depth-1">2</span>--></li>
 						<li><a href="'.base_url('admin/testimonials?active=2').'">Testimonals </a><!--<span class="new badge blue darken-1 z-depth-1">1</span>--></li>
 						<li><a href="'.base_url('admin/eprices?active=2').'">Prices </a><!--<span class="new badge blue darken-1 z-depth-1">8</span>--></li>
+						<li><a href="'.base_url('admin/erecent?active=2').'">Recent Places</a></li>
 					</ul>
 				</li>
 
@@ -54,7 +55,7 @@ if(!function_exists('navigation')){
 					<p  class="collapsible-header '.$active3.' waves-effect waves" ><i class="fa fa-cloud-upload" aria-hidden="true"></i> Media Upload</p>
 					<ul class="collapsible-body grey lighten-3">
 						<li><a href="'.base_url('admin/media?active=3').'">Photos / Videos</a></li>
-						<li><a href="'.base_url('admin/recent?active=3').'">Recent Places</a></li>
+						
 					</ul>
 				</li>
 

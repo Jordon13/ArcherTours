@@ -40,7 +40,7 @@ if($data == 0){
 <html>
 
     <head>
-        <title>Edit User</title>
+        <title>View Gallery</title>
         <?php adminhead();?>
 
         <style>
@@ -108,6 +108,52 @@ if($data == 0){
         
       }
 
+      .menu{
+
+width: 200px;
+height: 60px;
+background-color: rgba(253,253,253,1);
+position: absolute;
+z-index: 100;
+}
+
+.menu ul{
+width:100%;
+}
+
+.menu ul li{
+padding: 0.5em;
+font-size: 12px;
+cursor: pointer;
+}
+
+.menu ul li:nth-child(2){
+border-bottom: 0.5px solid rgba(244,244,244,1);
+}
+
+.menu ul li:nth-child(4){
+border-bottom: 0.5px solid rgba(244,244,244,1);
+}
+
+.menu ul li:hover{
+background-color: rgba(140,140,140,0.2);
+/* font-weight: bolder; */
+transition: background-color 0.4s;
+
+}
+
+
+.result{
+color: #388E3C;
+display:flex;
+justify-content:center;
+}
+
+
+.required{
+color:#f44336;
+}
+
             input[disabled] {pointer-events:none}
         
         </style>
@@ -116,7 +162,12 @@ if($data == 0){
     <body>
         <?php navigation(3);?>
         <section class="content-area">
-            
+        <div class="menu z-depth-1" style="display:none">
+            <ul>
+                <li class="edit">Edit Caption</li>
+                <li class="delete">Delete</li>
+            </ul>
+        </div>
             <div class="inner-content">
 
                 <div class="row valign-wrapper" style="align-item:center;">
@@ -145,7 +196,7 @@ if($data == 0){
                             <div class="row photos valign-wrapper" style="align-items:baseline;flex-flow:row wrap;justify-content:center;">
                             <?php foreach($images as $img){?>
 
-                                <div class="col l4 m12 s12 custom-img" >
+                                <div class="col folder l4 m12 s12 custom-img" id="<?php echo $img['_id'];?>">
                                     <img class="z-depth-1 materialboxed" data-caption="<?php echo $img['media_file_desc']?>" src="<?php echo base_url('uploads/media/')?><?php echo $img['media_folder_name']?>/photos/<?php echo $img['media_file_name']?>"/> 
                                 </div>
                             <?php }?>
@@ -160,9 +211,9 @@ if($data == 0){
                         <?php if($hasVideos){?>
                             <div class="row videos valign-wrapper" style="display:none;align-items:baseline;flex-flow:row wrap;justify-content:flex-start;">
                             <?php foreach($videos as $vid){?>
-                                    <div class="col l4 m12 s12 custom-img" >
+                                    <div class="col folder l4 m12 s12 custom-img" id="<?php echo $vid['_id'];?>">
                                     <video controls class="player materialboxed" data-caption="<?php echo $vid['media_file_desc']?>" id="player1"
-                                        width="100%" loop muted poster="<?php echo base_url('assets/trips/19.jpeg') ?>"
+                                        width="100%" loop muted
                                         preload="auto" src="<?php echo base_url('uploads/media/')?><?php echo $vid['media_folder_name']?>/videos/<?php echo $vid['media_file_name']?>"
                                         tabindex="0" title="MediaElement">
                                     </video>
@@ -196,6 +247,31 @@ if($data == 0){
 
 
     <script>
+var folderIndex = -1;
+
+var pre = -1;
+
+$('.menu').click(function(e){
+
+    //$('.folder').
+
+
+});
+
+$('.folder').click(function(){
+
+    $('.folder').removeClass('folder-hover');
+    folderIndex = $('.folder').index(this);
+
+});
+
+$('.folder').hover(function(){
+
+    $('.folder').removeClass('folder-hover');
+    folderIndex = $('.folder').index(this);
+
+});
+        
 
 $('document').ready( ()=>{
   $('.materialboxed').materialbox();
@@ -217,6 +293,52 @@ $('document').ready( ()=>{
     $(this).addClass("activeView");
 
   });
+
+  $(document).click(()=>{
+                $('.menu').hide();
+
+            });
+
+
+  $('.folder').contextmenu((e)=>{
+
+            
+
+var w = $('.folder').eq(folderIndex).width();
+
+var h = $('.folder').eq(folderIndex).height();
+
+id = $('.folder').eq(folderIndex).attr('id');
+
+var left,top;
+
+left = e.pageX - w;
+
+top = e.pageY - (h/2);
+
+if(left < 0){
+    left = 0;
+}
+
+if(left > $(window).width()){
+    left= $(window).width() - $('.menu').width();
+}
+
+$('.menu').css({
+    "top": top+"px",
+    "left":  left +"px"
+}).show();
+e.preventDefault();
+});
+
+$('.delete').click(()=>{
+                
+                $.post("<?php echo site_url('cms/DeleteMedia')?>",{id:id},async function(data){
+                    await $('.folder').eq(folderIndex).fadeOut();
+                });
+
+                
+            });
 
 });
 

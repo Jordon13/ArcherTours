@@ -484,10 +484,16 @@ class General extends CI_Model {
 
     }
 
+    public function GetUserBySessionId($id){
+        $this->db->where("session_id", $id);
+        return $this->db->get("sys_users")->result_array();
+    }
 
     public function GetDealById($id){
         return $this->db->get_where("sys_specials", "auto_generated_id = ".$id)->result_array();
     }
+
+   //user_ses 
 
     public function DeleteDealById($id){
         return $this->db->delete('sys_specials', array('auto_generated_id' => $id)); 
@@ -545,6 +551,21 @@ class General extends CI_Model {
     }
 
 
+    public function UpdateNewsById($data, $id){
+
+        $this->db->where("auto_generated_id",$id);
+
+        $result = $this->db->update('sys_recent',$data);
+
+        if($result){
+            return true;
+        }
+
+        return false;
+
+    }
+
+
 
     public function UpdatePriceById($data, $id){
 
@@ -579,6 +600,28 @@ class General extends CI_Model {
     public function DeleteFilesAndFoldersById($id){
         $this->db->delete('sys_files', array('auto_generated_id' => $id));
         return $this->db->delete('sys_media_upload', array('sys_folder_id' => $id)); 
+    }
+
+    public function DeleteImageById($id){
+        
+        return $this->db->delete('sys_media_upload', array('_id' => $id)); 
+    }
+
+    public function GetNewsById($id){
+        return $this->db->get_where("sys_recent", "auto_generated_id = ".$id)->result_array();
+    }
+
+    public function DeleteNewsById($id){
+        return $this->db->delete('sys_recent', array('auto_generated_id' => $id)); 
+    }
+
+
+    public function GetSystemNews(){
+
+        $this->db->select("auto_generated_id,recent_title,recent_desc,recent_likes,recent_dislikes,recent_views");
+        $this->db->order_by("date_created","desc");
+        return $this->db->get("sys_recent")->result_array();
+
     }
 
 

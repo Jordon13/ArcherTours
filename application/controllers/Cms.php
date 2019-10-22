@@ -975,7 +975,14 @@ class Cms extends CI_Controller {
     }
 
     public function UpdateUser(){
+        $newArray = sanitizeArray($_POST);
 
+        if($this->gen->UpdateUser($newArray)){
+            echo "Successfully Updated.";
+            return;
+        }
+
+        echo "Failed to update.";
     }
 
     /************************************ */
@@ -1804,6 +1811,8 @@ class Cms extends CI_Controller {
         echo "Failed to update.";
     }
 
+    //DeleteImageById
+
     public function DeleteNews(){
         $id = $_POST['id'];
 
@@ -1815,8 +1824,72 @@ class Cms extends CI_Controller {
         echo 1;
     }
 
-    public function EditRecentNews(){
+    public function DeleteMedia(){
+        $id = $_POST['id'];
 
+        if($this->gen->DeleteImageById($id)){
+            echo 0;
+            return;
+        }
+
+        echo 1;
+    }
+
+    public function EditRecentNews(){
+        $images = $this->input->post('images',true);
+        
+        $this->load->helper('security');
+
+        $this->load->helper('string');
+
+        $this->load->library('encryption');
+
+        $id = $_POST['id'];
+
+        array_pop($_POST);
+
+        if(!empty($images)){
+
+            $imageArray = explode(',',$images);
+
+            for($i = 0; $i < count($imageArray); $i++){
+
+                if($imageArray[$i] == ""){
+                    unset($imageArray[$i]);
+                }
+            }
+
+            $newArray = array_values($imageArray);
+            
+            if((isset($_FILES['upl']))  && (count($_FILES['upl']) > 0 )){
+                    
+                for($x =0; $x < count($_FILES['upl']['name']); $x++){
+                    $config['upload_path'] = './uploads/recent/';
+                    $config['allowed_types'] = "jpg|jpeg|mp4|avi|flv";
+                    $config['encrypt_name'] = TRUE;
+                    $this->load->library('upload',$config);
+                    $this->upload->initialize($config);
+                    $_FILES['file']['name'] = $_FILES['upl']['name'][$x];
+                    $_FILES['file']['type'] = $_FILES['upl']['type'][$x];
+                    $_FILES['file']['tmp_name'] = $_FILES['upl']['tmp_name'][$x];
+                    $_FILES['file']['error'] = $_FILES['upl']['error'][$x];
+                    $_FILES['file']['size'] = $_FILES['upl']['size'][$x];
+                    if($this->upload->do_upload('file')){
+                        $newImage  = $this->upload->data()['file_name'];
+                        $array = array($newArray[$x]=>$newImage);
+                        $this->gen->UpdateNewsById($array,$id);
+                    }
+                }
+            }
+
+            array_pop($_POST);
+
+            //print_r($_POST);
+        }
+
+        if(count($_POST) > 0){
+            $result = $this->gen->UpdateNewsById($_POST,$id);
+        }
     }
 
     public function EditImageCaption(){
@@ -1838,6 +1911,7 @@ class Cms extends CI_Controller {
         echo 1;
     }
 
+    
     public function DeleteFolderFiles(){
         
 

@@ -6,6 +6,21 @@ if(!($this->ses->has_userdata("user_ses"))){
 }else{
     $this->load->helper('script');
 }
+$linkId = $this->uri->segment(3,-1);
+
+$filename = FCPATH."uploads/recent/".$data['recent_file_name'];
+
+$mime = mime_content_type($filename);
+
+$exp = explode("/",$mime);
+
+$type = $exp[0];
+
+$isImage = false;
+
+if($type == "image"){
+    $isImage = true;
+}
 
 ?>
 
@@ -15,7 +30,7 @@ if(!($this->ses->has_userdata("user_ses"))){
 <html>
 
     <head>
-        <title>Edit Profile</title>
+        <title>Edit Price</title>
         <?php adminhead();?>
 
         <style>
@@ -46,71 +61,78 @@ if(!($this->ses->has_userdata("user_ses"))){
                 justify-content: center;
             }
 
+            #staticimg{
+                margin-top:1em!important;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                /* filter: blur(1px); */
+            }
+
             input[disabled] {pointer-events:none}
         
         </style>
     </head>
 
     <body>
-        <?php navigation();?>
+        <?php navigation(2);?>
         <section class="content-area">
             
             <div class="inner-content">
 
-                <div class="row">
+                <div class="row valign-wrapper" style="align-item:center;">
 
-                    <div class="col l8 m10 s12 offset-m1 offset-l2 offset-s0" style="margin-top:50px;">
+                <div class="col l8 m10 s12 offset-m1 offset-l2 offset-s0" style="margin-top:50px;">
 
-                        <div class="row white image-sec z-depth-1">
+                    <div class="row white image-sec z-depth-1">
 
+
+                        <?php if($isImage){?>
+                            <div class="col s12">
                             
+                                <img id="staticimg" src="<?php echo base_url('uploads/recent/').$data['recent_file_name'];?>" width="100%" class=""/>
 
+                            </div>
+                        <?php }else{ ?>
                             <div class="col s12">
-                                <input id="fname" name="first_name" class="abt" type="text" value="<?php echo $data['first_name']; ?>" disabled/>
-                                <label for="fname">First Name</label>
+                            
+                            <video controls class="player materialboxed" data-caption="" id="staticimg"
+                                width="100%" loop muted poster=""
+                                preload="auto" src="<?php echo site_url("uploads/recent/").$data['recent_file_name'];?>"
+                                tabindex="0" title="MediaElement">
+                            </video>
+
                             </div>
+                        <?php }?>
 
-                            <div class="col s12">
-                                <input id="lname" name="last_name" class="abt"  type="text" value="<?php echo $data['last_name']; ?>" disabled/>
-                                <label for="lname">Last Name</label>
+                        <div class="file-field input-field col s12">
+                            <div class="btn blue-grey lighten-2">
+                                <span>News Image</span></span>
+                                <input type="file" id="file" class="abt" name="recent_file_name" disabled>
                             </div>
-
-                            <div class="col s12">
-                                <input id="phone" name="user_phone" class="abt"  type="text" value="<?php echo $data['user_phone']; ?>" disabled/>
-                                <label for="phone">Phone Number</label>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text" value="<?php echo $data['recent_file_name'];?>" placeholder="Change Image" disabled>
+                                
                             </div>
+                        </div>
 
+                        <div class="col s12">
+                            <input id="fname" name="recent_title" class="abt" type="text" value="<?php echo $data['recent_title']; ?>" disabled/>
+                            <label for="fname">Title</label>
+                        </div>
 
-                            <div class="col s12">
-                                <input id="email" name="email_address" class="abt"  type="text" value="<?php echo strtolower($data['email_address']);?>" disabled/>
-                                <label for="email">Email</label>
-                            </div>
-
-                            <div class="col s12">
-                                <input id="city" name="user_city" class="abt"  type="text" value="<?php echo $data['user_city']; ?>" disabled/>
-                                <label for="city">City</label>
-                            </div>
-
-                            <div class="col s12">
-                                <input id="state" name="user_state" class="abt"  type="text" value="<?php echo $data['user_state']; ?>" disabled/>
-                                <label for="state">State</label>
-                            </div>
-
-                            <div class="col s12">
-                                <input id="zip" name="user_zip" class="abt"  type="text" value="<?php echo $data['user_zip']; ?>" disabled/>
-                                <label for="zip">Zip</label>
-                            </div>
-
-
-
-                            <div class="col s12 hidden_btn center-align" style="display:none;">
-                                <div class="row">
-                                    <button class="btn waves-effect waves-light green save_btn" onclick="save()">Save</button>
-                                </div>
-                            </div>
-
+                        <div class="col s12">
+                            <input id="lname" name="recent_desc" class="abt"  type="text" value="<?php echo $data['recent_desc']; ?>" disabled/>
+                            <label for="lname">Description</label>
                         </div>
                         
+                        <div class="col s12 hidden_btn center-align" style="display:none;">
+                            <div class="row">
+                                <button class="btn waves-effect waves-light green save_btn" onclick="save()">Save</button>
+                            </div>
+                        </div>
+
+                    </div>
+
 
                     </div>
 
@@ -209,7 +231,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                     $(this).prop('disabled', true);
                     });
 
-                    $(".hidden_btn").eq(globalIndex).hide();
+                    $(".hidden_btn").hide();
                 });
                 
                 $(document).keyup(function(e){
@@ -247,10 +269,10 @@ if(!($this->ses->has_userdata("user_ses"))){
                     form_data.append('images',Array.from(imgs));
                 }
 
-                
+                form_data.append('id',<?php echo $linkId;?>);
 
                 $.ajax({
-                    url: "<?php echo site_url('/cms/UpdateUser');?>",
+                    url: "<?php echo site_url('/cms/EditRecentNews');?>",
                     method: "POST",
                     data: form_data,
                     beforeSend:function(){

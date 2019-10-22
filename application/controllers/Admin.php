@@ -77,6 +77,11 @@ class Admin extends CI_Controller {
         $this->load->view('admin/fb-callback');
     }
 
+    public function crecent()
+    {
+        $this->load->view('admin/create/recent');
+    }
+
 // Edit Pages
     public function euser()
     {
@@ -103,6 +108,11 @@ class Admin extends CI_Controller {
         $this->ps->parse('admin/edit/deal',array('data'=>$this->gen->GetSystemDeals()));
     }
 
+    public function erecent()
+    {
+        $this->ps->parse('admin/edit/recent',array('data'=>$this->gen->GetSystemNews()));
+    }
+
 
 // uploads and content creation
     public function media()
@@ -111,10 +121,10 @@ class Admin extends CI_Controller {
         $this->load->view('admin/mupload/multimedia',array('data'=>$this->gen->GetSystemFolders()));
     }
 
-    public function recent()
-    {
-        $this->load->view('admin/mupload/recent');
-    }
+    // public function recent()
+    // {
+    //     $this->load->view('admin/mupload/recent');
+    // }
 
     // pages redesign
 
@@ -212,7 +222,9 @@ class Admin extends CI_Controller {
 
     public function editprofile()
     {
-        $this->load->view('admin/editprofile');
+        $result = $this->gen->GetUserBySessionId($this->ses->userdata('user_ses'));
+
+        $this->load->view('admin/editprofile',array('data'=>$result[0]));
     }
 
     public function edituser()
@@ -274,6 +286,15 @@ class Admin extends CI_Controller {
         $result = $this->gen->GetBlogById($linkId);
 
         $this->load->view('admin/temp/editblog',array('data'=>$result[0]));
+    }
+
+    public function editnews()
+    {
+        $linkId = $this->uri->segment(3,-1);
+
+        $result = $this->gen->GetNewsById($linkId);
+
+        $this->load->view('admin/temp/editnews',array('data'=>$result[0]));
     }
 
     public function logout(){
