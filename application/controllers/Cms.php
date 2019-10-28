@@ -1897,7 +1897,18 @@ class Cms extends CI_Controller {
     }
 
     public function EditBooking(){
+        $newArray = sanitizeArray($_POST);
 
+        $id = $newArray['id'];
+
+        array_pop($newArray);
+        
+        if($this->gen->UpdateBookingById($newArray,$id)){
+            echo "Successfully Updated.";
+            return;
+        }
+
+        echo "Failed to update.";
     }
 
     public function DeleteTestimonial(){

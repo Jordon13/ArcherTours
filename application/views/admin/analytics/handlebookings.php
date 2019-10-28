@@ -6,6 +6,18 @@ if(!($this->ses->has_userdata("user_ses"))){
 }else{
     $this->load->helper('script');
 }
+
+$nodata = false;
+
+if($data == NULL){
+    $nodata = true;
+}
+
+
+if(count($data) <= 0){
+    $nodata = true;
+}
+
 ?>
 
 <!Doctype html>
@@ -175,11 +187,11 @@ if(!($this->ses->has_userdata("user_ses"))){
 
             <div class="inner-content">
             
+                <?php if(!$nodata){?>
                 <div class="row maintab">
                     <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
                         <div class="parea ">
-                            <div class="circle active-circle">Quoted</div>
-                            <div class="circle">Nego</div>
+                            <div class="circle active-circle">Nego</div>
                             <div class="circle">Booked</div>
                             <div class="circle">InProg</div>
                             <div class="circle">Comp</div>
@@ -194,173 +206,16 @@ if(!($this->ses->has_userdata("user_ses"))){
                     <div class="col s12 tabarea">
                     
                         <ul id="tabs-swipe-demo" class="tabs tabs-fixed-width blue accent-4 white-text">
-                            <li class="tab col s3"><a href="#Quote">Quoted</a></li>
+                           
                             <li class="tab col s3"><a class="" href="#Negotiation">Negotiation</a></li>
                             <li class="tab col s3"><a href="#Booked">Booked</a></li>
                             <li class="tab col s3"><a href="#InProgress">In Progress</a></li>
                             <li class="tab col s3"><a class="" href="#Completed">Completed</a></li>
                             <li class="tab col s3"><a href="#Cancelled">Cancelled</a></li>
                         </ul>
+
+                        <!-- from here -->
                         
-                        <div id="Quote" class="col s12 white" style="padding: 1em!important;">
-                            <table class="responsive-table centered">
-                                
-                                <thead class="grey lighten-5">
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>Customer Name</th>
-                                        <th>Origin</th>
-                                        <th>Destination</th>
-                                        <th>Date Of Trip</th>
-                                        <th>Estimated Price</th>
-                                    </tr>
-                                <thead>
-
-                                <tbody>
-
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Jordaine Gayle</td>
-                                        <td>Montego Bay</td>
-                                        <td>Kingston</td>
-                                        <td>12/12/2019</td>
-                                        <td>$1,200.00</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Jordaine Gayle</td>
-                                        <td>Montego Bay</td>
-                                        <td>Kingston</td>
-                                        <td>12/12/2019</td>
-                                        <td>$1,200.00</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Jordaine Gayle</td>
-                                        <td>Montego Bay</td>
-                                        <td>Kingston</td>
-                                        <td>12/12/2019</td>
-                                        <td>$1,200.00</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Jordaine Gayle</td>
-                                        <td>Montego Bay</td>
-                                        <td>Kingston</td>
-                                        <td>12/12/2019</td>
-                                        <td>$1,200.00</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Jordaine Gayle</td>
-                                        <td>Montego Bay</td>
-                                        <td>Kingston</td>
-                                        <td>12/12/2019</td>
-                                        <td>$1,200.00</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Jordaine Gayle</td>
-                                        <td>Montego Bay</td>
-                                        <td>Kingston</td>
-                                        <td>12/12/2019</td>
-                                        <td>$1,200.00</td>
-                                    </tr>
-
-
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Jordaine Gayle</td>
-                                        <td>Montego Bay</td>
-                                        <td>Kingston</td>
-                                        <td>12/12/2019</td>
-                                        <td>$1,200.00</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Jordaine Gayle</td>
-                                        <td>Montego Bay</td>
-                                        <td>Kingston</td>
-                                        <td>12/12/2019</td>
-                                        <td>$1,200.00</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Jordaine Gayle</td>
-                                        <td>Montego Bay</td>
-                                        <td>Kingston</td>
-                                        <td>12/12/2019</td>
-                                        <td>$1,200.00</td>
-                                    </tr>
-
-
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Jordaine Gayle</td>
-                                        <td>Montego Bay</td>
-                                        <td>Kingston</td>
-                                        <td>12/12/2019</td>
-                                        <td>$1,200.00</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Jordaine Gayle</td>
-                                        <td>Montego Bay</td>
-                                        <td>Kingston</td>
-                                        <td>12/12/2019</td>
-                                        <td>$1,200.00</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Jordaine Gayle</td>
-                                        <td>Montego Bay</td>
-                                        <td>Kingston</td>
-                                        <td>12/12/2019</td>
-                                        <td>$1,200.00</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Jordaine Gayle</td>
-                                        <td>Montego Bay</td>
-                                        <td>Kingston</td>
-                                        <td>12/12/2019</td>
-                                        <td>$1,200.00</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Jordaine Gayle</td>
-                                        <td>Montego Bay</td>
-                                        <td>Kingston</td>
-                                        <td>12/12/2019</td>
-                                        <td>$1,200.00</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Jordaine Gayle</td>
-                                        <td>Montego Bay</td>
-                                        <td>Kingston</td>
-                                        <td>12/12/2019</td>
-                                        <td>$1,200.00</td>
-                                    </tr>
-
-                                </tbody>
-                                
-                                <tfoot></tfoot>
-                            
-                            </table>
-                        </div>
 
                         <div id="Negotiation" class="col s12 white" style="padding: 1em!important;">
                             <table class="responsive-table centered">
@@ -371,6 +226,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                                         <th>Customer Name</th>
                                         <th>Origin</th>
                                         <th>Destination</th>
+                                        <th>#People</th>
                                         <th>Date Of Trip</th>
                                         <th>Estimated Price</th>
                                     </tr>
@@ -378,32 +234,23 @@ if(!($this->ses->has_userdata("user_ses"))){
 
                                 <tbody>
 
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Jordaine Gayle</td>
-                                        <td>Montego Bay</td>
-                                        <td>Kingston</td>
-                                        <td>12/12/2019</td>
-                                        <td>$1,200.00</td>
-                                    </tr>
+                                <?php foreach($data as $d){?>
 
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Jordaine Gayle</td>
-                                        <td>Montego Bay</td>
-                                        <td>Kingston</td>
-                                        <td>12/12/2019</td>
-                                        <td>$1,200.00</td>
-                                    </tr>
+                                <?php if($d['booking_status'] == "nego"){?>
+                                    <tr onclick="openpage(<?php echo $d['auto_generated_id']; ?>)">
 
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Jordaine Gayle</td>
-                                        <td>Montego Bay</td>
-                                        <td>Kingston</td>
-                                        <td>12/12/2019</td>
-                                        <td>$1,200.00</td>
+                                        <td><?php echo $d['auto_generated_id']?></td>
+                                        <td><?php echo $d['booking_first_name'].' '.$d['booking_last_name'];?></td>
+                                        <td><?php echo $d['booking_origin']?></td>
+                                        <td><?php echo $d['booking_dest']?></td>
+                                        <td><?php echo $d['booking_adults']?></td>
+                                        <td><?php echo $d['booking_date']?></td>
+                                        <td><?php echo $d['booking_price']?></td>
+
                                     </tr>
+                                <?php }?>
+
+                                <?php }?>
 
                                 </tbody>
                                 
@@ -421,6 +268,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                                         <th>Customer Name</th>
                                         <th>Origin</th>
                                         <th>Destination</th>
+                                        <th>#People</th>
                                         <th>Date Of Trip</th>
                                         <th>Estimated Price</th>
                                     </tr>
@@ -428,32 +276,23 @@ if(!($this->ses->has_userdata("user_ses"))){
 
                                 <tbody>
 
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Jordaine Gayle</td>
-                                        <td>Montego Bay</td>
-                                        <td>Kingston</td>
-                                        <td>12/12/2019</td>
-                                        <td>$1,200.00</td>
-                                    </tr>
+                                <?php foreach($data as $d){?>
 
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Jordaine Gayle</td>
-                                        <td>Montego Bay</td>
-                                        <td>Kingston</td>
-                                        <td>12/12/2019</td>
-                                        <td>$1,200.00</td>
-                                    </tr>
+                                <?php if($d['booking_status'] == "booked"){?>
+                                    <tr onclick="openpage(<?php echo $d['auto_generated_id']; ?>)">
 
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Jordaine Gayle</td>
-                                        <td>Montego Bay</td>
-                                        <td>Kingston</td>
-                                        <td>12/12/2019</td>
-                                        <td>$1,200.00</td>
+                                        <td><?php echo $d['auto_generated_id']?></td>
+                                        <td><?php echo $d['booking_first_name'].' '.$d['booking_last_name'];?></td>
+                                        <td><?php echo $d['booking_origin']?></td>
+                                        <td><?php echo $d['booking_dest']?></td>
+                                        <td><?php echo $d['booking_adults']?></td>
+                                        <td><?php echo $d['booking_date']?></td>
+                                        <td><?php echo $d['booking_price']?></td>
+
                                     </tr>
+                                <?php }?>
+
+                                <?php }?>
 
                                 </tbody>
                                 
@@ -461,7 +300,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                             
                             </table>
                         </div>
-                        
+
                         <div id="InProgress" class="col s12 white" style="padding: 1em!important;">
                             <table class="responsive-table centered">
                                 
@@ -471,6 +310,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                                         <th>Customer Name</th>
                                         <th>Origin</th>
                                         <th>Destination</th>
+                                        <th>#People</th>
                                         <th>Date Of Trip</th>
                                         <th>Estimated Price</th>
                                     </tr>
@@ -478,32 +318,23 @@ if(!($this->ses->has_userdata("user_ses"))){
 
                                 <tbody>
 
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Jordaine Gayle</td>
-                                        <td>Montego Bay</td>
-                                        <td>Kingston</td>
-                                        <td>12/12/2019</td>
-                                        <td>$1,200.00</td>
-                                    </tr>
+                                <?php foreach($data as $d){?>
 
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Jordaine Gayle</td>
-                                        <td>Montego Bay</td>
-                                        <td>Kingston</td>
-                                        <td>12/12/2019</td>
-                                        <td>$1,200.00</td>
-                                    </tr>
+                                <?php if($d['booking_status'] == "inprog"){?>
+                                    <tr onclick="openpage(<?php echo $d['auto_generated_id']; ?>)">
 
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Jordaine Gayle</td>
-                                        <td>Montego Bay</td>
-                                        <td>Kingston</td>
-                                        <td>12/12/2019</td>
-                                        <td>$1,200.00</td>
+                                        <td><?php echo $d['auto_generated_id']?></td>
+                                        <td><?php echo $d['booking_first_name'].' '.$d['booking_last_name'];?></td>
+                                        <td><?php echo $d['booking_origin']?></td>
+                                        <td><?php echo $d['booking_dest']?></td>
+                                        <td><?php echo $d['booking_adults']?></td>
+                                        <td><?php echo $d['booking_date']?></td>
+                                        <td><?php echo $d['booking_price']?></td>
+
                                     </tr>
+                                <?php }?>
+
+                                <?php }?>
 
                                 </tbody>
                                 
@@ -521,6 +352,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                                         <th>Customer Name</th>
                                         <th>Origin</th>
                                         <th>Destination</th>
+                                        <th>#People</th>
                                         <th>Date Of Trip</th>
                                         <th>Estimated Price</th>
                                     </tr>
@@ -528,32 +360,23 @@ if(!($this->ses->has_userdata("user_ses"))){
 
                                 <tbody>
 
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Jordaine Gayle</td>
-                                        <td>Montego Bay</td>
-                                        <td>Kingston</td>
-                                        <td>12/12/2019</td>
-                                        <td>$1,200.00</td>
-                                    </tr>
+                                <?php foreach($data as $d){?>
 
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Jordaine Gayle</td>
-                                        <td>Montego Bay</td>
-                                        <td>Kingston</td>
-                                        <td>12/12/2019</td>
-                                        <td>$1,200.00</td>
-                                    </tr>
+                                <?php if($d['booking_status'] == "completed"){?>
+                                    <tr onclick="openpage(<?php echo $d['auto_generated_id']; ?>)">
 
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Jordaine Gayle</td>
-                                        <td>Montego Bay</td>
-                                        <td>Kingston</td>
-                                        <td>12/12/2019</td>
-                                        <td>$1,200.00</td>
+                                        <td><?php echo $d['auto_generated_id']?></td>
+                                        <td><?php echo $d['booking_first_name'].' '.$d['booking_last_name'];?></td>
+                                        <td><?php echo $d['booking_origin']?></td>
+                                        <td><?php echo $d['booking_dest']?></td>
+                                        <td><?php echo $d['booking_adults']?></td>
+                                        <td><?php echo $d['booking_date']?></td>
+                                        <td><?php echo $d['booking_price']?></td>
+
                                     </tr>
+                                <?php }?>
+
+                                <?php }?>
 
                                 </tbody>
                                 
@@ -561,7 +384,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                             
                             </table>
                         </div>
-                        
+
                         <div id="Cancelled" class="col s12 white" style="padding: 1em!important;">
                             <table class="responsive-table centered">
                                 
@@ -578,32 +401,22 @@ if(!($this->ses->has_userdata("user_ses"))){
 
                                 <tbody>
 
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Jordaine Gayle</td>
-                                        <td>Montego Bay</td>
-                                        <td>Kingston</td>
-                                        <td>12/12/2019</td>
-                                        <td>$1,200.00</td>
-                                    </tr>
+                                <?php foreach($data as $d){?>
 
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Jordaine Gayle</td>
-                                        <td>Montego Bay</td>
-                                        <td>Kingston</td>
-                                        <td>12/12/2019</td>
-                                        <td>$1,200.00</td>
-                                    </tr>
+                                <?php if($d['booking_status'] == "cancelled"){?>
+                                    <tr onclick="openpage(<?php echo $d['auto_generated_id']; ?>)">
 
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Jordaine Gayle</td>
-                                        <td>Montego Bay</td>
-                                        <td>Kingston</td>
-                                        <td>12/12/2019</td>
-                                        <td>$1,200.00</td>
+                                        <td><?php echo $d['auto_generated_id']?></td>
+                                        <td><?php echo $d['booking_first_name'].' '.$d['booking_last_name'];?></td>
+                                        <td><?php echo $d['booking_origin']?></td>
+                                        <td><?php echo $d['booking_dest']?></td>
+                                        <td><?php echo $d['booking_date']?></td>
+                                        <td><?php echo $d['booking_price']?></td>
+
                                     </tr>
+                                <?php }?>
+
+                                <?php }?>
 
                                 </tbody>
                                 
@@ -614,7 +427,11 @@ if(!($this->ses->has_userdata("user_ses"))){
                     
                     </div>
                 </div>
-
+                <?php }else{?>
+                    <div class="col s12 center-align">
+                        <h1>No Content</h1>
+                    </div>
+                <?php }?>
             </div>
 
         </section>
@@ -658,6 +475,16 @@ if(!($this->ses->has_userdata("user_ses"))){
                     'height': tabHeight()+"px"
                 });
             });
+        }
+
+
+        var openpage = (id) =>{
+
+            window.open(
+            "<?php echo site_url('admin/editbooking/')?>"+id,
+            '_blank' // <- This is what makes it open in a new window.
+            );
+            //window.location.href = ;
         }
     </script>
 

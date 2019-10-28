@@ -597,6 +597,23 @@ class General extends CI_Model {
     }
 
 
+    public function UpdateBookingById($data, $id){
+
+        $this->db->where("auto_generated_id",$id);
+
+        $result = $this->db->update('sys_booking',$data);
+
+        if($result){
+            return true;
+        }
+
+        return false;
+
+    }
+
+    //UpdateBookingById
+
+
     public function DeleteFilesAndFoldersById($id){
         $this->db->delete('sys_files', array('auto_generated_id' => $id));
         return $this->db->delete('sys_media_upload', array('sys_folder_id' => $id)); 
@@ -622,6 +639,22 @@ class General extends CI_Model {
         $this->db->order_by("date_created","desc");
         return $this->db->get("sys_recent")->result_array();
 
+    }
+
+
+    public function GetSystemBookings(){
+
+        $this->db->order_by("date_created","desc");
+        return $this->db->get("sys_booking")->result_array();
+
+    }
+
+    public function GetBookingById($id){
+        return $this->db->get_where("sys_booking", "auto_generated_id = ".$id)->result_array();
+    }
+
+    public function DeleteBookingById($id){
+        return $this->db->delete('sys_booking', array('auto_generated_id' => $id)); 
     }
 
 

@@ -206,7 +206,7 @@ class Admin extends CI_Controller {
 
     public function handlebookings()
     {
-        $this->load->view('admin/analytics/handlebookings');
+        $this->load->view('admin/analytics/handlebookings',array('data'=>$this->gen->GetSystemBookings()));
     }
 
     public function profitloss()
@@ -295,6 +295,15 @@ class Admin extends CI_Controller {
         $result = $this->gen->GetNewsById($linkId);
 
         $this->load->view('admin/temp/editnews',array('data'=>$result[0]));
+    }
+
+    public function editbooking()
+    {
+        $linkId = $this->uri->segment(3,-1);
+
+        $result = $this->gen->GetBookingById($linkId);
+
+        $this->load->view('admin/temp/editbooking',array('data'=>$result[0]));
     }
 
     public function logout(){
