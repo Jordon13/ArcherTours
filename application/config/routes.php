@@ -152,6 +152,7 @@ $route['admin/editblog/(:any)']['GET'] = "admin/editblog";
 $route['admin/viewfiles/(:any)']['GET'] = "admin/viewfiles";
 $route['admin/editnews/(:any)']['GET'] = "admin/editnews";
 $route['admin/editbooking/(:any)']['GET'] = "admin/editbooking";
+$route['admin/calender/(:any)']['GET'] = "admin/calender";
 //editbooking
 
 

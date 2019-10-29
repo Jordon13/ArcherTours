@@ -741,6 +741,13 @@ class General extends CI_Model {
         }
     }
 
+    function GetBookingsByDate($month,$year){
+        $this->db->select("*");
+        $this->db->where('DATE_FORMAT(booking_date, "%c") = ',$month);
+        $this->db->where('DATE_FORMAT(booking_date, "%Y") = ',$year);
+        return $this->db->get("sys_booking")->result_array();
+    }
+
 }
 
 ?>

@@ -6,6 +6,8 @@ if(!($this->ses->has_userdata("user_ses"))){
 }else{
     $this->load->helper('script');
 }
+
+
 ?>
 
 <!Doctype html>
@@ -57,7 +59,7 @@ if(!($this->ses->has_userdata("user_ses"))){
               width: 100%;
           }
 
-          .content-area{
+          /* .content-area{
               height: auto!important;
               min-height: 100%;
           }
@@ -66,6 +68,17 @@ if(!($this->ses->has_userdata("user_ses"))){
               margin-top: 2em;
               height: auto!important;
               min-height: 100%!important;
+          } */
+
+          table tbody tr td{
+              border: 1px solid gray!important;
+              padding: 2.7em!important;
+          }
+
+          table {
+              background-color: rgba(255,255,255,0.8);
+              border-radius: 10px!important;
+              padding:0.5em!important;
           }
 
         </style>
@@ -76,12 +89,7 @@ if(!($this->ses->has_userdata("user_ses"))){
         <section class="content-area">
 
             <div class="inner-content">
-                <div class="row">
-                    <div class="col l5 m7 s12">
-                    <canvas id="myChart"></canvas>
-                    </div>
-                
-                </div>
+                <?php print_r($data); ?>
             
             </div>
 
@@ -91,26 +99,7 @@ if(!($this->ses->has_userdata("user_ses"))){
     </body>
     <?php adminjs();?>
     <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var chart = new Chart(ctx, {
-            // The type of chart we want to create
-            type: 'line',
-
-            // The data for our dataset
-            data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                datasets: [{
-                    label: 'My First dataset',
-                    backgroundColor: 'rgba(0, 0, 0, 0.1)',
-                    fill: false,
-                    borderColor: 'rgb(255, 99, 132)',
-                    data: [0, 10, 5, 2, 20, 30, 45]
-                }]
-            },
-
-            // Configuration options go here
-            options: {}
-        });
+        
     </script>
 
 </html>

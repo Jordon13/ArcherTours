@@ -216,7 +216,34 @@ class Admin extends CI_Controller {
 
     public function calender()
     {
-        $this->load->view('admin/analytics/bcalender');
+        $month = $this->uri->segment(3,-1);
+
+        $year = date("Y");
+        
+        if($month == "-1"){
+            $month = date("m");
+        }
+
+        $items = $this->gen->GetBookingsByDate($month,$year);
+
+        $data2 = array();
+
+        if(count($items)>0){
+
+            foreach($items as $i){
+
+                $day = date("d", strtotime($i['booking_date']));
+                $id = $i['auto_generated_id'];
+                $url = site_url('admin/editbooking/').$id;
+                $data2+= array($day => $url);
+
+            }
+
+        }
+
+        $data = $this->cal->generate($year, $month,$data2);
+
+        $this->load->view('admin/analytics/bcalender',array('data'=>$data));
     }
 
 
