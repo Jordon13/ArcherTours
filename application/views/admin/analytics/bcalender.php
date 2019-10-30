@@ -7,7 +7,7 @@ if(!($this->ses->has_userdata("user_ses"))){
     $this->load->helper('script');
 }
 
-
+//redirect(site_url("admin/calender")."?currentmonth=".date('m'));
 ?>
 
 <!Doctype html>
@@ -59,7 +59,7 @@ if(!($this->ses->has_userdata("user_ses"))){
               width: 100%;
           }
 
-          /* .content-area{
+          .content-area{
               height: auto!important;
               min-height: 100%;
           }
@@ -68,7 +68,7 @@ if(!($this->ses->has_userdata("user_ses"))){
               margin-top: 2em;
               height: auto!important;
               min-height: 100%!important;
-          } */
+          }
 
           table tbody tr td{
               border: 1px solid gray!important;
@@ -85,7 +85,7 @@ if(!($this->ses->has_userdata("user_ses"))){
     </head>
 
     <body>
-        <?php navigation($_GET['active']);?>
+        <?php navigation(4);?>
         <section class="content-area">
 
             <div class="inner-content">
@@ -99,6 +99,88 @@ if(!($this->ses->has_userdata("user_ses"))){
     </body>
     <?php adminjs();?>
     <script>
+        
+
+        
+
+        
+        
+        $('document').ready(function(){
+
+            var tb = $('table tbody tr:first th');
+
+            var d = new Date();
+
+            //console.log(d);
+        
+            var currentMonth =  d.getMonth()+1;
+
+            var current = getUrlParameter('currentmonth');
+
+            if(current === undefined){
+                current = currentMonth;
+            }
+
+            $(tb).eq(0).click(function(e){
+            e.preventDefault();
+
+                setTimeout(function(){
+
+                    var newcur = Number(current) - 1;
+
+                    if(newcur <= 1){
+                        newcur = 1;
+                    }
+
+                    window.location.replace('<?php site_url('admin/calender/')?>'+newcur+'?currentmonth='+newcur);
+
+                },150);
+            });
+
+            $(tb).eq(2).click(function(e){
+                e.preventDefault();
+
+                
+                setTimeout(function(){
+
+                    var newcur = Number(current) + 1;
+
+                    if(newcur >= 12){
+                        newcur = 12;
+                    }
+
+                    window.location.replace('<?php site_url('admin/calender/')?>'+newcur+'?currentmonth='+newcur);
+
+                },150);
+
+                
+            });
+
+        });
+
+
+
+        var getUrlParameter = function getUrlParameter(sParam) {
+            var sPageURL = window.location.search.substring(1),
+            sURLVariables = sPageURL.split('&'),
+            sParameterName,
+            i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+            }
+        }
+
+        
+
+
+
+        
+};
+
         
     </script>
 

@@ -64,7 +64,7 @@ if(!function_exists('navigation')){
 					<ul class="collapsible-body grey lighten-3">
 						<li><a href="'.base_url('admin/handlebookings?active=4').'">Bookings</a></li>
 						<li><a href="'.base_url('admin/booking_analytics?active=4').'">Booking Analytics</a></li>
-						<li><a href="'.base_url('admin/calender?active=4').'">Activity Calender</a></li>
+						<li><a href="'.base_url('admin/calender/').'">Activity Calender</a></li>
 						<li><a href="'.base_url('admin/profitloss?active=4').'">Income Report</a></li>
 					</ul>
 				</li>

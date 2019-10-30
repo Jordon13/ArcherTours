@@ -241,7 +241,13 @@ class Admin extends CI_Controller {
 
         }
 
-        $data = $this->cal->generate($year, $month,$data2);
+        $prefs = array(
+            'show_next_prev'  => TRUE
+        );
+    
+        $this->load->library('calendar', $prefs);
+
+        $data = $this->calendar->generate($year, $month,$data2);
 
         $this->load->view('admin/analytics/bcalender',array('data'=>$data));
     }
