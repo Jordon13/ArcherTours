@@ -6,6 +6,8 @@ if(!($this->ses->has_userdata("user_ses"))){
 }else{
     $this->load->helper('script');
 }
+
+//print_r($data);
 ?>
 
 <!Doctype html>
@@ -246,8 +248,15 @@ if(!($this->ses->has_userdata("user_ses"))){
 
         $(document).ready(()=>{
             $('select').formSelect();
-
         });
+
+
+        itm = JSON.parse('<?php echo json_encode($data['overall']); ?>');
+        var months5 = new Array();
+        var data5 = new Array();
+        itm.forEach(function(x){months5.push(x.Months)});
+        itm.forEach(function(x){data5.push(x.Bookings)});
+
 
         var ctx5 = document.getElementById('myChart5').getContext('2d');
         var myDoughnutChart = new Chart(ctx5, {
@@ -255,7 +264,7 @@ if(!($this->ses->has_userdata("user_ses"))){
            
             data: data = {
                 datasets: [{
-                    data: [10, 20, 30],
+                    data: data5,
                     backgroundColor: [
                         '#311b92',
                         '#ff1744',
@@ -264,15 +273,17 @@ if(!($this->ses->has_userdata("user_ses"))){
                 }],
 
                 // These labels appear in the legend and in the tooltips when hovering different arcs
-                labels: [
-                    'April',
-                    'May',
-                    'June'
-                ],
+                labels: months5,
             },
             options: {}
         });
 
+
+        itm = JSON.parse('<?php echo json_encode($data['completed']); ?>');
+        var months = new Array();
+        var data = new Array();
+        itm.forEach(function(x){months5.push(x.Months)});
+        itm.forEach(function(x){data5.push(x.Bookings)});
 
         var ctx = document.getElementById('myChart').getContext('2d');
         var chart = new Chart(ctx, {
@@ -281,12 +292,12 @@ if(!($this->ses->has_userdata("user_ses"))){
 
             // The data for our dataset
             data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                labels: months,
                 datasets: [{
                     backgroundColor: 'rgba(0, 0, 0, 0.1)',
                     fill: false,
                     borderColor: 'rgb(255, 99, 132)',
-                    data: [0, 10, 5, 2, 20, 30, 45]
+                    data: data
                 }]
             },
 
@@ -346,6 +357,13 @@ if(!($this->ses->has_userdata("user_ses"))){
             }
         });
 
+
+        itm3 = JSON.parse('<?php echo json_encode($data['booked']); ?>');
+        var months3 = new Array();
+        var data3 = new Array();
+        itm3.forEach(function(x){months3.push(x.Months)});
+        itm3.forEach(function(x){data3.push(x.Bookings)});
+
         var ctx3 = document.getElementById('myChart3').getContext('2d');
         var chart3 = new Chart(ctx3, {
             // The type of chart we want to create
@@ -353,12 +371,12 @@ if(!($this->ses->has_userdata("user_ses"))){
 
             // The data for our dataset
             data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                labels: months3,
                 datasets: [{
                     backgroundColor: 'rgba(0, 0, 0, 0.1)',
                     fill: false,
                     borderColor: 'rgb(255, 99, 132)',
-                    data: [40, 11, 55, 79, 31, 66, 70]
+                    data: data3
                 }]
             },
 

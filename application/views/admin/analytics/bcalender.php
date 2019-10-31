@@ -100,11 +100,6 @@ if(!($this->ses->has_userdata("user_ses"))){
     <?php adminjs();?>
     <script>
         
-
-        
-
-        
-        
         $('document').ready(function(){
 
             var tb = $('table tbody tr:first th');
@@ -158,8 +153,6 @@ if(!($this->ses->has_userdata("user_ses"))){
 
         });
 
-
-
         var getUrlParameter = function getUrlParameter(sParam) {
             var sPageURL = window.location.search.substring(1),
             sURLVariables = sPageURL.split('&'),
@@ -173,12 +166,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                 return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
             }
         }
-
-        
-
-
-
-        
+  
 };
 
         

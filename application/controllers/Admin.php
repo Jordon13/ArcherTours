@@ -200,7 +200,7 @@ class Admin extends CI_Controller {
 
     public function booking_analytics()
     {
-        $this->load->view('admin/analytics/booking_analytics');
+        $this->load->view('admin/analytics/booking_analytics',array('data'=>$this->gen->booking_analytics_data()));
     }
 
 

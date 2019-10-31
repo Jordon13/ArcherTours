@@ -693,6 +693,68 @@ class General extends CI_Model {
     }
 
 
+    /* Potential Queries*/
+
+
+    //To select all bookings with in a three months period - SELECT * FROM `sys_booking` where date_created >= (NOW() - INTERVAL 3 MONTH) and date_created < (NOW() + INTERVAL 1 MONTH) ORDER BY `sys_booking`.`date_created` DESC
+
+    //select all booking that are completed in this year - select * from `sys_booking` where year(date_created) = year(NOW()) and booking_status = 'completed'
+
+    //select * from `sys_booking` where year(date_created) = year(NOW()) and booking_status = 'nego'
+
+    //select * from `sys_booking` where year(date_created) = year(NOW()) and booking_status = 'cancelled'
+
+    //select * from `sys_booking` where year(date_created) = year(NOW()) and booking_status = 'booked'
+
+
+
+    public function booking_analytics_data()
+    {
+        $items = array();
+
+        //select MONTHNAME(date_created) as 'Months', Count(date_created) as 'Bookings' from `sys_booking` group by MONTHNAME(date_created)
+
+        $query = $this->db->query("select MONTHNAME(date_created) as 'Months', Count(date_created) as 'Bookings' FROM `sys_booking` where `date_created` >= (NOW() - INTERVAL 3 MONTH)
+         and `date_created` < (NOW() + INTERVAL 1 MONTH)  group by MONTHNAME(date_created) ORDER BY MONTH(date_created) ASC ");
+        $results = $query->result_array();
+        $items+=array("overall"=>$results);
+
+
+        $query = $this->db->query("select MONTHNAME(date_created) as 'Months', Count(date_created) as 'Bookings' 
+        from `sys_booking` where year(`date_created`) = year(NOW()) and `booking_status` = 'completed'
+        group by MONTHNAME(date_created) ORDER BY MONTH(date_created) ASC ");
+        $results = $query->result_array();
+        $items+=array("completed"=>$results);
+
+        $query = $this->db->query("select MONTHNAME(date_created) as 'Months', Count(date_created) as 'Bookings' 
+        from `sys_booking` where year(`date_created`) = year(NOW()) and `booking_status` = 'nego'
+        group by MONTHNAME(date_created) ORDER BY MONTH(date_created) ASC ");
+        $results = $query->result_array();
+        $items+=array("nego"=>$results);
+
+        $query = $this->db->query("select MONTHNAME(date_created) as 'Months', Count(date_created) as 'Bookings' 
+        from `sys_booking` where year(`date_created`) = year(NOW()) and `booking_status` = 'cancelled'
+        group by MONTHNAME(date_created) ORDER BY MONTH(date_created) ASC ");
+        $results = $query->result_array();
+        $items+=array("cancelled"=>$results);
+
+        $query = $this->db->query("select MONTHNAME(date_created) as 'Months', Count(date_created) as 'Bookings' 
+        from `sys_booking` where year(`date_created`) = year(NOW()) and `booking_status` = 'booked'
+        group by MONTHNAME(date_created) ORDER BY MONTH(date_created) ASC ");
+        $results = $query->result_array();
+        $items+=array("booked"=>$results);
+
+        $query = $this->db->query("select MONTHNAME(date_created) as 'Months', Count(date_created) as 'Bookings' 
+        from `sys_booking` where year(`date_created`) = year(NOW()) and `booking_status` = 'quoted'
+        group by MONTHNAME(date_created) ORDER BY MONTH(date_created) ASC ");
+        $results = $query->result_array();
+        $items+=array("quoted"=>$results);
+
+        return $items;
+
+    }
+
+
     public function xss_cleanse($array){
         foreach($array as $key => $value){
             if(!empty($value)){
