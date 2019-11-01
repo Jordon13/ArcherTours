@@ -211,7 +211,7 @@ class Admin extends CI_Controller {
 
     public function profitloss()
     {
-        $this->load->view('admin/analytics/profitloss');
+        $this->load->view('admin/analytics/profitloss', array("data"=>$this->gen->plsheet()));
     }
 
     public function calender()

@@ -6,6 +6,7 @@ if(!($this->ses->has_userdata("user_ses"))){
 }else{
     $this->load->helper('script');
 }
+
 ?>
 
 <!Doctype html>
@@ -77,7 +78,7 @@ if(!($this->ses->has_userdata("user_ses"))){
 
             <div class="inner-content">
                 <div class="row">
-                    <div class="col l5 m7 s12">
+                    <div class="col s12  white">
                     <canvas id="myChart"></canvas>
                     </div>
                 
@@ -91,6 +92,37 @@ if(!($this->ses->has_userdata("user_ses"))){
     </body>
     <?php adminjs();?>
     <script>
+
+          var arry = JSON.parse('<?php echo json_encode($data);?>');
+
+          console.log(arry);
+
+
+          var months = new Array();
+
+          arry.forEach((itm)=>{
+            months.push(itm.Month);
+          });
+
+          var completed = new Array();
+
+          arry.forEach((itm)=>{
+            completed.push(itm.CompletedPrice);
+          });
+
+          var cancelled = new Array();
+
+          arry.forEach((itm)=>{
+            cancelled.push(itm.CancelledPrice);
+          });
+
+          var total = new Array();
+
+          arry.forEach((itm)=>{
+            total.push(Number(itm.CompletedPrice)+Number(itm.CancelledPrice));
+          });
+
+
         var ctx = document.getElementById('myChart').getContext('2d');
         var chart = new Chart(ctx, {
             // The type of chart we want to create
@@ -98,13 +130,27 @@ if(!($this->ses->has_userdata("user_ses"))){
 
             // The data for our dataset
             data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                labels: months,
                 datasets: [{
-                    label: 'My First dataset',
+                    label: 'Completed',
                     backgroundColor: 'rgba(0, 0, 0, 0.1)',
                     fill: false,
-                    borderColor: 'rgb(255, 99, 132)',
-                    data: [0, 10, 5, 2, 20, 30, 45]
+                    borderColor: 'rgb(0,255,0)',
+                    data: completed
+                },
+                {
+                    label: 'Cancelled',
+                    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+                    fill: false,
+                    borderColor: 'rgb(255, 0,0)',
+                    data: cancelled
+                },
+                {
+                    label: 'Total',
+                    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+                    fill: false,
+                    borderColor: 'rgb(0, 0,255)',
+                    data: total
                 }]
             },
 

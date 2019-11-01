@@ -119,7 +119,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                         <div class="col s12 white z-depth-1 carea">
                             <div class="col s12 hd">
                                 <h5 class="col s7 grey-text lighten-4">Total Bookings</h5>
-                                <div class="col s5">
+                                <!-- <div class="col s5">
                                 
                                     <select>
                                         <option value="1">Last 3 Days</option>
@@ -130,7 +130,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                                         <option value="2">Beginning of Time</option>
                                     </select>
                             
-                                </div>
+                                </div> -->
                             </div>
 
                             <div class="co1 s12 inchart">
@@ -143,7 +143,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                         <div class="col s12 white z-depth-1 carea">
                             <div class="col s12 hd">
                                 <h5 class="col s7 grey-text lighten-4">Bookings Completed</h5>
-                                <div class="col s5">
+                                <!-- <div class="col s5">
                                 
                                     <select>
                                         <option value="1">Last 3 Days</option>
@@ -154,7 +154,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                                         <option value="2">Beginning of Time</option>
                                     </select>
                             
-                                </div>
+                                </div> -->
                             </div>
 
                             <div class="co1 s12 inchart">
@@ -167,7 +167,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                         <div class="col s12 white z-depth-1 carea">
                         <div class="col s12 hd">
                                 <h5 class="col s7 grey-text lighten-4">Bookings Cancelled</h5>
-                                <div class="col s5">
+                                <!-- <div class="col s5">
                                 
                                     <select>
                                         <option value="1">Last 3 Days</option>
@@ -178,7 +178,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                                         <option value="2">Beginning of Time</option>
                                     </select>
                             
-                                </div>
+                                </div> -->
                             </div>
 
                             <div class="co1 s12 inchart">
@@ -191,7 +191,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                         <div class="col s12 white z-depth-1 carea">
                         <div class="col s12 hd">
                                 <h5 class="col s7 grey-text lighten-4">Booked Tours</h5>
-                                <div class="col s5">
+                                <!-- <div class="col s5">
                                 
                                     <select>
                                         <option value="1">Last 3 Days</option>
@@ -202,7 +202,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                                         <option value="2">Beginning of Time</option>
                                     </select>
                             
-                                </div>
+                                </div> -->
                             </div>
 
                             <div class="co1 s12 inchart">
@@ -215,7 +215,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                         <div class="col s12 white z-depth-1 carea">
                         <div class="col s12 hd">
                                 <h5 class="col s7 grey-text lighten-4">Tours In Negotiation</h5>
-                                <div class="col s5">
+                                <!-- <div class="col s5">
                                 
                                     <select>
                                         <option value="1">Last 3 Days</option>
@@ -226,7 +226,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                                         <option value="2">Beginning of Time</option>
                                     </select>
                             
-                                </div>
+                                </div> -->
                             </div>
 
                             <div class="co1 s12 inchart">
@@ -322,7 +322,11 @@ if(!($this->ses->has_userdata("user_ses"))){
             }
         });
 
-        
+        itm1 = JSON.parse('<?php echo json_encode($data['cancelled']); ?>');
+        var months1 = new Array();
+        var data1 = new Array();
+        itm1.forEach(function(x){months1.push(x.Months)});
+        itm1.forEach(function(x){data1.push(x.Bookings)});
 
 
         var ctx1 = document.getElementById('myChart1').getContext('2d');
@@ -332,12 +336,12 @@ if(!($this->ses->has_userdata("user_ses"))){
 
             // The data for our dataset
             data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                labels: months1,
                 datasets: [{
                     backgroundColor: 'rgba(0, 0, 0, 0.1)',
                     fill: false,
                     borderColor: 'rgb(255, 99, 132)',
-                    data: [40, 11, 55, 79, 31, 66, 70]
+                    data: data1
                 }]
             },
 
@@ -396,6 +400,13 @@ if(!($this->ses->has_userdata("user_ses"))){
             }
         });
 
+
+        itm4 = JSON.parse('<?php echo json_encode($data['nego']); ?>');
+        var months4 = new Array();
+        var data4 = new Array();
+        itm4.forEach(function(x){months4.push(x.Months)});
+        itm4.forEach(function(x){data4.push(x.Bookings)});
+
         var ctx4 = document.getElementById('myChart4').getContext('2d');
         var chart4 = new Chart(ctx4, {
             // The type of chart we want to create
@@ -403,12 +414,12 @@ if(!($this->ses->has_userdata("user_ses"))){
 
             // The data for our dataset
             data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                labels: months4,
                 datasets: [{
                     backgroundColor: 'rgba(0, 0, 0, 0.1)',
                     fill: false,
                     borderColor: 'rgb(255, 99, 132)',
-                    data: [40, 11, 55, 79, 31, 66, 70]
+                    data: data4
                 }]
             },
 

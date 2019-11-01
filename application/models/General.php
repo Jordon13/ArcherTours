@@ -754,6 +754,21 @@ class General extends CI_Model {
 
     }
 
+    public function plsheet(){
+
+        $query = $this->db->query("select tb1.`booking_status` as Completed, tb2.`booking_status` as Cancelled, sum(tb1.`booking_price`) as CompletedPrice, sum(tb2.`booking_price`) as CancelledPrice,
+        MONTHNAME(tb1.`date_created`) as Month from `sys_booking` as tb1, `sys_booking` as tb2 
+        where (tb1.`booking_status` = 'completed' and  tb2.`booking_status` = 'cancelled') and 
+        year(tb1.`date_created`) = '2019' group by MONTHNAME(tb1.`date_created`)
+        ORDER BY MONTH(tb1.`date_created`) ASC");
+
+        $results = $query->result_array();
+
+
+        return $results;
+
+    }
+
 
     public function xss_cleanse($array){
         foreach($array as $key => $value){
