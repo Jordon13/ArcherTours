@@ -7,7 +7,29 @@ $this->load->helper('section');
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>blogger-blogging-jm</title>
+    <title><?php echo $data['title']?> | <?php echo date('l F d, Y',strtotime($data['created']))?></title>
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url('assets/icons/logo.png'); ?>">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    <meta name="generator" content="Gatsby 2.15.6">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta  name="description" 
+    content="<?php echo $data['catch'];?>">
+    <meta name="author" content="<?php echo $data['fullname']?>">
+    <meta  name="keywords" content="money, booking, save, saving, cheap, flight, book, tour, trips, trip, taxi, jamaica
+    jamaican, jamaican food, places in jamaica, trip in jamaica, tour jamaica, jamaica culture, jamaican culture, jamaican song,
+    airport transfer, airport, food, dancehall, reggae, rasta, flight to jamaica, hotels in jamaica, hotels in the caribbean, places in jamaica,
+    best places in jamaica to visit, jamaica gleaner, jamaica lagoon, activities in jamaica, usa, united, people, love, one love,bob marley,
+    bob marley meseum, sport in jamaica, ackee, ackee and salt fish, jamaican ackee, jamaican people, trip to jamaica, montego bay,
+    kingston, negril, ohco rios, falmouth, trelawny, usain bolt, fastest man in the world, tracks and record, restaurants in jamaica,
+    restaurants jamaica, jamaica restaurants, jamaican restaurants, restaurants, best price, best, best rates, best trips, best trip, best tour,
+    travel, travelling, travel to jamaica, travel to ja, travel to caribbean">
+    
+
+    <meta property="og:title" content="<?php echo $data['title']?>">
+    <meta property="og:description" content="<?php echo $data['catch'];?>">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="">
     <?php main_head();?>
 
 </head>
