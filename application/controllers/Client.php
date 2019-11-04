@@ -174,7 +174,8 @@ class Client extends CI_Controller {
                 'booking_date'=>date("Y-m-d" ,strtotime($booking_date)),
                 'booking_type'=>$booking_type,
                 'booking_special_inst'=>$booking_special_inst,
-                'booking_image'=>$booking_image
+                'booking_image'=>$booking_image,
+                'booking_status'=>'nego'
             );
 
             $dataArray = $this->gen->xss_cleanse($dataArray);
@@ -251,6 +252,9 @@ class Client extends CI_Controller {
             );
 
             echo json_encode($result);
+
+            
+
             return;
         }
 
@@ -297,6 +301,7 @@ class Client extends CI_Controller {
             $data = array("_useremail"=>strtolower($_useremail));
 
             if($this->cs->InsertSubscriber($data)){
+                
                 echo "Added Successfully!";
                 return;
             }
@@ -642,6 +647,8 @@ EOT;
 
             $this->cs->SendEmail($email,$subject,$mainBody);
 
+            
+
             echo "Booked Successfully. Please check your email for the booking details.";
 
             if($reloadPage == "reload"){
@@ -781,6 +788,130 @@ EOT;
         }
 
     }
+    
+
+    public function updateBookings(){
+        echo date('Y-m-d');
+        echo $this->cs->updateBooking();
+        $this->cs->setToInProg();
+    }
+
+    public function CartInsert(){
+        
+        $id = $_GET['id'];
+        $type = $_GET['type'];
+        $discount = 0;
+        $trip_type = '';
+
+        if(empty($id) && empty($type)){
+            return;
+        }
+
+        if($type == 0){
+            $getItem = $this->cs->GetPackageById($id);
+        }else{
+            
+            $n = $this->cs->GetSpecialById($id);
+
+            $getItem = $this->cs->GetPackageById($n->_service_id);
+
+            //$id = $getItem->package_unique_id;
+
+            $discount = $n->special_discount;
+        }
+
+        if($getItem == false){
+            return;
+        }
+        
+        $trip_type = "Round Trip";
+        
+        if($getItem->trip_type == 1){
+            $trip_type = 'One Way Trip';
+        }
+
+        if(isset($_COOKIE[CARTNAME]) && !empty($_COOKIE[CARTNAME])){
+
+            $getVal = json_decode(base64_decode($_COOKIE[CARTNAME]),true);
+
+            $totalItems = count($getVal);
+
+            $_GLOBAL['totalItems'] = $totalItems;
+
+            $key = array_search($id, array_column($getVal, 'id'));
+
+            if($key !== false){
+
+                $getVal[$key]['quantity']+=1;
+
+                $cookie_name = CARTNAME;
+        
+                $cookie_value = $getVal;
+        
+                set_cookie($cookie_name,base64_encode(json_encode($cookie_value)),86400*3);
+
+                
+            echo count($cookie_value);
+            }else{
+
+                array_push($getVal,array(
+                    "price"=>$getItem->price_per_adult,
+                    "id"=>$id,
+                    "discount"=>$discount,
+                    "quantity"=>1,
+                    "type"=>$trip_type,
+                    "Origin"=>$getItem->price_origin,
+                    "Destination"=>$getItem->price_destination,
+                    "DisplayPrice"=>$getItem->display_price,
+                    "utype"=>$type
+                
+                ));
+
+                $cookie_name = CARTNAME;
+                $cookie_value = $getVal;
+                set_cookie($cookie_name,base64_encode(json_encode($cookie_value)),86400*3);
+                
+                $t = $_GLOBAL['totalItems'];
+
+                $t = $t+=1;
+
+                $_GLOBAL['totalItems'] = $t;
+                
+                
+                echo count($cookie_value);
+            }
+        }else{
+
+            $cookie_name = CARTNAME;
+            $cookie_value = array(array(
+                "price"=>$getItem->price_per_adult,
+                "id"=>$id,
+                "discount"=>$discount,
+                "quantity"=>1,
+                "type"=>$trip_type,
+                "Origin"=>$getItem->price_origin,
+                "Destination"=>$getItem->price_destination,
+                "DisplayPrice"=>$getItem->display_price,
+                "utype"=>$type
+            
+            )
+            
+            );
+
+            set_cookie($cookie_name,base64_encode(json_encode($cookie_value)),86400*3);
+
+            //$t = $_GLOBAL['totalItems'];
+
+            $t = 1;
+
+            $_GLOBAL['totalItems'] = $t;
+
+            echo count($cookie_value);
+        }
+
+        redirect(site_url());
+
+    }
 
     public function DeleteCartItem(){
 
@@ -874,6 +1005,7 @@ EOT;
         $cleanedData = sanitizeArray($_POST);
 
         if($this->cs->InsertTestimonial($cleanedData)){
+
             echo "successfully added!";
             return;
         }
@@ -969,7 +1101,60 @@ EOT;
 
     
 
+    public function like(){
 
+        //echo $_POST['id'];
+        //return;
+        if($this->cs->like($_POST['id'])){
+            
+            echo "executed sucessfully.";
+        }else{
+            echo "failed to execute.";
+        }
+
+    }
+
+
+    public function dislike(){
+
+        //echo $_POST['id'];
+       // return;
+
+        if($this->cs->dislike($_POST['id'])){
+            
+            //echo "executed sucessfully.";
+        }else{
+            //echo "failed to execute.";
+        }
+
+    }
+
+
+    public function view(){
+
+        //echo $_POST['id'];
+       // return;
+
+        if($this->cs->view($_POST['id'])){
+            
+            //echo "executed sucessfully.";
+        }else{
+            //echo "failed to execute.";
+        }
+
+    }
+
+    // public function testNoti(){
+    //     $data = array(
+    //         'refid'=>'1000',
+    //         'type'=>'recent',
+    //         'message'=>'Someone just liked your post.',
+    //         'title'=>'Recent Story Got Liked',
+    //         'short_desc'=>'Someone just liked your post.'
+    //     );
+
+    //     $this->cs->insertNotification($data);
+    // }
 
 
 }

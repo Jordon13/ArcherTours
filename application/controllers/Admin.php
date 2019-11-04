@@ -44,7 +44,8 @@ class Admin extends CI_Controller {
     }
 
     public function dashboard(){
-        $this->load->view('admin/dashboard');
+        $this->cs->updateBooking();
+        $this->load->view('admin/dashboard',array('data'=>$this->gen->dash()));
     }
 // Create Content
     public function cuser()
@@ -83,6 +84,16 @@ class Admin extends CI_Controller {
     }
 
 // Edit Pages
+    public function customermsgs()
+    {
+        $this->ps->parse('admin/edit/customermsgs',array('data'=>$this->gen->GetSystemMessages()));
+    }
+
+    public function vsubs()
+    {
+        $this->ps->parse('admin/edit/subscriberlist',array('data'=>$this->gen->GetSystemSubscribers()));
+    }
+
     public function euser()
     {
         $this->ps->parse('admin/edit/user',array('data'=>$this->gen->GetSystemUsers()));

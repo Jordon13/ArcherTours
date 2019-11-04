@@ -29,7 +29,7 @@
             <td style="padding: 0.5em!important;border:1px solid #fdd800;">{price_discount}%</td>
             <td style="padding: 0.5em!important;border:1px solid #fdd800;">{price_origin}</td>
             <td style="padding: 0.5em!important;border:1px solid #fdd800;">{price_destination}</td>
-            <td style="padding: 0.5em!important;border:1px solid #fdd800;"><a href="<?php echo site_url('/{package_unique_id}');?>" id={package_unique_id}>Book Now</a></td>
+            <td style="padding: 0.5em!important;border:1px solid #fdd800;"><a href="<?php echo site_url('client/CartInsert?id={package_unique_id}&type=0');?>">Book Now</a></td>
         </tr>
             {/packages}
     </tbody>

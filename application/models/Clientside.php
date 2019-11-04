@@ -7,6 +7,7 @@ class Clientside extends CI_Model {
     public function InsertBooking($data){
         $insertbooking = $this->db->insert('sys_booking',$data);
 
+        $i = $this->db->insert_id();
 		if($insertbooking == true){
 
             $arry = array(
@@ -23,6 +24,16 @@ class Clientside extends CI_Model {
 
             $this->mn->EmailPackageList($decode);
 
+            $data = array(
+                'refid'=>$i,
+                'type'=>'booking',
+                'message'=>'A customer request rates from you.'.'Origin: '.$data['booking_origin'].' - Destination: '.$data['booking_dest'].'. Email address: '.$data['booking_email'],
+                'title'=>'Potential Trip',
+                'short_desc'=>'Customer requested rates.'
+            );
+    
+            $this->insertNotification($data);
+
 			return true;
         }
         return false;
@@ -33,6 +44,16 @@ class Clientside extends CI_Model {
         foreach($data as $d){
             
             $insertbooking = $this->db->insert('sys_booking',$d);
+            $i = $this->db->insert_id();
+            $data = array(
+                'refid'=>$i,
+                'type'=>'booking',
+                'message'=>'New booking has been added to your website',
+                'title'=>'New Booking',
+                'short_desc'=>'New trip booked.'
+            );
+    
+            $this->cs->insertNotification($data);
 
 		    if($insertbooking == true){
 			    $isInserted = true;
@@ -65,8 +86,18 @@ class Clientside extends CI_Model {
     public function InsertSubscriber($data){
         try{
             $insertsub = $this->db->insert('sys_subscribe',$data);
-
+            $i = $this->db->insert_id();
             if($insertsub == true){
+
+                $data = array(
+                    'refid'=>$i,
+                    'type'=>'subscription',
+                    'message'=>'New user subscribed to your website @'+$data['_username'],
+                    'title'=>'New User Subscribed',
+                    'short_desc'=>'You just got a new subscription. @'+$data['_username']
+                );
+        
+                $this->cs->insertNotification($data);
 
                 return true;
             }
@@ -80,8 +111,18 @@ class Clientside extends CI_Model {
     public function InsertTestimonial($data){
         try{
             $insertsub = $this->db->insert('sys_testimonials',$data);
-
+            $i = $this->db->insert_id();
             if($insertsub == true){
+
+                $data = array(
+                    'refid'=>$i,
+                    'type'=>'rating',
+                    'message'=>'New testimonial from '+$data['_username'],
+                    'title'=>'Testimonial',
+                    'short_desc'=>'Customer rated your service. @'.$data['_username']
+                );
+        
+                $this->cs->insertNotification($data);
 
                 return true;
             }
@@ -367,16 +408,27 @@ class Clientside extends CI_Model {
     public function SendMessage($data){
 
         $insertContact = $this->db->insert('sys_contact_us',$data);
-
+        $i = $this->db->insert_id();
         if($insertContact == false){
             
             return $insertContact;
         }
 
+
+        $data1 = array(
+            'refid'=>$i,
+            'type'=>'contact',
+            'message'=>'A customer request you contact them. @'.$data['_email'].'. Message: '.$data['_message'],
+            'title'=>'New Customer',
+            'short_desc'=>'Customer sent you an email.'
+        );
+
+        $this->cs->insertNotification($data1);
+
         $this->load->library('email');
             $config = array(
             'protocol'  => 'smtp',
-            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_host' => _HOST_,
             'smtp_port' => 465,
             'smtp_user' => MY_EMAIL_ADDR,
             'smtp_pass' => MY_EMAIL_PASSW,
@@ -402,6 +454,7 @@ class Clientside extends CI_Model {
         if(!$sent){
             return false;
         }else{
+            
             return true;
         }
     }
@@ -414,7 +467,7 @@ class Clientside extends CI_Model {
         $this->load->library('email');
             $config = array(
             'protocol'  => 'smtp',
-            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_host' => _HOST_,
             'smtp_port' => 465,
             'smtp_user' => MY_EMAIL_ADDR,
             'smtp_pass' => MY_EMAIL_PASSW,
@@ -435,6 +488,7 @@ class Clientside extends CI_Model {
         if(!$sent){
             return false;
         }else{
+            
             return true;
         }
     }
@@ -477,7 +531,80 @@ class Clientside extends CI_Model {
         return "none";
     }
 
+    public function AddPageView($page){
+        try{
+            $insertsub = $this->db->insert('sys_page_visits',array(
+                'page' => $page
+            ));
 
+            if($insertsub == true){
+
+                return true;
+            }
+            return false;
+        }catch(Exception $ex){
+            return false;
+        }
+    }
+    
+
+    public function like($id){
+
+        $data = array(
+            'refid'=>$id,
+            'type'=>'recent',
+            'message'=>'Someone just liked your post.',
+            'title'=>'Recent Story Got Liked',
+            'short_desc'=>'Someone just liked your post.'
+        );
+
+        $this->insertNotification($data);
+
+        $query = "update `sys_recent` SET `recent_likes` = recent_likes + 1 WHERE `auto_generated_id` =$id";
+        return $this->db->query($query);
+    }
+
+
+    public function insertNotification($data){
+
+        try{
+            $insertsub = $this->db->insert('sys_notifications',$data);
+
+            if($insertsub == true){
+
+                return true;
+            }
+            return false;
+        }catch(Exception $ex){
+            return false;
+        }
+    }
+
+
+    
+    public function dislike($id){
+        
+        $query = "update `sys_recent` SET `recent_dislikes` = recent_dislikes + 1 WHERE `auto_generated_id` =$id";
+        return $this->db->query($query);
+    
+    }
+
+
+    public function view($id){
+        
+        $query = "update `sys_recent` SET `recent_views` = recent_views + 1 WHERE `auto_generated_id` =$id";
+        return $this->db->query($query);
+    
+    }
+
+    public function updateBooking(){
+        $this->db->query("update `sys_booking` set `booking_status`='inprog' where `booking_date` = '".date('Y-m-d')."' and `booking_status`='booked'");
+        return $this->db->query("update `sys_booking` set `booking_status`='completed' where DATE_FORMAT(`booking_date`,'%Y-%m-%d') < DATE_FORMAT(Now(),'%Y-%m-%d') and (`booking_status`='booked' or `booking_status`='inprog')");
+    }
+
+    public function setToInProg(){
+        return $this->db->query("update `sys_booking` set `booking_status`='inprog' where `booking_date` = '".date('Y-m-d')."' and `booking_status`='booked'");
+    }
 
     
                    

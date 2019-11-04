@@ -18,7 +18,7 @@ if(!function_exists('navigation')){
 		<section class="vertical-nav">
 
 			<header class="vertical-header blue accent-3">
-				<p>Tours CMS</p>
+				<p><b>ARCHER 1062 TOURS</b></p>
 			</header>
 			<p style="color: rgba(158,158,158 ,1); padding: 1em;">Navigation</p>
 			<ul class="ver-link collapsible" data-collapsible="accordion">
@@ -48,6 +48,9 @@ if(!function_exists('navigation')){
 						<li><a href="'.base_url('admin/testimonials?active=2').'">Testimonals </a><!--<span class="new badge blue darken-1 z-depth-1">1</span>--></li>
 						<li><a href="'.base_url('admin/eprices?active=2').'">Prices </a><!--<span class="new badge blue darken-1 z-depth-1">8</span>--></li>
 						<li><a href="'.base_url('admin/erecent?active=2').'">Recent Places</a></li>
+						<li><a href="'.base_url('admin/vsubs?active=2').'">Subscribers </a><!--<span class="new badge blue darken-1 z-depth-1">1</span>--></li>
+						<li><a href="'.base_url('admin/customermsgs?active=2').'">Customer Messages </a><!--<span class="new badge blue darken-1 z-depth-1">1</span>--></li>
+
 					</ul>
 				</li>
 
@@ -97,8 +100,8 @@ if(!function_exists('navigation')){
 				</ul>
 
 				<ul class="profile">
-					<li id="noti"><i class="fa fa-bell " aria-hidden="true" ></i></li>
-					<li id="prof"><i class="fa fa-user-md" aria-hidden="true"></i> John Doe <i class="fa fa-caret-down" aria-hidden="true"></i></li>
+					<li id="noti"><div class="alert-badge">'.TotalNotifications().'</div><i class="fa fa-bell fa-lg" aria-hidden="true" ></i></li>
+					<li id="prof"><i class="fa fa-user-md fa-lg" aria-hidden="true"></i>  <i class="fa fa-caret-down fa-lg" aria-hidden="true"></i></li>
 				</ul>
 
 		</div>
@@ -107,18 +110,8 @@ if(!function_exists('navigation')){
 					<li><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <a style="color:black;" href="'.site_url('admin/editprofile').'">Edit Profile</a></li>
 					<li><i class="fa fa-sign-out" aria-hidden="true"></i> <a style="color:black;" href="'.site_url('/admin/logout').'">Log out</a></li>
 				</ul>
-
 				<ul class="notification-drop grey lighten-5" id="">
-					<li class=""><b>Jordaine Gayle Just Updated his Profile</b><br/><em><span style="font-size: 10px; color: rgba(200,200,200,0.9);">Apr 4th 2019 12:10 AM</span></em></li>
-					<li class=""><b>Jordaine Gayle Just Updated his Profile</b><br/><em><span style="font-size: 10px;color: rgba(200,200,200,0.9);">Apr 4th 2019 12:10 AM</span></em></li>
-					<li class=""><b>Jordaine Gayle Just Updated his Profile</b><br/><em><span style="font-size: 10px;color: rgba(200,200,200,0.9);">Apr 4th 2019 12:10 AM</span></em></li>
-					<li class=""><b>Jordaine Gayle Just Updated his Profile</b><br/><em><span style="font-size: 10px;color: rgba(200,200,200,0.9);">Apr 4th 2019 12:10 AM</span></em></li>
-					<li class=""><b>Jordaine Gayle Just Updated his Profile</b><br/><em><span style="font-size: 10px;color: rgba(200,200,200,0.9);">Apr 4th 2019 12:10 AM</span></em></li>
-					<li class=""><b>Jordaine Gayle Just Updated his Profile</b><br/><em><span style="font-size: 10px;color: rgba(200,200,200,0.9);">Apr 4th 2019 12:10 AM</span></em></li>
-					<li class=""><b>Jordaine Gayle Just Updated his Profile</b><br/><em><span style="font-size: 10px;color: rgba(200,200,200,0.9);">Apr 4th 2019 12:10 AM</span></em></li>
-					<li class=""><b>Jordaine Gayle Just Updated his Profile</b><br/><em><span style="font-size: 10px;color: rgba(200,200,200,0.9);">Apr 4th 2019 12:10 AM</span></em></li>
-					<li class=""><b>Jordaine Gayle Just Updated his Profile</b><br/><em><span style="font-size: 10px;color: rgba(200,200,200,0.9);">Apr 4th 2019 12:10 AM</span></em></li>
-					<li class=""><b>Jordaine Gayle Just Updated his Profile</b><br/><em><span style="font-size: 10px;color: rgba(200,200,200,0.9);">Apr 4th 2019 12:10 AM</span></em></li>
+					'.Notifications().'
 				</ul>
 	</section>';
 	}

@@ -5,7 +5,27 @@ class Home extends CI_Controller {
 
     public function index()
 	{
-        //print_r($this->mn->LoadHomepage());
+        $this->cs->updateBooking();
+        $part = $this->uri->segment(1,0);
+
+        if($part != "0"){
+            if(!isset($_COOKIE[$part])){
+            
+                if($this->cs->AddPageView($part)){
+                    set_cookie($part,1,86400*1);
+                }
+            }
+        }else{
+            if(!isset($_COOKIE['home'])){
+            
+                if($this->cs->AddPageView('home')){
+                    set_cookie('home',1,86400*1);
+                }
+            }
+        }
+
+        
+
 		$this->load->view('homepage',array('data'=>$this->mn->LoadHomepage()));
     }
 
@@ -44,45 +64,200 @@ class Home extends CI_Controller {
 
     public function about()
     {
+        $part = $this->uri->segment(1,0);
+
+        if($part != "0"){
+            if(!isset($_COOKIE[$part])){
+            
+                if($this->cs->AddPageView($part)){
+                    set_cookie($part,1,86400*1);
+                }
+            }
+        }else{
+            if(!isset($_COOKIE['home'])){
+            
+                if($this->cs->AddPageView('home')){
+                    set_cookie('home',1,86400*1);
+                }
+            }
+        }
         $this->load->view('about', array('data'=>$this->mn->LoadAboutUsPage()[0]));
     }
 
     public function recentstories()
     {
+        $part = $this->uri->segment(1,0);
+
+        if($part != "0"){
+            if(!isset($_COOKIE[$part])){
+            
+                if($this->cs->AddPageView($part)){
+                    set_cookie($part,1,86400*1);
+                }
+            }
+        }else{
+            if(!isset($_COOKIE['home'])){
+            
+                if($this->cs->AddPageView('home')){
+                    set_cookie('home',1,86400*1);
+                }
+            }
+        }
         $this->load->view('recentnews',array('data'=>$this->mn->LoadNewsPage()[0], 'items'=>$this->mn->LoadRecentEvents()));
     }
 
     public function testimonials()
     {
+        $part = $this->uri->segment(1,0);
+
+        if($part != "0"){
+            if(!isset($_COOKIE[$part])){
+            
+                if($this->cs->AddPageView($part)){
+                    set_cookie($part,1,86400*1);
+                }
+            }
+        }else{
+            if(!isset($_COOKIE['home'])){
+            
+                if($this->cs->AddPageView('home')){
+                    set_cookie('home',1,86400*1);
+                }
+            }
+        }
         $this->ps->parse('testimonials',array('data'=>$this->mn->LoadTestimonialsPage()[0], 'items'=>$this->mn->LoadTestimonials()));
     }
 
-    public function services(){
+    public function services()
+    {
+        $part = $this->uri->segment(1,0);
+
+        if($part != "0"){
+            if(!isset($_COOKIE[$part])){
+            
+                if($this->cs->AddPageView($part)){
+                    set_cookie($part,1,86400*1);
+                }
+            }
+        }else{
+            if(!isset($_COOKIE['home'])){
+            
+                if($this->cs->AddPageView('home')){
+                    set_cookie('home',1,86400*1);
+                }
+            }
+        }
         $this->load->view('services', array('data'=>$this->mn->LoadServicePage()[0]));//LoadServicePage()
     }
 
-    public function deals(){
+    public function deals()
+    {
+        $part = $this->uri->segment(1,0);
+
+        if($part != "0"){
+            if(!isset($_COOKIE[$part])){
+            
+                if($this->cs->AddPageView($part)){
+                    set_cookie($part,1,86400*1);
+                }
+            }
+        }else{
+            if(!isset($_COOKIE['home'])){
+            
+                if($this->cs->AddPageView('home')){
+                    set_cookie('home',1,86400*1);
+                }
+            }
+        }
         $this->load->view('deals',array('data'=>$this->mn->LoadDealsPage()[0],'items'=>$this->mn->LoadSpecials()));
     }
 
     public function booking()
     {
+        $part = $this->uri->segment(1,0);
+
+        if($part != "0"){
+            if(!isset($_COOKIE[$part])){
+            
+                if($this->cs->AddPageView($part)){
+                    set_cookie($part,1,86400*1);
+                }
+            }
+        }else{
+            if(!isset($_COOKIE['home'])){
+            
+                if($this->cs->AddPageView('home')){
+                    set_cookie('home',1,86400*1);
+                }
+            }
+        }
         $this->load->view('booking', array('data'=>$this->mn->LoadBookingPage()[0]));//
     }
 
     public function contact()
     {
+        $part = $this->uri->segment(1,0);
+
+        if($part != "0"){
+            if(!isset($_COOKIE[$part])){
+            
+                if($this->cs->AddPageView($part)){
+                    set_cookie($part,1,86400*1);
+                }
+            }
+        }else{
+            if(!isset($_COOKIE['home'])){
+            
+                if($this->cs->AddPageView('home')){
+                    set_cookie('home',1,86400*1);
+                }
+            }
+        }
         $this->load->view('contact', array('data'=>$this->mn->LoadContactUsPage()[0]));
     }
 
     public function gallery()
     {
+        $part = $this->uri->segment(1,0);
+
+        if($part != "0"){
+            if(!isset($_COOKIE[$part])){
+            
+                if($this->cs->AddPageView($part)){
+                    set_cookie($part,1,86400*1);
+                }
+            }
+        }else{
+            if(!isset($_COOKIE['home'])){
+            
+                if($this->cs->AddPageView('home')){
+                    set_cookie('home',1,86400*1);
+                }
+            }
+        }
 
         $this->ps->parse('gallery',array('data'=>$this->mn->LoadGallery()));
     }
 
     public function airporttransfer()
     {
+        $part = $this->uri->segment(1,0);
+
+        if($part != "0"){
+            if(!isset($_COOKIE[$part])){
+            
+                if($this->cs->AddPageView($part)){
+                    set_cookie($part,1,86400*1);
+                }
+            }
+        }else{
+            if(!isset($_COOKIE['home'])){
+            
+                if($this->cs->AddPageView('home')){
+                    set_cookie('home',1,86400*1);
+                }
+            }
+        }
         $packages = $this->cs->getPackages(1);
 
         if($packages === false){
@@ -103,6 +278,23 @@ class Home extends CI_Controller {
 
     public function taxiservice()
     {
+        $part = $this->uri->segment(1,0);
+
+        if($part != "0"){
+            if(!isset($_COOKIE[$part])){
+            
+                if($this->cs->AddPageView($part)){
+                    set_cookie($part,1,86400*1);
+                }
+            }
+        }else{
+            if(!isset($_COOKIE['home'])){
+            
+                if($this->cs->AddPageView('home')){
+                    set_cookie('home',1,86400*1);
+                }
+            }
+        }
         $packages = $this->cs->getPackages();
 
         if($packages === false){
@@ -122,6 +314,23 @@ class Home extends CI_Controller {
 
     public function tours()
     {
+        $part = $this->uri->segment(1,0);
+
+        if($part != "0"){
+            if(!isset($_COOKIE[$part])){
+            
+                if($this->cs->AddPageView($part)){
+                    set_cookie($part,1,86400*1);
+                }
+            }
+        }else{
+            if(!isset($_COOKIE['home'])){
+            
+                if($this->cs->AddPageView('home')){
+                    set_cookie('home',1,86400*1);
+                }
+            }
+        }
         $packages = $this->cs->getPackages(2);
 
         if($packages === false){
@@ -143,6 +352,23 @@ class Home extends CI_Controller {
     /*Blog */
     public function blog()
     {
+        $part = $this->uri->segment(1,0);
+
+        if($part != "0"){
+            if(!isset($_COOKIE[$part])){
+            
+                if($this->cs->AddPageView($part)){
+                    set_cookie($part,1,86400*1);
+                }
+            }
+        }else{
+            if(!isset($_COOKIE['home'])){
+            
+                if($this->cs->AddPageView('home')){
+                    set_cookie('home',1,86400*1);
+                }
+            }
+        }
         $blogs = $this->cs->GetBlogs();
 
         if(count($blogs) <= 0){

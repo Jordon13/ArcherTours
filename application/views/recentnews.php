@@ -57,6 +57,25 @@ $this->load->helper('section');
         margin-bottom: 1em!important;
       }
 
+      .tup,.dup{
+        cursor:pointer;
+      }
+
+      .tup:hover{
+        color: rgba(0,160,10,0.6);
+      }
+
+      .tup:visited{
+        color: rgba(0,160,10,0.6);
+      }
+
+      .dup:hover{
+        color: rgba(160,0,10,0.6);
+      }
+
+      .dup:visited{
+        color: rgba(160,0,10,0.6);
+      }
 
 
 </style>
@@ -98,7 +117,7 @@ $this->load->helper('section');
           
         ?>
           <div class="col s12 m6 l4">
-            <div class="card">
+            <div class="card" onclick="view(<?php echo $item['auto_generated_id']?>)">
               <div class="card-image">
                 <img class="materialboxed" src="<?php echo site_url("uploads/recent/").$item['recent_file_name'];?>">
                 <span class="card-title"><?php echo $item['recent_title'];?></span>
@@ -124,8 +143,8 @@ $this->load->helper('section');
 
                 <div class="row valign-wrapper" style="justify-content:center; margin-bottom:0px;">
 
-                  <div class="col grey-text light-4"><i class="material-icons">thumb_up</i></div>
-                  <div class="col grey-text light-4"><i class="material-icons">thumb_down</i></div>
+                  <div class="col grey-text light-4" onclick="like(<?php echo $item['auto_generated_id']?>)"><i class="material-icons tup">thumb_up</i></div>
+                  <div class="col grey-text light-4" onclick="dislike(<?php echo $item['auto_generated_id']?>)"><i class="material-icons dup">thumb_down</i></div>
 
                 </div>
               </div>
@@ -137,7 +156,7 @@ $this->load->helper('section');
           <?php }else if($type == "video"){ ?>
 
               <div class="col s12 m6 l4">
-                <div class="card">
+                <div class="card" onclick="view(<?php echo $item['auto_generated_id']?>)">
                   <div class="card-image">
                     <video controls class="player materialboxed" data-caption="" id="player1"
                     width="100%" loop muted poster=""
@@ -178,8 +197,8 @@ $this->load->helper('section');
 
                     <div class="row valign-wrapper" style="justify-content:center; margin-bottom:0px;">
 
-                      <div class="col grey-text light-4"><i class="material-icons">thumb_up</i></div>
-                      <div class="col grey-text light-4"><i class="material-icons">thumb_down</i></div>
+                      <div class="col grey-text light-4" onclick="like(<?php echo $item['auto_generated_id']?>)"><i class="material-icons tup">thumb_up</i></div>
+                      <div class="col grey-text light-4" onclick="dislike(<?php echo $item['auto_generated_id']?>)"><i class="material-icons dup">thumb_down</i></div>
 
                     </div>
                   </div>
@@ -195,4 +214,32 @@ $this->load->helper('section');
     
     <?php main_footer(); ?>
 </body>
+
+
+<script>
+
+
+            var like = (id) =>{
+
+              $.post('<?php echo site_url('client/like')?>', {id:id}, function(data){
+                console.log(data);
+              });
+
+            }
+
+
+            var dislike = (id) =>{
+              $.post('<?php echo site_url('client/dislike')?>', {id:id}, function(data){
+                //console.log(data);
+              });
+            }
+
+            var view = (id) =>{
+              $.post('<?php echo site_url('client/view')?>', {id:id}, function(data){
+                //console.log(data);
+              });
+            }
+
+</script>
 </html>
+

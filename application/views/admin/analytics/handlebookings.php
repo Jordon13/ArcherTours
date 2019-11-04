@@ -81,7 +81,7 @@ if(count($data) <= 0){
               width: 100%;
           }
 
-          /* .content-area{
+          .content-area{
               height: auto!important;
               min-height: 100%;
           }
@@ -90,7 +90,7 @@ if(count($data) <= 0){
               margin-top: 2em;
               height: auto!important;
               min-height: 100%!important;
-          } */
+          }
 
           .divider{
               margin-bottom: 1em!important;
@@ -170,13 +170,13 @@ if(count($data) <= 0){
           }
 
           .tabs-content{
-              /* height: 100%!important; */
+              height: 23000px;
               
           }
 
-          #Quote:hover{
+          /* #Quote:hover{
             overflow-y: scroll!important;
-          }
+          } */
 
         </style>
     </head>
@@ -188,19 +188,19 @@ if(count($data) <= 0){
             <div class="inner-content">
             
                 <?php if(!$nodata){?>
-                <div class="row maintab">
+                <!-- <div class="row maintab">
                     <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
                         <div class="parea ">
                             <div class="circle active-circle">Nego</div>
                             <div class="circle">Booked</div>
                             <div class="circle">InProg</div>
                             <div class="circle">Comp</div>
-                            <!-- <div class="line"></div> -->
+                            
                         </div>
                     </div>
                 </div>
 
-                <div class="divider"></div>
+                <div class="divider"></div> -->
 
                 <div class="row">
                     <div class="col s12 tabarea">
@@ -446,36 +446,36 @@ if(count($data) <= 0){
                 'swipeable': true
             });
 
-            $('.tabs-content').animate({
-                'height': tabHeight()+"px"
-            },1200);
+            // $('.tabs-content').animate({
+            //     'height':+"px"
+            // },1200);
 
-            tabResize();
+            //tabResize();
         });
 
 
-        var tabHeight = () =>{
+        // var tabHeight = () =>{
             
-            var mtabHeight = $('.maintab').outerHeight(true);
+        //     var mtabHeight = $('.maintab').outerHeight(true);
 
-            var divider= $('.divider').outerHeight(true);
+        //     var divider= $('.divider').outerHeight(true);
 
-            var in1 = $('.inner-content').height();
+        //     var in1 = $('.inner-content').height();
 
-            var in2 = $('.inner-content').outerHeight(true);
+        //     var in2 = $('.inner-content').outerHeight(true);
 
-            var padding =  in2 - in1;
+        //     var padding =  in2 - in1;
 
-            return in1 - (mtabHeight+divider+padding);
-        }
+        //     return in1 - (mtabHeight+divider+padding);
+        // }
 
-        var tabResize = () =>{
-            $(window).resize( () => {
-                $('.tabs-content').css({
-                    'height': tabHeight()+"px"
-                });
-            });
-        }
+        // var tabResize = () =>{
+        //     $(window).resize( () => {
+        //         $('.tabs-content').css({
+        //             'height': tabHeight()+"px"
+        //         });
+        //     });
+        // }
 
 
         var openpage = (id) =>{

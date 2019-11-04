@@ -90,7 +90,9 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
  * Custom Globals*/
 
  
- define('MY_EMAIL_ADDR', 'freshcode9@gmail.com');
- define('MY_EMAIL_PASSW','Pussyhole34');
+ define('MY_EMAIL_ADDR', 'archer1062tours@yahoo.com');
+ define('_HOST_', 'ssl://smtp.mail.yahoo.com');
+ //_HOST_
+ define('MY_EMAIL_PASSW','Tibbyarcher1');
  define("CARTNAME","acher_1062_cart");
  define("CARTVAL",0);

@@ -649,6 +649,20 @@ class General extends CI_Model {
 
     }
 
+    public function GetSystemSubscribers(){
+
+        $this->db->order_by("date_created","desc");
+        return $this->db->get("sys_subscribe")->result_array();
+
+    }
+
+    public function GetSystemMessages(){
+
+        $this->db->order_by("date_created","desc");
+        return $this->db->get("sys_contact_us")->result_array();
+
+    }
+
     public function GetBookingById($id){
         return $this->db->get_where("sys_booking", "auto_generated_id = ".$id)->result_array();
     }
@@ -662,7 +676,7 @@ class General extends CI_Model {
         $this->load->library('email');
             $config = array(
             'protocol'  => 'smtp',
-            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_host' => _HOST_,
             'smtp_port' => 465,
             'smtp_user' => MY_EMAIL_ADDR,
             'smtp_pass' => MY_EMAIL_PASSW,
@@ -758,7 +772,7 @@ class General extends CI_Model {
 
         $query = $this->db->query("select tb1.`booking_status` as Completed, tb2.`booking_status` as Cancelled, sum(tb1.`booking_price`) as CompletedPrice, sum(tb2.`booking_price`) as CancelledPrice,
         MONTHNAME(tb1.`date_created`) as Month from `sys_booking` as tb1, `sys_booking` as tb2 
-        where (tb1.`booking_status` = 'completed' and  tb2.`booking_status` = 'cancelled') and 
+        where (tb1.`booking_status` = 'completed' and tb2.`booking_status` = 'cancelled') and 
         year(tb1.`date_created`) = '2019' group by MONTHNAME(tb1.`date_created`)
         ORDER BY MONTH(tb1.`date_created`) ASC");
 
@@ -767,6 +781,39 @@ class General extends CI_Model {
 
         return $results;
 
+    }
+
+
+    public function dash(){
+
+        $items = array();
+
+        $query = $this->db->query("select DAYNAME(`date_created`) as Day, sum(`booking_price`) as Total FROM `sys_booking` where `date_created` >= (NOW() - INTERVAL 1 WEEK) 
+         group by DAYNAME(`date_created`) ORDER BY `date_created` ASC");
+        $results = $query->result_array();
+        $items+=array("weekbookings"=>$results);
+
+
+        $query = $this->db->query("select DAYNAME(`date_created`) as Day, count(`page`) as Total FROM `sys_page_visits` where `date_created` >= (NOW() - INTERVAL 1 WEEK) 
+        group by DAYNAME(`date_created`) ORDER BY `date_created` ASC");
+        $results = $query->result_array();
+        $items+=array("weekpageviews"=>$results);
+
+
+        $query = $this->db->query("select * FROM `sys_notifications` where `date_created` >= (NOW() - INTERVAL 1 WEEK) 
+        ORDER BY `date_created` DESC");
+        $results = $query->result_array();
+        $items+=array("weekactivities"=>$results);
+
+        return $items;
+    }
+
+    public function notifications(){
+
+        $query = $this->db->query("select * FROM `sys_notifications` where `view` = 0 
+        ORDER BY `date_created` ASC");
+        return $query->result_array();
+        
     }
 
 

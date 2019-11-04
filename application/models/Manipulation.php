@@ -28,10 +28,10 @@ class Manipulation extends CI_Model {
         $this->load->library('email');
             $config = array(
             'protocol'  => 'smtp',
-            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_host' => _HOST_,
             'smtp_port' => 465,
-            'smtp_user' => 'freshcode9@gmail.com',
-            'smtp_pass' => 'Love123456789',
+            'smtp_user' => MY_EMAIL_ADDR,
+            'smtp_pass' => MY_EMAIL_PASSW,
             'mailtype'  => 'html',
             'smtp_keepalive' => 'TRUE',
             '_smtp_auth'=>'TRUE',
