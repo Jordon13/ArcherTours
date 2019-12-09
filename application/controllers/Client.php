@@ -9,6 +9,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Client extends CI_Controller {
 
+
+
+    public function getToken(){
+        echo json_encode($this->face->viewAccount());
+
+    }
+
     public function Login(){
 
         //$this->load->model('General','cms');

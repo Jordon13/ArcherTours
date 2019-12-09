@@ -130,6 +130,10 @@ $this->load->helper('section');
         justify-content: center;
     }
 
+    .search-box-area:focus{
+      border-bottom:1px solid #212121!important;
+    }
+
 </style>
 
 </head>
@@ -166,11 +170,17 @@ $this->load->helper('section');
     <div class="row" style="margin-top:1em!important;">
         
         <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
+
+        <div class="row trip-search-area">
+            
+              <input class="search-box-area" type="search" placeholder="Search..."/>
+             
+            </div>
             <div class="row">
                 
             {datas}
                 <div class="col l4 m12 s12">
-                    <div class="card sticky-action">
+                    <div class="card sticky-action hoverable">
                         
 
                         <div class="card-image waves-effect waves-block waves-light">
@@ -199,8 +209,10 @@ $this->load->helper('section');
 
                         
 
-                        <div class="card-action center"><a class="waves-effect waves-light btn grey darken-3" id="{package_unique_id}" onclick=addToCart('{package_unique_id}') >Add To Cart</a></div>
-                       
+                        <div class="card-action center">
+                          <a class="waves-effect waves-light btn modal-trigger grey darken-3" id="{package_unique_id}" onclick=addToCart('{package_unique_id}') >Add To Cart</a>
+                          <a class="waves-effect waves-light btn modal-trigger grey darken-3" id="{package_unique_id}" onclick=bookToCart('{package_unique_id}') >Book Now</a>
+                        </div>
 
                     </div>
                 </div>
@@ -227,20 +239,58 @@ $this->load->helper('section');
 
 <script>
 
-    $('document').ready(()=>{
-        
-    });
-    
     var addToCart = (id) =>{
-        $.post("<?php echo base_url('/client/CartAdd'); ?>",{id:id,type:0},function(data){
+            $.post("<?php echo base_url('/client/CartAdd'); ?>",{id:id,type:0},function(data){
 
-          if($(".cartTotal")[0]){
-            $(".cartTotal").text(data);
-          }else{
-            $("#np").prepend("<div class='cart-active white-text cartTotal'>"+data+"</div>");
+              if($(".cartTotal")[0]){
+                $(".cartTotal").text(data);
+              }else{
+                $("#np").prepend("<div class='cart-active white-text cartTotal'>"+data+"</div>");
+              }
+            });
           }
-        });
-      }
 
+    var bookToCart = (id) =>{
+      $.post("<?php echo base_url('/client/CartAdd'); ?>",{id:id,type:0},function(data){
+
+        if($(".cartTotal")[0]){
+          $(".cartTotal").text(data);
+        }else{
+          $("#np").prepend("<div class='cart-active white-text cartTotal'>"+data+"</div>");
+        }
+
+        location.href = "<?php echo site_url('/checkout')?>";
+      });
+    }
+
+    $('document').ready(function(){
+
+      var divlength = $('.sticky-action').length;
+
+      var divs = $('.sticky-action');
+
+      $('.search-box-area').keyup(function(){
+
+        var text = $(this).val();
+
+        var ptr = new RegExp(text,'i');
+
+        for(x =0; x < divlength; x++){
+          var result = $(divs.eq(x)).text();
+          var sres = result.search(ptr);
+          
+          if(sres > -1){
+            divs.eq(x).css('display','');
+          }else{
+            divs.eq(x).css('display','none');
+          }
+
+        }
+
+        
+
+      });
+
+    });
 </script>
 </html>

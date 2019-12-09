@@ -1,8 +1,8 @@
 <?php
 
 
-$config['facebook']['api_id']       = '664328337419492';
-$config['facebook']['app_secret']   = '7141e0003b340bc3aa7fd8ede2797de1';
+$config['facebook']['api_id']       = '413554662903444';
+$config['facebook']['app_secret']   = '051420dd178cb30bcb79542172c65711';
 $config['facebook']['redirect_url'] = "http://localhost/archertours/admin/login";
 $config['facebook']['callback']     = "http://localhost/archertours/admin/login/fb-callback";
 $config['facebook']['permissions']  = array(

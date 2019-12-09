@@ -23,39 +23,39 @@ html {
     }
 
 
-    .input-field input{
+    .my-form .input-field input{
         border: none!important;
         color: white!important
     }
 
-    .row .input-field input:+label{
+    .my-form .input-field input:+label{
         color: white!important;
     }
 
-    .row .input-field input{
+    .my-form .input-field input{
         border-bottom: 0.5px solid rgba(224,224,224 ,0.02) !important;
         box-shadow: 0 0.5px 0 0 rgba(224,224,224 ,1) !important
     }
 
-    .input-field input:focus + label {
+    .my-form .input-field input:focus + label {
         color: #fdd800!important;
     }
 
-    .row .input-field textarea{
+    .my-form .input-field textarea{
         border-bottom: 0.5px solid rgba(224,224,224 ,0.02) !important;
         box-shadow: 0 0.5px 0 0 rgba(224,224,224 ,1) !important
     }
 
-    .input-field textarea:focus + label {
+    .my-form .input-field textarea:focus + label {
         color: #fdd800!important;
     }
 
-    .row .input-field textarea:focus {
+    .my-form .input-field textarea:focus {
         border-bottom: 0.5px solid #fdd800!important;
         box-shadow: 0 0.5px 0 0 #fdd800!important;
     }
 
-    .row .input-field input:focus {
+    .my-form .input-field input:focus {
         border-bottom: 0.5px solid #fdd800!important;
         box-shadow: 0 0.5px 0 0 #fdd800!important;
     }

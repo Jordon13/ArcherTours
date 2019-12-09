@@ -29,7 +29,9 @@ $this->load->helper('section');
     <meta property="og:title" content="<?php echo $data['title']?>">
     <meta property="og:description" content="<?php echo $data['catch'];?>">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="">
+    <meta property="og:image" content="<?php echo $data['image'];?>">
+    <meta property="og:url"   content="<?php echo $data['url'];?>" />
+
     <?php main_head();?>
 
 </head>
@@ -173,9 +175,9 @@ $this->load->helper('section');
         
   <div class="row" >
     <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0&appId=664328337419492&autoLogAppEvents=1"></script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0&appId=413554662903444&autoLogAppEvents=1"></script>
 
-    <div class="fb-like col s12" data-href="https://www.facebook.com/208362526252176/" data-width="" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+    <div class="fb-like col s12" data-href="<?php echo $data['url'];?>" data-width="" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
 
     <?php if($data['objectlink'] != ''){?>
       <div class="fb-comments col s12" data-href="<?php echo $data['objectlink'];?>" data-width="1000" data-numposts="2"></div>

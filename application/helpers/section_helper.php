@@ -140,7 +140,12 @@ if(!function_exists('main_nav')){
 
         <div class="nav-misc">
             <button class="noshow"><a href="'.site_url('/booking').'">Book A Trip</a></button>
-            <i class="material-icons noshow search-trigger">search</i>
+            <form id="frm" method="GET" action="'.site_url('/search').'" target="_blank">
+                <div class="input-field">
+                <input id="search" type="search" name="query" placeholder="Search For Trips" style="border:1px solid white!important; border-radius:30px!important;padding-left:15px!important;" required>
+                
+                </div>
+            </form>
             <i class="material-icons nav-icon sidenav-trigger" data-target="slidenav" style="display: none;">menu</i>
         </div>
         </div>
@@ -151,16 +156,17 @@ if(!function_exists('main_nav')){
 
 
     <ul class="sidenav" id="slidenav">
-        <li><a href="'.site_url('/services').'">Services</a></li>
-        <li><a href="'.site_url('/gallery').'">Gallery</a></li>
-        <li><a href="'.site_url('/about').'">About</a></li>
-        <li><a href="'.site_url('/contact').'">Contact</a></li>
-        <li><a href="'.site_url('/blog').'">Blog</a></li>
-
-        <div class="nav-misc">
-            <button><a href="'.site_url('/booking').'">Book A Trip</a></button>
-            <i class="material-icons search-trigger">search</i>
-        </div>
+      <li><a href="'.site_url('/home').'">Home</a></li>
+      <li><a href="'.site_url('/blog').'">Gallery</a></li>
+      <li><a href="'.site_url('/about').'">About</a></li>
+      <li><a href="'.site_url('/news').'">Blog</a></li>
+      <li><a href="'.site_url('/contact').'">Contact</a></li>
+      <li><a href="'.site_url('/gallery').'">Gallery</a></li>
+      <li><a href="'.site_url('/services').'">Services</a></li> 
+      <li><a href="'.site_url('/testimonial').'">Testimonial</a></li>
+      <div class="nav-misc">
+        <button><a href="'.site_url('/booking').'">Book A Trip</a></button>
+      </div>
     </ul>';
 	}
 }

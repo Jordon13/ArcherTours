@@ -606,6 +606,20 @@ class Clientside extends CI_Model {
         return $this->db->query("update `sys_booking` set `booking_status`='inprog' where `booking_date` = '".date('Y-m-d')."' and `booking_status`='booked'");
     }
 
+    public function search($str){
+
+        $sql = "Select * from sys_prices where
+        price_origin like '%".$str."%'
+        or price_destination like '%".$str."%'
+        or price_place like '%".$str."%'
+        or price_description like '%".$str."%'
+        or display_price like '%".$str."%'
+        or price_per_adult like '%".$str."%'";
+
+        $query = $this->db->query($sql);
+
+        return $query->result_array();
+    }
     
                    
 }

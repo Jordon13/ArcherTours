@@ -15,23 +15,29 @@ class Facebook {
     $this->ci =& get_instance();
  
     $this->fb = new \Facebook\Facebook([
-      'app_id' => "664328337419492",
-      'app_secret' => "7141e0003b340bc3aa7fd8ede2797de1",
+      'app_id' => "413554662903444",
+      'app_secret' => "051420dd178cb30bcb79542172c65711",
       'default_graph_version' => 'v2.10',
       //'default_access_token' => '{access-token}', // optional
     ]);
   }
 
   public function login(){
-    $helper = $this->fb->getRedirectLoginHelper();
+    try{
+      $helper = $this->fb->getRedirectLoginHelper();
     $permissions = ['email','publish_to_groups','publish_pages','manage_pages'];
     $loginUrl = $helper->getLoginUrl(base_url('/cms/FaceBookHandler'), $permissions);
     echo '<script>window.open("'.$loginUrl.'", "Facebook Popup", "height=500,width=400,resizable=no");</script>';
+    }catch(Exception $e){
+      throw $e;
+    }
+    
   }
 
   public function getAccessToken(){
 
     $helper = $this->fb->getRedirectLoginHelper();
+    
     
     $accessToken = '';
     
@@ -41,11 +47,11 @@ class Facebook {
     
     } catch(Facebook\Exceptions\FacebookResponseException $e) {
     
-      return false;
+      throw $e;
     
     } catch(Facebook\Exceptions\FacebookSDKException $e) {
     
-      return false;
+      throw $e;
     
     }
 
@@ -53,7 +59,7 @@ class Facebook {
 
     $tokenMetadata = $oAuth2Client->debugToken($accessToken);
 
-    $tokenMetadata->validateAppId("664328337419492");
+    $tokenMetadata->validateAppId("413554662903444");
 
     $tokenMetadata->validateExpiration();
 
@@ -65,7 +71,7 @@ class Facebook {
       
       } catch (Facebook\Exceptions\FacebookSDKException $e) {
       
-        return false;
+        throw $e;
       
       }
     }
@@ -73,14 +79,14 @@ class Facebook {
     if(isset($accessToken) && !empty($accessToken)){
       return $accessToken;
     }
-    return false;
+    return "failed";
   }
 
   public function setAccessToken($token){
     //$_SESSION['fb_access_token'] = (string) $accessToken;
 
     $_SESSION['fb_access_token'] = (string) $token->getValue();
-    $_SESSION['fb_expires_at'] = "never";//strtotime($token->getExpiresAt()->format('Y-m-d H:i:s'));
+    $_SESSION['fb_expires_at'] = $token->getExpiresAt() == null || empty($token->getExpiresAt()) ?  "never" : strtotime($token->getExpiresAt()->format('Y-m-d H:i:s'));
   
     try {
     
@@ -135,6 +141,7 @@ class Facebook {
         );
         return json_decode(json_encode($item));
       }else{
+        throw $e;
         $item = array(
           'Message' => "Unexpected Error Has Occured Try Again Later",
           'Success' => false
@@ -187,7 +194,7 @@ class Facebook {
 
 
     }catch(Facebook\Exceptions\FacebookResponseException $e){
-      print_r($e);//->getMessage();
+      throw $e;//->getMessage();
     }
   }
 
@@ -234,5 +241,12 @@ class Facebook {
     }catch(Facebook\Exceptions\FacebookResponseException $e){
       return NULL;
     }
-}
+  }
+
+  public function viewAccount(){
+    $response = $this->fb->get('me/accounts', $_SESSION['fb_access_token']);
+    $response = $response->getDecodedBody();
+    return $response;
+    //$page= json_decode(json_encode($response['data'][0]));
+  }
 }

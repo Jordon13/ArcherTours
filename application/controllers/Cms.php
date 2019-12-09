@@ -17,10 +17,11 @@ class Cms extends CI_Controller {
 
     }
 
-    
-
     public function FaceBookHandler(){
-        $token = $this->face->getAccessToken();
+
+        try{
+            $token = $this->face->getAccessToken();
+
 
         if($token != false){
 
@@ -65,6 +66,9 @@ class Cms extends CI_Controller {
             }
         }else{
             echo "Login Failed";
+        }
+        }catch(Exception $e){
+            echo $e->getMessage();
         }
     }
 
@@ -225,7 +229,7 @@ class Cms extends CI_Controller {
             }
 
             if(empty($blog_url)){
-                $blog_url = base64_encode(do_hash(random_string('alnum', 16),'gost-crypto'));
+                $blog_url = substr(base64_encode(hash('gost-crypto',random_string('alnum', 16))),0,40);
             }
 
 
@@ -239,13 +243,17 @@ class Cms extends CI_Controller {
                 'blog_tags'=>$blog_tags,
                 'blog_unique_id'=>$blog_unique_id
             );
-            
 
+            $e = '"'.site_url('blogs1062/').$blog_url.'"';
+
+            // print_r($e);
+            // return;
+            
             if($this->cms->InsertBlog($dataArray)){
                 
                 $result = array(
                 
-                    "Message" =>"Blog Added Successfully. <a href='".site_url('blogs1062/').urlencode($blog_url)."'>Check Out Your Blog Here</a>",
+                    "Message" =>"Blog Added Successfully. <a href='".site_url('blogs1062/').$blog_url."'>Check Out Your Blog Here</a>",
                 
                     "IsSuccess" => true
                 );
@@ -254,7 +262,7 @@ class Cms extends CI_Controller {
                 if(!empty($fbpost)){
 
                     $arr = array('message' => sanitizeInput2(xss_clean($blog_content_copy)),
-                'link' => 'https://www.archer1062tours.com');
+                'link' => "https://www.archer1062tour.com/blogs1062/".$blog_url);
 
                     $res = $this->face->PostBlog($arr);
                     if(!empty($res)){

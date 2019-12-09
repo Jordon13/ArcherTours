@@ -394,6 +394,21 @@ class Home extends CI_Controller {
         $this->load->view('sections/cart');
     }
 
+    public function results()
+    {
+
+        if(!isset($_GET['query']) || empty($_GET['query'])){
+            $result = $this->cs->search(" ");
+            $this->load->view('searchresults',array('data' =>$result));
+            return;
+        }
+
+        $str = sanitizeInput($_GET['query']);
+
+        $result = $this->cs->search($str);
+
+        $this->load->view('searchresults',array('data' =>$result));
+    }
     
     public function footer()
     {

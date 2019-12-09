@@ -70,6 +70,8 @@ $route['abt'] = "home/about";
 $route['a'] = "home/about";
 $route['ab'] = "home/about";
 
+$route['search'] = "home/results";
+
 $route['deal'] = "home/deals";
 $route['news'] = "home/recentstories";
 $route['testimonial'] = "home/testimonials";
