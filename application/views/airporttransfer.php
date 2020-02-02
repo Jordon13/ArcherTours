@@ -129,14 +129,15 @@ $this->load->helper('section');
         flex-flow: row wrap;
         justify-content: center;
     }
-
-    .search-box-area{
-      /* border: 1px solid #212121!important;  */
-    }
-
-
+    
     .search-box-area:focus{
       border-bottom:1px solid #212121!important;
+    }
+    
+    .card-title{
+        background-color: #000000d4!important;
+        width: 100%!important;
+        color: white!important;
     }
 
 </style>
@@ -174,19 +175,17 @@ $this->load->helper('section');
     <?php if($datas !== 0){?>
     <div class="row" style="margin-top:1em!important;">
         
+        
         <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0">
-
-            <div class="row trip-search-area">
             
-              <input class="search-box-area" type="search" placeholder="Search..."/>
-             
-            </div>
-
-            <div class="row">
+            <div class="row trip-search-area">
+            <input class="search-box-area" type="search" placeholder="Search..."/>
+          </div>
+            <div class="row valign-wrapper" style="flex-flow: row wrap; align-items:baseline;">
                 
             {datas}
                 <div class="col l4 m12 s12">
-                    <div class="card sticky-action hoverable">
+                    <div class="card sticky-action">
                         
 
                         <div class="card-image waves-effect waves-block waves-light">
@@ -197,17 +196,19 @@ $this->load->helper('section');
                         <div class="card-content">
                             <span class="activator grey-text text-darken-4"><i class="material-icons right">more_vert</i><b>Trip: From </b>{price_origin} <b>To</b> {price_destination}</span>
                             <br/><br/>
-                            <p><b>Price Per Person:</b> USD ${price_per_adult}</p>
+                            
 
-                            <!-- <p><b>Price Per Child:</b> USD ${price_per_child}</p> -->
+                             <p><b>Origin Place: </b>{price_hotel}</p> 
+                             <p><b>Destination Place: </b>{price_place}</p>
 
-                            <p><b>Group Price:</b> USD ${display_price} for 4 people.</p><br/>
+                            <p><b>Group Price:</b> USD ${display_price} for 4 people.</p>
+                            <p><b>Each additional person:</b> USD ${price_per_adult}</p><br/>
 
                             <p><b>Description: </b>{price_description}</p>
                         </div>
 
                         <div class="card-reveal">
-                            <span class="card-title grey-text text-darken-4">Additional Information<i class="material-icons right">close</i></span>
+                            <span class="card-title white-text text-darken-4">Additional Information<i class="material-icons right">close</i></span>
                             <ul style="list-style: circle!important; padding:1em!important;" class="liItem">
                             {price_addtional_info}<li>{item}</li>{/price_addtional_info}
                             </ul>
@@ -219,7 +220,6 @@ $this->load->helper('section');
                           <a class="waves-effect waves-light btn modal-trigger grey darken-3" id="{package_unique_id}" onclick=addToCart('{package_unique_id}') >Add To Cart</a>
                           <a class="waves-effect waves-light btn modal-trigger grey darken-3" id="{package_unique_id}" onclick=bookToCart('{package_unique_id}') >Book Now</a>
                         </div>
-                        
 
                     </div>
                 </div>

@@ -29,12 +29,12 @@ class Manipulation extends CI_Model {
             $config = array(
             'protocol'  => 'smtp',
             'smtp_host' => _HOST_,
-            'smtp_port' => 465,
+            'smtp_port' => _PORT_,
             'smtp_user' => MY_EMAIL_ADDR,
             'smtp_pass' => MY_EMAIL_PASSW,
             'mailtype'  => 'html',
             'smtp_keepalive' => 'TRUE',
-            '_smtp_auth'=>'TRUE',
+            '_smtp_auth'=>'FALSE',
             '_replyto_flag'=>'TRUE',
             'charset'   => 'utf-8'
             );
@@ -42,7 +42,7 @@ class Manipulation extends CI_Model {
         $this->email->set_mailtype("html");
         $this->email->set_newline("\r\n");
         //$link = site_url("admin/login?error=Welcome to Archer 1062 Tours, if this is your first time we suggest you create a new password after logging in with the system provided one");
-        $this->email->from('freshcode9@gmail.com', 'Archer 1062 Tours');
+        $this->email->from(MY_EMAIL_ADDR, 'Archer 1062 Tours');
         $this->email->to($data->UserEmail);
         
 
@@ -82,11 +82,6 @@ class Manipulation extends CI_Model {
         if($result->num_rows() > 0){
 
             $currentTime = time();
-
-            if($firstRow->expiry_date < $currentTime){
-                
-                return 3;
-            }
 
             $this->ses->set_userdata("fb_access_token",$firstRow->user_token);
             $this->ses->set_userdata("fb_expires_at",$firstRow->expiry_date);
@@ -206,6 +201,7 @@ class Manipulation extends CI_Model {
 
     public function LoadTestimonials10(){
         $this->db->limit(10);
+        $this->db->where('_isVisible','1');
         $this->db->order_by('date_created','DESC');
         return $this->db->get("sys_testimonials")->result_array();
     }

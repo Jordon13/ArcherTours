@@ -197,7 +197,7 @@ color:#f44336;
                             <?php foreach($images as $img){?>
 
                                 <div class="col folder l4 m12 s12 custom-img" id="<?php echo $img['_id'];?>">
-                                    <img class="z-depth-1 materialboxed" data-caption="<?php echo $img['media_file_desc']?>" src="<?php echo base_url('uploads/media/')?><?php echo $img['media_folder_name']?>/photos/<?php echo $img['media_file_name']?>"/> 
+                                    <img class="z-depth-1 materialboxed" width="300" height="250" data-caption="<?php echo $img['media_file_desc']?>" src="<?php echo base_url('uploads/media/')?><?php echo $img['media_folder_name']?>/photos/<?php echo $img['media_file_name']?>"/> 
                                 </div>
                             <?php }?>
                             </div>

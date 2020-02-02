@@ -5,6 +5,7 @@ class Home extends CI_Controller {
 
     public function index()
 	{
+	    
         $this->cs->updateBooking();
         $part = $this->uri->segment(1,0);
 
@@ -27,6 +28,11 @@ class Home extends CI_Controller {
         
 
 		$this->load->view('homepage',array('data'=>$this->mn->LoadHomepage()));
+    }
+    
+    
+    public function privacy(){
+        $this->load->view('privacy');
     }
 
     public function blogs1062(){
@@ -383,17 +389,7 @@ class Home extends CI_Controller {
         
         $this->ps->parse('blog/blog', $data);
     }
-
-    public function header()
-    {
-        $this->load->view('sections/header');
-    }
-
-    public function cart()
-    {
-        $this->load->view('sections/cart');
-    }
-
+    
     public function results()
     {
 
@@ -409,6 +405,17 @@ class Home extends CI_Controller {
 
         $this->load->view('searchresults',array('data' =>$result));
     }
+
+    public function header()
+    {
+        $this->load->view('sections/header');
+    }
+
+    public function cart()
+    {
+        $this->load->view('sections/cart');
+    }
+
     
     public function footer()
     {

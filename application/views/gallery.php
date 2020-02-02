@@ -66,7 +66,7 @@ $pageData = $data['pageDetails'];
 
       .medias{
         flex-flow: row wrap;
-        align-items: flex-start;
+        align-items: baseline;
       }
 
       .custom-hone-link{
@@ -163,7 +163,7 @@ $pageData = $data['pageDetails'];
         <?php foreach($data['images'] as $img){?>
 
             <div class="col l4 m12 s12 custom-img" >
-              <img class="materialboxed" data-caption="<?php echo $img['media_file_desc']?>" src="<?php echo base_url('uploads/media/')?><?php echo $img['media_folder_name']?>/photos/<?php echo $img['media_file_name']?>"/> 
+              <img class="materialboxed" width="300" height="300" data-caption="<?php echo $img['media_file_desc']?>" src="<?php echo base_url('uploads/media/')?><?php echo $img['media_folder_name']?>/photos/<?php echo $img['media_file_name']?>"/> 
             </div>
         <?php }?>
 

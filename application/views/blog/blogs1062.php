@@ -31,7 +31,6 @@ $this->load->helper('section');
     <meta property="og:type" content="website">
     <meta property="og:image" content="<?php echo $data['image'];?>">
     <meta property="og:url"   content="<?php echo $data['url'];?>" />
-
     <?php main_head();?>
 
 </head>

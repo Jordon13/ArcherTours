@@ -9,6 +9,8 @@ class Facebook {
   public $ci;
   public $accessToken;
   public $fb;
+
+  
  
   public function __construct() {
     // Get CI object.
@@ -25,8 +27,8 @@ class Facebook {
   public function login(){
     try{
       $helper = $this->fb->getRedirectLoginHelper();
-    $permissions = ['email','publish_to_groups','publish_pages','manage_pages'];
-    $loginUrl = $helper->getLoginUrl(base_url('/cms/FaceBookHandler'), $permissions);
+    $permissions = ['email','publish_to_groups','publish_pages','manage_pages','publish_video','pages_show_list'];
+    $loginUrl = $helper->getLoginUrl('https://www.archer1062tour.com/cms/FaceBookHandler', $permissions);
     echo '<script>window.open("'.$loginUrl.'", "Facebook Popup", "height=500,width=400,resizable=no");</script>';
     }catch(Exception $e){
       throw $e;
@@ -151,10 +153,6 @@ class Facebook {
       
     }
 
-    
-
-    
-
   }
 
   public function GetFeedData(){
@@ -249,4 +247,26 @@ class Facebook {
     return $response;
     //$page= json_decode(json_encode($response['data'][0]));
   }
+
+
+  public function uploadVideo($title, $source, $description){
+    
+    $response = $this->fb->get('me/accounts', $_SESSION['fb_access_token']);
+    $response = $response->getDecodedBody();
+    $page = json_decode(json_encode($response['data'][0]));
+
+    $data = [
+      //'thumb'        => new FacebookFile('PATH TO YOUR THUMB FILE'),
+        'source'      => $this->fb->videoToUpload($source),
+        'title'       => $title,
+        'description' => $description
+    ];
+    
+    $response = $this->fb->post('/'.$page->id.'/videos', $data, $_SESSION['fb_access_token']);
+    $post = $response->getGraphObject();
+    var_dump( $post );
+    }
+  
+
+
 }

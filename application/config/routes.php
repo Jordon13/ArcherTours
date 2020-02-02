@@ -79,6 +79,7 @@ $route['testimonial'] = "home/testimonials";
 
 $route['booking/(:any)'] = "home/booking";
 $route['booking'] = "home/booking";
+$route['privacy-policy'] = 'home/privacy';
 $route['b'] = "home/booking";
 $route['book'] = "home/booking";
 $route['books'] = "home/booking";

@@ -97,6 +97,12 @@ $this->load->helper('section');
       .dup:visited{
         color: rgba(160,0,10,0.6);
       }
+      
+      .bgt{
+          background-color: rgba(0,0,0,0.8);
+          width:100%!important;
+          font-size:15px!important;
+      }
 
 
 </style>
@@ -125,14 +131,22 @@ $this->load->helper('section');
       <?php foreach($items as $item){ ?>
 
         <?php 
+        
+        
           
           $filename = FCPATH."uploads/recent/".$item['recent_file_name'];
+            
+            if(file_exists ($filename)){
+                 $mime = mime_content_type($filename);
 
-          $mime = mime_content_type($filename);
-
-          $exp = explode("/",$mime);
-
-          $type = $exp[0];
+                  $exp = explode("/",$mime);
+        
+                  $type = $exp[0];
+            }else{
+                $type == "";
+            }   
+    
+         
 
           if($type == "image"){
           
@@ -140,8 +154,8 @@ $this->load->helper('section');
           <div class="col s12 m6 l4">
             <div class="card" onclick="view(<?php echo $item['auto_generated_id']?>)">
               <div class="card-image">
-                <img class="materialboxed" src="<?php echo site_url("uploads/recent/").$item['recent_file_name'];?>">
-                <span class="card-title"><?php echo $item['recent_title'];?></span>
+                <img width="300" height="250" class="materialboxed" src="<?php echo site_url("uploads/recent/").$item['recent_file_name'];?>">
+                <span class="card-title bgt"><?php echo $item['recent_title'];?></span>
               </div>
               <div class="card-content">
                 <p><?php echo $item['recent_desc'];?></p>

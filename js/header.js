@@ -3,27 +3,27 @@ var sval = $(this).scrollTop();
 var counter = 0;
 var center = 0;
 
-if (window.addEventListener) {
-    window.addEventListener('DOMMouseScroll', wheel, { passive: true });
-    window.onmousewheel = document.onmousewheel = wheel;
+// if (window.addEventListener) {
+//     window.addEventListener('DOMMouseScroll', wheel, { passive: true });
+//     window.onmousewheel = document.onmousewheel = wheel;
 
-    function wheel(event) {
-        var delta = 0;
-        if (event.wheelDelta) delta = event.wheelDelta / 80;
-        else if (event.detail) delta = -event.detail / 4;
+//     function wheel(event) {
+//         var delta = 0;
+//         if (event.wheelDelta) delta = event.wheelDelta / 100;
+//         else if (event.detail) delta = -event.detail / 8;
 
-        handle(delta);
-    }
+//         handle(delta);
+//     }
 
-    function handle(delta) {
-        var time = 800;
-        var distance = 300;
+//     function handle(delta) {
+//         var time = 300;
+//         var distance = 600;
 
-        $('html').stop().animate({
-            scrollTop: $(window).scrollTop() - (distance * delta)
-        }, time);
-    }
-}
+//         $('html').stop().animate({
+//             scrollTop: $(window).scrollTop() - (distance * delta)
+//         }, time);
+//     }
+// }
 
 
 var animateDivs = () => {

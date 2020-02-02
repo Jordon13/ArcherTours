@@ -503,6 +503,7 @@ class General extends CI_Model {
     public function GetSystemTestimonials(){
 
         $this->db->select("auto_generated_id,_username,_user_msg,_useremail,_rating,_isVisible");
+       //$this->db->where("_isVisible",1);
 
         return $this->db->get("sys_testimonials")->result_array();
 

@@ -9,12 +9,16 @@ if(!($this->ses->has_userdata("user_ses"))){
 $linkId = $this->uri->segment(3,-1);
 
 $filename = FCPATH."uploads/recent/".$data['recent_file_name'];
+            
+if(file_exists ($filename)){
+     $mime = mime_content_type($filename);
 
-$mime = mime_content_type($filename);
+      $exp = explode("/",$mime);
 
-$exp = explode("/",$mime);
-
-$type = $exp[0];
+      $type = $exp[0];
+}else{
+    $type == "";
+} 
 
 $isImage = false;
 

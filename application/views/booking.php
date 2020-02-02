@@ -44,39 +44,39 @@ $this->load->helper('section');
     }
 
 
-    .input-field input{
+    .inputs .input-field input{
         border: none!important;
         color: white!important
     }
 
-    .row .input-field input:+label{
+    .inputs .input-field input:+label{
         color: white!important;
     }
 
-    .row .input-field input{
+    .inputs .input-field input{
         border-bottom: 0.5px solid rgba(224,224,224 ,0.02) !important;
         box-shadow: 0 0.5px 0 0 rgba(224,224,224 ,1) !important
     }
 
-    .input-field input:focus + label {
+    .inputs .input-field input:focus + label {
         color: #fdd800!important;
     }
 
-    .row .input-field textarea{
+    .inputs .input-field textarea{
         border-bottom: 0.5px solid rgba(224,224,224 ,0.02) !important;
         box-shadow: 0 0.5px 0 0 rgba(224,224,224 ,1) !important
     }
 
-    .input-field textarea:focus + label {
+    .inputs .input-field textarea:focus + label {
         color: #fdd800!important;
     }
 
-    .row .input-field textarea:focus {
+    .inputs .input-field textarea:focus {
         border-bottom: 0.5px solid #fdd800!important;
         box-shadow: 0 0.5px 0 0 #fdd800!important;
     }
 
-    .row .input-field input:focus {
+    .inputs .input-field input:focus {
         border-bottom: 0.5px solid #fdd800!important;
         box-shadow: 0 0.5px 0 0 #fdd800!important;
     }
@@ -246,7 +246,7 @@ $this->load->helper('section');
 
             </div>
 
-            <div class="row" style="padding:0.5em!important">
+            <div class="row inputs" style="padding:0.5em!important">
 
               <div class="col s12">
 

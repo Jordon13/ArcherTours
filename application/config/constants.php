@@ -89,10 +89,9 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 /** 
  * Custom Globals*/
 
- 
- define('MY_EMAIL_ADDR', 'archer1062tours@yahoo.com');
- define('_HOST_', 'ssl://smtp.mail.yahoo.com');
- //_HOST_
+ define('MY_EMAIL_ADDR', 'support@archer1062tour.com');
  define('MY_EMAIL_PASSW','Tibbyarcher1');
+ define('_HOST_', 'mail.archer1062tour.com');
+ define('_PORT_',587);
  define("CARTNAME","acher_1062_cart");
  define("CARTVAL",0);

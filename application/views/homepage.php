@@ -8,14 +8,14 @@ $this->load->helper('section');
     <head>
 
     <?php main_head(); ?>
-    <title>Home | Archer1062Tours</title>
+    <title>Archer1062Tours | Home</title>
     <link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url('assets/icons/logo.png'); ?>">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
     <meta name="generator" content="Gatsby 2.15.6">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta  name="description" 
-    content="We take pride in providing exceptional services to our clients/guests here in Jamaica. We provide airport transfer to and from Sangster International Airport. We will take care of you and yours the minute you exit the custom area at the ports whether you travel by air or sea No matter how small or how large the group is whether you are here on vacation, business, church or school mission our reliable, knowledgeable, courteous and trustworthy drivers will puntually take care of you and yours from day one to the day you leave We will fullfill your needs for taxi services for any Tours/Excursion or if you just want go on a JOYRIDE">
+    content="We take pride in providing exceptional services to our clients/guests here in Jamaica. We provide airport transfer to and from Sangster International Airport. ">
     <meta name="author" content="Archer1062Tours">
     <meta  name="keywords" content="money, booking, save, saving, cheap, flight, book, tour, trips, trip, taxi, jamaica
     jamaican, jamaican food, places in jamaica, trip in jamaica, tour jamaica, jamaica culture, jamaican culture, jamaican song,
@@ -36,10 +36,10 @@ $this->load->helper('section');
     
     <style>
       .fpage {
-          background-image: url(<?php echo base_url('assets/'.$data['homepage']['_home_img'])?>);
-          background-size: cover;
-          background-repeat: no-repeat;
-          background-position: center;
+          /*background-image: url(<?php //echo base_url('assets/'.$data['homepage']['_home_img'])?>);*/
+          /*background-size: cover;*/
+          /*background-repeat: no-repeat;*/
+          /*background-position: center;*/
           height: 100%!important;
           width: 100%!important;
           background-attachment: fixed;
@@ -58,7 +58,7 @@ $this->load->helper('section');
 
     .whyus {
         position: relative!important;
-        background-image: url(<?php echo base_url('assets/'.$data['aboutus']['_about_us_img'])?>);
+        background-image: url(<?php echo base_url('assets/'.$data['aboutus']['_about_stat_img'])?>);
         background-size: cover!important;
         background-repeat: no-repeat!important;
         background-position: center!important;
@@ -75,6 +75,20 @@ $this->load->helper('section');
       width:200px!important;
     }
 
+    .fadeOut{
+      opacity: 0!important;
+      transition: opacity 5s;
+    }
+
+    .fadeIn{
+      opacity: 1!important;
+      transition: opacity 5s;
+    }
+    .slideimg{
+        width: 100%!important;
+        height: 100%;
+        position: absolute;
+      }
     
 
     </style>
@@ -85,6 +99,15 @@ $this->load->helper('section');
 
       <div class="fpage valign-wrapper" style="position:relative;">
         <div class="overlay"></div>
+        
+        <img src="<?php echo base_url('assets/1.jpg'); ?>" class="slideimg"/>
+         <img  src="<?php echo base_url('assets/2.jpg'); ?>" class="slideimg fadeOut"/>
+         <img  src="<?php echo base_url('assets/3.jpg'); ?>" class="slideimg fadeOut"/>
+         <img  src="<?php echo base_url('assets/4.jpg'); ?>" class="slideimg fadeOut"/>
+         <img  src="<?php echo base_url('assets/5.jpg'); ?>" class="slideimg fadeOut"/>
+         <img  src="<?php echo base_url('assets/6.jpg'); ?>" class="slideimg fadeOut"/>
+         <img  src="<?php echo base_url('assets/7.jpg'); ?>" class="slideimg fadeOut"/>
+         <img  src="<?php echo base_url('assets/8.jpg'); ?>" class="slideimg fadeOut"/>
         
         <div class="row"  style="position:relative; z-index:4;">
 
@@ -137,7 +160,13 @@ $this->load->helper('section');
                     <div class="custom-overlay-discount center-align" style="display:none">
                       <p class="ltext1"><?php echo $item['special_discount'];?>% off<br/>Book Now</p>
                     </div>
-                    <img height="300px"src="<?php echo base_url('uploads/prices-images/'.$item['price_image']);?>" class="" alt="no img">
+                    <img height="300px"src="<?php echo base_url('uploads/prices-images/'.$item['price_image']);?>" class="" alt="money, booking, save, saving, cheap, flight, book, tour, trips, trip, taxi, jamaica
+    jamaican, jamaican food, places in jamaica, trip in jamaica, tour jamaica, jamaica culture, jamaican culture, jamaican song,
+    airport transfer, airport, food, dancehall, reggae, rasta, flight to jamaica, hotels in jamaica, hotels in the caribbean, places in jamaica,
+    best places in jamaica to visit, jamaica gleaner, jamaica lagoon, activities in jamaica, usa, united, people, love, one love,bob marley,
+    bob marley meseum, sport in jamaica, ackee, ackee and salt fish, jamaican ackee, jamaican people, trip to jamaica, montego bay,
+    kingston, negril, ohco rios, falmouth, trelawny, usain bolt, fastest man in the world, tracks and record, restaurants in jamaica,
+    restaurants jamaica, jamaica restaurants, jamaican restaurants, restaurants, best price, best, best rates, best trips, best trip, best tour">
                     <span class="card-title"><?php echo $item['price_place'];?></span>
                   </div>
                   <div class="card-content">
@@ -197,7 +226,13 @@ $this->load->helper('section');
                     </div>                   
 
                   </div> -->
-                  <img src="<?php echo base_url('assets/').$data['services']['_service_airport_img'];?>" >
+                  <img src="<?php echo base_url('assets/').$data['services']['_service_airport_img'];?>" alt="money, booking, save, saving, cheap, flight, book, tour, trips, trip, taxi, jamaica
+    jamaican, jamaican food, places in jamaica, trip in jamaica, tour jamaica, jamaica culture, jamaican culture, jamaican song,
+    airport transfer, airport, food, dancehall, reggae, rasta, flight to jamaica, hotels in jamaica, hotels in the caribbean, places in jamaica,
+    best places in jamaica to visit, jamaica gleaner, jamaica lagoon, activities in jamaica, usa, united, people, love, one love,bob marley,
+    bob marley meseum, sport in jamaica, ackee, ackee and salt fish, jamaican ackee, jamaican people, trip to jamaica, montego bay,
+    kingston, negril, ohco rios, falmouth, trelawny, usain bolt, fastest man in the world, tracks and record, restaurants in jamaica,
+    restaurants jamaica, jamaica restaurants, jamaican restaurants, restaurants, best price, best, best rates, best trips, best trip, best tour">
                   <span class="card-title"><?php echo $data['services']['_service_airport_title']?></span>
                 </div>
                 <div class="card-content">
@@ -219,7 +254,13 @@ $this->load->helper('section');
                     </div>                   
 
                   </div> -->
-                  <img src="<?php echo base_url('assets/').$data['services']['_service_taxi_img'];?>" >
+                  <img src="<?php echo base_url('assets/').$data['services']['_service_taxi_img'];?>" alt="money, booking, save, saving, cheap, flight, book, tour, trips, trip, taxi, jamaica
+    jamaican, jamaican food, places in jamaica, trip in jamaica, tour jamaica, jamaica culture, jamaican culture, jamaican song,
+    airport transfer, airport, food, dancehall, reggae, rasta, flight to jamaica, hotels in jamaica, hotels in the caribbean, places in jamaica,
+    best places in jamaica to visit, jamaica gleaner, jamaica lagoon, activities in jamaica, usa, united, people, love, one love,bob marley,
+    bob marley meseum, sport in jamaica, ackee, ackee and salt fish, jamaican ackee, jamaican people, trip to jamaica, montego bay,
+    kingston, negril, ohco rios, falmouth, trelawny, usain bolt, fastest man in the world, tracks and record, restaurants in jamaica,
+    restaurants jamaica, jamaica restaurants, jamaican restaurants, restaurants, best price, best, best rates, best trips, best trip, best tour">
                   <span class="card-title"><?php echo $data['services']['_service_taxi_title']?></span>
                 </div>
                 <div class="card-content">
@@ -241,7 +282,13 @@ $this->load->helper('section');
                     </div>                   
 
                   </div> -->
-                  <img src="<?php echo base_url('assets/').$data['services']['_service_tours_img'];?>" >
+                  <img src="<?php echo base_url('assets/').$data['services']['_service_tours_img'];?>" alt="money, booking, save, saving, cheap, flight, book, tour, trips, trip, taxi, jamaica
+    jamaican, jamaican food, places in jamaica, trip in jamaica, tour jamaica, jamaica culture, jamaican culture, jamaican song,
+    airport transfer, airport, food, dancehall, reggae, rasta, flight to jamaica, hotels in jamaica, hotels in the caribbean, places in jamaica,
+    best places in jamaica to visit, jamaica gleaner, jamaica lagoon, activities in jamaica, usa, united, people, love, one love,bob marley,
+    bob marley meseum, sport in jamaica, ackee, ackee and salt fish, jamaican ackee, jamaican people, trip to jamaica, montego bay,
+    kingston, negril, ohco rios, falmouth, trelawny, usain bolt, fastest man in the world, tracks and record, restaurants in jamaica,
+    restaurants jamaica, jamaica restaurants, jamaican restaurants, restaurants, best price, best, best rates, best trips, best trip, best tour">
                   <span class="card-title"><?php echo $data['services']['_service_tours_title'];?></span>
                 </div>
                 <div class="card-content">
@@ -379,7 +426,13 @@ $this->load->helper('section');
 
                 <div class="card-panel grey lighten-5 z-depth-3" style="border-radius:10px;">
                   <div class="row valign-wrapper">
-                    <div class="col s3"><img class="circle responsive-img" src="http://budotrader.pl/wp-content/uploads/2018/12/placeholder-image-sq-2.png"></div>  
+                    <div class="col s3"><img class="circle responsive-img" src="<?php echo base_url('assets/pholder.png')?>" alt="money, booking, save, saving, cheap, flight, book, tour, trips, trip, taxi, jamaica
+    jamaican, jamaican food, places in jamaica, trip in jamaica, tour jamaica, jamaica culture, jamaican culture, jamaican song,
+    airport transfer, airport, food, dancehall, reggae, rasta, flight to jamaica, hotels in jamaica, hotels in the caribbean, places in jamaica,
+    best places in jamaica to visit, jamaica gleaner, jamaica lagoon, activities in jamaica, usa, united, people, love, one love,bob marley,
+    bob marley meseum, sport in jamaica, ackee, ackee and salt fish, jamaican ackee, jamaican people, trip to jamaica, montego bay,
+    kingston, negril, ohco rios, falmouth, trelawny, usain bolt, fastest man in the world, tracks and record, restaurants in jamaica,
+    restaurants jamaica, jamaica restaurants, jamaican restaurants, restaurants, best price, best, best rates, best trips, best trip, best tour"></div>  
                     <div class="col s9">
                       <p><b><?php echo strtoupper($item['_username']); ?></b></p>
                       <p class="grey-text" style="margin-bottom:10px!important;font-size:12px;"><b><?php echo date("F d, Y",strtotime($item['date_created'])); ?></b></p>
@@ -432,7 +485,7 @@ $this->load->helper('section');
           </div>
 
           <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
-            <p class="center-align blackText lead">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, </p>
+            <p class="center-align blackText lead">Where the Internet is about availability of information, blogging is about making information creation available to anyone.</p>
           </div>
 
           <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
@@ -447,7 +500,13 @@ $this->load->helper('section');
                     <div class="card-image custom-hover" >
                       <div class="overlay"></div>
                       <div class="date-overlay"><?php echo date("M d",strtotime($blog['blog_last_modified']));?></div>
-                      <img src="<?php echo base_url('uploads/blog-images/'.$blog['blog_image'])?>" >
+                      <img src="<?php echo base_url('uploads/blog-images/'.$blog['blog_image'])?>" alt="money, booking, save, saving, cheap, flight, book, tour, trips, trip, taxi, jamaica
+    jamaican, jamaican food, places in jamaica, trip in jamaica, tour jamaica, jamaica culture, jamaican culture, jamaican song,
+    airport transfer, airport, food, dancehall, reggae, rasta, flight to jamaica, hotels in jamaica, hotels in the caribbean, places in jamaica,
+    best places in jamaica to visit, jamaica gleaner, jamaica lagoon, activities in jamaica, usa, united, people, love, one love,bob marley,
+    bob marley meseum, sport in jamaica, ackee, ackee and salt fish, jamaican ackee, jamaican people, trip to jamaica, montego bay,
+    kingston, negril, ohco rios, falmouth, trelawny, usain bolt, fastest man in the world, tracks and record, restaurants in jamaica,
+    restaurants jamaica, jamaica restaurants, jamaican restaurants, restaurants, best price, best, best rates, best trips, best trip, best tour">
                       <span class="card-title" style="z-index:3!important;"><?php echo $blog['blog_title'];?></span>
                     </div>
                     <div class="card-content">
@@ -739,5 +798,47 @@ $(".rating").starRating({
 
 
     </script>
+    
+    <script>
+      
+        var elements = document.getElementsByClassName("slideimg");
+
+        var len = elements.length;
+
+        var oneless = elements.length-1;
+
+        var counter = 0;
+
+        var interval = setInterval(function(){
+
+          if(counter>=oneless){
+            counter = 0;
+          }
+          var inc = 0
+          var incount = 0.0;
+            
+          setTimeout(function(){
+            elements[counter].classList.add("fadeOut");
+            elements[counter].classList.remove("fadeIn");
+          },5000);
+
+          setTimeout(function(){
+              var t = counter;
+              t = t+1;
+              if(t<=oneless){
+                elements[t].classList.add("fadeIn");
+                elements[t].classList.remove("fadeOut");
+              }else{
+                elements[0].classList.add("fadeIn");
+                elements[0].classList.remove("fadeOut");
+              }
+            },5000);
+
+          counter++;
+
+        },10000);
+
+      
+      </script>
 
 </html>

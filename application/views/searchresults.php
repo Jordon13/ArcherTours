@@ -60,18 +60,7 @@ $this->load->helper('section');
 </head>
 <body class="">
 <?php main_nav(); ?>
-    <nav class="">
-        <div class="nav-wrapper">
-        <form id="frm" method="GET" action="" target="_blank">
-            <div class="input-field">
-            <input id="search" type="search" name="query" placeholder="Search For Trips" required>
-            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-            <i class="material-icons">close</i>
-            </div>
-        </form>
-        </div>
-    </nav>
-
+    
     <div class="row" style="margin-top:4rem;">
 
         <div class="col s10 offset-s1">

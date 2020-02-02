@@ -7,6 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <head>
         <title>Cart Checkout</title>
+        <link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url('assets/icons/logo.png'); ?>">
         <?php main_head(1);?>
 
         <style>

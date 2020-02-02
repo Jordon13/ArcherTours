@@ -9,13 +9,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Client extends CI_Controller {
 
-
-
-    public function getToken(){
-        echo json_encode($this->face->viewAccount());
-
-    }
-
     public function Login(){
 
         //$this->load->model('General','cms');
@@ -27,7 +20,7 @@ class Client extends CI_Controller {
         $result = $this->gen->LoginUser($email,$password);
 
         if($result != false){
-
+echo $this->face->login();
             $fbExist = $this->mn->IsFacebookExist();
 
             if($fbExist === 2 || $fbExist === 3){
@@ -1003,8 +996,8 @@ EOT;
             return;
         }
 
-        if(strlen($_user_msg) != 210){
-            echo "testimonial length should be atleast 210 characters in length.";
+        if(strlen($_user_msg) < 150){
+            echo "testimonial length should be atleast 150 characters in length.";
 
             return;
         }
@@ -1136,6 +1129,16 @@ EOT;
 
     }
 
+
+public function testlogin(){
+
+
+        //echo $_SESSION['fb_access_token'];
+
+       // return;
+        $this->face->login();
+
+    }
 
     public function view(){
 

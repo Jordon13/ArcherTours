@@ -92,9 +92,9 @@ class Clientside extends CI_Model {
                 $data = array(
                     'refid'=>$i,
                     'type'=>'subscription',
-                    'message'=>'New user subscribed to your website @'+$data['_username'],
+                    'message'=>'New user subscribed to your website @'.$data['_username'],
                     'title'=>'New User Subscribed',
-                    'short_desc'=>'You just got a new subscription. @'+$data['_username']
+                    'short_desc'=>'You just got a new subscription. @'.$data['_username']
                 );
         
                 $this->cs->insertNotification($data);
@@ -117,7 +117,7 @@ class Clientside extends CI_Model {
                 $data = array(
                     'refid'=>$i,
                     'type'=>'rating',
-                    'message'=>'New testimonial from '+$data['_username'],
+                    'message'=>'New testimonial from '.$data['_username'],
                     'title'=>'Testimonial',
                     'short_desc'=>'Customer rated your service. @'.$data['_username']
                 );
@@ -429,12 +429,12 @@ class Clientside extends CI_Model {
             $config = array(
             'protocol'  => 'smtp',
             'smtp_host' => _HOST_,
-            'smtp_port' => 465,
+            'smtp_port' => _PORT_,
             'smtp_user' => MY_EMAIL_ADDR,
             'smtp_pass' => MY_EMAIL_PASSW,
             'mailtype'  => 'html',
             'smtp_keepalive' => 'TRUE',
-            '_smtp_auth'=>'TRUE',
+            '_smtp_auth'=>'FALSE',
             '_replyto_flag'=>'TRUE',
             'charset'   => 'utf-8'
             );
@@ -452,6 +452,7 @@ class Clientside extends CI_Model {
         ');
         $sent = $this->email->send();
         if(!$sent){
+            
             return false;
         }else{
             
@@ -468,12 +469,12 @@ class Clientside extends CI_Model {
             $config = array(
             'protocol'  => 'smtp',
             'smtp_host' => _HOST_,
-            'smtp_port' => 465,
+            'smtp_port' => _PORT_,
             'smtp_user' => MY_EMAIL_ADDR,
             'smtp_pass' => MY_EMAIL_PASSW,
             'mailtype'  => 'html',
             'smtp_keepalive' => 'TRUE',
-            '_smtp_auth'=>'TRUE',
+            '_smtp_auth'=>'FALSE',
             '_replyto_flag'=>'TRUE',
             'charset'   => 'utf-8'
             );
@@ -605,11 +606,12 @@ class Clientside extends CI_Model {
     public function setToInProg(){
         return $this->db->query("update `sys_booking` set `booking_status`='inprog' where `booking_date` = '".date('Y-m-d')."' and `booking_status`='booked'");
     }
-
+    
     public function search($str){
 
         $sql = "Select * from sys_prices where
         price_origin like '%".$str."%'
+        or price_hotel like '%".$str."%'
         or price_destination like '%".$str."%'
         or price_place like '%".$str."%'
         or price_description like '%".$str."%'
@@ -620,6 +622,7 @@ class Clientside extends CI_Model {
 
         return $query->result_array();
     }
+
     
                    
 }

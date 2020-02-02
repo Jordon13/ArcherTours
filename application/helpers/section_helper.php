@@ -10,7 +10,6 @@ if(!function_exists('main_head')){
         
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
 
-        <script src="'.base_url('js/jQuery.scrollSpeed.js').'" ></script>
 
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> 
         
@@ -140,7 +139,7 @@ if(!function_exists('main_nav')){
 
         <div class="nav-misc">
             <button class="noshow"><a href="'.site_url('/booking').'">Book A Trip</a></button>
-            <form id="frm" method="GET" action="'.site_url('/search').'" target="_blank">
+            <form id="frm" method="GET" action="'.site_url('/search').'" target="_self">
                 <div class="input-field">
                 <input id="search" type="search" name="query" placeholder="Search For Trips" style="border:1px solid white!important; border-radius:30px!important;padding-left:15px!important;" required>
                 
@@ -262,17 +261,19 @@ if(!function_exists('main_footer')){
         </div>
 
       </div>
-      <script type="text/javascript">
+      <!--Start of Tawk.to Script-->
+<script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
 var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
 s1.async=true;
-s1.src=\'https://embed.tawk.to/5cf7bbf9267b2e578530fdf0/default\';
+s1.src=\'https://embed.tawk.to/5e1c5da927773e0d832d4679/default\';
 s1.charset=\'UTF-8\';
 s1.setAttribute(\'crossorigin\',\'*\');
 s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
+<!--End of Tawk.to Script-->
 
 
 <!--End of Tawk.to Script-->';

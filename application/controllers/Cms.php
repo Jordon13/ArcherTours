@@ -17,11 +17,10 @@ class Cms extends CI_Controller {
 
     }
 
+    
+
     public function FaceBookHandler(){
-
-        try{
-            $token = $this->face->getAccessToken();
-
+        $token = $this->face->getAccessToken();
 
         if($token != false){
 
@@ -66,9 +65,6 @@ class Cms extends CI_Controller {
             }
         }else{
             echo "Login Failed";
-        }
-        }catch(Exception $e){
-            echo $e->getMessage();
         }
     }
 
@@ -243,23 +239,25 @@ class Cms extends CI_Controller {
                 'blog_tags'=>$blog_tags,
                 'blog_unique_id'=>$blog_unique_id
             );
-
-            $e = '"'.site_url('blogs1062/').$blog_url.'"';
-
-            // print_r($e);
-            // return;
             
+
             if($this->cms->InsertBlog($dataArray)){
                 
                 $result = array(
                 
-                    "Message" =>"Blog Added Successfully. <a href='".site_url('blogs1062/').$blog_url."'>Check Out Your Blog Here</a>",
+                    "Message" =>"Blog Added Successfully. <a href='".site_url('blogs1062/').urlencode($blog_url)."'>Check Out Your Blog Here</a>",
                 
                     "IsSuccess" => true
                 );
 
                 
                 if(!empty($fbpost)){
+                    
+                    $fbExist = $this->mn->IsFacebookExist();
+
+                    if($fbExist === 2 || $fbExist === 3){
+                        echo $this->face->login();
+                    }
 
                     $arr = array('message' => sanitizeInput2(xss_clean($blog_content_copy)),
                 'link' => "https://www.archer1062tour.com/blogs1062/".$blog_url);
@@ -360,6 +358,8 @@ class Cms extends CI_Controller {
             $price_per_adult = sanitizeInput($this->input->post('price_per_adult',true));
 
             $price_per_child = sanitizeInput($this->input->post('price_per_child',true));
+            
+            $price_hotel = sanitizeInput($this->input->post('price_hotel',true));
 
             $price_description = base64_encode($this->input->post('price_description',true));
 
@@ -447,6 +447,7 @@ class Cms extends CI_Controller {
                 'price_image'=>$price_image,
                 'package_unique_id'=>$package_unique_id,
                 'price_discount'=>$price_discount,
+                'price_hotel'=>$price_hotel
             );
             
 

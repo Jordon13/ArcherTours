@@ -52,7 +52,7 @@
     justify-content: space-between;
     align-items: center;
     transition: margin-left 0.5s, width 0.5s;
-    transition: height 1s;
+    transition: height 0.5s;
 }
 
 .nav-body-small {
@@ -61,7 +61,7 @@
     width: 90%;
     justify-content: space-between;
     align-items: center;
-    transition: height 1s;
+    transition: height 0.5s;
 }
 
 .reset {
@@ -275,6 +275,10 @@
     background-color: rgba(33, 33, 33, 1);
 }
 
+img{
+    filter:contrast(120%)!important;
+}
+
 
 .fixed-action-btn{
     top: 78%;
@@ -299,4 +303,8 @@
     visibility: visible;
     transition: visibility 0s, opacity 0.5s ease-in-out;
   }
+  
+  @media screen and (-ms-high-contrast: active) {
+    /* put your styling rules here */
+}
 

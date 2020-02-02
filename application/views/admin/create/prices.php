@@ -177,7 +177,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                                             <option value="Half Way Tree, St. Andrew">Half Way Tree, Saint Andrew</option>
                                             <option value="Morant Bay, St. Thomas">Morant Bay, Saint Thomas</option>
                                         </select>
-                                        <label>Origin <span class="required">*</span></label>
+                                        <label>Origin City<span class="required">*</span></label>
                                     </div>
 
                                     <div class="input-field col l6 s12">
@@ -199,15 +199,24 @@ if(!($this->ses->has_userdata("user_ses"))){
                                             <option value="Half Way Tree, St. Andrew">Half Way Tree, Saint Andrew</option>
                                             <option value="Morant Bay, St. Thomas">Morant Bay, Saint Thomas</option>
                                         </select>
-                                        <label>Destination <span class="required">*</span></label>
+                                        <label>Destination City<span class="required">*</span></label>
                                     </div>
 
                                 
+                                    <div class="input-field col s12">
+                                        <input name="price_hotel" id="price_place" type="text" class="validate" title="Place">
+                                        <label for="price_place">Origin Place<span class="required">*</span></label>
+                                    </div>
 
                                     <div class="input-field col s12">
                                         <input name="price_place" id="place" type="text" class="validate" title="Enter A Valid Address">
-                                        <label for="place">Place / Hotel Name <span class="required">*</span></label>
+                                        <label for="place">Destination Place<span class="required">*</span></label>
                                     </div>
+                                    
+                                    
+                                    
+                                    
+                                
 
                                 </div>
 
@@ -321,6 +330,15 @@ if(!($this->ses->has_userdata("user_ses"))){
     </body>
     <script>
         var counter = 1;
+        
+        Object.defineProperty(String.prototype, "toFlt", {
+            value: function toFlt() {
+                return parseFloat(this,10) || 0;
+            },
+            writable: true,
+            configurable: true
+        });
+        
          $(document).ready(function(){
             $('.tabs').tabs();
 
@@ -334,6 +352,26 @@ if(!($this->ses->has_userdata("user_ses"))){
                 $('.newinfo').append('<input id="info'+counter+'" type="text" placeholder="additional info'+counter+'" class="validate"  style="display:none;"/>');
                 $('#info'+counter).fadeIn(1000);
                 counter++;
+            });
+            
+            $("#price1").keyup(function(){
+                
+                $("#price2").val( ($("#price1").val().toFlt()/4).toFixed(2) );
+                
+            });
+            
+            $("#price_place").keyup(function(){
+                
+                var text = $("#price_place").val();
+                
+                var newText = text.replace(" I ",", ");
+                
+                var newText = newText.replace("/"," or ");
+                
+                $("#price_place").val(newText);
+                
+                console.log(newText);
+                
             });
 
             $('#submit').click(function(e){

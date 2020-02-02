@@ -195,7 +195,7 @@ $this->load->helper('section');
       
     <?php if($data['_service_vid'] != null && $data['_service_vid'] != ""){?>
       <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 center">
-        <video src="<?php echo base_url('assets/').$data['_service_vid'];?>" class="nooutline responsive-video" width="100%" height="900px" preload="metadata" crossorigin="anonymous" controls>
+        <video src="<?php echo base_url('assets/').$data['_service_vid'];?>" class="nooutline" width="100%" height="900px" preload="metadata" crossorigin="anonymous" controls>
           <p>If you are reading this, it is because your browser does not support the HTML5 video element.</p>
           <!-- <track kind="subtitles" label="English" src="<?php //echo base_url('assets/web.vtt');?>" srclang="en"> -->
         </video>
