@@ -6,12 +6,12 @@ application/cache/*
 application/logs/*
 !application/logs/index.html
 
-!application/*/.htaccess
-
+application/.htaccess
+.htaccess
 composer.lock
 assets/*
 uploads/*
-
+application/*/.htaccess
 .git/*
 
 user_guide_src/build/*
