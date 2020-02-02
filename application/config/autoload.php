@@ -103,7 +103,7 @@ $autoload['helper'] = array("url","string","email","security","db","directory","
 | config files.  Otherwise, leave it blank.
 |
 */
-$autoload['config'] = array('facebook','paypal');
+ $autoload['config'] = array('paypal');
 
 /*
 | -------------------------------------------------------------------

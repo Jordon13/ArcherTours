@@ -68,6 +68,8 @@ switch (ENVIRONMENT)
 	case 'development':
 		error_reporting(-1);
 		ini_set('display_errors', 1);
+		define('facebookPath','C:\xampp\htdocs\archertours\vendor\facebook\graph-sdk\src\Facebook\autoload.php');
+		define('paypalPath','C:\xampp\htdocs\archertours\vendor\autoload.php');
 		define('baseurl', 'http://'.$_SERVER['SERVER_NAME'].':84'.'/archertours');
 		define('dbuser','jordaine');
 		define('dbname','archer_tours');
