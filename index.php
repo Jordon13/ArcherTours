@@ -68,10 +68,16 @@ switch (ENVIRONMENT)
 	case 'development':
 		error_reporting(-1);
 		ini_set('display_errors', 1);
+		define('baseurl', 'http://'.$_SERVER['SERVER_NAME'].':84'.'/archertours');
+		define('dbuser','jordaine');
+		define('dbname','archer_tours');
 	break;
 
 	case 'testing':
 	case 'production':
+		define('dbuser','archer10_jordain');
+		define('dbname','archer10_archer_tours');
+		define('baseurl', 'https://www.archer1062tour.com');
 		ini_set('display_errors', 0);
 		if (version_compare(PHP_VERSION, '5.3', '>='))
 		{
