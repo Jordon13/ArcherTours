@@ -352,9 +352,8 @@ $this->load->helper('section');
 
               <div class="input-field col s12">
                                 
-                  <input type="text" class="datepicker" name="tripdate" id="tripdate">
-                  <label for="tripdate">Date Of Trip <span class="required">*</span></label>
-
+                  <input type="date" class="" name="tripdate" id="tripdate" placeholder="date of trip">
+                  
               </div>
 
               <div class="input-field col s12">
@@ -417,9 +416,9 @@ $this->load->helper('section');
     
       $('document').ready(function(){
 
-        $('select').formSelect();
+        $('select').material_select();
 
-        $('.datepicker').eq(0).datepicker({
+        $('.datepicker').eq(0).pickadate({
             showDaysInNextAndPreviousMonths: false,
             minDate: new Date()
         });

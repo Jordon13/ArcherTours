@@ -6,8 +6,14 @@ if(!function_exists('main_head')){
 
       $header = $inverted == 0 ? base_url('css/header.css') : base_url('css/header_invert_2.css');
 
-        echo '<script src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
         
+      echo '<script src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
+
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        
+        <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
 
 
@@ -29,16 +35,18 @@ if(!function_exists('main_head')){
         
         <link rel="stylesheet" type="text/css" href="'.base_url('css/').'star-rating-svg.css">
 
-
-        <script src="'.base_url('js/materialize.js').'"></script>
-        
         <link href="'.$header.'" rel="stylesheet">
 
         <link href="'.base_url('css/footer.css').'" rel="stylesheet">
         
-        <link href="'.base_url('css/materialize.css').'" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" media="screen,projection"> 
         
         <script src="'.base_url('js/header.js').'" async></script>
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js" async></script>
+        
+        
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/tiny-slider.css">
 
@@ -119,7 +127,7 @@ if(!function_exists('main_nav')){
 <div class="nav-header">
 
     <div class="nav-body">
-        <div class="nav-logo">
+        <div class="nav-logo hide-on-med-and-down">
         <a href="'.site_url('/').'"><img src="'.base_url('assets/').$logo.'"/></a>
         </div>
 
@@ -145,7 +153,8 @@ if(!function_exists('main_nav')){
                 
                 </div>
             </form>
-            <i class="material-icons nav-icon sidenav-trigger" data-target="slidenav" style="display: none;">menu</i>
+            
+            <a href="#" data-activates="slidenav" class="button-collapse show-on-medium-and-down nav-icon" style="display: none;"><i class="material-icons">menu</i></a>
         </div>
         </div>
 
@@ -154,7 +163,10 @@ if(!function_exists('main_nav')){
     </div>
 
 
-    <ul class="sidenav" id="slidenav">
+    <ul id="slidenav" class="side-nav" style="padding-top:5px!important;">
+      <div class="nav-logo" style="display:flex!important;justify-content:center!important;">
+        <a href="'.site_url('/').'"><img src="'.base_url('assets/').$logo.'"/></a>
+      </div>
       <li><a href="'.site_url('/home').'">Home</a></li>
       <li><a href="'.site_url('/blog').'">Gallery</a></li>
       <li><a href="'.site_url('/about').'">About</a></li>
@@ -163,9 +175,7 @@ if(!function_exists('main_nav')){
       <li><a href="'.site_url('/gallery').'">Gallery</a></li>
       <li><a href="'.site_url('/services').'">Services</a></li> 
       <li><a href="'.site_url('/testimonial').'">Testimonial</a></li>
-      <div class="nav-misc">
-        <button><a href="'.site_url('/booking').'">Book A Trip</a></button>
-      </div>
+      <li><a href="'.site_url('/booking').'">Book A Trip</a></li>
     </ul>';
 	}
 }
@@ -282,7 +292,7 @@ s0.parentNode.insertBefore(s1,s0);
       <script type='text/javascript'>
       
           $(document).ready(function(){
-            $('.sidenav').sidenav();
+            $('.button-collapse').sideNav();
             AOS.init({
               // once: true
            });

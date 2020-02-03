@@ -155,7 +155,7 @@ var executeProcess = () => {
 }
 
 $(document).ready(function() {
-    $('.sidenav').sidenav();
+    $('.button-collapse').sideNav();
 
     AOS.init();
 

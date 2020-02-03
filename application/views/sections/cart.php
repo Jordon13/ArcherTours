@@ -248,8 +248,7 @@ html {
 
                         <div class="row">
                             <div class="input-field col s12">
-                                <input id="tripdate" name="tripdate" type="text" class="datepicker validate">
-                                <label for="tripdate">Date Of Trip</label>
+                                <input id="tripdate" name="tripdate" type="date" class="datepicker validate">
                             </div>
 
                             <div class="input-field col s12">
@@ -429,10 +428,10 @@ html {
 
         });
 
-        $('.datepicker').eq(0).datepicker({
-            showDaysInNextAndPreviousMonths: false,
-            minDate: new Date()
-        });
+        // $('.datepicker').eq(0).datepicker({
+        //     showDaysInNextAndPreviousMonths: false,
+        //     minDate: new Date()
+        // });
 
 
         $("#submit").on('click',(e) =>{

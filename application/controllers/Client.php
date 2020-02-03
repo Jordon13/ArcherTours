@@ -207,7 +207,7 @@ echo $this->face->login();
                 "IsSuccess" => false
             );
     
-            echo json_ensode($result);
+            echo json_encode($result);
     
             http_response_code(500);
         }
@@ -444,7 +444,7 @@ EOT;
 
         if($this->cs->InsertBooking2($batchArray)){
 
-            $subject = "Booking Details For Archer 1062 Tours";
+            $subject = "Booking Details From Archer 1062 Tours";
 
             $uid = uniqid();
 
@@ -539,11 +539,11 @@ EOT;
                 </tr> -->
 
                 <tr>
-                    <th rowspan="8" ><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZF5j_offbmgzVWL3WoOfn0ETr0btw3pqnhyVJMp_FOJjtM2glXw" alt="no image"/></th>
+                    <th rowspan="8" ><img src="https://www.archer1062tour.com/assets/0c63a5502c098fcaf716c606f5078bf2.png" alt="archer1062tours"></th>
                     
                 </tr>
                 <tr>
-                    <th colspan="7" style="text-align: right; color:#FFEE58;"><h1>Vincent Archer</h1></th>
+                    <th colspan="7" style="text-align: right; color:#FFEE58;"><h1>Alwyn Archer</h1></th>
                 </tr>
 
                 <tr>
@@ -646,7 +646,7 @@ EOT;
 EOT;
 
             $this->cs->SendEmail($email,$subject,$mainBody);
-
+            $this->cs->SendEmail("archer1062tours@yahoo.com","New booking from ".$email,$mainBody.'<br/>Contact Email: '.$email);
             
 
             echo "Booked Successfully. Please check your email for the booking details.";
@@ -851,7 +851,7 @@ EOT;
                 set_cookie($cookie_name,base64_encode(json_encode($cookie_value)),86400*3);
 
                 
-            echo count($cookie_value);
+            //echo count($cookie_value);
             }else{
 
                 array_push($getVal,array(
@@ -878,7 +878,7 @@ EOT;
                 $_GLOBAL['totalItems'] = $t;
                 
                 
-                echo count($cookie_value);
+                //echo count($cookie_value);
             }
         }else{
 
@@ -906,10 +906,10 @@ EOT;
 
             $_GLOBAL['totalItems'] = $t;
 
-            echo count($cookie_value);
+            //echo count($cookie_value);
         }
 
-        redirect(site_url());
+        redirect(baseurl);
 
     }
 

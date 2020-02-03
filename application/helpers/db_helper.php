@@ -86,15 +86,15 @@ if(!function_exists('Notifications')){
 
 
         if($item['type']=='recent'){
-          $link = "http://localhost:84/archertours/admin/editnews/".$item['refid'];
+          $link = baseurl."/admin/editnews/".$item['refid'];
         }else if($item['type']=='rating'){
-          $link = "http://localhost:84/archertours/admin/testimonials?active=2";
+          $link = baseurl."/admin/testimonials?active=2";
         }else if($item['type']=='contact'){
-          $link = "http://localhost:84/archertours/admin/customermsgs?active=2";
+          $link = baseurl."/admin/customermsgs?active=2";
         }else if($item['type']=='booking'){
-          $link = "http://localhost:84/archertours/admin/editbooking/".$item['refid'];
+          $link = baseurl."/admin/editbooking/".$item['refid'];
         }else if($item['type']=='subscription'){
-          $link = "http://localhost:84/archertours/admin/vsubs?active=2";
+          $link = baseurl."/admin/vsubs?active=2";
         }
 
         //subscription
@@ -122,8 +122,8 @@ if(!function_exists('TotalNotifications')){
     $ci=& get_instance();
     $ci->load->database();
    
-    $query = $ci->db->query("select `auto_generated_id` FROM `sys_notifications` where `viewed` = 0 
-        ORDER BY `date_created` ASC");
+    $query = $ci->db->query("select * FROM `sys_notifications` where `viewed` = 0 and `date_created` >= (NOW() - INTERVAL 2 WEEK)
+    ORDER BY `date_created` DESC");
       
 
     $items = $query->result_array();

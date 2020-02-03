@@ -17,7 +17,12 @@ class Clientside extends CI_Model {
                 'RefId' => $data['booking_unique_key'],
                 'UserEmail'=>$data['booking_email']
             );
-    
+
+            $this->SendEmail("archer1062tours@yahoo.com",
+            "Customer ".$data['booking_first_name'].' '.$data['booking_last_name'].' request rates.',
+            "<p>Customer ".$data['booking_first_name'].' '.$data['booking_last_name'].' would like to know the best rates you have going from '.$data['booking_origin'].' - '.$data['booking_dest'].'</p><be/><b>Contact Information</b><br/>Email: '.$data['booking_email'].'<br/>Phone: '.$data['booking_phone_number']
+            );
+            
             $json = json_encode($arry);
     
             $decode = json_decode($json);
@@ -33,6 +38,8 @@ class Clientside extends CI_Model {
             );
     
             $this->insertNotification($data);
+
+            
 
 			return true;
         }
