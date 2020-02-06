@@ -532,85 +532,67 @@ $this->load->helper('section');
 
       
 
-      <div class="row valign-wrapper contact-section" >
+      <div class="row contact-section" >
         <div class="contact-overlay"></div>
-        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0 main-contact-items nomarg">
+        <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0" style="position: relative;">
           
-          <div class="row nomarg valign-wrapper">
-            <div class="col l6 m8 s12 myendb">
+          <div class="row ">
+            <div class="col s12">
 
               <div class="row">
-                <h4>Contact Us</h4>
+                <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0"  >
+                  <h2 class="header center-align white-text">
+                    Contact Us
+                  </h2>
+                </div>
               </div>
-              
-              <div class="card-panel transparent z-depth-0 cus-panel">
-                <div class="row valign-wrapper">
-                  <div class="col s1 custom-icon z-depth-1">
-                      <i class="material-icons">location_on</i>
-                    </div>
-                    <div class="col s11">
-                      <span class="white-text lead"><?php echo $data['contact']['_contact_address']; ?></span>
-                    </div>
-                  </div>
+
+              <div class="row">
+
+                <div class="col l3 m6 s12">
+                  <p class="lead white-text valign-wrapper"><i class="material-icons small">location_on</i>  <?php echo $data['contact']['_contact_address'];?></p>
                 </div>
 
-                <div class="card-panel transparent z-depth-0 cus-panel">
-                <div class="row valign-wrapper">
-                  <div class="col s1 custom-icon z-depth-1">
-                      <i class="material-icons">local_phone</i>
-                    </div>
-                    <div class="col s11">
-                      <span class="white-text lead"><?php echo $data['contact']['_contact_phone']; ?></span>
-                    </div>
-                  </div>
+                <div class="col l3 m6 s12">
+                  <p class="white-text lead valign-wrapper"><i class="material-icons small">local_phone</i> <?php echo $data['contact']['_contact_phone'];?></p>
                 </div>
 
-                <div class="card-panel transparent z-depth-0 cus-panel">
-                <div class="row valign-wrapper">
-                    <div class="col s1 custom-icon z-depth-1">
-                      <i class="material-icons">mail</i>
-                    </div>
-                    <div class="col s11">
-                      <span class="white-text  lead"><?php echo $data['contact']['_contact_email']; ?></span>
-                    </div>
-                  </div>
+                <div class="col l3 m6 s12">
+                  <p class="white-text lead valign-wrapper"><i class="material-icons small">mail</i> <?php echo $data['contact']['_contact_email'];?></p>
                 </div>
 
-                <div class="card-panel transparent z-depth-0 cus-panel">
-                <div class="row valign-wrapper">
-                    <div class="col s1 custom-icon z-depth-1">
-                      <i class="material-icons">timer</i>
-                    </div>
-                    <div class="col s11">
-                      <span class="white-text  lead"><?php echo $data['contact']['operating_hours']; ?></span>
-                    </div>
-                  </div>
+                <div class="col l3 m6 s12">
+                  <p class="lead white-text valign-wrapper"><i class="material-icons small">timer</i> Always Available!</p>
                 </div>
+
+                <form class="col s12">
+            
+                  <div class="input-field col s12">
+                    <input id="name" type="text" placeholder="name" name="name" class="validate white">
+                    <label for="name" class="white-text">Name</label>
+                  </div>
+                  <div class="input-field col s12">
+                    <input id="email" placeholder="email" type="text" name="email_address" class="validate white">
+                    <label for="email" class="white-text">Email</label>
+                  </div>
+
+                  <div class="input-field col s12">
+                    <textarea id="message" placeholder="message..." name="message" class="materialize-textarea white"></textarea>
+                    <label for="message" class="white-text">Textarea</label>
+                  </div>
+
+                  <div class="col">
+                  <button class="btn white black-text waves-effect waves-yellow" id="sendMsg">Send Message</button>
+                  <p class="white-text lead" style="display:none;" id="resDisplay">Sending...</p>
+                  </div>
+                
+                </form>  
+
+              </div>
 
             </div>
 
-            <form class="col l6 m8 s12 mycent">
             
-              <div class="input-field col s6">
-                <input id="name" type="text" placeholder="name" name="name" class="validate white">
-                <label for="name" class="white-text">Name</label>
-              </div>
-              <div class="input-field col s6">
-                <input id="email" placeholder="email" type="text" name="email_address" class="validate white">
-                <label for="email" class="white-text">Email</label>
-              </div>
-
-              <div class="input-field col s12">
-                <textarea id="message" placeholder="message..." name="message" class="materialize-textarea white"></textarea>
-                <label for="message" class="white-text">Textarea</label>
-              </div>
-
-              <div class="col">
-              <button class="btn white black-text waves-effect waves-yellow" id="sendMsg">Send Message</button>
-              <p class="white-text lead" style="display:none;" id="resDisplay">Sending...</p>
-              </div>
-            
-            </form>  
           </div>
         </div>
         

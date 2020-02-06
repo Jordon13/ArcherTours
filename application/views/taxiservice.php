@@ -202,7 +202,7 @@ $this->load->helper('section');
                             <p><b>Origin Place: </b>{price_hotel}</p> 
                              <p><b>Destination Place: </b>{price_place}</p>
 
-                            <p><b>Group Price:</b> USD ${display_price} for 4 people.</p>
+                            <p><b>1 - 4 Persons:</b> USD ${display_price}.</p>
                             
                             <p><b>Each additional person:</b> USD ${price_per_adult}</p><br/>
 

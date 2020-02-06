@@ -50,6 +50,10 @@ $this->load->helper('section');
         background-color: rgba(35, 32, 32, 1);
     }
 
+    .card-action a{
+        margin: 1em!important;
+    }
+
     .fixed-action-btn{
         top:88%!important;
         
@@ -66,7 +70,7 @@ $this->load->helper('section');
         <div class="col s10 offset-s1">
             <ul class="collapsible">
                 <li class="active">
-                    <div class="collapsible-header"><i class="material-icons">info</i>Our Results: <?php echo count($data) ?></div>
+                    <div class="collapsible-header active"><i class="material-icons">info</i>Our Results: <?php echo count($data) ?></div>
                     <div class="collapsible-body">
 
                         <?php foreach($data as $item){?>
@@ -74,19 +78,19 @@ $this->load->helper('section');
                             <div class="card-panel grey lighten-5 z-depth-1" data-aos="flip-up">
                                 <div class="row valign-wrapper">
                                     <div class="col s2">
-                                        <img class="responsive-img"alt="no image" src="<?php echo base_url('/uploads/prices-images/'.$item['price_image']); ?>">
+                                        <img class="responsive-img hide-on-small-only"alt="no image" src="<?php echo base_url('/uploads/prices-images/'.$item['price_image']); ?>">
                                     </div>
                                     <div class="col s10">
                                         <h4><?php echo $item['price_place'];?></h4>
                                         <p><b>From </b><?php echo $item['price_origin'];?> <b>To</b> <?php echo $item['price_destination'];?></p>
                                         <p><b>Pickup Spots: </b><?php echo $item['price_hotel'];?></p>
-                                        <p><b>Group Price: </b> USD $<?php echo $item['display_price'];?> for 4 people.</p>
+                                        <p><b>1 - 4 Persons: </b> USD $<?php echo $item['display_price'];?></p>
                                         <p><b>Each additional person: </b> USD $<?php echo $item['price_per_adult'];?></p>
                                         <p><b>Description: </b> <?php echo base64_decode($item['price_description']);?></p>
                                     </div>
                                     
                                 </div>
-                                <div class="card-action">
+                                <div class="card-action center-align">
                                     <a class="waves-effect waves-light btn modal-trigger grey darken-3" id="<?php echo $item['package_unique_id'] ?>" onclick=addToCart('<?php echo $item['package_unique_id'] ?>') >Add To Cart</a>
                                     <a class="waves-effect waves-light btn modal-trigger grey darken-3" id="<?php echo $item['package_unique_id'] ?>" onclick=bookToCart('<?php echo $item['package_unique_id'] ?>') >Book Now</a>
                                 </div>
@@ -139,7 +143,7 @@ $this->load->helper('section');
     $(document).ready(function(){
         $('.collapsible').collapsible();
     
-        $('.fixed-action-btn').floatingActionButton({
+        $('.fixed-action-btn').openFAB({
             direction: 'top',
             hoverEnabled: true
         });

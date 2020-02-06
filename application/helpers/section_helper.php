@@ -41,16 +41,12 @@ if(!function_exists('main_head')){
         
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" media="screen,projection"> 
         
-        <script src="'.base_url('js/header.js').'" async></script>
-
-        <!-- Compiled and minified JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js" async></script>
         
-        
-
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/tiny-slider.css">
 
-        
+        <script src="'.base_url('js/header.js').'" async></script>
+
         <style>
         
         
@@ -115,14 +111,7 @@ if(!function_exists('main_nav')){
     </div>
 </div>
 
-      <div class="custom-dropdown z-depth-1" style="display:none;">
-        <div class="triangle-up"></div>
-            <ul>
-                <li><a href="'.site_url('/taxi').'">Private Taxi</a></li>
-                <li><a href="'.site_url('/airport').'">Airport Transfer</a></li>
-                <li><a href="'.site_url('/tour').'">Tours & Excursion</a></li>
-            </ul>            
-        </div>
+  
 
 <div class="nav-header">
 
@@ -137,19 +126,25 @@ if(!function_exists('main_nav')){
                 <li><a href="'.site_url('/about').'">About</a></li>
                 <li><a href="'.site_url('/contact').'">Contact</a></li>
                 <li><a href="'.site_url('/gallery').'">Gallery</a></li>
-                <li class="trigger-menu"><a href="'.site_url('/services').'">Services</a></li>
+                <li class="dropdown-button" data-activates="drop-down-area"><a href="'.site_url('/services').'">Services</a></li>
                 <li><a href="'.site_url('/blog').'">Blog</a></li>
                 <li><a href="'.site_url('/news').'">Recent</a></li>
                 
             </ul>
+
+            <ul id="drop-down-area" class="dropdown-content">
+              <li><a href="'.site_url('/taxi').'">Private Taxi</a></li>
+              <li><a href="'.site_url('/airport').'">Airport Transfer</a></li>
+              <li><a href="'.site_url('/tour').'">Tours & Excursion</a></li>
+            </ul>  
         </div>
 
 
         <div class="nav-misc">
             <button class="noshow"><a href="'.site_url('/booking').'">Book A Trip</a></button>
-            <form id="frm" method="GET" action="'.site_url('/search').'" target="_self">
+            <form class="col s10" id="frm" method="GET" action="'.site_url('/search').'" target="_self">
                 <div class="input-field">
-                <input id="search" type="search" name="query" placeholder="Search For Trips" style="border:1px solid white!important; border-radius:30px!important;padding-left:15px!important;" required>
+                <input id="search" type="search" name="query" placeholder="Search For Trips" required>
                 
                 </div>
             </form>
@@ -168,13 +163,13 @@ if(!function_exists('main_nav')){
         <a href="'.site_url('/').'"><img src="'.base_url('assets/').$logo.'"/></a>
       </div>
       <li><a href="'.site_url('/home').'">Home</a></li>
-      <li><a href="'.site_url('/blog').'">Gallery</a></li>
+      <li><a href="'.site_url('/blog').'">Blog</a></li>
       <li><a href="'.site_url('/about').'">About</a></li>
-      <li><a href="'.site_url('/news').'">Blog</a></li>
       <li><a href="'.site_url('/contact').'">Contact</a></li>
       <li><a href="'.site_url('/gallery').'">Gallery</a></li>
       <li><a href="'.site_url('/services').'">Services</a></li> 
       <li><a href="'.site_url('/testimonial').'">Testimonial</a></li>
+      <li><a href="'.site_url('/news').'">Recent Places</a></li>
       <li><a href="'.site_url('/booking').'">Book A Trip</a></li>
     </ul>';
 	}
@@ -219,7 +214,7 @@ if(!function_exists('main_footer')){
 
               <h5 class="" style="padding-bottom:1em!important;">1062 Explore</h5>
 
-              <div class="row cusexp" style="padding-bottom:1em!important;">
+              <div class="row cusexp hide-on-small-only" style="padding-bottom:1em!important;">
                 <div class="col l4 m8 s12">
                   <ul>
                     <li><a href="'.site_url('/').'">Home</a></li>

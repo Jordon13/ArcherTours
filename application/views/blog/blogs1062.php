@@ -63,8 +63,9 @@ $this->load->helper('section');
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
-        height: 50%!important;
+        height: 60%!important;
         width: 100%!important;
+        filter: brightness(60%);
         background-attachment: fixed;
         position: relative;
     }
