@@ -416,6 +416,40 @@ class Home extends CI_Controller {
         $this->load->view('sections/cart');
     }
 
+    public function viewprice()
+    {
+        $linkId = $this->uri->segment(2,-1);
+
+        $data = array();
+
+        if($linkId === -1){
+            $data+=array(
+                'data'=>'Please provide an id for this request.',
+                'IsSuccessful' => false
+            );
+            $this->load->view('sections/viewprice', $data);
+            return;
+        }
+
+        $result = $this->cs->GetPackageById($linkId);
+
+        if($result === false){
+            $data+=array(
+                'data'=>'Unable to find package by that id.',
+                'IsSuccessful' => false
+            );
+            $this->load->view('sections/viewprice', $data);
+            return;
+        }
+
+        $data+=array(
+            'data'=>$result,
+            'IsSuccessful' => true
+        );
+
+        $this->load->view('sections/viewprice',$data);
+    }
+
     
     public function footer()
     {

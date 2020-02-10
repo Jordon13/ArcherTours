@@ -91,7 +91,7 @@ if(!function_exists('main_nav')){
         
         <div class="fixed-action-btn " id="np">
         '.$div.'
-        <a href="'.base_url('/checkout').'" class="btn-floating btn-large grey darken-4 waves-effect waves-light">
+        <a href="'.base_url('/checkout').'" class="btn-floating btn-large grey darken-4 waves-effect waves-light" style="height:60px!important;width:60px!important;">
         <i class="large material-icons">add_shopping_cart</i>
         </a>
       </div>

@@ -533,7 +533,7 @@ $this->load->helper('section');
       
 
       <div class="row contact-section" >
-        <div class="contact-overlay"></div>
+        <div class="contact-overlay2"></div>
         <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0" style="position: relative;">
           
           <div class="row ">

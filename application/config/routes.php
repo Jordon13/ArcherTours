@@ -59,6 +59,8 @@ $route['translate_uri_dashes'] = FALSE;
 //$route['archer-tours/'] = "Home/index/";
 
 $route['blogs1062/(:any)']['GET'] = "home/blogs1062";
+$route['vprice/(:any)']['GET'] = "home/viewprice";
+//viewprice
 
 // $route['templ/(:any)'] = "home/price";
 

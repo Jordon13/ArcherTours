@@ -322,6 +322,13 @@ body {
     position: absolute;
 }
 
+.contact-overlay2 {
+    background-color: rgba(253, 216, 0, 1)!important;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
 .main-contact-items {
     z-index: 3;
     color: white;

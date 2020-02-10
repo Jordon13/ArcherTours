@@ -140,6 +140,10 @@ $this->load->helper('section');
         color: white!important;
     }
 
+    .card-action a{
+      margin: 0.5em!important;
+    }
+
 </style>
 
 </head>
@@ -219,6 +223,8 @@ $this->load->helper('section');
                         <div class="card-action center">
                           <a class="waves-effect waves-light btn modal-trigger grey darken-3" id="{package_unique_id}" onclick=addToCart('{package_unique_id}') >Add To Cart</a>
                           <a class="waves-effect waves-light btn modal-trigger grey darken-3" id="{package_unique_id}" onclick=bookToCart('{package_unique_id}') >Book Now</a>
+                          <a class="waves-effect waves-light btn modal-trigger grey darken-3" href="<?php echo base_url('/vprice/');?>{package_unique_id}">View Package Detials</a>
+
                         </div>
 
                     </div>

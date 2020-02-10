@@ -87,24 +87,79 @@
     color: black;
     text-decoration: none;
 }
-
 .nav-misc {
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1em;
+    color: white;
 }
 
+.nav-misc-sm {
+    
+    display: flex;
+    justify-content: space-between!important;
+    align-items: center!important;
+    color: white!important;
+    width: 100%!important;
+}
+
+.nav-misc-sm form{
+    width: 65%!important;
+}
+
+
+.nav-misc-sm div{
+    width: 100%!important;
+}
+
+
+
+.nav-misc-sm input{
+    width: 100%!important;
+}
 .nav-misc button {
     padding: 1em;
     margin: 1em;
     border-radius: 30px;
+    border: 0.5px solid white;
     outline: none;
     background-color: transparent;
-    /* color: black; */
-    color: white;
-    border: 0.5px solid white;
+    color: white!important;
     font-weight: bolder;
     cursor: pointer;
+}
+
+#search {
+    padding: 0.3em;
+    padding-left: 1em;
+    margin: 1em;
+    border-radius: 30px;
+    border: 0.5px solid white;
+    outline: none;
+    background-color: transparent;
+    color: white!important;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+#drop-down-area{
+    display: block;
+    background-color: #424242;
+    width: auto!important;
+}
+
+#drop-down-area li{
+    width: 100%!important;
+    border-radius: 0px!important;
+    padding: 0px!important;
+}
+
+.nav-misc button:focus {
+    background-color: transparent!important;
+}
+
+.nav-misc button a {
+    color: white!important;
 }
 
 .nav-misc i {
@@ -112,22 +167,16 @@
     margin: 1em!important;
     border-radius: 30px!important;
     outline: none!important;
+    border: 0.5px solid white!important;
     background-color: transparent!important;
-    /* color: black!important; */
-    color: white;
-    border: 0.5px solid white;
+    color: white!important;
     cursor: pointer!important;
-}
-
-.invert {
-    color: black!important;
-    border: 0.5px solid black!important;
 }
 
 .nav-misc button:hover,
 .nav-misc i:hover {
     /* background-color: rgba(0, 145, 234, 1)!important; */
-    /* color: white; */
+    color: white;
     background-color: #fdd800!important;
     box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3)!important;
     border: 0.5px solid transparent!important;
@@ -136,11 +185,12 @@
 
 .nav-links ul li:hover {
     /* background-color: rgba(0, 145, 234, 1); */
-    /* color: white; */
+    color: white;
     background-color: #fdd800!important;
     box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
     transition: background-color 0.2s;
 }
+sssssssssss
 
 #slidenav li a {
     color: black;

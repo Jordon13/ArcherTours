@@ -169,7 +169,7 @@ html {
                             <tbody>
                                 <?php foreach($itms as $item){?>
                                 <tr>
-                                    <td><?php echo $item->Origin;?></td>
+                                    <td><a href="<?php echo base_url('/vprice/'.$item->id);?>"><?php echo $item->Origin;?></a></td>
                                     <td><?php echo $item->Destination;?></td>
                                     <td><?php echo $item->type;?></td>
                                     <td>$<?php echo $item->price;?></td>
