@@ -15,6 +15,7 @@
             <th style="padding: 0.5em!important;border:1px solid #fdd800;">Discount</th>
             <th style="padding: 0.5em!important;border:1px solid #fdd800;">Origin</th>
             <th style="padding: 0.5em!important;border:1px solid #fdd800;">Destination</th>
+            <th style="padding: 0.5em!important;border:1px solid #fdd800;">View More</th>
             <th style="padding: 0.5em!important;border:1px solid #fdd800;">Book</th>
         </tr>
     </thead>
@@ -29,6 +30,7 @@
             <td style="padding: 0.5em!important;border:1px solid #fdd800;">{price_discount}%</td>
             <td style="padding: 0.5em!important;border:1px solid #fdd800;">{price_origin}</td>
             <td style="padding: 0.5em!important;border:1px solid #fdd800;">{price_destination}</td>
+            <td style="padding: 0.5em!important;border:1px solid #fdd800;"><a href="<?php echo site_url('vprice/');?>{package_unique_id}">Package Information</a></td>
             <td style="padding: 0.5em!important;border:1px solid #fdd800;"><a href="<?php echo site_url('client/CartInsert?id={package_unique_id}&type=0');?>">Book Now</a></td>
         </tr>
             {/packages}
