@@ -72,9 +72,16 @@ $linkId = $this->uri->segment(3,-1);
                         </div>
 
                         <div class="col s12">
+                            <input id="special_description" name="special_description" class="abt"  type="text" value="<?php echo $data['special_description']; ?>" disabled/>
+                            <label for="special_description">Description</label>
+                        </div>
+
+                        <div class="col s12">
                             <input id="lname" name="special_catch" class="abt"  type="text" value="<?php echo $data['special_catch']; ?>" disabled/>
                             <label for="lname">Catch Phrase</label>
                         </div>
+
+                        
                         
                         <div class="col s12">
                             <input id="phone" name="special_start_date" class="abt"  type="date" value="<?php echo $data['special_start_date']; ?>" disabled/>

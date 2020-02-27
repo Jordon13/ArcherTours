@@ -416,7 +416,7 @@ $this->load->helper('section');
     
       $('document').ready(function(){
 
-        $('select').material_select();
+        $('select').formSelect();
 
         $('.datepicker').eq(0).pickadate({
             showDaysInNextAndPreviousMonths: false,

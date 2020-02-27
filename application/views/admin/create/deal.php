@@ -271,8 +271,6 @@ if(!($this->ses->has_userdata("user_ses"))){
                 });
             });
 
-            
-            
         });
 
         $('#submit').click(function(e){

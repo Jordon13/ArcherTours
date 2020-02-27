@@ -126,18 +126,20 @@ if(!function_exists('main_nav')){
                 <li><a href="'.site_url('/about').'">About</a></li>
                 <li><a href="'.site_url('/contact').'">Contact</a></li>
                 <li><a href="'.site_url('/gallery').'">Gallery</a></li>
-                <li class="dropdown-button" data-activates="drop-down-area"><a href="'.site_url('/services').'">Services</a></li>
+                <li><a class="dropdown-button" data-activates="drop-down-area" href="'.site_url('/services').'">Services</a></li>
                 <li><a href="'.site_url('/blog').'">Blog</a></li>
                 <li><a href="'.site_url('/news').'">Recent</a></li>
                 
             </ul>
 
-            <ul id="drop-down-area" class="dropdown-content">
-              <li><a href="'.site_url('/taxi').'">Private Taxi</a></li>
-              <li><a href="'.site_url('/airport').'">Airport Transfer</a></li>
-              <li><a href="'.site_url('/tour').'">Tours & Excursion</a></li>
-            </ul>  
+             
         </div>
+
+        <ul id="drop-down-area" class="dropdown-content">
+          <li><a href="'.site_url('/taxi').'">Private Taxi</a></li>
+          <li><a href="'.site_url('/airport').'">Airport Transfer</a></li>
+          <li><a href="'.site_url('/tour').'">Tours & Excursion</a></li>
+        </ul> 
 
 
         <div class="nav-misc">

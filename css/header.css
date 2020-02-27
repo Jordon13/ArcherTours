@@ -26,7 +26,7 @@
 .nav-header-small {
     position: fixed;
     height: 114px;
-    background-color: rgba(35, 32, 32, 1);
+    background-color: rgba(21, 21, 21, 1);
     width: 100%;
     flex-flow: row wrap;
     transition: height 1s, background-color 1s;
@@ -162,7 +162,7 @@
 
 #drop-down-area{
     display: block;
-    background-color: #424242;
+    background-color: rgba(21, 21, 21, 1);
     width: auto!important;
 }
 
@@ -210,7 +210,7 @@
 }
 
 #slidenav {
-    background-color: rgba(35, 32, 32, 1);
+    background-color: rgba(21, 21, 21, 1);
 }
 
 #slidenav li a {
@@ -280,7 +280,7 @@
 
 .custom-dropdown {
     top: 126px;
-    background-color: rgba(35, 32, 32, 1);
+    background-color: rgba(21, 21, 21, 1);
     height: auto!important;
     /* width: auto!important; */
     position: fixed!important;
@@ -314,13 +314,13 @@
 
  ::-webkit-scrollbar {
     width: 8px;
-    background-color: rgba(33, 33, 33, 1);
+    background-color: rgba(21, 21, 21, 1);
 }
 
  ::-webkit-scrollbar-thumb {
     border-radius: 0px;
     box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-    background-color: rgba(33, 33, 33, 1);
+    background-color: rgba(21, 21, 21, 1);
 }
 
 img{

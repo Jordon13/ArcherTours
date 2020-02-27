@@ -114,6 +114,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                                         <th>Price</th>
                                         <th>Origin</th>
                                         <th>Destination</th>
+                                        <th>Add Deal</th>
                                         <th>Edit</th>
                                         <th>Remove</th>
                                     </tr>
@@ -128,6 +129,7 @@ if(!($this->ses->has_userdata("user_ses"))){
                                         <td>{price_per_adult}</td>
                                         <td>{price_origin}</td>
                                         <td>{price_destination}</td>
+                                        <td id=""><a class="grey-text" href="<?php echo site_url('admin/convertprice/')?>{auto_generated_id}"><i class="material-icons">add</i></a></td>
                                         <td id=""><a class="grey-text" href="<?php echo site_url('admin/editprice/')?>{auto_generated_id}"><i class="material-icons">mode_edit</i></a></td>
                                         <td id="{auto_generated_id}" onclick="del({auto_generated_id})"><i class="red-text material-icons">delete</i></td>
                                     </tr>

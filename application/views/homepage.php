@@ -173,7 +173,7 @@ $this->load->helper('section');
                     <p><b>Price:</b> <?php echo $item['price_per_adult'];?></p>
                     <p><b>Discount:</b> <span class="green-text">-<?php echo $item['special_discount'];?>%</span></p>
                     <p><b>Offer Ends:</b> <?php echo date("M d, Y",strtotime($item['special_end_date']));?></p>
-                    <p><b>Description:</b> <?php echo base64_decode(substr($item['price_description'],0,124)).'...';?></p>
+                    <p><b>Description:</b> <?php echo substr($item['special_description'],0,124).'...';?></p>
                   </div>
                   <div class="card-action modify-action center-align">
                     <a onclick="addToCart('<?php echo base64_encode(substr(uniqid(),0,10).$item['special_unique_id']);?>')" class="custom-link">Add To Cart</a>
@@ -402,7 +402,7 @@ $this->load->helper('section');
         </div>
       </div>
 
-      <div class="row" style="background-color: rgba(35, 32, 32, 1)!important;">
+      <div class="row" style="background-color: rgba(21, 21, 21, 1)!important;">
     
           <div class="col l10 m10 s12 offset-l1 offset-m1 offset-s0" >
               <h2 class="header center-align white-text">

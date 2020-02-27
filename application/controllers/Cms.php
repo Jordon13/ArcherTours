@@ -591,21 +591,16 @@ class Cms extends CI_Controller {
         try{
 
             
-
-            $special_place = sanitizeInput($this->input->post('place',true));
-            $special_price = sanitizeInput($this->input->post('price',true));
-            $special_discount = sanitizeInput($this->input->post('discount',true));
+            $special_discount = sanitizeInput($this->input->post('special_discount',true));
+            $_service_id = sanitizeInput($this->input->post('_service_id',true));
             $special_catch = sanitizeInput($this->input->post('catch_phrase',true));
-            $special_start_date = sanitizeInput($this->input->post('sdate',true));
-            $special_end_date = sanitizeInput($this->input->post('edate',true));
-            $special_desc = sanitizeInput($this->input->post('description',true));
-            $special_category = sanitizeInput($this->input->post('package_type',true));
-            $special_category_desc = sanitizeInput($this->input->post('packdesc',true));
-            $special_image = '';
+            $special_start_date = sanitizeInput($this->input->post('special_start_date',true));
+            $special_end_date = sanitizeInput($this->input->post('special_end_date',true));
+            $special_description = sanitizeInput($this->input->post('special_description',true));
             $special_unique_id = random_string('alnum', 28);
 
 
-            if(empty($special_place) || empty( $special_price) || empty($special_start_date) || empty($special_end_date) || empty($special_desc)){
+            if(empty($_service_id) || empty($special_start_date) || empty($special_end_date) || empty($special_description)){
                 $result = array(
                     "Message" =>"Please fill out all the feilds necessary for this transaction",
                     "IsSuccess" => false
@@ -616,48 +611,15 @@ class Cms extends CI_Controller {
                 return;
             }
 
-            
-            if(!(isset($_FILES['upl'])) || ($_FILES['upl']['name'][0] == "")){
-                    
-                $result = array(
-                
-                    "Message" =>"Please upload a image for this request",
-                
-                    "IsSuccess" => false
-                );
-
-                echo json_encode($result);
-                http_response_code(400);
-                return;
-            }
-
-            $config['upload_path'] = './uploads/special-images/';
-            $config['allowed_types'] = "jpg|jpeg|png";
-            $config['encrypt_name'] = TRUE;
-            $this->load->library('upload',$config);
-            $this->upload->initialize($config);
-            $_FILES['file']['name'] = $_FILES['upl']['name'][0];
-            $_FILES['file']['type'] = $_FILES['upl']['type'][0];
-            $_FILES['file']['tmp_name'] = $_FILES['upl']['tmp_name'][0];
-            $_FILES['file']['error'] = $_FILES['upl']['error'][0];
-            $_FILES['file']['size'] = $_FILES['upl']['size'][0];
-            if($this->upload->do_upload('file')){
-                $special_image  = $this->upload->data()['file_name'];
-            }
 
             $dataArray = array(
-                'special_place'=>$special_place,
-                'special_price'=>$special_price,
                 'special_discount'=>$special_discount,
                 'special_catch'=>$special_catch,
                 'special_start_date'=>date("Y-m-d" ,strtotime($special_start_date)),
                 'special_end_date'=>date("Y-m-d" ,strtotime($special_end_date)),
-                'special_desc'=>$special_desc,
-                'special_image'=>$special_image,
+                'special_description'=>$special_description,
                 'special_unique_id'=>$special_unique_id,
-                'special_desc'=>$special_desc,
-                'special_category_desc'=>$special_category_desc,
-                'special_category'=>$special_category
+                '_service_id'=>$_service_id
             );
 
             $dataArray = $this->gen->xss_cleanse($dataArray);
@@ -667,7 +629,7 @@ class Cms extends CI_Controller {
                 
                 $result = array(
                 
-                    "Message" =>"Package Added Successfully.",
+                    "Message" =>"Deal Added Successfully.",
                 
                     "IsSuccess" => true
                 );
@@ -929,7 +891,7 @@ class Cms extends CI_Controller {
                 "IsSuccess" => false
             );
     
-            echo json_ensode($result);
+            echo json_encode($result);
     
             http_response_code(500);
         }

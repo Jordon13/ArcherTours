@@ -123,10 +123,12 @@ $this->load->helper('section');
                     <p><b>Price:</b> <?php echo $item['price_per_adult'];?></p>
                     <p><b>Discount:</b> <span class="green-text">-<?php echo $item['special_discount'];?>%</span></p>
                     <p><b>Offer Ends:</b> <?php echo date("M d, Y",strtotime($item['special_end_date']));?></p>
-                    <p><b>Description:</b> <?php echo base64_decode(substr($item['price_description'],0,124)).'...';?></p>
+                    <p><b>Description:</b> <?php echo $item['special_description'];?></p>
                   </div>
                   <div class="card-action modify-action center-align ">
                     <a onclick="addToCart('<?php echo base64_encode(substr(uniqid(),0,10).$item['special_unique_id']);?>')" class="custom-link waves-effect waves-light btn grey darken-3">Add To Cart</a>
+                    <a onclick="bookToCart('<?php echo base64_encode(substr(uniqid(),0,10).$item['special_unique_id']);?>')" class="custom-link waves-effect waves-light btn grey darken-3">Book Now</a>
+
                   </div>
                 </div>
               </div>
@@ -173,5 +175,18 @@ $this->load->helper('section');
 
     });
   }
+
+  var bookToCart = (id) =>{
+      $.post("<?php echo base_url('/client/CartAdd'); ?>",{id:id,type:1},function(data){
+
+        if($(".cartTotal")[0]){
+          $(".cartTotal").text(data);
+        }else{
+          $("#np").prepend("<div class='cart-active white-text cartTotal'>"+data+"</div>");
+        }
+
+        location.href = "<?php echo site_url('/checkout')?>";
+      });
+    }
 
 </script>

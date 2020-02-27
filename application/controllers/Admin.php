@@ -350,6 +350,15 @@ class Admin extends CI_Controller {
         $this->load->view('admin/temp/editbooking',array('data'=>$result[0]));
     }
 
+    public function convertprice()
+    {
+        $linkId = $this->uri->segment(3,-1);
+
+        $result = $this->gen->GetPriceById($linkId);
+
+        $this->load->view('admin/temp/convertprice',array('data'=>$result[0]));
+    }
+
     public function logout(){
         $this->gen->killSession("user_ses");
         redirect(site_url('/admin/login?success=Thanks for using the service'),'location');

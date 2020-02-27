@@ -801,7 +801,7 @@ class General extends CI_Model {
         $items+=array("weekpageviews"=>$results);
 
 
-        $query = $this->db->query("select * FROM `sys_notifications` where `date_created` >= (NOW() - INTERVAL 1 WEEK) 
+        $query = $this->db->query("select * FROM `sys_notifications` where `date_created` >= (NOW() - INTERVAL 2 WEEK) 
         ORDER BY `date_created` DESC");
         $results = $query->result_array();
         $items+=array("weekactivities"=>$results);

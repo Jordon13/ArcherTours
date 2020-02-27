@@ -323,7 +323,7 @@ body {
 }
 
 .contact-overlay2 {
-    background-color: rgba(253, 216, 0, 1)!important;
+    background-color: rgba(0, 0, 0, 0.5)!important;
     width: 100%;
     height: 100%;
     position: absolute;

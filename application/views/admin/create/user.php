@@ -16,7 +16,6 @@ if(!($this->ses->has_userdata("user_ses"))){
     <head>
         <title>CreateUser</title>
         <?php adminhead();?>
-        <script src="http://malsup.github.com/jquery.form.js"></script> 
 
         <style>
 
