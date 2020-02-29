@@ -31,6 +31,12 @@ if(!function_exists('main_head')){
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" media="screen,projection"> 
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/tiny-slider.css">
+        
         <script src="'.base_url('js/').'jquery.star-rating-svg.js"></script>
         
         <link rel="stylesheet" type="text/css" href="'.base_url('css/').'star-rating-svg.css">
@@ -38,12 +44,6 @@ if(!function_exists('main_head')){
         <link href="'.$header.'" rel="stylesheet">
 
         <link href="'.base_url('css/footer.css').'" rel="stylesheet">
-        
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" media="screen,projection"> 
-        
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js" async></script>
-        
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/tiny-slider.css">
 
         <script src="'.base_url('js/header.js').'" async></script>
 
